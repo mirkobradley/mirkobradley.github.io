@@ -160,7 +160,7 @@ function toggleLang(){
   lang = lang === 'en' ? 'it' : 'en';
   document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
   document.querySelectorAll('[data-en]').forEach(el => {
-    el.textContent = lang === 'it' ? el.dataset.en : el.dataset.it;
+    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.it;
   });
 }
 </script>
