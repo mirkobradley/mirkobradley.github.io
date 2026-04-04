@@ -23,19 +23,17 @@ body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size
 
 nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem}
 .nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:0.05em;color:var(--ink);text-decoration:none}
+.nav-right{display:flex;gap:2rem;align-items:center}
 .nav-back{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;transition:color 0.2s}
 .nav-back:hover{color:var(--accent)}
+.lang-toggle{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;background:none;border:1px solid var(--rule);color:var(--ink-muted);padding:0.3rem 0.7rem;cursor:pointer;transition:all 0.2s}
+.lang-toggle:hover{color:var(--accent);border-color:var(--accent)}
 
 .post{max-width:680px;margin:0 auto;padding:6rem 3rem 8rem}
-
 .post-meta{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
-
 .post h1{font-size:2.4rem;font-weight:400;line-height:1.15;margin-bottom:3rem;color:var(--ink)}
-
 .post p{margin-bottom:1.6rem;color:var(--ink)}
-
 .post p:last-child{margin-bottom:0}
-
 .post strong{font-weight:500}
 
 .post-footer{margin-top:5rem;padding-top:2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
@@ -58,41 +56,44 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
 
 <nav>
   <a class="nav-logo" href="index.html">M.B.</a>
-  <a class="nav-back" href="index.html#blog">← Blog</a>
+  <div class="nav-right">
+    <a class="nav-back" href="index.html#blog">← Blog</a>
+    <button class="lang-toggle" onclick="toggleLang()">IT</button>
+  </div>
 </nav>
 
 <article class="post">
 
-  <p class="post-meta">The Form of the Mind · Post 01</p>
+  <p class="post-meta" data-en="The Form of the Mind · Post 01" data-it="La Forma della Mente · Post 01">The Form of the Mind · Post 01</p>
 
-  <h1>Why every model of the mind feels wrong to me</h1>
+  <h1 data-en="Why every model of the mind feels wrong to me" data-it="Perché tutti i modelli della mente mi sembrano sbagliati">Why every model of the mind feels wrong to me</h1>
 
-  <p>When you Google "how the mind works", you mostly find three kinds of answers.</p>
+  <p data-en="When you Google "how the mind works", you mostly find three kinds of answers." data-it="Se cerchi su Google "come funziona la mente", trovi tre tipi di risposta.">When you Google "how the mind works", you mostly find three kinds of answers.</p>
 
-  <p>The first kind says the mind is the brain. Neurons, synapses, cortical areas. Every thought has a neural correlate, every emotion has a location. It's a clean, measurable, scientific model. The problem is that it doesn't explain anything you actually care about. It can tell you where the brain lights up when you're afraid, but it can't tell you why that fear has been paralysing you for twenty years and not your brother.</p>
+  <p data-en="The first kind says the mind is the brain. Neurons, synapses, cortical areas. Every thought has a neural correlate, every emotion has a location. It's a clean, measurable, scientific model. The problem is that it doesn't explain anything you actually care about. It can tell you where the brain lights up when you're afraid, but it can't tell you why that fear has been paralysing you for twenty years and not your brother." data-it="Il primo tipo dice che la mente è il cervello. Neuroni, sinapsi, aree corticali. Ogni pensiero ha un correlato neurale, ogni emozione ha una sede. È un modello pulito, misurabile, scientifico. Il problema è che non spiega niente di quello che ti interessa davvero. Sa dirti dove si accende il cervello quando hai paura, ma non sa dirti perché quella paura ti paralizza da vent'anni e a tuo fratello no.">The first kind says the mind is the brain. Neurons, synapses, cortical areas. Every thought has a neural correlate, every emotion has a location. It's a clean, measurable, scientific model. The problem is that it doesn't explain anything you actually care about. It can tell you where the brain lights up when you're afraid, but it can't tell you why that fear has been paralysing you for twenty years and not your brother.</p>
 
-  <p>The second kind says the mind is experience. Phenomenology, consciousness, subjective life. It's a rich, nuanced model, close to what you actually feel. The problem is that it can't be formalised. You can describe experience endlessly, but you can't measure it, you can't compare it, you can't predict anything.</p>
+  <p data-en="The second kind says the mind is experience. Phenomenology, consciousness, subjective life. It's a rich, nuanced model, close to what you actually feel. The problem is that it can't be formalised. You can describe experience endlessly, but you can't measure it, you can't compare it, you can't predict anything." data-it="Il secondo tipo dice che la mente è esperienza. Fenomenologia, coscienza, vissuto soggettivo. È un modello ricco, sfumato, vicino a quello che effettivamente senti. Il problema è che non si riesce a formalizzare. Puoi descrivere l'esperienza all'infinito, ma non puoi misurarla, non puoi confrontarla, non puoi prevedere niente.">The second kind says the mind is experience. Phenomenology, consciousness, subjective life. It's a rich, nuanced model, close to what you actually feel. The problem is that it can't be formalised. You can describe experience endlessly, but you can't measure it, you can't compare it, you can't predict anything.</p>
 
-  <p>The third kind says the mind is a dynamical system. Attractors, bifurcations, complexity. It's the most sophisticated model, and the closest to where I want to go. The problem is that it stops halfway: it uses the mathematics of complex systems to describe the brain, then goes back to explaining everything in terms of subject, experience, lived world. Dynamics comes in through the door, the subject sneaks back in through the window.</p>
+  <p data-en="The third kind says the mind is a dynamical system. Attractors, bifurcations, complexity. It's the most sophisticated model, and the closest to where I want to go. The problem is that it stops halfway: it uses the mathematics of complex systems to describe the brain, then goes back to explaining everything in terms of subject, experience, lived world. Dynamics comes in through the door, the subject sneaks back in through the window." data-it="Il terzo tipo dice che la mente è un sistema dinamico. Attrattori, biforcazioni, complessità. È il modello più sofisticato, il più vicino a dove voglio arrivare. Il problema è che resta a metà strada: usa la matematica dei sistemi complessi per descrivere il cervello, poi continua a spiegare tutto in termini di soggetto, esperienza, vissuto. La dinamica entra dalla porta, il soggetto rientra dalla finestra.">The third kind says the mind is a dynamical system. Attractors, bifurcations, complexity. It's the most sophisticated model, and the closest to where I want to go. The problem is that it stops halfway: it uses the mathematics of complex systems to describe the brain, then goes back to explaining everything in terms of subject, experience, lived world. Dynamics comes in through the door, the subject sneaks back in through the window.</p>
 
-  <p>There is a problem that all these approaches share, beyond their differences. None of them quantifies. They describe, interpret, narrate. But without formalisation there is no falsifiability, and without falsifiability there is no science in the strong sense of the word. We see the result every day: dozens of models of the mind contradicting each other, each with its own concepts, its own language, its own arguments. Not because researchers are incompetent, but because in the absence of a shared formal structure there is no criterion for deciding who is right.</p>
+  <p data-en="There is a problem that all these approaches share, beyond their differences. None of them quantifies. They describe, interpret, narrate. But without formalisation there is no falsifiability, and without falsifiability there is no science in the strong sense of the word. We see the result every day: dozens of models of the mind contradicting each other, each with its own concepts, its own language, its own arguments. Not because researchers are incompetent, but because in the absence of a shared formal structure there is no criterion for deciding who is right." data-it="C'è un problema che accomuna tutti questi approcci, al di là delle differenze. Nessuno di loro quantifica. Descrivono, interpretano, narrano. Ma senza formalizzazione non c'è falsificabilità, e senza falsificabilità non c'è scienza nel senso forte del termine. Il risultato lo vediamo ogni giorno: decine di modelli della mente che si contraddicono a vicenda, ciascuno con i propri concetti, il proprio linguaggio, i propri argomenti. Non perché i ricercatori siano incompetenti, ma perché in assenza di una struttura formale condivisa non esiste un criterio per decidere chi ha ragione.">There is a problem that all these approaches share, beyond their differences. None of them quantifies. They describe, interpret, narrate. But without formalisation there is no falsifiability, and without falsifiability there is no science in the strong sense of the word. We see the result every day: dozens of models of the mind contradicting each other, each with its own concepts, its own language, its own arguments. Not because researchers are incompetent, but because in the absence of a shared formal structure there is no criterion for deciding who is right.</p>
 
-  <p>None of these models satisfies me. Not because they are wrong in the trivial sense. Each of them captures something real. The problem is that they all share the same implicit assumption, and that assumption blocks them all in the same way.</p>
+  <p data-en="None of these models satisfies me. Not because they are wrong in the trivial sense. Each of them captures something real. The problem is that they all share the same implicit assumption, and that assumption blocks them all in the same way." data-it="Nessuno di questi modelli mi soddisfa. Non perché siano sbagliati nel senso banale della parola. Ciascuno cattura qualcosa di reale. Il problema è che condividono tutti lo stesso presupposto implicito, e questo presupposto li blocca tutti allo stesso modo.">None of these models satisfies me. Not because they are wrong in the trivial sense. Each of them captures something real. The problem is that they all share the same implicit assumption, and that assumption blocks them all in the same way.</p>
 
-  <p>The assumption is this: the mind belongs to someone.</p>
+  <p data-en="The assumption is this: the mind belongs to someone." data-it="Il presupposto è questo: la mente appartiene a qualcuno.">The assumption is this: the mind belongs to someone.</p>
 
-  <p>It sounds obvious. It even sounds tautological. But it is precisely this "obvious" that prevents us from building a real theory. As long as the mind is thought of as the property of a subject, it cannot become the object of a formal theory. Because the subject is not measurable, not comparable, not formalizable. It is the blind spot of every model.</p>
+  <p data-en="It sounds obvious. It even sounds tautological. But it is precisely this "obvious" that prevents us from building a real theory. As long as the mind is thought of as the property of a subject, it cannot become the object of a formal theory. Because the subject is not measurable, not comparable, not formalizable. It is the blind spot of every model." data-it="Sembra ovvio. Sembra persino tautologico. Ma è precisamente questo "ovvio" che impedisce di costruire una teoria vera. Finché la mente è pensata come proprietà di un soggetto, non può diventare l'oggetto di una teoria formale. Perché il soggetto non è misurabile, non è confrontabile, non è formalizzabile. È il punto cieco di tutti i modelli.">It sounds obvious. It even sounds tautological. But it is precisely this "obvious" that prevents us from building a real theory. As long as the mind is thought of as the property of a subject, it cannot become the object of a formal theory. Because the subject is not measurable, not comparable, not formalizable. It is the blind spot of every model.</p>
 
-  <p>The question I asked myself is simple: what happens if we remove the subject from the equation? We don't deny it. The subject exists, experience exists. But we set them aside as a starting point, and try to build a theory of mind that does not presuppose them.</p>
+  <p data-en="The question I asked myself is simple: what happens if we remove the subject from the equation? We don't deny it. The subject exists, experience exists. But we set them aside as a starting point, and try to build a theory of mind that does not presuppose them." data-it="La domanda che mi sono posto è semplice: cosa succede se togliamo il soggetto dall'equazione? Non lo neghiamo. Il soggetto esiste, l'esperienza esiste. Ma li mettiamo da parte come punto di partenza, e proviamo a costruire una teoria della mente che non li presupponga.">The question I asked myself is simple: what happens if we remove the subject from the equation? We don't deny it. The subject exists, experience exists. But we set them aside as a starting point, and try to build a theory of mind that does not presuppose them.</p>
 
-  <p>What emerges is something unexpected. The mind, seen without the subject, is neither an object nor a process nor a system. It is a <strong>form</strong>. A dynamic configuration that stabilises, deforms, migrates, collapses. A structure with measurable properties, that evolves according to describable laws, that allows for precise predictions.</p>
+  <p data-en="What emerges is something unexpected. The mind, seen without the subject, is neither an object nor a process nor a system. It is a <strong>form</strong>. A dynamic configuration that stabilises, deforms, migrates, collapses. A structure with measurable properties, that evolves according to describable laws, that allows for precise predictions." data-it="Quello che emerge è qualcosa di inaspettato. La mente, vista senza il soggetto, non è un oggetto né un processo né un sistema. È una <strong>forma</strong>. Una configurazione dinamica che si stabilizza, si deforma, migra, collassa. Una struttura con proprietà misurabili, che evolve secondo leggi descrivibili, che permette previsioni precise.">What emerges is something unexpected. The mind, seen without the subject, is neither an object nor a process nor a system. It is a <strong>form</strong>. A dynamic configuration that stabilises, deforms, migrates, collapses. A structure with measurable properties, that evolves according to describable laws, that allows for precise predictions.</p>
 
-  <p>In the next posts we'll build this idea piece by piece. Without presupposing anything, without taking anything for granted. Always starting from a concrete problem, and only bringing in the mathematics once the ground has been prepared.</p>
+  <p data-en="In the next posts we'll build this idea piece by piece. Without presupposing anything, without taking anything for granted. Always starting from a concrete problem, and only bringing in the mathematics once the ground has been prepared." data-it="Nei prossimi post costruiremo questa idea pezzo per pezzo. Senza presupporre niente, senza dare niente per scontato. Partendo sempre dal problema concreto, arrivando alla matematica solo quando il terreno è già preparato.">In the next posts we'll build this idea piece by piece. Without presupposing anything, without taking anything for granted. Always starting from a concrete problem, and only bringing in the mathematics once the ground has been prepared.</p>
 
-  <p>The subject will return. But as an emergence, not as a foundation.</p>
+  <p data-en="The subject will return. But as an emergence, not as a foundation." data-it="Il soggetto tornerà. Ma come emergenza, non come fondamento.">The subject will return. But as an emergence, not as a foundation.</p>
 
   <div class="post-footer">
-    <span class="post-footer-label">The Form of the Mind</span>
+    <span class="post-footer-label" data-en="The Form of the Mind" data-it="La Forma della Mente">The Form of the Mind</span>
     <a class="post-next" href="#">Next post →</a>
   </div>
 
@@ -100,8 +101,19 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
 
 <footer>
   <span class="footer-text">© 2025 Mirko Bradley</span>
-  <span class="footer-text">All content open access.</span>
+  <span class="footer-text" data-en="All content open access." data-it="Tutti i contenuti in accesso aperto.">All content open access.</span>
 </footer>
+
+<script>
+let lang = 'en';
+function toggleLang(){
+  lang = lang === 'en' ? 'it' : 'en';
+  document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+  });
+}
+</script>
 
 </body>
 </html>
