@@ -52,6 +52,13 @@ nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px 
 .paper-link{font-family:var(--mono);font-size:10px;color:var(--accent);text-decoration:none;display:inline-block;margin-top:0.5rem}
 .paper-link:hover{text-decoration:underline}
 
+.blog-item{border-bottom:1px solid var(--rule);padding:2rem 0}
+.blog-item:last-child{border-bottom:none}
+.blog-series{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem}
+.blog-title{font-size:1.1rem;font-weight:500;color:var(--ink);text-decoration:none;display:block;margin-bottom:0.4rem}
+.blog-title:hover{color:var(--accent)}
+.blog-date{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+
 .about-text p{color:var(--ink-muted);margin-bottom:1rem;font-size:1rem}
 
 footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center}
@@ -81,7 +88,7 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
 </nav>
 
 <section class="hero">
-  <p class="hero-label" data-en="Complex Systems · Mind · AI · Open Research" data-it="Sistemi Complessi · Mente · IA · Ricerca Aperta">Complex Systems · Mind · AI · Open Research</p>
+  <p class="hero-label" data-en="Complex Systems · History · Prediction · Open Research" data-it="Sistemi Complessi · Storia · Predizione · Ricerca Aperta">Complex Systems · History · Prediction · Open Research</p>
   <div class="hero-inner">
     <div>
       <h1>Mirko Bradley</h1>
@@ -96,18 +103,9 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
 <section class="section" id="research">
   <p class="section-label" data-en="Research" data-it="Ricerca">Research</p>
   <div class="paper-list">
-     <div class="paper-item">
-      <span class="paper-num">01</span>
-      <div>
-        <p class="paper-area" data-en="AI · Topology · Philosophy of Mind" data-it="IA · Topologia · Filosofia della Mente">AI · Topology · Philosophy of Mind</p>
-        <h2 class="paper-title">The Topology of Mind</h2>
-        <p class="paper-abstract" data-en="A formal framework for conscious autonomous intelligence using differential topology. F = (C, V, Φ) with morphological cost U_tot. References: Thom, Friston, Poincaré, Lyapunov." data-it="Un framework formale per l'intelligenza autonoma consapevole tramite topologia differenziale. F = (C, V, Φ) con costo morfologico U_tot. Riferimenti: Thom, Friston, Poincaré, Lyapunov.">A formal framework for conscious autonomous intelligence using differential topology. F = (C, V, Φ) with morphological cost U_tot. References: Thom, Friston, Poincaré, Lyapunov.</p>
-        <a class="paper-link" href="https://zenodo.org/records/19034234" target="_blank">Zenodo ↗</a>&nbsp;&nbsp;
-<a class="paper-link" href="https://www.academia.edu/165280636/Topologia_della_mente_continuit%C3%A0_morfogenetica_e_architettura_dellIntelligenza_Generale_Autonoma" target="_blank">Academia.edu (IT) ↗</a>
-      </div>
-    </div>
+
     <div class="paper-item">
-      <span class="paper-num">02</span>
+      <span class="paper-num">01</span>
       <div>
         <p class="paper-area" data-en="Philosophy of Mathematics" data-it="Filosofia della Matematica">Philosophy of Mathematics</p>
         <h2 class="paper-title">Mathematics and Reality</h2>
@@ -117,12 +115,23 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
     </div>
 
     <div class="paper-item">
-      <span class="paper-num">03</span>
+      <span class="paper-num">02</span>
       <div>
         <p class="paper-area" data-en="History · Complex Systems" data-it="Storia · Sistemi Complessi">History · Complex Systems</p>
         <h2 class="paper-title">The Reflexive Trap</h2>
         <p class="paper-abstract" data-en="Structural tendencies, bifurcation geometry and the 2050 synchronization crisis. AI supercritical synchronization as a reflexive trap." data-it="Tendenze strutturali, geometria delle biforcazioni e crisi di sincronizzazione del 2050. La sincronizzazione supercritica dell'IA come trappola riflessiva.">Structural tendencies, bifurcation geometry and the 2050 synchronization crisis. AI supercritical synchronization as a reflexive trap.</p>
         <a class="paper-link" href="#" target="_blank">Forthcoming ↗</a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <span class="paper-num">03</span>
+      <div>
+        <p class="paper-area" data-en="AI · Topology · Philosophy of Mind" data-it="IA · Topologia · Filosofia della Mente">AI · Topology · Philosophy of Mind</p>
+        <h2 class="paper-title">The Topology of Mind</h2>
+        <p class="paper-abstract" data-en="A formal framework for conscious autonomous intelligence using differential topology. F = (C, V, Φ) with morphological cost U_tot. References: Thom, Friston, Poincaré, Lyapunov." data-it="Un framework formale per l'intelligenza autonoma consapevole tramite topologia differenziale. F = (C, V, Φ) con costo morfologico U_tot. Riferimenti: Thom, Friston, Poincaré, Lyapunov.">A formal framework for conscious autonomous intelligence using differential topology. F = (C, V, Φ) with morphological cost U_tot. References: Thom, Friston, Poincaré, Lyapunov.</p>
+        <a class="paper-link" href="https://zenodo.org/records/19034234" target="_blank">Zenodo ↗</a>&nbsp;&nbsp;
+        <a class="paper-link" href="https://www.academia.edu/165280636/Topologia_della_mente_continuit%C3%A0_morfogenetica_e_architettura_dellIntelligenza_Generale_Autonoma" target="_blank">Academia.edu (IT) ↗</a>
       </div>
     </div>
 
@@ -132,17 +141,20 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
 <section class="section" id="blog" style="background:var(--paper-warm);max-width:100%;padding:5rem 0">
   <div style="max-width:800px;margin:0 auto;padding:0 3rem">
     <p class="section-label" data-en="Blog" data-it="Blog">Blog</p>
-    <p style="color:var(--ink-muted);font-style:italic;font-size:1rem" data-en="<div style="border-bottom:1px solid var(--rule);padding:2rem 0">
-  <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem">The Form of the Mind · 01</p>
-  <a href="post-1.html" style="font-size:1.1rem;font-weight:500;color:var(--ink);text-decoration:none;display:block;margin-bottom:0.4rem"><span data-en="Why every model of the mind feels wrong to me" data-it="Perché tutti i modelli della mente mi sembrano sbagliati">Why every model of the mind feels wrong to me</span></a>
-  <p style="font-family:var(--mono);font-size:11px;color:var(--ink-faint)">April 2026</p>
-</div>" </p>
+
+    <div class="blog-item">
+      <p class="blog-series">The Form of the Mind · 01</p>
+      <a class="blog-title" href="post-1.html" data-en="Why every model of the mind feels wrong to me" data-it="Perché tutti i modelli della mente mi sembrano sbagliati">Why every model of the mind feels wrong to me</a>
+      <p class="blog-date">April 2026</p>
+    </div>
+
+    <div class="blog-item">
+      <p class="blog-series">The Form of the Mind · 02</p>
+      <a class="blog-title" href="post-2.html" data-en="How I Think: From Configuration to Formal Rigor and Back" data-it="Come penso: dalla configurazione al rigore formale e ritorno">How I Think: From Configuration to Formal Rigor and Back</a>
+      <p class="blog-date">April 2026</p>
+    </div>
+
   </div>
-  <div style="border-bottom:1px solid var(--rule);padding:2rem 0">
-  <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem">The Form of the Mind · 02</p>
-  <a href="post-2.html" style="font-size:1.1rem;font-weight:500;color:var(--ink);text-decoration:none;display:block;margin-bottom:0.4rem" data-en="How I Think: From Configuration to Formal Rigor and Back" data-it="Come penso: dalla configurazione al rigore formale e ritorno">How I Think: From Configuration to Formal Rigor and Back</a>
-  <p style="font-family:var(--mono);font-size:11px;color:var(--ink-faint)">April 2026</p>
-</div>
 </section>
 
 <section class="section" id="about">
@@ -168,7 +180,7 @@ function toggleLang(){
   lang = lang === 'en' ? 'it' : 'en';
   document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
   document.querySelectorAll('[data-en]').forEach(el => {
-    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.it;
+    el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
   });
 }
 </script>
