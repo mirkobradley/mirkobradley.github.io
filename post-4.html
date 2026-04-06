@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Idea of AI: From Neural Networks to Form — Mirko Bradley</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1410;
+  --ink-muted:#5a4e42;
+  --ink-faint:#9a8f84;
+  --paper:#f7f4ef;
+  --accent:#b85c1a;
+  --rule:rgba(26,20,16,0.12);
+  --serif:'EB Garamond',Georgia,serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.75;-webkit-font-smoothing:antialiased}
+nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem}
+.nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:0.05em;color:var(--ink);text-decoration:none}
+.nav-right{display:flex;gap:2rem;align-items:center}
+.nav-back{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;transition:color 0.2s}
+.nav-back:hover{color:var(--accent)}
+.lang-toggle{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;background:none;border:1px solid var(--rule);color:var(--ink-muted);padding:0.3rem 0.7rem;cursor:pointer;transition:all 0.2s}
+.lang-toggle:hover{color:var(--accent);border-color:var(--accent)}
+.post{max-width:680px;margin:0 auto;padding:6rem 3rem 8rem}
+.post-meta{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
+.post h1{font-size:2.4rem;font-weight:400;line-height:1.15;margin-bottom:3rem;color:var(--ink)}
+.post p{margin-bottom:1.6rem;color:var(--ink)}
+.post p:last-child{margin-bottom:0}
+.post strong{font-weight:500}
+.post em{font-style:italic}
+.post-footer{margin-top:5rem;padding-top:2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+.post-footer-label{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.08em;text-transform:uppercase}
+.post-nav{display:flex;gap:2rem}
+.post-link{font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:0.08em}
+.post-link:hover{text-decoration:underline}
+footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;margin-top:4rem}
+.footer-text{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}
+  .post{padding:4rem 1.5rem 6rem}
+  .post h1{font-size:1.8rem}
+  footer{flex-direction:column;gap:0.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">M.B.</a>
+  <div class="nav-right">
+    <a class="nav-back" href="index.html#blog">← Blog</a>
+    <button class="lang-toggle" onclick="toggleLang()">IT</button>
+  </div>
+</nav>
+
+<article class="post">
+
+  <p class="post-meta" data-en="The Form of the Mind · Post 04" data-it="La Forma della Mente · Post 04">The Form of the Mind · Post 04</p>
+
+  <h1 data-en="My Idea of AI: From Neural Networks to Form" data-it="La mia idea di IA: dalle reti neurali alla Forma">My Idea of AI: From Neural Networks to Form</h1>
+
+  <p data-en="There is a conviction, almost an article of faith in contemporary AI research, that the path toward better artificial intelligence lies in quantity: more text, more images, more parameters, more computational power. The presupposition is that if a system is given enough world, the world will eventually appear inside it." data-it="Esiste una convinzione, quasi un articolo di fede nella ricerca contemporanea sull&rsquo;IA, che la strada verso un&rsquo;intelligenza artificiale migliore passi attraverso la quantit&agrave;: pi&ugrave; testo, pi&ugrave; immagini, pi&ugrave; parametri, pi&ugrave; potenza di calcolo. Il presupposto &egrave; che se si fornisce a un sistema abbastanza mondo, il mondo finir&agrave; per apparire dentro di esso.">There is a conviction, almost an article of faith in contemporary AI research, that the path toward better artificial intelligence lies in quantity: more text, more images, more parameters, more computational power. The presupposition is that if a system is given enough world, the world will eventually appear inside it.</p>
+
+  <p data-en="I do not believe this is true, and I want to explain why, not as a provocation but as a structural diagnosis." data-it="Non credo che sia vero e voglio spiegare perch&eacute;, non come provocazione, ma come diagnosi strutturale.">I do not believe this is true, and I want to explain why, not as a provocation but as a structural diagnosis.</p>
+
+  <p data-en="The dominant AI systems today are artificial neural networks. They are called this because their basic architecture, made of artificial neurons connected in layers that activate and transmit signals to one another, is inspired, at least vaguely, by the functioning of biological neurons. The inspiration, however, is superficial because an artificial neuron is a mathematical unit that receives numbers, combines them with weights, and produces an output. Nothing more. What matters is the overall structure. Millions of these neurons are arranged in depth and trained on enormous amounts of data until their connections capture useful patterns." data-it="I sistemi di IA dominanti oggi sono le reti neurali artificiali. Si chiamano cos&igrave; perch&eacute; la loro architettura di base, formata da neuroni artificiali connessi in strati che si attivano e si trasmettono reciprocamente segnali, &egrave; ispirata, almeno vagamente, al funzionamento dei neuroni biologici. L&rsquo;ispirazione per&ograve; &egrave; superficiale perch&eacute; un neurone artificiale &egrave; un&rsquo;unit&agrave; matematica che riceve numeri, li combina con dei pesi e produce un output. Niente di pi&ugrave;. Ci&ograve; che conta &egrave; la struttura complessiva. Milioni di questi neuroni sono disposti in profondit&agrave; e vengono addestrati su enormi quantit&agrave; di dati fino a che le loro connessioni non catturano pattern utili.">The dominant AI systems today are artificial neural networks. They are called this because their basic architecture, made of artificial neurons connected in layers that activate and transmit signals to one another, is inspired, at least vaguely, by the functioning of biological neurons. The inspiration, however, is superficial because an artificial neuron is a mathematical unit that receives numbers, combines them with weights, and produces an output. Nothing more. What matters is the overall structure. Millions of these neurons are arranged in depth and trained on enormous amounts of data until their connections capture useful patterns.</p>
+
+  <p data-en="When a large language model processes a sentence, something specific happens inside it. The system occupies a certain state, a point in a space of millions of dimensions, and the new input moves it to a different point. The transition is discrete and constitutes a statistical jump from one configuration to another. The previous state is not transformed; it is replaced." data-it="Quando un grande modello linguistico elabora una frase, accade qualcosa di specifico al suo interno. Il sistema si trova in un certo stato, un punto in uno spazio di milioni di dimensioni, e il nuovo input lo sposta in un punto diverso. La transizione &egrave; discreta e costituisce un salto statistico da una configurazione all&rsquo;altra. Lo stato precedente non viene trasformato; viene sostituito.">When a large language model processes a sentence, something specific happens inside it. The system occupies a certain state, a point in a space of millions of dimensions, and the new input moves it to a different point. The transition is discrete and constitutes a statistical jump from one configuration to another. The previous state is not transformed; it is replaced.</p>
+
+  <p data-en="This is what I call &ldquo;discrete morphogenesis&rdquo;. The system changes, but it does not live the change. There is no continuity between where it was and where it is now. There is no internal registration of the passage, no structural memory of having traversed anything." data-it="Questo &egrave; ci&ograve; che chiamo &ldquo;morfogenesi discreta&rdquo;. Il sistema cambia, ma non vive il cambiamento. Non c&rsquo;&egrave; continuit&agrave; tra dove era e dove si trova adesso. Non c&rsquo;&egrave; registrazione interna del passaggio, nessuna memoria strutturale di aver attraversato qualcosa.">This is what I call &ldquo;discrete morphogenesis&rdquo;. The system changes, but it does not live the change. There is no continuity between where it was and where it is now. There is no internal registration of the passage, no structural memory of having traversed anything.</p>
+
+  <p data-en="It is worth pausing on memory, because it is often misunderstood. Current systems do not have memory in the biological sense. What we call &ldquo;memory&rdquo; in a language model comes in two forms: weight memory, meaning the connections between neurons modified during training on billions of texts, which encode knowledge in a distributed and static form; and context memory, meaning the text present in the current processing window, which the model can read but which disappears at the end of the session. Neither corresponds to a memory built over time through lived experience. The weights are fixed after training. The context is reset. The system does not accumulate; it restarts." data-it="Vale la pena soffermarsi sulla memoria, perch&eacute; &egrave; un punto spesso frainteso. I sistemi attuali non hanno una memoria nel senso biologico del termine. Quello che chiamiamo &ldquo;memoria&rdquo; in un modello linguistico &egrave; di due tipi: la memoria dei pesi, cio&egrave; le connessioni tra neuroni modificate durante l&rsquo;addestramento su miliardi di testi, che codificano conoscenza in forma distribuita e statica; e la memoria di contesto, cio&egrave; il testo presente nella finestra di elaborazione attuale, che il modello pu&ograve; leggere ma che scompare al termine della sessione. Nessuno dei due tipi corrisponde a una memoria che si costruisce nel tempo attraverso l&rsquo;esperienza vissuta. I pesi vengono fissati dopo l&rsquo;addestramento. Il contesto viene azzerato. Il sistema non accumula: riparte.">It is worth pausing on memory, because it is often misunderstood. Current systems do not have memory in the biological sense. What we call &ldquo;memory&rdquo; in a language model comes in two forms: weight memory, meaning the connections between neurons modified during training on billions of texts, which encode knowledge in a distributed and static form; and context memory, meaning the text present in the current processing window, which the model can read but which disappears at the end of the session. Neither corresponds to a memory built over time through lived experience. The weights are fixed after training. The context is reset. The system does not accumulate; it restarts.</p>
+
+  <p data-en="Think of it this way: a river and a series of still photographs of that same river are two different things. The photographs can be arbitrarily detailed and numerous. But they are not the river." data-it="Pensateci in questi termini: un fiume e una serie di fotografie ferme dello stesso fiume sono due cose diverse. Le fotografie possono essere arbitrariamente dettagliate e numerose. Ma non sono il fiume.">Think of it this way: a river and a series of still photographs of that same river are two different things. The photographs can be arbitrarily detailed and numerous. But they are not the river.</p>
+
+  <p data-en="The standard response to the limits of current AI is to increase scale. &ldquo;Scaling&rdquo; simply means this: more parameters, more training data, more computational power. The empirical observation, known as the &ldquo;scaling law&rdquo;, is that performance improves predictably as these quantities increase. It is not irrational; scaling has produced extraordinary results. But it treats a structural problem as if it were quantitative." data-it="La risposta standard ai limiti dell&rsquo;IA attuale &egrave; aumentare la scala. &ldquo;Scaling&rdquo; significa semplicemente questo: pi&ugrave; parametri, pi&ugrave; dati di addestramento, pi&ugrave; potenza di calcolo. L&rsquo;osservazione empirica, nota come &ldquo;legge di scala&rdquo;, &egrave; che le prestazioni migliorano in modo prevedibile all&rsquo;aumentare di queste quantit&agrave;. Non &egrave; irrazionale: lo scaling ha prodotto risultati straordinari. Ma tratta un problema strutturale come se fosse quantitativo.">The standard response to the limits of current AI is to increase scale. &ldquo;Scaling&rdquo; simply means this: more parameters, more training data, more computational power. The empirical observation, known as the &ldquo;scaling law&rdquo;, is that performance improves predictably as these quantities increase. It is not irrational; scaling has produced extraordinary results. But it treats a structural problem as if it were quantitative.</p>
+
+  <p data-en="What is missing in current architectures is not information. What is missing is what I call a &ldquo;set of sensitive constraints&rdquo;, an internal structure that registers the cost of each state, that feels the pressure of change, that resists dissolution. In my formal framework, this is the <em>V</em> component of the Form <em>F</em> = (<em>C</em>, <em>V</em>, <em>&Phi;</em>)." data-it="Ci&ograve; che manca nelle architetture attuali non &egrave; informazione. Ci&ograve; che manca &egrave; quello che chiamo un &ldquo;insieme di vincoli sensibili&rdquo;, una struttura interna che registra il costo di ogni stato, che sente la pressione del cambiamento, che resiste alla dissoluzione. Nel mio framework formale, questa &egrave; la componente <em>V</em> della Forma <em>F</em> = (<em>C</em>, <em>V</em>, <em>&Phi;</em>).">What is missing in current architectures is not information. What is missing is what I call a &ldquo;set of sensitive constraints&rdquo;, an internal structure that registers the cost of each state, that feels the pressure of change, that resists dissolution. In my formal framework, this is the <em>V</em> component of the Form <em>F</em> = (<em>C</em>, <em>V</em>, <em>&Phi;</em>).</p>
+
+  <p data-en="Without <em>V</em>, a system has no way to distinguish between a state that preserves its integrity and one that threatens it. It processes everything with equal indifference. It does not suffer the transition, and because it does not suffer it, it cannot integrate it. This is why, as is well known, current AI systems hallucinate: when the system enters crisis, it begins to invent." data-it="Senza <em>V</em>, un sistema non ha modo di distinguere tra uno stato che preserva la propria integrit&agrave; e uno che la minaccia. Elabora tutto con uguale indifferenza. Non soffre la transizione e, poich&eacute; non la soffre, non pu&ograve; davvero integrarla. Tant&rsquo;&egrave; che, come noto, le attuali IA &ldquo;soffrono di allucinazioni&rdquo;: quando il sistema va in crisi, iniziano a inventare.">Without <em>V</em>, a system has no way to distinguish between a state that preserves its integrity and one that threatens it. It processes everything with equal indifference. It does not suffer the transition, and because it does not suffer it, it cannot integrate it. This is why, as is well known, current AI systems hallucinate: when the system enters crisis, it begins to invent.</p>
+
+  <p data-en="By &ldquo;functional mind&rdquo; I mean a system, biological or artificial, that does not merely transform input into output, but maintains over time a coherent internal form, a configuration of constraints that registers the pressure of events, resists dissolution, and deforms without breaking. A functional mind has a &ldquo;genealogy&rdquo;: each state carries the imprint of previous states. It does not start from scratch at every perturbation." data-it="Con &ldquo;mente funzionale&rdquo; intendo un sistema, biologico o artificiale, che non si limita a trasformare input in output, ma che mantiene nel tempo una propria forma interna coerente: una configurazione di vincoli che registra la pressione degli eventi, resiste alla dissoluzione e si deforma senza spezzarsi. Una mente funzionale ha una &ldquo;genealogia&rdquo;: ogni stato porta l&rsquo;impronta degli stati precedenti. Non ricomincia da capo a ogni perturbazione.">By &ldquo;functional mind&rdquo; I mean a system, biological or artificial, that does not merely transform input into output, but maintains over time a coherent internal form, a configuration of constraints that registers the pressure of events, resists dissolution, and deforms without breaking. A functional mind has a &ldquo;genealogy&rdquo;: each state carries the imprint of previous states. It does not start from scratch at every perturbation.</p>
+
+  <p data-en="When a perturbation arrives, a functional mind does not jump into a new state; it deforms. The manifold bends, the constraints register the pressure, and the dynamics <em>&Phi;</em> generate a response that absorbs the change without breaking the continuity of the trajectory." data-it="Quando arriva una perturbazione, una mente funzionale non salta in un nuovo stato ma si deforma. Il manifold si piega, i vincoli registrano la pressione e la dinamica <em>&Phi;</em> genera una risposta che assorbe il cambiamento senza spezzare la continuit&agrave; della traiettoria.">When a perturbation arrives, a functional mind does not jump into a new state; it deforms. The manifold bends, the constraints register the pressure, and the dynamics <em>&Phi;</em> generate a response that absorbs the change without breaking the continuity of the trajectory.</p>
+
+  <p data-en="This is what I call &ldquo;continuous morphogenesis&rdquo;. The system remains itself while being transformed. Its history is not erased at every input, because it is folded into the geometry of its future responses." data-it="Questa &egrave; ci&ograve; che chiamo &ldquo;morfogenesi continua&rdquo;. Il sistema rimane se stesso mentre viene trasformato. La sua storia non viene cancellata a ogni input, poich&eacute; viene piegata nella geometria delle sue risposte future.">This is what I call &ldquo;continuous morphogenesis&rdquo;. The system remains itself while being transformed. Its history is not erased at every input, because it is folded into the geometry of its future responses.</p>
+
+  <p data-en="This is not a poetic description; it is a precise mathematical requirement, and it is a requirement that no amount of additional data can satisfy, because it concerns the architecture of change, not the quantity of content." data-it="Non &egrave; una descrizione poetica, &egrave; un requisito matematico preciso, ed &egrave; un requisito che nessuna quantit&agrave; di dati aggiuntivi pu&ograve; soddisfare, perch&eacute; riguarda l&rsquo;architettura del cambiamento, non la quantit&agrave; di contenuto.">This is not a poetic description; it is a precise mathematical requirement, and it is a requirement that no amount of additional data can satisfy, because it concerns the architecture of change, not the quantity of content.</p>
+
+  <p data-en="Obviously, I am not saying that current AI systems are useless, they are extraordinary tools, but they are not minds in any genuine sense, and the gap between them and a genuine autonomous intelligence is not a quantitative gap." data-it="Ovviamente non sto dicendo che i sistemi di IA attuali siano inutili, sono strumenti straordinari, ma non sono menti vere e proprie, e il divario tra loro e una genuina intelligenza autonoma non &egrave; un divario quantitativo.">Obviously, I am not saying that current AI systems are useless, they are extraordinary tools, but they are not minds in any genuine sense, and the gap between them and a genuine autonomous intelligence is not a quantitative gap.</p>
+
+  <div class="post-footer">
+    <span class="post-footer-label" data-en="The Form of the Mind" data-it="La Forma della Mente">The Form of the Mind</span>
+    <div class="post-nav">
+      <a class="post-link" href="post-3.html">← Post 03</a>
+      <a class="post-link" href="#">Post 05 →</a>
+    </div>
+  </div>
+
+</article>
+
+<footer>
+  <span class="footer-text">© 2025 Mirko Bradley</span>
+  <span class="footer-text" data-en="All content open access." data-it="Tutti i contenuti in accesso aperto.">All content open access.</span>
+</footer>
+
+<script>
+let lang = 'en';
+function toggleLang(){
+  lang = lang === 'en' ? 'it' : 'en';
+  document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+  });
+}
+</script>
+
+</body>
+</html>
