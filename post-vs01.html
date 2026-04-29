@@ -138,21 +138,7 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
 
 <div class="comments">
   <p class="comments-label" data-en="Comments" data-it="Commenti">Commenti</p>
-  <script src="https://giscus.app/client.js"
-          data-repo="mirkobradley/mirkobradley.github.io"
-          data-repo-id="R_kgDOR4Wr3w"
-          data-category="General"
-          data-category-id="DIC_kwDOR4Wr384C7_LW"
-          data-mapping="pathname"
-          data-strict="0"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="bottom"
-          data-theme="noborder_light"
-          data-lang="it"
-          crossorigin="anonymous"
-          async>
-  </script>
+  <div id="giscus-container"></div>
 </div>
 
 <footer>
@@ -161,15 +147,37 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
 </footer>
 
 <script>
-let lang = 'it';
+<script>
+let lang = 'en';
+function loadGiscus(lang){
+  document.getElementById('giscus-container').innerHTML = '';
+  const s = document.createElement('script');
+  s.src = 'https://giscus.app/client.js';
+  s.setAttribute('data-repo','mirkobradley/mirkobradley.github.io');
+  s.setAttribute('data-repo-id','R_kgDOR4Wr3w');
+  s.setAttribute('data-category','General');
+  s.setAttribute('data-category-id','DIC_kwDOR4Wr384C7_LW');
+  s.setAttribute('data-mapping','pathname');
+  s.setAttribute('data-strict','0');
+  s.setAttribute('data-reactions-enabled','1');
+  s.setAttribute('data-emit-metadata','0');
+  s.setAttribute('data-input-position','bottom');
+  s.setAttribute('data-theme','noborder_light');
+  s.setAttribute('data-lang', lang);
+  s.setAttribute('crossorigin','anonymous');
+  s.async = true;
+  document.getElementById('giscus-container').appendChild(s);
+}
 function toggleLang(){
-  lang = lang === 'it' ? 'en' : 'it';
-  document.querySelector('.lang-toggle').textContent = lang === 'it' ? 'EN' : 'IT';
+  lang = lang === 'en' ? 'it' : 'en';
+  document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
   document.querySelectorAll('[data-en]').forEach(el => {
-    el.innerHTML = lang === 'it' ? el.dataset.it : el.dataset.en;
+    el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
   });
   document.documentElement.lang = lang;
+  loadGiscus(lang);
 }
+loadGiscus('en');
 </script>
 
 </body>
