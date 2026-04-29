@@ -22,6 +22,7 @@
 html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
 
+/* NAV */
 nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem}
 .nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:0.05em;color:var(--ink);text-decoration:none}
 .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
@@ -30,18 +31,48 @@ nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px 
 .lang-toggle{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;background:none;border:1px solid var(--rule);color:var(--ink-muted);padding:0.3rem 0.7rem;cursor:pointer;transition:all 0.2s}
 .lang-toggle:hover{color:var(--accent);border-color:var(--accent)}
 
+/* HERO */
 .hero{max-width:800px;margin:0 auto;padding:7rem 3rem 5rem;border-bottom:1px solid var(--rule)}
 .hero-inner{display:grid;grid-template-columns:1fr 200px;gap:4rem;align-items:start}
-.hero-label{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:2.5rem}
-.hero h1{font-size:3rem;font-weight:400;line-height:1.12;margin-bottom:1.5rem}
-.hero-role{font-family:var(--mono);font-size:13px;color:var(--ink-muted);margin-bottom:1.5rem;letter-spacing:0.03em}
-.hero-direction{font-size:1.3rem;font-style:italic;color:var(--ink);margin-bottom:2.5rem}
-.manifesto{font-size:1.15rem;color:var(--ink-muted);max-width:580px;line-height:1.75;font-style:italic;border-left:2px solid var(--accent);padding-left:1.5rem}
+.hero h1{font-size:3rem;font-weight:400;line-height:1.12;margin-bottom:0.5rem}
+.hero-role{font-family:var(--mono);font-size:12px;color:var(--ink-faint);margin-bottom:2.5rem;letter-spacing:0.03em}
+.hero-title{font-size:1.5rem;font-weight:500;color:var(--ink);margin-bottom:1.8rem;line-height:1.25}
+.hero-title em{font-style:italic;color:var(--accent)}
+.manifesto{font-size:1.05rem;color:var(--ink-muted);max-width:560px;line-height:1.8;font-style:italic;border-left:2px solid var(--accent);padding-left:1.5rem}
+.hero-photo-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:0.8rem}
 .hero-photo{width:200px;height:260px;object-fit:cover;object-position:center 20%;border-radius:2px;filter:grayscale(20%)}
+.hero-email{font-family:var(--mono);font-size:11px;color:var(--ink-muted);letter-spacing:0.03em;text-decoration:none}
+.hero-email:hover{color:var(--accent)}
 
+/* SECTIONS */
 .section{max-width:800px;margin:0 auto;padding:5rem 3rem}
 .section-label{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-faint);border-bottom:1px solid var(--rule);padding-bottom:1rem;margin-bottom:3rem}
 
+/* FEATURED SERIES */
+.featured-series{background:var(--ink);color:var(--paper);padding:3rem;margin-bottom:3rem;position:relative;overflow:hidden}
+.featured-series::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent)}
+.featured-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.featured-series-title{font-size:1.6rem;font-weight:500;color:var(--paper);margin-bottom:0.6rem;line-height:1.2}
+.featured-series-sub{font-family:var(--mono);font-size:11px;color:rgba(247,244,239,0.45);margin-bottom:2rem;letter-spacing:0.03em}
+.featured-posts{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(247,244,239,0.12)}
+.featured-post-item{display:grid;grid-template-columns:32px 1fr auto;gap:1rem;align-items:baseline;padding:1rem 0;border-bottom:1px solid rgba(247,244,239,0.1)}
+.featured-post-item:last-child{border-bottom:none}
+.featured-post-num{font-family:var(--mono);font-size:10px;color:var(--accent)}
+.featured-post-title{font-size:1rem;color:var(--paper);text-decoration:none;transition:color 0.2s}
+.featured-post-title:hover{color:var(--accent)}
+.featured-post-date{font-family:var(--mono);font-size:10px;color:rgba(247,244,239,0.35);white-space:nowrap}
+.featured-coming{font-family:var(--mono);font-size:11px;color:rgba(247,244,239,0.35);font-style:italic;padding-top:1rem}
+
+/* OTHER SERIES */
+.other-series-label{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:1.5rem}
+.blog-item{border-bottom:1px solid var(--rule);padding:1.8rem 0}
+.blog-item:last-child{border-bottom:none}
+.blog-series{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem}
+.blog-title{font-size:1.05rem;font-weight:500;color:var(--ink);text-decoration:none;display:block;margin-bottom:0.3rem;line-height:1.35}
+.blog-title:hover{color:var(--accent)}
+.blog-date{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+
+/* RESEARCH */
 .paper-list{display:flex;flex-direction:column}
 .paper-item{display:grid;grid-template-columns:40px 1fr;gap:1.5rem;padding:2rem 0;border-bottom:1px solid var(--rule)}
 .paper-item:last-child{border-bottom:none}
@@ -52,26 +83,26 @@ nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px 
 .paper-link{font-family:var(--mono);font-size:10px;color:var(--accent);text-decoration:none;display:inline-block;margin-top:0.5rem}
 .paper-link:hover{text-decoration:underline}
 
-.blog-item{border-bottom:1px solid var(--rule);padding:2rem 0}
-.blog-item:last-child{border-bottom:none}
-.blog-series{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem}
-.blog-title{font-size:1.1rem;font-weight:500;color:var(--ink);text-decoration:none;display:block;margin-bottom:0.4rem}
-.blog-title:hover{color:var(--accent)}
-.blog-date{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
-
+/* ABOUT */
 .about-text p{color:var(--ink-muted);margin-bottom:1rem;font-size:1rem}
 
+/* FOOTER */
 footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center}
 .footer-text{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
 
+/* MOBILE */
 @media(max-width:700px){
   nav{padding:1rem 1.5rem}
   .nav-links{gap:1rem}
   .hero,.section{padding:3rem 1.5rem}
   .hero h1{font-size:2rem}
+  .hero-title{font-size:1.2rem}
   .hero-inner{grid-template-columns:1fr}
   .hero-photo{width:120px;height:160px}
-  footer{flex-direction:column;gap:0.5rem}
+  .featured-series{padding:2rem 1.5rem}
+  .featured-post-item{grid-template-columns:28px 1fr}
+  .featured-post-date{display:none}
+  footer{flex-direction:column;gap:0.5rem;padding:1.5rem}
 }
 </style>
 </head>
@@ -80,27 +111,93 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
 <nav>
   <a class="nav-logo" href="#">M.B.</a>
   <ul class="nav-links">
-    <li><a href="#research" data-en="Research" data-it="Ricerca">Research</a></li>
     <li><a href="#blog" data-en="Blog" data-it="Blog">Blog</a></li>
+    <li><a href="#research" data-en="Research" data-it="Ricerca">Research</a></li>
     <li><a href="#about" data-en="About" data-it="Chi sono">About</a></li>
     <li><button class="lang-toggle" onclick="toggleLang()">IT</button></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <p class="hero-label" data-en="Complex Systems · Mind · AI · Prediction" data-it="Sistemi Complessi · Mente · IA · Predizione">Complex Systems · Mind · AI · Prediction</p>
   <div class="hero-inner">
     <div>
       <h1>Mirko Bradley</h1>
-      <p class="hero-role" data-en="PhD in Complex Systems. Freelance researcher and teacher." data-it="PhD in Sistemi Complessi. Ricercatore freelance e insegnante.">PhD in Complex Systems. Freelance researcher and teacher.</p>
-      <p class="hero-direction" data-en="Toward a mathematics of mind and behavior." data-it="Verso una matematica della mente e del comportamento.">Toward a mathematics of mind and behavior.</p>
-      <p class="manifesto" data-en="Complex systems do not evolve linearly. They accumulate tension, reach critical thresholds and bifurcate, sometimes abruptly and irreversibly. History is full of these moments. Mathematics allows us to read them and anticipate them." data-it="I sistemi complessi non evolvono linearmente. Accumulano tensione, raggiungono soglie critiche e biforcano, talvolta bruscamente e in maniera irreversibile. La storia è piena di questi momenti. La matematica ci permette di leggerli e di anticiparli.">Complex systems do not evolve linearly. They accumulate tension, reach critical thresholds and bifurcate, sometimes abruptly and irreversibly. History is full of these moments. Mathematics allows us to read them and anticipate them.</p>
+      <p class="hero-role">PhD in Complex Systems</p>
+      <p class="hero-title" data-en="AI: The Power with a Human Face" data-it="IA: il potere dal volto umano">AI: The Power with a Human Face</p>
+      <p class="manifesto" data-en="What AI shows is designed to be shown. What it hides is structural. I work on the hidden part." data-it="Quello che l'IA mostra è progettato per essere mostrato. Quello che nasconde è strutturale. Io lavoro sulla parte nascosta.">What AI shows is designed to be shown. What it hides is structural. I work on the hidden part.</p>
     </div>
-    <img class="hero-photo" src="photo.jpg.jpg" alt="Mirko Bradley">
-    <p style="font-family:var(--mono);font-size:11px;color:var(--ink-muted);margin-top:0.8rem;letter-spacing:0.03em;">mirko.bradley@gmail.com</p>
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="photo.jpg" alt="Mirko Bradley">
+      <a class="hero-email" href="mailto:mirko.bradley@gmail.com">mirko.bradley@gmail.com</a>
+    </div>
   </div>
 </section>
 
+<!-- BLOG -->
+<section class="section" id="blog" style="background:var(--paper-warm);max-width:100%;padding:5rem 0">
+  <div style="max-width:800px;margin:0 auto;padding:0 3rem">
+    <p class="section-label" data-en="Blog" data-it="Blog">Blog</p>
+
+    <!-- FEATURED SERIES -->
+    <div class="featured-series">
+      <p class="featured-tag" data-en="Main series — updated continuously" data-it="Serie principale — aggiornata in continuo">Main series — updated continuously</p>
+      <h2 class="featured-series-title" data-en="The Face and the Structure" data-it="Il volto e la struttura">The Face and the Structure</h2>
+      <p class="featured-series-sub" data-en="Power, complex systems, AI — reading what the surface hides" data-it="Potere, sistemi complessi, IA — leggere quello che la superficie nasconde">Power, complex systems, AI — reading what the surface hides</p>
+      <div class="featured-posts">
+        <p class="featured-coming" data-en="First post coming soon." data-it="Primo post in arrivo.">First post coming soon.</p>
+      </div>
+    </div>
+
+    <!-- OTHER SERIES -->
+    <p class="other-series-label" data-en="Other series" data-it="Altre serie">Other series</p>
+
+    <div class="blog-item">
+      <p class="blog-series" data-en="Mind and AI · 01" data-it="Mente e IA · 01">Mind and AI · 01</p>
+      <a class="blog-title" href="post-1.html" data-en="Why Every Model of the Mind Feels Wrong to Me" data-it="Perché tutti i modelli della mente mi sembrano sbagliati">Why Every Model of the Mind Feels Wrong to Me</a>
+      <p class="blog-date">April 2026</p>
+    </div>
+
+    <div class="blog-item">
+      <p class="blog-series" data-en="Mind and AI · 02" data-it="Mente e IA · 02">Mind and AI · 02</p>
+      <a class="blog-title" href="post-2.html" data-en="How I Think: From Configuration to Formal Rigor and Back" data-it="Come penso: dalla configurazione al rigore formale e ritorno">How I Think: From Configuration to Formal Rigor and Back</a>
+      <p class="blog-date">April 2026</p>
+    </div>
+
+    <div class="blog-item">
+      <p class="blog-series" data-en="Mind and AI · 03" data-it="Mente e IA · 03">Mind and AI · 03</p>
+      <a class="blog-title" href="post-3.html" data-en="Can Qualia Be Mathematised?" data-it="Si possono matematizzare i qualia?">Can Qualia Be Mathematised?</a>
+      <p class="blog-date">April 2026</p>
+    </div>
+
+    <div class="blog-item">
+      <p class="blog-series" data-en="Mind and AI · 04" data-it="Mente e IA · 04">Mind and AI · 04</p>
+      <a class="blog-title" href="post-4.html" data-en="My Idea of AI: From Neural Networks to Form" data-it="La mia idea di IA: dalle reti neurali alla Forma">My Idea of AI: From Neural Networks to Form</a>
+      <p class="blog-date">April 2026</p>
+    </div>
+
+    <div class="blog-item">
+      <p class="blog-series" data-en="Mathematics of History · 01" data-it="Matematica della storia · 01">Mathematics of History · 01</p>
+      <a class="blog-title" href="post-storia-1.html" data-en="What a Model of History Can Predict" data-it="Cosa può predire un modello della storia">What a Model of History Can Predict</a>
+      <p class="blog-date">April 2026</p>
+    </div>
+
+    <div class="blog-item">
+      <p class="blog-series" data-en="Inside the Black Box · 01" data-it="Dentro la Scatola Nera · 01">Inside the Black Box · 01</p>
+      <a class="blog-title" href="post-bb01.html" data-en="Introduction: Why I Am Writing This Series" data-it="Introduzione: perché scrivo questa serie">Introduction: Why I Am Writing This Series</a>
+      <p class="blog-date">April 2026</p>
+    </div>
+
+    <div class="blog-item">
+      <p class="blog-series" data-en="Inside the Black Box · 02" data-it="Dentro la Scatola Nera · 02">Inside the Black Box · 02</p>
+      <a class="blog-title" href="post-bb02.html" data-en="The Transformer: How Language Becomes Mathematics" data-it="Il transformer: come il linguaggio diventa matematica">The Transformer: How Language Becomes Mathematics</a>
+      <p class="blog-date">April 2026</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESEARCH -->
 <section class="section" id="research">
   <p class="section-label" data-en="Research" data-it="Ricerca">Research</p>
   <div class="paper-list">
@@ -140,65 +237,23 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
   </div>
 </section>
 
-<section class="section" id="blog" style="background:var(--paper-warm);max-width:100%;padding:5rem 0">
+<!-- ABOUT -->
+<section class="section" id="about" style="background:var(--paper-warm);max-width:100%;padding:5rem 0">
   <div style="max-width:800px;margin:0 auto;padding:0 3rem">
-    <p class="section-label" data-en="Blog" data-it="Blog">Blog</p>
-
-    <div class="blog-item">
-      <p class="blog-series" data-en="Mind and AI · 01" data-it="Mente e IA · 01">Mind and AI · 01</p>
-      <a class="blog-title" href="post-1.html" data-en="Why every model of the mind feels wrong to me" data-it="Perché tutti i modelli della mente mi sembrano sbagliati">Why every model of the mind feels wrong to me</a>
-      <p class="blog-date">April 2026</p>
+    <p class="section-label" data-en="About" data-it="Chi sono">About</p>
+    <div class="about-text">
+      <p data-en="I have worked with complex systems since childhood. At four, my mother found me lying on the floor, studying an ant colony. Having left the ants to their business, I turned to complex systems at the human-machine intersection, where the mechanisms of power conceal themselves behind an apparently innocent face." data-it="Lavoro con i sistemi complessi sin da bambino, quando a quattro anni mia madre mi sorprese disteso per terra a studiare i formicai. Lasciate le formiche alle loro faccende, mi sono dedicato allo studio dei sistemi complessi nell'intersezione umano-macchina, dove i meccanismi del potere si nascondono mostrando soltanto il loro volto apparentemente innocuo.">I have worked with complex systems since childhood. At four, my mother found me lying on the floor, studying an ant colony. Having left the ants to their business, I turned to complex systems at the human-machine intersection, where the mechanisms of power conceal themselves behind an apparently innocent face.</p>
+      <p data-en="After my doctorate, completed between Germany and the United Kingdom, I spent several years in academic research, then moved into education and training, alongside thirty years of uninterrupted private consultancy in cybersecurity." data-it="Dopo il dottorato, svolto fra Germania e Regno Unito, ho lavorato per alcuni anni nella ricerca accademica, per poi svolgere la professione di formatore ed educatore, affiancata da un'incessante attività trentennale di consulenza privata nell'ambito della sicurezza informatica.">After my doctorate, completed between Germany and the United Kingdom, I spent several years in academic research, then moved into education and training, alongside thirty years of uninterrupted private consultancy in cybersecurity.</p>
+      <p style="margin-top:2rem">
+        <a class="paper-link" href="https://zenodo.org" target="_blank">Zenodo ↗</a>&nbsp;&nbsp;
+        <a class="paper-link" href="https://academia.edu" target="_blank">Academia.edu ↗</a>
+      </p>
     </div>
-
-    <div class="blog-item">
-      <p class="blog-series" data-en="Mind and AI · 02" data-it="Mente e IA · 02">Mind and AI · 02</p>
-      <a class="blog-title" href="post-2.html" data-en="How I Think: From Configuration to Formal Rigor and Back" data-it="Come penso: dalla configurazione al rigore formale e ritorno">How I Think: From Configuration to Formal Rigor and Back</a>
-      <p class="blog-date">April 2026</p>
-    </div>
-
-    <div class="blog-item">
-      <p class="blog-series" data-en="Mind and AI · 03" data-it="Mente e IA · 03">Mind and AI · 03</p>
-      <a class="blog-title" href="post-3.html" data-en="Can Qualia Be Mathematised?" data-it="Si possono matematizzare i qualia?">Can Qualia Be Mathematised?</a>
-      <p class="blog-date">April 2026</p>
-    </div>
-    <div class="blog-item">
-      <p class="blog-series" data-en="Mind and AI · 04" data-it="Mente e IA · 04">Mind and AI · 04</p>
-      <a class="blog-title" href="post-4.html" data-en="My Idea of AI: From Neural Networks to Form" data-it="La mia idea di IA: dalle reti neurali alla Forma">My Idea of AI: From Neural Networks to Form</a>
-      <p class="blog-date">April 2026</p>
-    </div>
-    <div class="blog-item">
-      <p class="blog-series" data-en="Mathematics of History &middot; 01" data-it="Matematica della storia &middot; 01">Mathematics of History &middot; 01</p>
-      <a class="blog-title" href="post-storia-1.html" data-en="What a Model of History Can Predict" data-it="Cosa pu&ograve; predire un modello della storia">What a Model of History Can Predict</a>
-      <p class="blog-date">April 2026</p>
-    </div>
-    <div class="blog-item">
-      <p class="blog-series" data-en="Inside the Black Box &middot; 01" data-it="Dentro la Scatola Nera &middot; 01">Inside the Black Box &middot; 01</p>
-      <a class="blog-title" href="post-bb01.html" data-en="Introduction: Why I Am Writing This Series" data-it="Introduzione: perch&eacute; scrivo questa serie">Introduction: Why I Am Writing This Series</a>
-      <p class="blog-date">April 2026</p>
-    </div>
-    <div class="blog-item">
-      <p class="blog-series" data-en="Inside the Black Box &middot; 02" data-it="Dentro la Scatola Nera &middot; 02">Inside the Black Box &middot; 02</p>
-      <a class="blog-title" href="post-bb02.html" data-en="The Transformer: How Language Becomes Mathematics" data-it="Il transformer: come il linguaggio diventa matematica">The Transformer: How Language Becomes Mathematics</a>
-      <p class="blog-date">April 2026</p>
-    </div>
-
-  </div>
-</section>
-
-<section class="section" id="about">
-  <p class="section-label" data-en="About" data-it="Chi sono">About</p>
-  <div class="about-text">
-    <p data-en="I work with mathematical models applied to mind, human behavior and AI. The language here is conceptual." data-it="Lavoro con modelli matematici applicati alla mente, al comportamento umano e all'IA. Il linguaggio qui è concettuale.">I work with mathematical models applied to mind, human behavior and AI. The language here is conceptual.</p>
-    <p data-en="I completed my PhD between Germany and London. I work as a freelance researcher and teacher." data-it="Ho conseguito il PhD tra Germania e Londra. Lavoro come ricercatore freelance e insegnante.">I completed my PhD between Germany and London. I work as a freelance researcher and teacher.</p>
-    <p style="margin-top:2rem">
-      <a class="paper-link" href="https://zenodo.org" target="_blank">Zenodo ↗</a>&nbsp;&nbsp;
-      <a class="paper-link" href="https://academia.edu" target="_blank">Academia.edu ↗</a>
-    </p>
   </div>
 </section>
 
 <footer>
-  <span class="footer-text">© 2025 Mirko Bradley</span>
+  <span class="footer-text">© 2026 Mirko Bradley</span>
   <span class="footer-text" data-en="All content open access." data-it="Tutti i contenuti in accesso aperto.">All content open access.</span>
 </footer>
 
