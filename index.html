@@ -221,11 +221,7 @@
       border-bottom: 0.5px solid var(--rule);
     }
 
-    .<div class="essay-item">
-  <div class="essay-tag">Essay · Mind · I</div>
-  <div class="essay-title en"><a href="essays/why-consciousness-is-mathematical.html" style="color:inherit;text-decoration:none;">Why Consciousness Is Mathematical</a></div>
-  <div class="essay-title it"><a href="essays/why-consciousness-is-mathematical.html" style="color:inherit;text-decoration:none;">Perché la coscienza è matematica</a></div>
-</div> {
+    .essay-forthcoming {
       padding: 1.2rem 0;
       border-bottom: 0.5px solid var(--bg-darker);
     }
@@ -237,6 +233,21 @@
       text-transform: uppercase;
       color: var(--rule);
     }
+
+    .essay-link {
+      padding: 1.2rem 0;
+      border-bottom: 0.5px solid var(--bg-darker);
+    }
+
+    .essay-link a {
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-link a:hover { color: var(--accent); }
 
     .paper-item {
       padding: 1.2rem 0;
@@ -459,7 +470,10 @@
   <div class="section-label">Essays</div>
   <div class="essays-category">
     <div class="essays-category-label">Mind</div>
-    <div class="essay-forthcoming"><span class="en">forthcoming</span><span class="it">in preparazione</span></div>
+    <div class="essay-link">
+      <a href="essays/why-consciousness-is-mathematical.html" class="en">Why Consciousness Is Mathematical</a>
+      <a href="essays/why-consciousness-is-mathematical.html" class="it">Perché la coscienza è matematica</a>
+    </div>
     <div class="essay-forthcoming"><span class="en">forthcoming</span><span class="it">in preparazione</span></div>
   </div>
   <div class="essays-category">
