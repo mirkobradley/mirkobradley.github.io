@@ -262,6 +262,28 @@
       margin-top: 0.4rem;
     }
 
+    .paper-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .paper-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--rule);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .paper-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
     .note-item { padding: 1.5rem 0; border-bottom: 0.5px solid var(--bg-darker); }
     .note-item p { font-size: 16px; color: var(--ink-mid); font-style: italic; line-height: 1.7; }
 
@@ -446,8 +468,18 @@
 <section id="papers">
   <div class="section-label">Papers</div>
   <div class="paper-item">
-    <a href="https://zenodo.org/records/15265452" target="_blank" rel="noopener">The Topology of Mind: Morphogenetic Continuity and the Architecture of Autonomous General Intelligence</a>
-    <div class="paper-source">Zenodo</div>
+    <div class="en">
+      <a href="https://zenodo.org/records/19034234" target="_blank" rel="noopener">The Topology of Mind: Morphogenetic Continuity and the Architecture of Autonomous General Intelligence</a>
+      <div class="paper-links">
+        <a href="https://zenodo.org/records/19034234" target="_blank" rel="noopener">Zenodo</a>
+      </div>
+    </div>
+    <div class="it">
+      <a href="https://www.academia.edu/165280636/Topologia_della_mente_continuit%C3%A0_morfogenetica_e_architettura_dellIntelligenza_Generale_Autonoma" target="_blank" rel="noopener">Topologia della mente: continuità morfogenetica e architettura dell'Intelligenza Generale Autonoma</a>
+      <div class="paper-links">
+        <a href="https://www.academia.edu/165280636/Topologia_della_mente_continuit%C3%A0_morfogenetica_e_architettura_dellIntelligenza_Generale_Autonoma" target="_blank" rel="noopener">Academia.edu</a>
+      </div>
+    </div>
   </div>
 </section>
 
