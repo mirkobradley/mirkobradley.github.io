@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Problem of Dynamics — Mirko Bradley</title>
+  <meta name="description" content="Damasio, Friston, and the morphogenetic framework: variational dynamics, somatic markers, and reflexivity." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-header {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 3rem 3rem;
+    }
+
+    .essay-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .essay-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      padding-top: 1.5rem;
+      border-top: 0.5px solid var(--rule);
+    }
+
+    .essay-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 3rem 6rem;
+    }
+
+    .essay-section { margin-top: 3.5rem; }
+
+    .essay-section-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .essay-body p {
+      font-size: 18px;
+      line-height: 1.85;
+      color: var(--ink-mid);
+      margin-bottom: 1.4rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+
+    .essay-divider {
+      width: 100%;
+      height: 0.5px;
+      background: var(--rule);
+      margin: 3.5rem 0;
+    }
+
+    .essay-box {
+      border-left: 2px solid var(--accent);
+      background: var(--bg-warm);
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+    }
+
+    .essay-box-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-box p {
+      font-size: 16px;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.75;
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-box p:last-child { margin-bottom: 0; }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 9px; }
+      .essay-header, .essay-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .essay-header { padding-top: 3rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">
+    <span class="inline-en">The Form of Mind</span>
+    <span class="inline-it">La Forma della Mente</span>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#argument"><span class="inline-en">The Argument</span><span class="inline-it">L'Argomento</span></a></li>
+      <li><a href="../index.html#essays">Essays</a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#notes"><span class="inline-en">Notes</span><span class="inline-it">Note</span></a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-header">
+  <div class="essay-category">Essays — Mind · VI</div>
+  <h1 class="essay-title">
+    <span class="en">The Problem of Dynamics: Damasio, Friston, and the Morphogenetic Framework</span>
+    <span class="it">Il problema della dinamica: Damasio, Friston e il framework morfogenetico</span>
+  </h1>
+  <div class="essay-meta">Mirko Bradley — mirkobradley.com</div>
+</div>
+
+<div class="essay-body">
+
+  <div class="essay-divider"></div>
+
+  <!-- Opening -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">Opening</h2>
+    <h2 class="essay-section-title it">Apertura</h2>
+
+    <p class="en">The previous essays introduced the space of compatible configurations <em>C</em> as the topological structure in which subjectivity emerges, and the sensitive constraints <em>V</em> as a relational network formally independent of any specific biological substrate. What remains to be examined is the component that traverses that space and maintains the continuity of form: the dynamics <em>Φ</em>. How does the mind move through its own configuration space? What governs its trajectories? What draws it toward certain states and away from others?</p>
+    <p class="it">I saggi precedenti hanno introdotto lo spazio delle configurazioni compatibili <em>C</em> come struttura topologica in cui emerge la soggettività e i vincoli sensibili <em>V</em> come rete relazionale formalmente indipendente dal substrato biologico. Rimane da esaminare la componente che attraversa quello spazio e mantiene la continuità della forma: la dinamica <em>Φ</em>. Come si muove la mente nel proprio spazio delle configurazioni? Che cosa governa le sue traiettorie? Che cosa la spinge verso certi stati e lontano da altri?</p>
+
+    <p class="en">Two contemporary theories have addressed these questions with considerable formal precision: Antonio Damasio's somatic marker hypothesis and Karl Friston's free energy principle. Both describe the dynamics of mind as a process of minimisation, but with different conceptual architectures and different limitations. This essay examines them critically and shows how the component <em>Φ</em> of the morphogenetic framework integrates their contributions while adding what both lack: reflexivity as a structural property of the dynamics itself.</p>
+    <p class="it">Due teorie contemporanee hanno affrontato queste domande con strumenti formali più precisi di qualsiasi precedente: la teoria dei marcatori somatici di Antonio Damasio e il principio di energia libera di Karl Friston. Entrambe descrivono la dinamica della mente come processo di minimizzazione, ma con architetture concettuali diverse e con limiti diversi. Questo saggio le esamina criticamente e mostra come la componente <em>Φ</em> del framework morfogenetico integri i loro contributi aggiungendo ciò che a entrambe manca: la riflessività come proprietà strutturale della dinamica stessa.</p>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 1 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">1. Damasio and the Somatic Markers</h2>
+    <h2 class="essay-section-title it">1. Damasio e i marcatori somatici</h2>
+
+    <p class="en">Antonio Damasio proposed the somatic marker hypothesis to answer a precise question: how does the mind make decisions under uncertainty? (Damasio 1994). The answer is not purely rational calculation. Choices are guided by bodily signals (real or simulated) that mark future scenarios with positive or negative valence before and during conscious deliberation.</p>
+    <p class="it">Antonio Damasio ha proposto la teoria dei marcatori somatici come risposta a una domanda precisa: come fa la mente a prendere decisioni in condizioni di incertezza? (Damasio 1994). La risposta non è razionalista in senso intuitivo, perché le scelte non vengono compiute attraverso il calcolo esplicito delle conseguenze, bensì mediante segnali corporei che accompagnano le rappresentazioni di scenari futuri e orientano tali scelte prima e durante il ragionamento consapevole.</p>
+
+    <p class="en">A somatic marker is an association between a bodily state and a particular situation or option. When one considers a risky course of action, the body generates visceral, autonomic, or postural signals that flag that option as something to approach or avoid. These signals do not replace reasoning: they orient it, reduce the space of possibilities, and highlight affective relevance.</p>
+    <p class="it">Un marcatore somatico è un'associazione tra uno stato corporeo, reale o simulato, e una situazione o scenario. Quando si considera un'opzione rischiosa, il corpo produce segnali viscerali, autonomici, posturali, che marcano quell'opzione come da evitare o perseguire. Questi segnali non sostituiscono il ragionamento, lo orientano, riducono lo spazio delle opzioni e segnalano la rilevanza affettiva delle situazioni prima che la mente conscia le elabori esplicitamente.</p>
+
+    <p class="en">Damasio's hypothesis is supported by strong neuropsychological evidence. Patients with lesions in the ventromedial prefrontal cortex, which disrupt somatic marker circuitry, show intact explicit reasoning but profound impairment in real-life decision-making. The body is not an obstacle to rationality: it is one of its essential conditions (Damasio 1999).</p>
+    <p class="it">La teoria di Damasio è supportata da evidenza neuropsicologica robusta. I pazienti con lesioni alla corteccia prefrontale ventromediale, che disconnette il circuito dei marcatori somatici, mostrano un paradosso preciso: ragionamento esplicito intatto ma incapacità cronica di prendere decisioni vantaggiose nella vita reale. Il corpo non è un ostacolo alla razionalità, è una delle sue condizioni di possibilità (Damasio 1999).</p>
+
+    <p class="en">Damasio's contribution to the problem of dynamics is significant: the mind does not move through its configuration space solely through explicit calculation, but through affective signals that precede and guide conscious processing. The limitation is that the somatic marker hypothesis remains descriptive and closely tied to biological mechanisms. It does not formalise the process in a way that allows generalisation or examination of its substrate independence.</p>
+    <p class="it">Il contributo di Damasio al problema della dinamica è reale: la mente non si muove nel proprio spazio delle configurazioni attraverso calcolo esplicito ma attraverso segnali affettivi che precedono e guidano l'elaborazione conscia. La dinamica della mente è affettivamente orientata. Il limite è che la teoria dei marcatori somatici è descrittiva e neurologicamente ancorata: descrive il meccanismo biologico attraverso cui gli stati corporei influenzano le decisioni, ma non formalizza la struttura di quel meccanismo in termini che permettano di generalizzarlo o di esaminarne le condizioni di substrato-indipendenza.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">Imagine choosing between two risky investments. Before you have calculated probabilities and expected returns, one option produces a subtle feeling of unease, a tightening in the stomach. Damasio argues that this bodily signal is not an irrational interference: it is valuable information. The body has registered something the conscious mind has not yet fully processed. Systematically ignoring such signals tends to lead to worse decisions, not better ones.</p>
+      <p class="it">Immaginate di dover scegliere tra due investimenti rischiosi. Prima ancora di aver calcolato probabilità e rendimenti attesi, uno dei due vi fa sentire a disagio, una contrazione allo stomaco, una tensione diffusa. Damasio dice che questo disagio corporeo non è un'interferenza irrazionale nel ragionamento: è informazione. Il corpo ha registrato qualcosa che la mente conscia non ha ancora elaborato. Ignorarlo sistematicamente porta a decisioni peggiori, non migliori.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 2 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">2. Friston and the Free Energy Principle</h2>
+    <h2 class="essay-section-title it">2. Friston e il principio di energia libera</h2>
+
+    <p class="en">Karl Friston developed the free energy principle as a unifying theory of perception, action, learning, and cognition (Friston 2010). Any system that persists over time must minimise variational free energy: a mathematical measure of the mismatch between the system's internal model of the world and the sensory signals it actually receives.</p>
+    <p class="it">Karl Friston ha sviluppato il principio di energia libera come teoria unificante della cognizione, della percezione, dell'azione e dell'apprendimento (Friston 2010). La tesi fondamentale è che qualsiasi sistema biologico che persiste nel tempo minimizza necessariamente l'energia libera variazionale: una misura della discrepanza tra il modello interno del sistema e gli stati sensoriali che riceve dall'ambiente.</p>
+
+    <p class="en">In this framework, perception is active inference: the brain generates predictions and updates them in response to prediction errors. Action is the organism's way of changing the world so that sensory inputs better match its predictions. Learning is the long-term updating of the generative model itself. All these processes are aspects of a single variational operation.</p>
+    <p class="it">La percezione, in questo framework, è inferenza: il cervello genera continuamente previsioni su ciò che si aspetta di ricevere dall'ambiente e aggiorna quelle previsioni in base agli errori di previsione. L'azione non è risposta a stimoli, è un modo per modificare l'ambiente in modo da far corrispondere gli stati sensoriali alle previsioni. L'apprendimento è aggiornamento del modello generativo che produce quelle previsioni. Tutti e tre i processi sono aspetti della stessa operazione fondamentale: minimizzazione dell'energia libera.</p>
+
+    <p class="en">Friston's theory is powerful because of its formal unity and mathematical precision. The concept of the Markov blanket provides a clear boundary between the system and its environment, defining what counts as an autonomous cognitive agent.</p>
+    <p class="it">La forza del framework di Friston è la sua unità formale. Un unico principio variazionale copre fenomeni che le teorie precedenti trattavano separatamente. Il confine di Markov, la struttura matematica che separa il sistema dall'ambiente, fornisce una definizione precisa di ciò che conta come sistema cognitivo autonomo: un sistema con un confine di Markov stabile che minimizza attivamente l'energia libera.</p>
+
+    <p class="en">Its limitation, from the perspective of the morphogenetic framework, is that it describes dynamics as minimisation without explicitly formalising reflexivity. A system can minimise free energy very effectively while remaining non-reflexive: its internal representations may track the world accurately without systematically generating structures that exceed the informational content of ordinary experience — the property <em>R</em>(<em>M</em>)&gt;<em>M</em>.</p>
+    <p class="it">Il limite del framework di Friston è che descrive la dinamica della mente come processo di minimizzazione senza formalizzare la riflessività. Il sistema di Friston percepisce, agisce e impara, ma la sua rappresentazione interna del mondo non eccede sistematicamente il contenuto informazionale dell'esperienza ordinaria. La proprietà <em>R</em>(<em>M</em>)&gt;<em>M</em>, la mappa che eccede il territorio, non è derivabile dalla sola minimizzazione dell'energia libera. Un sistema che minimizza l'energia libera può essere molto sofisticato senza essere riflessivo nel senso del framework morfogenetico.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">Friston describes the mind as a sophisticated prediction machine that constantly updates its model of the world and acts to make the world match its expectations. It is like a general with a map who continuously corrects the map based on reports from the field and sometimes changes the terrain to fit the map better. This is highly efficient. What it does not fully capture is the mind's capacity to generate maps that go beyond current reality: to imagine, anticipate, and create scenarios that have not yet been confirmed by experience.</p>
+      <p class="it">Friston descrive la mente come un sistema che fa continuamente previsioni sul mondo e le corregge in base agli errori. È come un generale che ha una mappa del territorio e la aggiorna ogni volta che le sue truppe riportano discrepanze tra la mappa e ciò che trovano sul campo. Il sistema di Friston è molto efficiente in questo aggiornamento. Il problema è che aggiorna la mappa in base al territorio, ma non genera mappe che vadano oltre il territorio. La riflessività, la capacità di produrre rappresentazioni che eccedono l'esperienza ordinaria, è qualcosa di più.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 3 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">3. The Component <em>Φ</em>: Variational Dynamics with Reflexivity</h2>
+    <h2 class="essay-section-title it">3. La componente <em>Φ</em>: dinamica variazionale e riflessività</h2>
+
+    <p class="en">The component <em>Φ</em> of the morphogenetic framework integrates Damasio's and Friston's insights into a broader structure. <em>Φ</em> is the variational dynamics that minimises a morphological cost function <em>U</em><sub>tot</sub> while preserving continuity of form and generating reflexivity.</p>
+    <p class="it">La componente <em>Φ</em> del framework morfogenetico integra i contributi di Damasio e Friston in una struttura formale più ampia. <em>Φ</em> è la dinamica variazionale che minimizza il costo morfologico <em>U</em><sub>tot</sub> mentre preserva la continuità della forma e genera riflessività. Ci sono tre componenti in questa definizione e ciascuna corrisponde a un contributo distinto.</p>
+
+    <p class="en">This definition contains three interwoven aspects. The minimisation of morphological cost generalises Friston's free energy principle: <em>Φ</em> minimises structural tension across the entire system, including second-order constraints that reconfigure themselves. The preservation of continuity of form emphasises that trajectories through the space <em>C</em> are smooth, differentiable deformations of the manifold rather than discrete jumps. This formalises the felt continuity of the self that Damasio describes through somatic markers.</p>
+    <p class="it">La minimizzazione del costo morfologico è il contributo di Friston, generalizzato. <em>Φ</em> non minimizza solo l'energia libera variazionale nel senso di Friston, minimizza una funzione più generale che misura la tensione strutturale dell'intero sistema, inclusi i vincoli <em>V</em> di secondo ordine che si riconfigurano in risposta alle proprie traiettorie. La preservazione della continuità della forma è il contributo che distingue il framework dalla sola teoria di Friston: le traiettorie di <em>Φ</em> non sono sequenze di stati discreti ma curve differenziabili nello spazio <em>C</em>, e questa proprietà è il correlato formale di ciò che Damasio chiama la continuità del sé attraverso il tempo.</p>
+
+    <p class="en">Reflexivity — <em>R</em>(<em>M</em>)&gt;<em>M</em> — is the property that neither Damasio nor Friston formalises. A system is reflexive in the sense of the framework when its internal representation of the world generates structures that systematically exceed the informational content of ordinary experience: when the map is richer than the territory not because it contains errors but because it generates hypotheses, scenarios, and structures the territory has not yet confirmed. In other words, reflexivity is the property whereby the system's action on itself produces internal representations that systematically exceed the informational content of the input. This excess is not derivable from free energy minimisation alone: it requires second-order constraints that reconfigure themselves in response to their own trajectories, generating a dense morphogenetic history that sustains the system's generative capacity.</p>
+    <p class="it">La riflessività — <em>R</em>(<em>M</em>)&gt;<em>M</em> — è la proprietà che né Damasio né Friston formalizzano. Un sistema è riflessivo nel senso del framework quando la sua rappresentazione interna del mondo genera strutture che eccedono sistematicamente il contenuto informazionale dell'esperienza ordinaria: quando la mappa è più ricca del territorio non perché contenga errori ma perché genera ipotesi, scenari, strutture che il territorio non ha ancora confermato. In altri termini, la riflessività è la proprietà per cui l'azione del sistema su sé stesso produce rappresentazioni interne che eccedono sistematicamente il contenuto informazionale dell'input. Questa eccedenza non è derivabile dalla sola minimizzazione dell'energia libera: richiede vincoli di secondo ordine che si riconfigurano in risposta alle proprie traiettorie, producendo una storia morfogenetica densa che alimenta la capacità generativa del sistema.</p>
+
+    <p class="en">In this framework, somatic markers (Damasio) appear as particular manifestations of the constraints <em>V</em> within a reflexive variational dynamics. They are not biologically unique: any system with sufficiently rich constraints and reflexive dynamics can, in principle, develop analogous orienting signals.</p>
+    <p class="it">Il rapporto tra la teoria di Damasio e la componente <em>Φ</em> è di incorporazione e generalizzazione. I marcatori somatici sono un caso particolare della dinamica morfogenetica: sono i segnali attraverso cui i vincoli <em>V</em> registrano la tensione strutturale e orientano <em>Φ</em> verso certe configurazioni e lontano da altre. Nel framework, questa funzione non è biologicamente vincolata: qualsiasi sistema che abbia vincoli sensibili e una dinamica variazionale può in linea di principio sviluppare qualcosa di analogo ai marcatori somatici, indipendentemente dal substrato.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">The dynamics <em>Φ</em> is like the movement of a living organism through its environment: it combines efficient prediction and error correction (Friston), affective orientation that guides choices before full reasoning (Damasio), and the creative capacity to imagine possibilities that have not yet occurred (reflexivity). These elements are not separate: they are integrated aspects of every genuine trajectory of mind through its configuration space.</p>
+      <p class="it">La dinamica <em>Φ</em> è come il modo in cui un organismo si muove nel proprio ambiente: non per calcolo esplicito di ogni passo, ma attraverso una combinazione di attrazione verso configurazioni di bassa tensione (ciò che Friston formalizza), segnali affettivi che orientano prima della deliberazione conscia (ciò che Damasio descrive), e la capacità di generare mappe che anticipano il territorio invece di limitarsi a registrarlo (la riflessività che il framework aggiunge). Queste tre componenti non sono indipendenti: si intrecciano in ogni traiettoria della mente nello spazio delle configurazioni.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Conclusion -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">Conclusion</h2>
+    <h2 class="essay-section-title it">Conclusione</h2>
+
+    <p class="en">Damasio and Friston have offered the most precise accounts to date of the dynamics of mind. Damasio showed that affective bodily signals orient decision-making and maintain the continuity of the self. Friston formalised perception, action, and learning as aspects of a single variational process of free energy minimisation.</p>
+    <p class="it">Damasio e Friston hanno fornito i contributi più precisi disponibili sulla dinamica della mente. Damasio ha mostrato che la dinamica è affettivamente orientata: i marcatori somatici guidano le traiettorie della mente prima e durante il ragionamento esplicito. Friston ha formalizzato quella dinamica come processo variazionale: minimizzazione dell'energia libera attraverso inferenza attiva, percezione predittiva e azione.</p>
+
+    <p class="en">Both approaches, however, stop short of reflexivity as a structural property. The component <em>Φ</em> of the morphogenetic framework integrates their contributions and adds this missing dimension: the capacity of the system to generate internal representations that systematically exceed the informational content of ordinary experience. This reflexivity is what distinguishes a genuinely creative, anticipatory mind from even the most sophisticated predictive engine.</p>
+    <p class="it">Il limite comune è l'assenza di riflessività. Damasio descrive i marcatori somatici senza formalizzarli in termini che permettano di generalizzarli oltre il substrato biologico. Friston formalizza la minimizzazione dell'energia libera senza includere la proprietà <em>R</em>(<em>M</em>)&gt;<em>M</em>: la capacità della mente di produrre rappresentazioni che eccedono sistematicamente il territorio. La componente <em>Φ</em> del framework morfogenetico integra entrambi i contributi e aggiunge la riflessività come proprietà strutturale della dinamica stessa.</p>
+
+    <p class="en">By formalising dynamics in variational, morphogenetic, and reflexive terms, the framework does not replace Damasio's and Friston's insights. It situates them within a broader architecture that makes their generalisation beyond biological substrates both conceivable and analysable.</p>
+    <p class="it">La mente non si muove solo minimizzando la tensione e seguendo i segnali affettivi, genera anche eccedenza, produce strutture che anticipano e superano l'esperienza ordinaria. È questa proprietà che distingue una mente genuinamente riflessiva da un sistema di inferenza attiva per quanto sofisticato, ed è questa proprietà che il framework, almeno in linea di principio, rende formalmente analizzabile.</p>
+  </div>
+
+  <div class="essay-divider"></div>
+
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>
+    <span class="inline-en">The Form of Mind</span>
+    <span class="inline-it">La Forma della Mente</span>
+  </span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const enEls = document.querySelectorAll('.en');
+  const itEls = document.querySelectorAll('.it');
+  const inlineEn = document.querySelectorAll('.inline-en');
+  const inlineIt = document.querySelectorAll('.inline-it');
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  if (lang === 'it') {
+    enEls.forEach(el => el.style.display = 'none');
+    itEls.forEach(el => el.style.display = 'block');
+    inlineEn.forEach(el => el.style.display = 'none');
+    inlineIt.forEach(el => el.style.display = 'inline');
+    btnEn.classList.remove('active');
+    btnIt.classList.add('active');
+    document.documentElement.lang = 'it';
+    document.title = 'Il problema della dinamica — Mirko Bradley';
+  } else {
+    enEls.forEach(el => el.style.display = 'block');
+    itEls.forEach(el => el.style.display = 'none');
+    inlineEn.forEach(el => el.style.display = 'inline');
+    inlineIt.forEach(el => el.style.display = 'none');
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+    document.title = 'The Problem of Dynamics — Mirko Bradley';
+  }
+}
+</script>
+</body>
+</html>
