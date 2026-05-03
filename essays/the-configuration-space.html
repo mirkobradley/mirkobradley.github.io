@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Configuration Space — Mirko Bradley</title>
+  <meta name="description" content="The geometry of mind: configuration space, differentiable manifolds, morphological cost, and the topology of C." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-header {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 3rem 3rem;
+    }
+
+    .essay-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .essay-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      padding-top: 1.5rem;
+      border-top: 0.5px solid var(--rule);
+    }
+
+    .essay-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 3rem 6rem;
+    }
+
+    .essay-section { margin-top: 3.5rem; }
+
+    .essay-section-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .essay-body p {
+      font-size: 18px;
+      line-height: 1.85;
+      color: var(--ink-mid);
+      margin-bottom: 1.4rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+
+    .essay-divider {
+      width: 100%;
+      height: 0.5px;
+      background: var(--rule);
+      margin: 3.5rem 0;
+    }
+
+    .essay-box {
+      border-left: 2px solid var(--accent);
+      background: var(--bg-warm);
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+    }
+
+    .essay-box-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-box p {
+      font-size: 16px;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.75;
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-box p:last-child { margin-bottom: 0; }
+
+    .essay-formula {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      color: var(--ink);
+      text-align: center;
+      padding: 1.2rem 0;
+      margin: 1.2rem 0;
+      letter-spacing: 0.02em;
+    }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 9px; }
+      .essay-header, .essay-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .essay-header { padding-top: 3rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">
+    <span class="inline-en">The Form of Mind</span>
+    <span class="inline-it">La Forma della Mente</span>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#argument"><span class="inline-en">The Argument</span><span class="inline-it">L'Argomento</span></a></li>
+      <li><a href="../index.html#essays">Essays</a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#notes"><span class="inline-en">Notes</span><span class="inline-it">Note</span></a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-header">
+  <div class="essay-category">Essays — Mind · X</div>
+  <h1 class="essay-title">
+    <span class="en">The Configuration Space: The Geometry of Mind</span>
+    <span class="it">Lo Spazio delle Configurazioni: La Geometria della Mente</span>
+  </h1>
+  <div class="essay-meta">Mirko Bradley — mirkobradley.com</div>
+</div>
+
+<div class="essay-body">
+
+  <div class="essay-divider"></div>
+
+  <!-- Opening -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">Opening</h2>
+    <h2 class="essay-section-title it">Apertura</h2>
+
+    <p class="en">The previous essays have often used the term "configuration space" <em>C</em> as if it were already a familiar object. It is not yet entirely so. It is time to construct it with precision, because many of the ideas that follow depend on its form.</p>
+    <p class="it">Nei saggi precedenti ho usato spesso il termine "spazio delle configurazioni" <em>C</em> come se fosse un oggetto già familiare. Non lo è ancora del tutto. È il momento di costruirlo con precisione, perché molte delle idee successive dipendono dalla sua forma.</p>
+
+    <p class="en">The basic intuition is simple. Every possible state of a mind occupies a point in a mathematical space. The mind is not a sequence of discrete states succeeding one another in time. It is a continuous trajectory moving through a geometric space with its own intrinsic shape. That shape is not neutral. It determines which states are stable, which are unstable, which transitions are natural and which are prohibitive. This essay describes the structure of that space.</p>
+    <p class="it">L'intuizione di partenza è semplice. Ogni stato possibile di una mente occupa un punto in uno spazio matematico. La mente non è una sequenza di stati discreti che si susseguono nel tempo. È una traiettoria continua che attraversa uno spazio dotato di una geometria propria. Quella geometria determina quali stati sono stabili, quali sono instabili, quali transizioni risultano naturali e quali risultano proibitive. Questo saggio descrive la struttura di quello spazio.</p>
+
+    <p class="en">The aim is not technical. It is an attempt to bring mathematics into dialogue with intuition, showing why certain formal choices are necessary and what they add beyond purely verbal description.</p>
+    <p class="it">L'obiettivo non è tecnico. È un tentativo di far dialogare matematica e intuizione, mostrando perché certe scelte formali sono necessarie e cosa aggiungono rispetto alla sola descrizione verbale.</p>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 1 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">1. What Is a Configuration Space?</h2>
+    <h2 class="essay-section-title it">1. Che cos'è uno spazio delle configurazioni</h2>
+
+    <p class="en">In physics, a configuration space collects all possible states of a system. For a particle in three dimensions it coincides with three-dimensional Euclidean space. For a double pendulum it is a two-dimensional space parameterised by two angles. In general, a system with <em>n</em> degrees of freedom has an <em>n</em>-dimensional configuration space.</p>
+    <p class="it">In fisica, lo spazio delle configurazioni raccoglie tutti gli stati possibili di un sistema. Per una particella in tre dimensioni coincide con lo spazio euclideo tridimensionale. Per un doppio pendolo è uno spazio bidimensionale parametrizzato da due angoli. In generale, un sistema con <em>n</em> gradi di libertà ha uno spazio delle configurazioni a <em>n</em> dimensioni.</p>
+
+    <p class="en">For the mind, the degrees of freedom are not physical positions but internal states: neural activations, connectivity patterns, attentional configurations, affective states, arousal levels. The effective dimensionality is very high, probably on the order of tens or hundreds of thousands.</p>
+    <p class="it">Per la mente, i gradi di libertà non sono posizioni fisiche ma stati interni: attivazioni neurali, pattern di connettività, configurazioni attentive, stati affettivi, livelli di arousal. La dimensionalità effettiva è molto alta, probabilmente dell'ordine delle decine o centinaia di migliaia.</p>
+
+    <p class="en">Not every point in this high-dimensional space is equally accessible or stable. The mind does not explore all logically possible configurations uniformly. It moves preferentially through certain regions, tends toward certain states, and avoids others. This selectivity derives from the geometry of the space. And it is this geometry that component <em>C</em> of the framework formalises.</p>
+    <p class="it">Non tutti i punti di questo spazio sono accessibili o stabili. La mente non esplora in modo uniforme tutte le configurazioni logicamente possibili. Si muove in regioni preferenziali, tende verso certi stati, evita altri. Questa preferenzialità deriva dalla geometria dello spazio. Ed è questa geometria che la componente <em>C</em> del framework formalizza.</p>
+
+    <p class="en">Formally, given a set of active constraints <em>V</em>, the configuration space is the structural intersection of all subsets compatible with each constraint:</p>
+    <p class="it">Formalmente, dato un insieme di vincoli attivi <em>V</em>, lo spazio delle configurazioni è l'intersezione strutturale di tutti i sottoinsiemi compatibili con ciascun vincolo:</p>
+
+    <div class="essay-formula en"><em>C</em> = ∩<sub>v∈V</sub> Σ<sub>v</sub></div>
+    <div class="essay-formula it"><em>C</em> = ∩<sub>v∈V</sub> Σ<sub>v</sub></div>
+
+    <p class="en">where Σ<sub>v</sub> is the set of configurations compatible with constraint <em>v</em>. Each constraint restricts the space of possibilities. The intersection of all active constraints defines the space in which the mind can actually move.</p>
+    <p class="it">dove Σ<sub>v</sub> è l'insieme delle configurazioni compatibili con il vincolo <em>v</em>. Ogni vincolo restringe lo spazio delle possibilità. L'intersezione di tutti i vincoli attivi definisce lo spazio in cui la mente può effettivamente muoversi.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">Imagine describing the posture of a robot with two articulated arms. Four angles completely describe its posture, but not all postures are possible: the joints have mechanical limits, the arms cannot cross, the robot must maintain balance. The effective configuration space is the intersection of all these constraints. For the mind it works the same way, only with many more dimensions and far more sophisticated constraints.</p>
+      <p class="it">Immaginate un robot con due braccia articolate. Quattro angoli descrivono la sua postura, ma non tutte le posture sono possibili. I giunti hanno limiti, le braccia non possono attraversarsi, il robot deve mantenere l'equilibrio. Lo spazio delle configurazioni effettivo è l'intersezione di tutti questi vincoli. Per la mente accade lo stesso, con molte più dimensioni e vincoli più sofisticati.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 2 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">2. <em>C</em> as a Differentiable Manifold</h2>
+    <h2 class="essay-section-title it">2. <em>C</em> come varietà differenziabile</h2>
+
+    <p class="en">The configuration space is not a flat space. It is a differentiable manifold: a space that locally resembles Euclidean space but can have a complex global shape. The surface of the Earth is a familiar example: locally flat, globally curved.</p>
+    <p class="it">Lo spazio delle configurazioni non è uno spazio piatto. È una varietà differenziabile: uno spazio che localmente assomiglia a uno spazio euclideo, ma che globalmente può avere una forma complessa. La superficie terrestre è un esempio familiare: localmente appare piatta, globalmente è curva.</p>
+
+    <p class="en">This choice is not merely aesthetic. Mental states are not vectors in a linear space. Their relations of proximity and distance depend on the morphogenetic structure of the system. Two states may be close in coordinates but structurally distant if moving from one to the other requires crossing regions of high tension. The curvature of the manifold captures this asymmetry.</p>
+    <p class="it">Questa scelta non è estetica. Gli stati mentali non sono vettori in uno spazio lineare. Le loro relazioni di vicinanza e distanza dipendono dalla struttura morfogenetica del sistema. Due stati possono essere vicini in coordinate ma lontani nella struttura, se il passaggio dall'uno all'altro richiede attraversare regioni di alta tensione. La curvatura della varietà cattura questa asimmetria.</p>
+
+    <p class="en">On a manifold one can define distances, angles, derivatives, and gradients while taking curvature into account. It is this capacity for calculation on curved spaces that makes the differentiable manifold the appropriate tool for formalising <em>C</em>.</p>
+    <p class="it">Su una varietà si possono definire distanze, angoli, derivate e gradienti tenendo conto della curvatura. È questa capacità di calcolo su spazi curvi che rende la varietà differenziabile lo strumento adatto per formalizzare <em>C</em>.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">A differentiable manifold is like a landscape with valleys, hills, and saddles. At every point, if one looks closely enough, it appears flat. The local geometry is simple; the global geometry is complex. The configuration space of mind has this structure.</p>
+      <p class="it">Una varietà differenziabile è come un paesaggio con valli, colline e selle. In ogni punto, se si guarda da vicino, sembra piatta. La geometria locale è semplice, quella globale è complessa. Lo spazio delle configurazioni della mente ha questa struttura.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 3 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">3. The Morphological Cost and the Metric of <em>C</em></h2>
+    <h2 class="essay-section-title it">3. Il costo morfologico e la metrica di <em>C</em></h2>
+
+    <p class="en">To give <em>C</em> a precise geometry one needs a metric, that is, a way of measuring distances between mental states. The metric is not Euclidean. It is induced by the morphological cost <em>U</em><sub>tot</sub>.</p>
+    <p class="it">Per dare a <em>C</em> una geometria precisa serve una metrica, cioè un modo di misurare la distanza tra stati mentali. La metrica non è euclidea. È indotta dal costo morfologico <em>U</em><sub>tot</sub>.</p>
+
+    <p class="en">The morphological cost assigns to each state a value measuring the structural tension of the system: how far that state deviates from configurations of maximum systemic integrity. It is defined as the sum of the contributions of all active constraints:</p>
+    <p class="it">Il costo morfologico assegna a ogni stato un valore che misura la tensione strutturale del sistema: quanto quello stato si discosta dalle configurazioni di massima integrità. È definito come somma dei contributi di tutti i vincoli attivi:</p>
+
+    <div class="essay-formula en"><em>U</em><sub>tot</sub>(<em>x</em>) = <em>U</em><sub>N</sub>(<em>x</em>) + <em>U</em><sub>B</sub>(<em>x</em>) + <em>U</em><sub>A</sub>(<em>x</em>) + <em>U</em><sub>H</sub>(<em>x</em>)</div>
+    <div class="essay-formula it"><em>U</em><sub>tot</sub>(<em>x</em>) = <em>U</em><sub>N</sub>(<em>x</em>) + <em>U</em><sub>B</sub>(<em>x</em>) + <em>U</em><sub>A</sub>(<em>x</em>) + <em>U</em><sub>H</sub>(<em>x</em>)</div>
+
+    <p class="en">where the terms represent the neural, bodily, environmental, and historical constraints.</p>
+    <p class="it">dove i termini rappresentano i vincoli neurali, corporei, ambientali e storici.</p>
+
+    <p class="en">The metric on <em>C</em> is defined so that distances reflect this cost. Two states that are close in coordinates may be metrically distant if a barrier of high structural tension lies between them. Regions of low tension become metrically large and easily explorable. Regions of high tension become metrically compressed and difficult to cross.</p>
+    <p class="it">La metrica su <em>C</em> è definita in modo che le distanze riflettano questo costo. Due stati coordinatamente vicini possono essere metricamente lontani se tra loro si trova una barriera di alta tensione. Le regioni di bassa tensione risultano metricamente ampie e facilmente esplorabili. Le regioni di alta tensione risultano metricamente compresse e difficili da attraversare.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">Imagine walking on ground that becomes increasingly sticky in certain zones. Two points may be physically close, but crossing the sticky zone requires much more effort. The metric induced by the morphological cost works in the same way: it distorts space so that regions of high structural tension are effectively farther away. The mind does not move through a flat, neutral space: it moves through a space whose geometry reflects the structure of its own constraints.</p>
+      <p class="it">Immaginate un terreno che diventa viscoso in certe zone. Due punti possono essere vicini, ma attraversare la zona viscosa richiede molto sforzo. La metrica indotta dal costo morfologico funziona allo stesso modo.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 4 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">4. Basins of Attraction and Singularities</h2>
+    <h2 class="essay-section-title it">4. Bacini di attrazione e singolarità</h2>
+
+    <p class="en">The metric induced by the morphological cost creates a genuine landscape on <em>C</em>. Regions of low tension are valleys, that is, basins of attraction. Regions of high tension are ridges, that is, potential barriers. Singularities are points where the geometric structure changes qualitatively.</p>
+    <p class="it">La metrica indotta dal costo morfologico crea un paesaggio su <em>C</em>. Le regioni di bassa tensione sono valli, cioè bacini di attrazione. Le regioni di alta tensione sono crinali, cioè barriere di potenziale. Le singolarità sono punti in cui la struttura geometrica cambia qualitativamente.</p>
+
+    <p class="en">A basin of attraction is a region in which trajectories converge toward a stable attractor. These correspond to stable mental states: cognitive, affective, and attentional configurations that the system tends to maintain. The depth of the basin measures the stability of the state.</p>
+    <p class="it">Un bacino di attrazione è una regione in cui le traiettorie convergono verso un attrattore stabile. Questi corrispondono agli stati mentali stabili: configurazioni cognitive, affettive e attentive che il sistema tende a mantenere. La profondità del bacino misura la stabilità dello stato.</p>
+
+    <p class="en">Singularities include saddle points, bifurcations, and catastrophes in the sense of Thom. A bifurcation is a qualitative change in the topology of <em>C</em> as a control parameter varies. It corresponds to profound transformations of the mind: learning, trauma, cognitive conversion.</p>
+    <p class="it">Le singolarità includono punti di sella, biforcazioni e catastrofi nel senso di Thom. Una biforcazione è un cambiamento qualitativo della topologia di <em>C</em> al variare di un parametro di controllo. Corrisponde a trasformazioni profonde della mente: apprendimento, trauma, conversione cognitiva.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">Imagine a landscape with various valleys separated by ridges. A ball placed in a valley rolls naturally toward the bottom: it is in a basin of attraction. To move it to another valley, one must supply enough energy to cross the ridge. Some valleys are deep (stable states, hard to leave); others are shallow (easily perturbed states). Saddle points on the ridges are unstable equilibria.</p>
+      <p class="it">Immaginate un paesaggio con valli separate da crinali. Una pallina in una valle rotola verso il fondo. Per spostarla in un'altra valle serve energia per superare il crinale. Alcune valli sono profonde, altre superficiali. I punti di sella sui crinali sono equilibri instabili.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 5 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">5. The Global Structure of <em>C</em></h2>
+    <h2 class="essay-section-title it">5. La struttura globale di <em>C</em></h2>
+
+    <p class="en">Basins and singularities are not isolated local properties: they form a global structure that characterises the entire manifold.</p>
+    <p class="it">I bacini e le singolarità formano una struttura globale che caratterizza l'intera varietà.</p>
+
+    <p class="en">A fundamental global property is connectedness. <em>C</em> is connected in the sense that any two points can be joined by a continuous trajectory. This is the formal correlate of the unity of consciousness. The mind is not a collection of isolated modules. It is a single manifold in which every state is in principle reachable from every other.</p>
+    <p class="it">Una proprietà fondamentale è la connessione. <em>C</em> è connessa nel senso che qualsiasi due punti possono essere uniti da una traiettoria continua. Questo è il correlato formale dell'unità della coscienza. La mente non è un insieme di moduli isolati. È un'unica varietà in cui ogni stato è raggiungibile da ogni altro.</p>
+
+    <p class="en">A second global property is the homological structure of <em>C</em>. Homology measures the number of holes of various dimensions in the manifold. These topological properties do not change under continuous deformations and capture invariant aspects of cognitive architecture.</p>
+    <p class="it">Una seconda proprietà è la struttura omologica di <em>C</em>. L'omologia misura il numero di buchi di varie dimensioni nella varietà. Queste proprietà topologiche non cambiano sotto deformazioni continue e catturano aspetti invarianti dell'architettura cognitiva.</p>
+
+    <p class="en">The three fundamental regimes of mind correspond to metric and topological properties of <em>C</em>. Rigidity corresponds to a deep basin with high potential barriers. Flexibility corresponds to a landscape of shallow basins. Metastability corresponds to a landscape in which the system oscillates between basins without settling in any one of them.</p>
+    <p class="it">I tre regimi fondamentali della mente corrispondono a proprietà metriche e topologiche di <em>C</em>. La rigidità corrisponde a un bacino profondo con barriere elevate. La flessibilità corrisponde a un paesaggio con bacini poco profondi. La metastabilità corrisponde a un paesaggio in cui il sistema oscilla tra bacini senza stabilizzarsi.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">The difference between a sphere and a torus is not one of size or local curvature but of topology: it is the number of holes. These properties do not change if the surface is deformed without tearing it. The topology of <em>C</em> captures the invariant properties of mind, independent of specific contents.</p>
+      <p class="it">La differenza tra una sfera e un toro non riguarda la curvatura locale ma il numero di buchi. La topologia di <em>C</em> cattura le proprietà invarianti della mente, indipendenti dai contenuti specifici.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Conclusion -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">Conclusion</h2>
+    <h2 class="essay-section-title it">Conclusione</h2>
+
+    <p class="en">The configuration space <em>C</em> is now a precise mathematical object. It is the structural intersection of active constraints. It is equipped with a metric induced by the morphological cost <em>U</em><sub>tot</sub>. It is organised into basins of attraction and singularities. It has a global topology that captures the invariant properties of cognitive architecture.</p>
+    <p class="it">Lo spazio delle configurazioni <em>C</em> è un oggetto matematico preciso. È l'intersezione strutturale dei vincoli attivi. È dotato di una metrica indotta dal costo morfologico <em>U</em><sub>tot</sub>. È organizzato in bacini di attrazione e singolarità. Ha una topologia globale che cattura le proprietà invarianti dell'architettura cognitiva.</p>
+
+    <p class="en">This description already allows us to reformulate with greater precision many of the questions addressed in the previous essays. Subjectivity as a global topological property, Fodor's modular systems, and the isotropy of central systems all find a natural place within the structure of <em>C</em>.</p>
+    <p class="it">Questa descrizione permette di riformulare con maggiore precisione molte questioni affrontate nei saggi precedenti. La soggettività come proprietà topologica globale, i sistemi modulari di Fodor e l'isotropia dei sistemi centrali trovano un posto naturale nella struttura di <em>C</em>.</p>
+
+    <p class="en">The next essay will introduce the sensitive constraints <em>V</em> as functionals of morphological tension and show how they generate the geometry of <em>C</em>. The trajectory that traverses <em>C</em> is the component <em>Φ</em>, the subject of Essay XII. Reflexivity <em>R</em>(<em>M</em>)&gt;<em>M</em> emerges as a property of the dynamics <em>Φ</em> on a space <em>C</em> with sufficient topological complexity.</p>
+    <p class="it">Il prossimo saggio introduce i vincoli sensibili <em>V</em> come funzionali di tensione morfologica e mostra come generano la geometria di <em>C</em>. La traiettoria che attraversa <em>C</em> è la componente <em>Φ</em>, oggetto del saggio XII. La riflessività <em>R</em>(<em>M</em>)&gt;<em>M</em> emerge come proprietà della dinamica <em>Φ</em> su uno spazio <em>C</em> con sufficiente complessità topologica.</p>
+  </div>
+
+  <div class="essay-divider"></div>
+
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>
+    <span class="inline-en">The Form of Mind</span>
+    <span class="inline-it">La Forma della Mente</span>
+  </span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const enEls = document.querySelectorAll('.en');
+  const itEls = document.querySelectorAll('.it');
+  const inlineEn = document.querySelectorAll('.inline-en');
+  const inlineIt = document.querySelectorAll('.inline-it');
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  if (lang === 'it') {
+    enEls.forEach(el => el.style.display = 'none');
+    itEls.forEach(el => el.style.display = 'block');
+    inlineEn.forEach(el => el.style.display = 'none');
+    inlineIt.forEach(el => el.style.display = 'inline');
+    btnEn.classList.remove('active');
+    btnIt.classList.add('active');
+    document.documentElement.lang = 'it';
+    document.title = 'Lo Spazio delle Configurazioni — Mirko Bradley';
+  } else {
+    enEls.forEach(el => el.style.display = 'block');
+    itEls.forEach(el => el.style.display = 'none');
+    inlineEn.forEach(el => el.style.display = 'inline');
+    inlineIt.forEach(el => el.style.display = 'none');
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+    document.title = 'The Configuration Space — Mirko Bradley';
+  }
+}
+</script>
+</body>
+</html>
