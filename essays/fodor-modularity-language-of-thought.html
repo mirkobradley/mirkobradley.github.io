@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fodor: Modularity, Language of Thought — Mirko Bradley</title>
+  <meta name="description" content="Fodor's modularity, the Language of Thought hypothesis, and the morphogenetic framework: central systems as trajectories in C." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-header {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 3rem 3rem;
+    }
+
+    .essay-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .essay-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      padding-top: 1.5rem;
+      border-top: 0.5px solid var(--rule);
+    }
+
+    .essay-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 3rem 6rem;
+    }
+
+    .essay-section { margin-top: 3.5rem; }
+
+    .essay-section-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .essay-body p {
+      font-size: 18px;
+      line-height: 1.85;
+      color: var(--ink-mid);
+      margin-bottom: 1.4rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+
+    .essay-divider {
+      width: 100%;
+      height: 0.5px;
+      background: var(--rule);
+      margin: 3.5rem 0;
+    }
+
+    .essay-box {
+      border-left: 2px solid var(--accent);
+      background: var(--bg-warm);
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+    }
+
+    .essay-box-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-box p {
+      font-size: 16px;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.75;
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-box p:last-child { margin-bottom: 0; }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 9px; }
+      .essay-header, .essay-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .essay-header { padding-top: 3rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">
+    <span class="inline-en">The Form of Mind</span>
+    <span class="inline-it">La Forma della Mente</span>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#argument"><span class="inline-en">The Argument</span><span class="inline-it">L'Argomento</span></a></li>
+      <li><a href="../index.html#essays">Essays</a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#notes"><span class="inline-en">Notes</span><span class="inline-it">Note</span></a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-header">
+  <div class="essay-category">Essays — Mind · IX</div>
+  <h1 class="essay-title">
+    <span class="en">Fodor: Modularity, Language of Thought, and the Morphogenetic Framework</span>
+    <span class="it">Fodor: modularismo, linguaggio del pensiero e il framework morfogenetico</span>
+  </h1>
+  <div class="essay-meta">Mirko Bradley — mirkobradley.com</div>
+</div>
+
+<div class="essay-body">
+
+  <div class="essay-divider"></div>
+
+  <!-- Opening -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">Opening</h2>
+    <h2 class="essay-section-title it">Apertura</h2>
+
+    <p class="en">Jerry Fodor is an anomalous figure in the philosophy of mind. He is one of the sharpest critics of connectionism and cognitive holism, positions that the morphogenetic framework partially shares. Yet he is also the principal architect of classical computational cognitivism, the view that the mind is a system of discrete symbolic representation processing, which the framework regards as insufficient for consciousness. His position is therefore both closer to and farther from the framework than it first appears.</p>
+    <p class="it">Jerry Fodor è una figura anomala nel panorama della filosofia della mente. È uno dei più acuti critici del connessionismo e dell'olismo cognitivo, posizioni che il framework morfogenetico in parte condivide. Ma è anche il principale architetto del cognitivismo computazionale classico, la tesi che la mente sia un sistema di elaborazione di rappresentazioni simboliche discrete, che il framework esclude come insufficiente per la coscienza. La sua posizione è quindi al tempo stesso più vicina e più lontana dal framework di quanto appaia a prima vista.</p>
+
+    <p class="en">Fodor's genuine contribution lies in his distinction between modular peripheral systems and non-modular central systems, and in his honest admission that the central systems — beliefs, global reasoning, and abductive inference — constitute the real mystery of cognition, one he himself does not know how to solve. It is precisely at this point of intellectual honesty that the morphogenetic framework inserts itself, offering a conceptual proposal and the beginnings of a formal sketch.</p>
+    <p class="it">Il contributo genuino di Fodor è la distinzione tra sistemi periferici modulari e sistemi centrali non modulari, e il riconoscimento onesto che i sistemi centrali, le credenze, il ragionamento, l'inferenza globale, sono il vero mistero della cognizione e che lui stesso non sa come spiegarli. È esattamente in quel punto di onestà intellettuale che il framework morfogenetico si inserisce, con una proposta concettuale e un primo abbozzo formale.</p>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 1 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">1. Modularity: Peripheral and Central Systems</h2>
+    <h2 class="essay-section-title it">1. Il modularismo: sistemi periferici e sistemi centrali</h2>
+
+    <p class="en">In <em>The Modularity of Mind</em> (Fodor 1983), Fodor argues that the mind is not a homogeneous system but a hybrid architecture consisting of two radically different kinds of component.</p>
+    <p class="it">In "The Modularity of Mind" (Fodor 1983), Fodor argomenta che la mente non è un sistema omogeneo ma un'architettura ibrida composta da due tipi di sistemi radicalmente diversi.</p>
+
+    <p class="en">Peripheral systems, or modules, are specialised, fast, automatic, and informationally encapsulated. Encapsulation means that a module has no access to the system's general beliefs; it processes its proprietary input according to internal rules without being influenced by what the subject knows or believes overall. The visual system computes shape, colour, and depth independently of the subject's beliefs about the scene. Optical illusions persist even when one knows they are illusions. The same holds for language: the linguistic module analyses syntactic structure regardless of semantic content.</p>
+    <p class="it">I sistemi periferici, anche chiamati moduli, sono sistemi di elaborazione specializzati che operano in modo rapido, automatico e incapsulato informaticamente. Incapsulamento informatico significa che il modulo non ha accesso alle credenze generali del sistema: elabora il proprio input secondo regole interne senza essere influenzato da ciò che il soggetto sa o crede in generale. Il sistema visivo elabora la forma, il colore e la profondità di una scena indipendentemente da ciò che il soggetto sa sulla scena. Le illusioni ottiche persistono anche quando si sa che sono illusioni. Lo stesso vale per il linguaggio: il modulo linguistico analizza la struttura sintattica di una frase indipendentemente dal suo contenuto semantico.</p>
+
+    <p class="en">Central systems are structurally different. They are slow, global, unencapsulated, and sensitive to any relevant information in the system. Reasoning, belief formation, and abductive inference draw on the entire content of the mind; there is no fixed boundary separating what can influence a central process from what cannot. Fodor calls this the isotropy property: central systems are isotropic in that any belief can, in principle, be relevant to any inference.</p>
+    <p class="it">I sistemi centrali sono strutturalmente diversi. Sono lenti, globali, non incapsulati, influenzati da qualsiasi informazione rilevante nel sistema. Il ragionamento, la formazione delle credenze, l'inferenza abduttiva dipendono dall'intero contenuto della mente: non c'è un confine che separi ciò che può influenzare un processo centrale da ciò che non può. Fodor chiama questo la proprietà dell'isotropia: i sistemi centrali sono isotropici nel senso che qualsiasi credenza può in linea di principio essere rilevante per qualsiasi inferenza.</p>
+
+    <p class="en">The problem is that the globality of central systems makes them resistant to classical computational analysis. Peripheral modules lend themselves to algorithmic description with well-defined inputs, outputs, and fixed rules. Central systems do not: they have no fixed inputs or rules and are sensitive to the overall state of the system. Fodor calls this the problem of central cognition and regards it as essentially unsolved (Fodor 1983, 2000).</p>
+    <p class="it">Il problema è che la globalità dei sistemi centrali li rende refrattari all'analisi computazionale classica. I moduli periferici si prestano a essere descritti come algoritmi: hanno input definiti, output definiti, regole fisse. I sistemi centrali no: non hanno input definiti, non hanno regole fisse, sono influenzati dall'intero stato del sistema. Fodor chiama questo il problema dell'isotropia e lo considera sostanzialmente irrisolto (Fodor 1983, 2000).</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">Fodor's distinction is intuitively sharp. When you see a stick broken in water, you continue to see it as broken even when you know it is straight, because the visual module does not listen to what you know. When you reason about what to do, however, anything you know may be relevant: your mood, your long-term goals, your beliefs about the situation. Peripheral systems are like specialised machines operating in isolation. Central systems are like an assembly where anyone can speak.</p>
+      <p class="it">La distinzione di Fodor è intuitivamente precisa. Quando vedete un bastone spezzato nell'acqua, lo vedete spezzato anche se sapete che è dritto: il modulo visivo non ascolta ciò che sapete. Quando ragionate su cosa fare, invece, tutto ciò che sapete è potenzialmente rilevante: il vostro umore, le vostre credenze sulla situazione, i vostri obiettivi a lungo termine. I sistemi periferici sono come macchinari specializzati che operano in isolamento. I sistemi centrali sono come un'assemblea dove chiunque può prendere la parola.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 2 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">2. The Language of Thought</h2>
+    <h2 class="essay-section-title it">2. Il linguaggio del pensiero</h2>
+
+    <p class="en">Alongside modularity, Fodor developed the Language of Thought hypothesis, or LOT (Fodor 1975). Thought is computation over mental representations that have syntactic structure. Thoughts are built from atomic symbols combined according to compositional rules, just as sentences in a language are built from words combined according to grammatical rules.</p>
+    <p class="it">Parallelamente al modularismo, Fodor ha sviluppato la tesi del linguaggio del pensiero, nota come LOT (Fodor 1975). La tesi è che il pensiero è computazione su rappresentazioni mentali che hanno struttura sintattica: i pensieri sono costruiti da simboli atomici combinati secondo regole composizionali, esattamente come le frasi di un linguaggio sono costruite da parole combinate secondo regole grammaticali.</p>
+
+    <p class="en">The main motivation is the systematicity and productivity of thought. Anyone who can think that John loves Mary can also think that Mary loves John. Anyone who can entertain a thought can entertain indefinitely many combinations of that thought with others. These properties, Fodor argues, require that thought have compositional structure: thoughts are syntactic constructs, not holistic configurations.</p>
+    <p class="it">La motivazione principale è quella della sistematicità e della produttività del pensiero. Chi può pensare che Giovanni ama Maria può anche pensare che Maria ama Giovanni: i pensieri si ricombinano in modo sistematico. Chi può pensare un pensiero può pensare qualsiasi combinazione finita di quel pensiero con altri. Queste proprietà, argomenta Fodor, richiedono che il pensiero abbia struttura composizionale: i pensieri devono essere costrutti sintatticamente, non configurazioni olistiche.</p>
+
+    <p class="en">LOT is a strong thesis. It commits Fodor to the view that mental representations are discrete symbols with combinatorial structure, cognitive processes are syntactic operations on those symbols, and the semantics of thought is determined by syntactic structure plus the truth conditions of the atoms. It is classical computational cognitivism in its most explicit and defensible form.</p>
+    <p class="it">LOT è una tesi forte e precisa. Impegna Fodor a sostenere che le rappresentazioni mentali sono simboli discreti con struttura combinatoria, che i processi cognitivi sono operazioni sintattiche su questi simboli, e che la semantica del pensiero è determinata dalla struttura sintattica più le condizioni di verità degli atomi. È il cognitivismo computazionale nella sua forma più esplicita e più difendibile.</p>
+
+    <p class="en">Its limitation is structural. The compositionality Fodor defends is compatible with discrete morphogenesis: atomic states combined according to rules. But consciousness, as the previous essays have shown, requires continuous morphogenesis: differentiable trajectories through a configuration space, not jumps from one symbolic state to another. The problem is not that LOT is false as a description of some cognitive processes, but that it is insufficient as a description of the full architecture of mind.</p>
+    <p class="it">Il limite di LOT è strutturale. La composizionalità che Fodor difende è compatibile con la morfogenesi discreta: stati discreti che si combinano secondo regole. Ma la coscienza, come i saggi precedenti hanno mostrato, richiede morfogenesi continua: traiettorie differenziabili attraverso uno spazio delle configurazioni, non salti da uno stato simbolico a un altro. Il problema non è che LOT sia falsa come descrizione di alcuni processi cognitivi: il problema è che è insufficiente come descrizione dell'intera architettura della mente.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">The Language of Thought says that thinking is like writing sentences in an internal language: one takes words (atomic concepts), combines them according to grammatical rules (logic), and obtains thoughts. It is a powerful idea that explains how we can have an infinite number of different thoughts from a finite vocabulary. The problem is that this model captures only part of what we call thought — the explicit, deliberate, sequential part. It does not capture thought as continuous flow, structural tension, or morphogenetic history that orients every new state before it becomes explicit.</p>
+      <p class="it">Il linguaggio del pensiero dice che pensare è come scrivere frasi in una lingua interna: si prendono parole (concetti atomici), si combinano secondo regole grammaticali (logica), e si ottengono pensieri. È un'idea potente che spiega come possiamo avere un numero infinito di pensieri diversi a partire da un vocabolario finito. Il problema è che questo modello cattura solo una parte di ciò che chiamiamo pensiero: la parte esplicita, deliberata, sequenziale. Non cattura il pensiero come flusso continuo, come tensione strutturale, come storia morfogenetica che orienta ogni nuovo stato prima ancora che diventi esplicito.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 3 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">3. The Isotropy Problem and Fodor's Intellectual Honesty</h2>
+    <h2 class="essay-section-title it">3. Il problema dell'isotropia e l'onestà di Fodor</h2>
+
+    <p class="en">Fodor's most important and honest contribution is his explicit recognition that central systems resist classical computational analysis. In <em>The Mind Doesn't Work That Way</em> (Fodor 2000), he argues against Pinker and evolutionary psychology that the mind is not massively modular. Central systems, unlike peripheral ones, are not modules and do not lend themselves to classical computational explanation.</p>
+    <p class="it">Il contributo più onesto e più importante di Fodor è il riconoscimento esplicito che i sistemi centrali resistono all'analisi computazionale. In "The Mind Doesn't Work That Way" (Fodor 2000), argomenta contro Pinker e la psicologia evoluzionistica che la mente non è massicciamente modulare: i sistemi centrali non sono moduli e non si prestano alla spiegazione computazionale classica.</p>
+
+    <p class="en">The isotropy problem is this: central systems are sensitive to any relevant belief in the system, but there is no algorithm that determines which beliefs are relevant for a given inference. Relevance is global, holistic, and context-dependent on the entire cognitive state. It is not classically computable because it has no fixed inputs.</p>
+    <p class="it">Il problema dell'isotropia è preciso: i sistemi centrali sono influenzati da qualsiasi credenza rilevante nel sistema, ma non c'è un algoritmo che determini quali credenze siano rilevanti per una data inferenza. La rilevanza è globale, olistica, dipendente dal contesto dell'intero sistema cognitivo. Non è computabile nel senso classico perché non ha input definiti.</p>
+
+    <p class="en">Fodor calls this the problem of central cognition and leaves it open. He openly admits that he does not know how central systems work and that this is the real hard problem of cognitive science, distinct from but as deep as the hard problem of consciousness. This is a rare act of intellectual honesty in a field where partial solutions are often presented as complete.</p>
+    <p class="it">Fodor chiama questo il problema della cognizione centrale e lo lascia aperto. Scrive esplicitamente che non sa come i sistemi centrali funzionino e che questo è il vero problema difficile della scienza cognitiva, distinto dal hard problem della coscienza ma altrettanto profondo. È un atto di onestà intellettuale raro in un campo dove le soluzioni parziali vengono spesso presentate come complete.</p>
+
+    <p class="en">This is precisely where the morphogenetic framework inserts itself. The isotropy problem is not a problem of insufficient computational power; it is a problem of kind. Central systems are isotropic not because they are more powerful than peripheral modules, but because they have a different structure. That structure is topological and relational, not computational.</p>
+    <p class="it">Questo è esattamente il punto in cui il framework morfogenetico si inserisce. Il problema dell'isotropia non è un problema di potenza computazionale: è un problema di tipo. I sistemi centrali non sono isotropici perché sono computazionalmente più potenti dei moduli periferici: sono isotropici perché hanno una struttura diversa. Quella struttura è topologica e relazionale, non computazionale.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">Fodor says: central systems are a black box. We know what goes in (sensory inputs, prior beliefs) and what comes out (new beliefs, decisions), but we do not know what happens inside. It is like a doctor who knows the symptoms and the diagnosis but not the mechanism of the disease. The morphogenetic framework tries to open that black box, not with a more powerful algorithm, but with a different geometry.</p>
+      <p class="it">Fodor dice: i sistemi centrali sono una scatola nera. Sappiamo cosa entra (input sensoriali, credenze pregresse) e cosa esce (nuove credenze, decisioni), ma non sappiamo come funzionano internamente. È un problema analogo a quello del medico che conosce i sintomi e la diagnosi ma non conosce il meccanismo della malattia. Il framework morfogenetico prova ad aprire quella scatola nera, non con un algoritmo più potente, ma con una geometria diversa.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 4 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">4. Central Systems as Trajectories in <em>C</em>: A First Formal Sketch</h2>
+    <h2 class="essay-section-title it">4. I sistemi centrali come traiettorie in <em>C</em>: un primo abbozzo formale</h2>
+
+    <p class="en">Fodor's isotropy problem can be reformulated in morphogenetic terms with precision. An isotropic central system is one in which any information can influence any process: there are no fixed boundaries separating domains of relevance. Geometrically, this means that the configuration space <em>C</em> is not decomposable into independent subspaces; every point in <em>C</em> is topologically connected to every other, and any local perturbation can propagate through the entire structure.</p>
+    <p class="it">Il problema dell'isotropia di Fodor può essere riformulato in termini morfogenetici con precisione. Un sistema centrale isotropico è un sistema in cui qualsiasi informazione può influenzare qualsiasi processo: non ci sono confini fissi che separino domini di rilevanza. In termini geometrici, questo significa che lo spazio delle configurazioni <em>C</em> non è decomponibile in sottospazi indipendenti: ogni punto di <em>C</em> è connesso topologicamente a ogni altro, e qualsiasi perturbazione locale si propaga attraverso l'intera struttura.</p>
+
+    <p class="en">The property Fodor calls isotropy is formally a property of connectedness of the manifold: <em>C</em> is connected in the sense that it cannot be separated into disconnected components. Every configuration is reachable from every other via continuous trajectories. This is the formal correlate of the holism of central systems, in which no partition of <em>C</em> into independent modules exists.</p>
+    <p class="it">La proprietà che Fodor chiama isotropia è formalmente una proprietà di connessione della varietà: <em>C</em> è connessa nel senso che non può essere separata in componenti disconnesse. Ogni configurazione è raggiungibile da ogni altra attraverso traiettorie continue. Questo è il correlato formale dell'olismo dei sistemi centrali: non c'è una partizione di <em>C</em> in moduli indipendenti.</p>
+
+    <p class="en">Fodor's peripheral modules correspond to regions of <em>C</em> with strong local curvature: deep, narrow basins of attraction separated by high potential barriers. A module is a region in which the system moves rapidly toward a stable configuration without being influenced by the global geometry of the manifold. Informational encapsulation is the geometric correlate of this property: the module is "encapsulated" because its trajectories are confined to a local basin and do not propagate across the entire manifold.</p>
+    <p class="it">I moduli periferici di Fodor corrispondono a regioni di <em>C</em> con forte curvatura locale: bacini di attrazione profondi e stretti, separati da barriere di potenziale elevate. Un modulo è una regione di <em>C</em> in cui il sistema si muove rapidamente verso una configurazione stabile senza essere influenzato dalla geometria globale della varietà. L'incapsulamento informatico di Fodor è il correlato geometrico di questa proprietà: il modulo è "incapsulato" perché le sue traiettorie sono confinate in un bacino locale e non si propagano attraverso l'intera varietà.</p>
+
+    <p class="en">Fodor's distinction between modular and central systems thus becomes a geometric distinction between regions of strong local curvature (modules) and trajectories that traverse the globally connected manifold (central systems). The isotropy problem — the difficulty of computing global relevance — corresponds to the difficulty of predicting trajectories on a high-dimensional manifold with variable curvature. It is not a problem of algorithm but of geometry.</p>
+    <p class="it">La distinzione di Fodor tra sistemi modulari e sistemi centrali diventa così una distinzione geometrica precisa: tra regioni di <em>C</em> con forte curvatura locale (moduli) e traiettorie che percorrono l'intera varietà globalmente connessa (sistemi centrali). Il problema dell'isotropia, la difficoltà di computare la rilevanza globale, corrisponde alla difficoltà di predire le traiettorie su una varietà ad alta dimensione con curvatura variabile. Non è un problema di algoritmo: è un problema di geometria.</p>
+
+    <p class="en">This reformulation does not solve Fodor's problem, but it transforms it into a clear formal problem. How are the singularities of <em>C</em> distributed? What topological properties determine patterns of global relevance? How does the curvature of <em>C</em> change in response to learning and experience? These are mathematical questions, and subsequent essays in this series develop the tools to address them.</p>
+    <p class="it">Questa riformulazione non risolve il problema di Fodor: lo trasforma in un problema formale preciso. Come sono distribuite le singolarità di <em>C</em>? Quali proprietà topologiche determinano i pattern di rilevanza globale? Come la curvatura di <em>C</em> cambia in risposta all'apprendimento e all'esperienza? Queste sono domande matematiche, e i saggi successivi di questa serie sviluppano gli strumenti per affrontarle.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">Imagine a mountainous landscape. Some valleys are deep and narrow: once inside, you are pulled toward the bottom with little influence from the rest of the terrain. These are the modular regions of <em>C</em>: they process their input rapidly and in an encapsulated way. But the landscape also has large rolling plains where paths can go in any direction, influenced by the overall shape. These are the central systems — isotropic, global, and difficult to predict. The framework does not merely provide the geometric map that Fodor lacked; it also describes the dynamics that moves across that map. The component <em>Φ</em> is precisely the theory of movement through space <em>C</em> that the isotropy problem demands.</p>
+      <p class="it">Immaginate una superficie montuosa. Alcune valli sono profonde e strette: una volta che ci si trova dentro, si è attirati verso il fondo senza essere influenzati dal resto della superficie. Queste sono le regioni modulari di <em>C</em>: elaborano il proprio input in modo rapido e incapsulato. Ma la superficie ha anche grandi pianure ondulate dove i percorsi possono andare in qualsiasi direzione, influenzati dalla forma globale del paesaggio. Queste sono le regioni dei sistemi centrali: isotropiche, globali, difficili da predire. Il framework non si limita a fornire la mappa geometrica che Fodor non aveva: descrive anche la dinamica che percorre quella mappa. La componente <em>Φ</em> è esattamente la teoria del movimento nello spazio <em>C</em> che il problema dell'isotropia richiede.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Conclusion -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">Conclusion</h2>
+    <h2 class="essay-section-title it">Conclusione</h2>
+
+    <p class="en">Fodor identified the right problem in the right place. His distinction between modular and central systems is real and important. His honest recognition that central systems resist classical computational analysis is a contribution that the morphogenetic framework incorporates and develops.</p>
+    <p class="it">Fodor ha identificato il problema giusto nel posto giusto. La distinzione tra sistemi modulari e sistemi centrali è reale e importante. Il riconoscimento onesto che i sistemi centrali resistono all'analisi computazionale classica è un contributo che il framework morfogenetico incorpora e sviluppa.</p>
+
+    <p class="en">Fodor's limitation is twofold. On one hand, the Language of Thought presupposes discrete morphogenesis: atomic symbolic representations combined according to compositional rules. This architecture captures some aspects of explicit, deliberate thought but is insufficient for consciousness understood as continuous morphogenetic structure. On the other hand, the isotropy problem is left open without tools to address it. Fodor recognises the problem but lacks the geometry to formalise it.</p>
+    <p class="it">Il limite di Fodor è doppio. Da un lato, il linguaggio del pensiero presuppone morfogenesi discreta: rappresentazioni simboliche atomiche combinate secondo regole composizionali. Questa architettura cattura alcuni aspetti del pensiero esplicito e deliberato, ma è insufficiente per descrivere la coscienza come struttura morfogenetica continua. Dall'altro, il problema dell'isotropia viene lasciato aperto senza strumenti per affrontarlo: Fodor riconosce il problema ma non ha la geometria per formalizzarlo.</p>
+
+    <p class="en">The morphogenetic framework supplies that geometry. Fodor's central systems are trajectories across a globally connected manifold. Isotropy is the topological connectedness of <em>C</em>. Peripheral modules are local basins of attraction with strong curvature. The problem of global relevance is the problem of trajectories on a high-dimensional manifold with variable curvature. These reformulations are not yet complete solutions; they are the passage from diagnosis to geometry, from problem to formal sketch. Subsequent essays complete that formalisation.</p>
+    <p class="it">Il framework morfogenetico fornisce quella geometria. I sistemi centrali di Fodor sono traiettorie su una varietà globalmente connessa. L'isotropia è la connessione topologica di <em>C</em>. I moduli periferici sono bacini di attrazione locali con forte curvatura. Il problema della rilevanza globale è il problema delle traiettorie su una varietà ad alta dimensione con curvatura variabile. Queste riformulazioni non sono ancora soluzioni complete: sono il passaggio dalla diagnosi alla geometria, dal problema all'abbozzo formale. I saggi successivi completano quella formalizzazione.</p>
+  </div>
+
+  <div class="essay-divider"></div>
+
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>
+    <span class="inline-en">The Form of Mind</span>
+    <span class="inline-it">La Forma della Mente</span>
+  </span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const enEls = document.querySelectorAll('.en');
+  const itEls = document.querySelectorAll('.it');
+  const inlineEn = document.querySelectorAll('.inline-en');
+  const inlineIt = document.querySelectorAll('.inline-it');
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  if (lang === 'it') {
+    enEls.forEach(el => el.style.display = 'none');
+    itEls.forEach(el => el.style.display = 'block');
+    inlineEn.forEach(el => el.style.display = 'none');
+    inlineIt.forEach(el => el.style.display = 'inline');
+    btnEn.classList.remove('active');
+    btnIt.classList.add('active');
+    document.documentElement.lang = 'it';
+    document.title = 'Fodor: modularismo, linguaggio del pensiero — Mirko Bradley';
+  } else {
+    enEls.forEach(el => el.style.display = 'block');
+    itEls.forEach(el => el.style.display = 'none');
+    inlineEn.forEach(el => el.style.display = 'inline');
+    inlineIt.forEach(el => el.style.display = 'none');
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+    document.title = 'Fodor: Modularity, Language of Thought — Mirko Bradley';
+  }
+}
+</script>
+</body>
+</html>
