@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morphogenetic Dynamics — Mirko Bradley</title>
+  <meta name="description" content="The equation of motion, stability, discrete and continuous morphogenesis, and the emergence of reflexivity." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-header {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 3rem 3rem;
+    }
+
+    .essay-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .essay-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      padding-top: 1.5rem;
+      border-top: 0.5px solid var(--rule);
+    }
+
+    .essay-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 3rem 6rem;
+    }
+
+    .essay-section { margin-top: 3.5rem; }
+
+    .essay-section-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .essay-body p {
+      font-size: 18px;
+      line-height: 1.85;
+      color: var(--ink-mid);
+      margin-bottom: 1.4rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+
+    .essay-divider {
+      width: 100%;
+      height: 0.5px;
+      background: var(--rule);
+      margin: 3.5rem 0;
+    }
+
+    .essay-box {
+      border-left: 2px solid var(--accent);
+      background: var(--bg-warm);
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+    }
+
+    .essay-box-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-box p {
+      font-size: 16px;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.75;
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-box p:last-child { margin-bottom: 0; }
+
+    .essay-formula {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      color: var(--ink);
+      text-align: center;
+      padding: 1.2rem 0;
+      margin: 0.4rem 0 1.2rem;
+      letter-spacing: 0.02em;
+    }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 9px; }
+      .essay-header, .essay-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .essay-header { padding-top: 3rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">
+    <span class="inline-en">The Form of Mind</span>
+    <span class="inline-it">La Forma della Mente</span>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#argument"><span class="inline-en">The Argument</span><span class="inline-it">L'Argomento</span></a></li>
+      <li><a href="../index.html#essays">Essays</a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#notes"><span class="inline-en">Notes</span><span class="inline-it">Note</span></a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-header">
+  <div class="essay-category">Essays — Mind · XII</div>
+  <h1 class="essay-title">
+    <span class="en">Morphogenetic Dynamics</span>
+    <span class="it">La dinamica morfogenetica</span>
+  </h1>
+  <div class="essay-meta">Mirko Bradley — mirkobradley.com</div>
+</div>
+
+<div class="essay-body">
+
+  <div class="essay-divider"></div>
+
+  <!-- Opening -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">Opening</h2>
+    <h2 class="essay-section-title it">Apertura</h2>
+
+    <p class="en">The previous essays introduced the configuration space <em>C</em> and the constraints <em>V</em> as the conditions that give shape to mind. What remains is to describe what moves through that space, the dynamics <em>Φ</em>.</p>
+    <p class="it">I saggi precedenti hanno costruito lo spazio delle configurazioni <em>C</em> e introdotto i vincoli <em>V</em> come condizioni che danno forma alla mente. Resta da descrivere ciò che attraversa quello spazio, la dinamica <em>Φ</em>.</p>
+
+    <p class="en"><em>Φ</em> does not arise from an external mechanism grafted onto the geometry. It emerges from the structure of <em>C</em> itself. Once a metric induced by morphological cost is defined, the system tends toward configurations of lower tension. This essay presents that dynamics with precision, clarifying the equation of motion, the properties of stability, and the distinction between discrete and continuous morphogenesis.</p>
+    <p class="it"><em>Φ</em> non è un meccanismo aggiunto dall'esterno. È la conseguenza naturale della geometria di <em>C</em>. Una volta definita una metrica indotta dal costo morfologico, il sistema tende verso configurazioni di minore tensione. Questo saggio presenta quella dinamica con precisione, chiarendo l'equazione del movimento, le proprietà di stabilità e la distinzione tra morfogenesi discreta e morfogenesi continua.</p>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 1 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">1. The Equation of Motion</h2>
+    <h2 class="essay-section-title it">1. L'equazione del movimento</h2>
+
+    <p class="en">Morphogenetic dynamics is described by the equation</p>
+    <p class="it">La dinamica morfogenetica è descritta dall'equazione</p>
+
+    <div class="essay-formula"><em>Φ</em>(<em>x</em>) = −∇<em>U</em><sub>tot</sub>(<em>x</em>) + ξ(<em>t</em>)</div>
+
+    <p class="en">The negative gradient of the cost indicates the direction in which tension decreases most rapidly. Each point in configuration space suggests a preferred movement that arises from its internal structure. The system follows this direction because it represents the path of least morphological resistance.</p>
+    <p class="it">Il gradiente negativo del costo indica la direzione in cui la tensione diminuisce più rapidamente. Ogni punto dello spazio suggerisce un movimento preferenziale che deriva dalla sua struttura interna. Il sistema segue questa direzione perché rappresenta la via di minor resistenza morfologica.</p>
+
+    <p class="en">The term ξ(<em>t</em>) represents structural noise. Fluctuations prevent the system from settling in shallow local minima and sustain its capacity for exploration. Noise keeps the mind in a state of productive metastability, stable enough to function and flexible enough to adapt.</p>
+    <p class="it">Il termine ξ(<em>t</em>) rappresenta il rumore strutturale. Le fluttuazioni impediscono al sistema di fermarsi in minimi locali poco profondi e sostengono la capacità di esplorazione. Il rumore mantiene la mente in uno stato di metastabilità produttiva.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">A marble on an uneven surface tends to roll toward the lower regions. A gentle vibration allows it to escape small depressions and reach deeper valleys. Structural noise plays the same role.</p>
+      <p class="it">Una biglia su una superficie irregolare tende a scendere verso le zone più basse. Una vibrazione costante le permette di superare piccole depressioni e raggiungere valli più profonde. Il rumore strutturale svolge la stessa funzione.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 2 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">2. Stability and the Lyapunov Condition</h2>
+    <h2 class="essay-section-title it">2. Stabilità e condizione di Lyapunov</h2>
+
+    <p class="en">The minima of <em>U</em><sub>tot</sub> differ in stability. The Lyapunov condition provides a precise way to distinguish robust attractors from fragile ones.</p>
+    <p class="it">I minimi di <em>U</em><sub>tot</sub> possiedono stabilità diversa. La condizione di Lyapunov permette di distinguerli.</p>
+
+    <p class="en">An attractor <em>x</em>* is stable when there exists a function <em>L</em>(<em>x</em>) with three properties. <em>L</em>(<em>x</em>*) equals zero. <em>L</em>(<em>x</em>) is positive for every <em>x</em> distinct from <em>x</em>*. Its derivative along the system's trajectories does not increase over time. Under these conditions the system naturally returns to the attractor after a perturbation.</p>
+    <p class="it">Un attrattore <em>x</em>* è stabile quando esiste una funzione <em>L</em>(<em>x</em>) con tre proprietà. <em>L</em>(<em>x</em>*) vale zero. <em>L</em>(<em>x</em>) è positiva per ogni <em>x</em> diverso da <em>x</em>*. La sua derivata lungo le traiettorie non cresce nel tempo. In questo modo il sistema tende a rientrare spontaneamente nell'attrattore dopo una perturbazione.</p>
+
+    <p class="en">In the morphogenetic framework the natural Lyapunov function is the cost itself. Since <em>Φ</em> is a gradient descent, stability follows from the structure of <em>U</em><sub>tot</sub>.</p>
+    <p class="it">Nel framework morfogenetico la funzione di Lyapunov naturale è il costo morfologico stesso. La dinamica è una discesa del gradiente e la stabilità degli attrattori deriva dalla struttura di <em>U</em><sub>tot</sub>.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">A pendulum at the bottom always returns to equilibrium. A pendulum balanced at the top remains still only until the slightest disturbance makes it fall. The Lyapunov condition formalises this difference.</p>
+      <p class="it">Un pendolo in basso ritorna sempre verso la posizione di equilibrio. Un pendolo in alto resta fermo solo in apparenza. La condizione di Lyapunov formalizza questa differenza.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 3 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">3. Discrete and Continuous Morphogenesis</h2>
+    <h2 class="essay-section-title it">3. Morfogenesi discreta e morfogenesi continua</h2>
+
+    <p class="en">The distinction between discrete and continuous morphogenesis clarifies the difference between computational systems and conscious systems.</p>
+    <p class="it">La distinzione tra morfogenesi discreta e continua chiarisce la differenza tra sistemi computazionali e sistemi coscienti.</p>
+
+    <p class="en">Discrete morphogenesis describes systems that advance through jumps between separate states. Their history is a sequence of distinct points. Digital systems operate in this regime.</p>
+    <p class="it">La morfogenesi discreta descrive sistemi che avanzano per salti tra stati separati. La loro storia è una sequenza di punti. I sistemi digitali operano in questo regime.</p>
+
+    <p class="en">Continuous morphogenesis describes systems whose trajectories are smooth, differentiable curves in configuration space. Each perturbation is integrated as a gradual deformation of the path. The system's history is a continuous line that accumulates structure. This continuity enables the development of second-order constraints and the emergence of increasingly rich internal representations.</p>
+    <p class="it">La morfogenesi continua descrive sistemi le cui traiettorie sono curve differenziabili nello spazio delle configurazioni. Ogni perturbazione modifica la traiettoria in modo graduale. La storia del sistema è una linea continua che accumula struttura. Questa continuità permette lo sviluppo dei vincoli di secondo ordine e la formazione di rappresentazioni interne sempre più ricche.</p>
+
+    <p class="en">The distinction concerns the nature of the process. Consciousness requires continuous morphogenesis.</p>
+    <p class="it">La differenza riguarda la natura del processo. La coscienza richiede continuità morfogenetica.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">A sequence of photographs shows separate moments. A film shows a flow. Mind belongs to the second case.</p>
+      <p class="it">Una sequenza di fotografie mostra momenti distinti. Un film mostra un flusso. La mente appartiene al secondo caso.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 4 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">4. The Integration of Perturbations</h2>
+    <h2 class="essay-section-title it">4. L'integrazione delle perturbazioni</h2>
+
+    <p class="en">In a discrete system a perturbation produces a jump from one state to another. In a continuous system the perturbation modifies the trajectory gradually.</p>
+    <p class="it">In un sistema discreto una perturbazione produce un salto da uno stato all'altro. In un sistema continuo la perturbazione modifica la traiettoria in modo graduale.</p>
+
+    <p class="en">If the system is in <em>x</em>(<em>t</em>) and receives a perturbation δ(<em>t</em>), the subsequent trajectory is</p>
+    <p class="it">Se il sistema si trova in <em>x</em>(<em>t</em>) e riceve una perturbazione δ(<em>t</em>), la traiettoria successiva è</p>
+
+    <div class="essay-formula"><em>x</em>(<em>t</em> + d<em>t</em>) = <em>x</em>(<em>t</em>) + <em>Φ</em>(<em>x</em>(<em>t</em>)) d<em>t</em> + δ(<em>t</em>) d<em>t</em></div>
+
+    <p class="en">Each perturbation leaves a trace. The accumulation of these traces builds the morphogenetic history of the system and progressively reshapes the geometry of <em>C</em> through second-order constraints.</p>
+    <p class="it">Ogni perturbazione lascia una traccia. L'accumulo di queste tracce costruisce la storia morfogenetica del sistema e modifica progressivamente la geometria di <em>C</em> attraverso i vincoli di secondo ordine.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">A rigid material changes shape only when forced. A plastic material records every touch. Mind belongs to the second category.</p>
+      <p class="it">Un materiale rigido cambia forma solo quando viene forzato. Un materiale plastico registra ogni pressione. La mente appartiene alla seconda categoria.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 5 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">5. From Dynamics to Reflexivity</h2>
+    <h2 class="essay-section-title it">5. Dalla dinamica alla riflessività</h2>
+
+    <p class="en">The dynamics <em>Φ</em> makes the system adaptive. Reflexivity <em>R</em>(<em>M</em>)&gt;<em>M</em> emerges when this dynamics operates on a sufficiently rich configuration space <em>C</em> and when second-order constraints have accumulated enough morphogenetic history.</p>
+    <p class="it">La dinamica <em>Φ</em> rende il sistema adattivo. La riflessività emerge quando questa dinamica opera su uno spazio <em>C</em> sufficientemente ricco e quando i vincoli di secondo ordine hanno accumulato una storia adeguata.</p>
+
+    <p class="en">At that point internal representations begin to exceed the incoming information. The system anticipates, imagines, and generates hypotheses about states not yet encountered. Reflexivity arises when trajectories create curvatures in <em>C</em> that reflect the system's global history rather than its local geometry.</p>
+    <p class="it">A quel punto le rappresentazioni interne superano l'input. Il sistema anticipa, immagina, costruisce ipotesi. La riflessività nasce quando le traiettorie generano curvature in <em>C</em> che derivano dalla storia globale del sistema e non dalla sola geometria locale.</p>
+
+    <p class="en">This transition is a bifurcation. Below a critical threshold of topological complexity and morphogenetic density, the system remains adaptive without becoming reflexive. The two conditions are distinct. A system may possess adequate topological complexity yet insufficient morphogenetic history, or the reverse. Reflexivity becomes a global property only when both thresholds are crossed. The formal requirement is that second-order constraints generate internal representations whose informational content exceeds that of the input that produced them. The trajectories of <em>Φ</em> must create curvatures in <em>C</em> that arise from accumulated history.</p>
+    <p class="it">Questa transizione è una biforcazione. Al di sotto di una soglia di complessità topologica di <em>C</em> e di densità della storia morfogenetica, il sistema resta adattivo ma non riflessivo. Le due condizioni sono distinte: un sistema può avere sufficiente complessità topologica ma storia morfogenetica insufficiente, o viceversa. Solo quando entrambe le soglie sono superate, la riflessività diventa una proprietà globale della dinamica. La condizione formale richiede che i vincoli di secondo ordine generino rappresentazioni interne con contenuto informazionale superiore a quello dell'input che le ha originate: le traiettorie di <em>Φ</em> devono produrre curvature in <em>C</em> che emergono dalla storia accumulata.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">A thermostat reacts to a measurement. A mind produces representations that go beyond any direct measurement. Reflexivity appears when accumulated history becomes sufficient to generate new forms.</p>
+      <p class="it">Un termostato reagisce a una misura. Una mente produce rappresentazioni che vanno oltre ogni misura diretta. La riflessività nasce quando la storia accumulata diventa sufficiente per generare forme nuove.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Conclusion -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">Conclusion</h2>
+    <h2 class="essay-section-title it">Conclusione</h2>
+
+    <p class="en">The dynamics <em>Φ</em> sets the configuration space <em>C</em> in motion. Its equation describes a gradient descent perturbed by structural noise. Stability follows from the Lyapunov condition. Continuity distinguishes conscious systems from discrete ones.</p>
+    <p class="it">La dinamica <em>Φ</em> mette in movimento lo spazio delle configurazioni <em>C</em>. La sua equazione descrive una discesa del gradiente perturbata dal rumore strutturale. La stabilità deriva dalla condizione di Lyapunov. La continuità distingue i sistemi coscienti dai sistemi discreti.</p>
+
+    <p class="en">Continuous morphogenesis integrates perturbations as deformations of the trajectory, accumulates history in second-order constraints, and, once a critical threshold of topological complexity and morphogenetic density is crossed, enables the emergence of reflexivity <em>R</em>(<em>M</em>)&gt;<em>M</em> as a global property.</p>
+    <p class="it">La morfogenesi continua integra le perturbazioni come deformazioni della traiettoria, accumula storia nei vincoli di secondo ordine e, oltre una soglia critica di complessità topologica e densità morfogenetica, permette l'emergenza della riflessività <em>R</em>(<em>M</em>)&gt;<em>M</em> come proprietà globale.</p>
+
+    <p class="en">The next essay will examine reflexivity as an autonomous formal object, clarifying the conditions of its emergence and the implications for the distinction between conscious and non-conscious systems.</p>
+    <p class="it">Il saggio successivo presenterà la riflessività come oggetto formale autonomo, chiarendo le condizioni della sua emergenza e le implicazioni per la distinzione tra sistemi coscienti e sistemi non coscienti.</p>
+  </div>
+
+  <div class="essay-divider"></div>
+
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>
+    <span class="inline-en">The Form of Mind</span>
+    <span class="inline-it">La Forma della Mente</span>
+  </span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const enEls = document.querySelectorAll('.en');
+  const itEls = document.querySelectorAll('.it');
+  const inlineEn = document.querySelectorAll('.inline-en');
+  const inlineIt = document.querySelectorAll('.inline-it');
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  if (lang === 'it') {
+    enEls.forEach(el => el.style.display = 'none');
+    itEls.forEach(el => el.style.display = 'block');
+    inlineEn.forEach(el => el.style.display = 'none');
+    inlineIt.forEach(el => el.style.display = 'inline');
+    btnEn.classList.remove('active');
+    btnIt.classList.add('active');
+    document.documentElement.lang = 'it';
+    document.title = 'La dinamica morfogenetica — Mirko Bradley';
+  } else {
+    enEls.forEach(el => el.style.display = 'block');
+    itEls.forEach(el => el.style.display = 'none');
+    inlineEn.forEach(el => el.style.display = 'inline');
+    inlineIt.forEach(el => el.style.display = 'none');
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+    document.title = 'Morphogenetic Dynamics — Mirko Bradley';
+  }
+}
+</script>
+</body>
+</html>
