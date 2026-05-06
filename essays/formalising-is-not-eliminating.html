@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formalising Is Not Eliminating — Mirko Bradley</title>
+  <meta name="description" content="The morphogenetic framework and eliminativism move in opposite directions. Formalising is not eliminating." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-header {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 3rem 3rem;
+    }
+
+    .essay-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .essay-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      padding-top: 1.5rem;
+      border-top: 0.5px solid var(--rule);
+    }
+
+    .essay-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 3rem 6rem;
+    }
+
+    .essay-section { margin-top: 3.5rem; }
+
+    .essay-section-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .essay-subsection-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-body p {
+      font-size: 18px;
+      line-height: 1.85;
+      color: var(--ink-mid);
+      margin-bottom: 1.4rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+
+    .essay-divider {
+      width: 100%;
+      height: 0.5px;
+      background: var(--rule);
+      margin: 3.5rem 0;
+    }
+
+    .essay-box {
+      border-left: 2px solid var(--accent);
+      background: var(--bg-warm);
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+    }
+
+    .essay-box-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-box p {
+      font-size: 16px;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.75;
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-box p:last-child { margin-bottom: 0; }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 9px; }
+      .essay-header, .essay-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .essay-header { padding-top: 3rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">
+    <span class="inline-en">The Form of Mind</span>
+    <span class="inline-it">La Forma della Mente</span>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#argument"><span class="inline-en">The Argument</span><span class="inline-it">L'Argomento</span></a></li>
+      <li><a href="../index.html#essays">Essays</a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#notes"><span class="inline-en">Notes</span><span class="inline-it">Note</span></a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-header">
+  <div class="essay-category">Essays — Mind · XV</div>
+  <h1 class="essay-title">
+    <span class="en">Formalising Is Not Eliminating</span>
+    <span class="it">Formalizzare non è eliminare</span>
+  </h1>
+  <div class="essay-meta">Mirko Bradley — mirkobradley.com</div>
+</div>
+
+<div class="essay-body">
+
+  <div class="essay-divider"></div>
+
+  <!-- Opening -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">Opening</h2>
+    <h2 class="essay-section-title it">Apertura</h2>
+
+    <p class="en">Readers of the previous essays might raise an objection: this framework is nothing but eliminativism disguised as mathematics. Like the Churchlands, it denies folk psychology, replacing everyday terms such as "belief" and "desire" with more formal descriptions. The difference, they might say, is merely one of register rather than substance.</p>
+    <p class="it">Chi legge i saggi precedenti potrebbe avanzare la seguente obiezione: questo framework non è altro che eliminativismo travestito da matematica. Come i Churchland, nega la psicologia del senso comune, sostituendo termini folk come "credenza" e "desiderio" con descrizioni più formali. La differenza sembrerebbe unicamente di registro e non di sostanza.</p>
+
+    <p class="en">This objection is understandable but misses the point. The morphogenetic framework and eliminativism move in opposite directions.</p>
+    <p class="it">Questa obiezione è comprensibile ma sbaglia il bersaglio. Il framework morfogenetico e l'eliminativismo si muovono in direzioni opposte.</p>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 1 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">1. The Churchlands' Eliminativism</h2>
+    <h2 class="essay-section-title it">1. L'eliminativismo dei Churchland</h2>
+
+    <p class="en">Paul and Patricia Churchland argue that folk psychology — the set of terms and principles we use every day to explain human behaviour, beliefs, desires, intentions, and emotions — is a scientific theory like any other. And like any scientific theory, it can be true or false.</p>
+    <p class="it">Paul e Patricia Churchland sostengono che la psicologia del senso comune, l'insieme di termini e principi che usiamo quotidianamente per spiegare il comportamento umano, credenze, desideri, intenzioni, emozioni, è una teoria scientifica come le altre. E come ogni teoria scientifica, può essere vera o falsa.</p>
+
+    <p class="en">Their thesis is that it is false. Not partially inadequate or approximate: structurally wrong, like the phlogiston theory or Newtonian mechanics at relativistic speeds. A mature neuroscience, they claim, will have no need for terms like "belief" or "desire", because it will replace them with descriptions of neural states, activation patterns, and synaptic connectivity. Folk mental states will have no place in a valid scientific theory.</p>
+    <p class="it">La loro tesi è che sia falsa. Non parzialmente inadeguata, non approssimata: strutturalmente sbagliata, come la teoria del flogisto o la meccanica newtoniana applicata alle velocità relativistiche. Una neuroscienza matura, sostengono, non avrà bisogno di termini come "credenza" o "desiderio", perché li sostituirà con descrizioni di stati neurali, pattern di attivazione e connettività sinaptica. Gli stati mentali nel senso folk non esisteranno più come oggetti di una teoria scientifica valida.</p>
+
+    <p class="en">This is the eliminativist move: a movement downward, toward the substrate, eliminating higher levels.</p>
+    <p class="it">Questa è la mossa eliminativista: il movimento verso il basso, verso il substrato, con eliminazione dei livelli superiori.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">Imagine someone claiming that heat does not exist, only molecules in motion. Radical eliminativism works like this: it does not say that heat is molecular motion; it says that "heat" is a term from folk physics that a mature physics will eliminate.</p>
+      <p class="en">The morphogenetic framework does the opposite: it shows that what we call "heat" corresponds to a real and precise structure, describable in formal terms.</p>
+      <p class="it">Immaginate che qualcuno sostenga che il calore non esista, ma che esistano solo molecole in movimento. L'eliminativismo radicale funziona così: non dice che il calore è movimento molecolare, dice che "calore" è un termine della fisica folk che una fisica matura eliminerà. Il framework morfogenetico fa l'operazione opposta, poiché mostra che quello che chiamiamo "calore" corrisponde a una struttura reale e precisa, descrivibile formalmente.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 2 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">2. The Opposite Direction</h2>
+    <h2 class="essay-section-title it">2. La direzione opposta</h2>
+
+    <p class="en">The morphogenetic framework does not eliminate anything. It formalises.</p>
+    <p class="it">Il framework morfogenetico non elimina nulla. Formalizza.</p>
+
+    <p class="en">The difference is radical. To eliminate a term is to deny that anything real corresponds to it. To formalise a term is to replace an inadequate description with a precise one, showing that the structure the term was trying to name actually exists and can be described rigorously.</p>
+    <p class="it">La differenza è radicale. Eliminare un termine significa negare che ci sia qualcosa a cui corrisponde. Formalizzare un termine significa sostituire una descrizione inadeguata con una precisa, mostrando che la struttura che il termine tentava di nominare esiste ed è descrivibile con rigore.</p>
+
+    <p class="en">For example, anxiety is not eliminated by the framework; it is described as a specific configuration of <em>C</em> with historical and bodily constraints in tension, high <em>U</em><sub>tot</sub> gradient, and absence of accessible minima. That configuration exists independently of the label "anxiety". Linguistic nominalisation involves loss, as shown in Essay XIV, but the structure it names is real and has precise dynamic consequences.</p>
+    <p class="it">Per esempio, l'ansia non viene eliminata dal framework, viene invece descritta come configurazione specifica di <em>C</em> con vincoli storici e corporei in tensione, gradiente di <em>U</em><sub>tot</sub> elevato, assenza di minimi accessibili nelle vicinanze. Quella configurazione esiste indipendentemente dall'etichetta "ansia". La nominalizzazione linguistica è con perdita, come abbiamo visto nel saggio XIV, ma la struttura che nomina è reale e ha conseguenze dinamiche precise.</p>
+
+    <p class="en">Thus, feeling is not denied; it is identified with structure experienced from within by a reflexive system. Essay XIII showed that there is no mysterious ingredient between structure and feeling — only the boundary between the third-person and the first-person perspective. We are not eliminating but dissolving a pseudo-problem.</p>
+    <p class="it">Quindi, il sentire non viene negato, viene identificato con la struttura vissuta dall'interno da un sistema riflessivo. Il saggio XIII ha mostrato che non c'è un ingrediente misterioso tra struttura e sentire, bensì solo il confine tra la terza persona e la prima. Pertanto, non si parla di eliminazione, ma di dissoluzione di un pseudoproblema.</p>
+
+    <p class="en">Self-awareness is not reduced to neural firings; it is formalised as an emergent property of the cycle <em>C</em> → <em>S</em> → <em>C</em> when that cycle is applied to the entire temporal trajectory of the system. It is a global topological property, not localisable in any specific substrate.</p>
+    <p class="it">L'autocoscienza non viene ridotta a scariche neurali; è formalizzata come proprietà emergente del ciclo <em>C</em> → <em>S</em> → <em>C</em> quando quel ciclo viene applicato all'intera traiettoria temporale del sistema. È una proprietà topologica globale, non localizzabile in nessun substrato specifico.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">The distinction is like that between removing an object and understanding what it is. Eliminativism removes: it says that belief is not a real object in nature. The framework understands: it says that what we call belief is a stable configuration of <em>C</em>, an attractor with measurable basin depth and precise stability conditions. It does not eliminate belief; it formalises it.</p>
+      <p class="it">La distinzione è quella tra togliere un oggetto e capire cos'è. L'eliminativismo toglie: dice che la credenza non è un oggetto reale della natura. Il framework capisce: dice che quello che chiamiamo credenza è una configurazione stabile di <em>C</em>, un attrattore con certe proprietà geometriche. Non elimina la credenza, la formalizza.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 3 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">3. Three Points of Divergence</h2>
+    <h2 class="essay-section-title it">3. Tre punti di separazione</h2>
+
+    <p class="en">The difference between eliminativism and the morphogenetic framework can be articulated in three precise points.</p>
+    <p class="it">La differenza tra eliminativismo e framework morfogenetico si articola su tre punti precisi.</p>
+
+    <h3 class="essay-subsection-title en">First: ontology.</h3>
+    <h3 class="essay-subsection-title it"></h3>
+    <p class="en">Eliminativism denies the existence of mental states as objects of a valid theory. The framework affirms that mental states exist as geometric structures in <em>C</em>: they are real, they have dynamic consequences, and they can be described with precision. Folk psychology names them inadequately, but what it names is there.</p>
+    <p class="it">Il primo riguarda l'ontologia. L'eliminativismo nega l'esistenza degli stati mentali come oggetti di una teoria valida. Il framework afferma che gli stati mentali esistono come strutture geometriche di <em>C</em>: sono reali, hanno conseguenze dinamiche, sono descrivibili con precisione. La psicologia del senso comune li nomina in modo inadeguato, ma quello che nomina c'è.</p>
+
+    <h3 class="essay-subsection-title en">Second: reflexivity.</h3>
+    <h3 class="essay-subsection-title it"></h3>
+    <p class="en">An eliminativist neuroscience that describes only neural states cannot capture <em>R</em>(<em>M</em>)&gt;<em>M</em>, because that property is global and topological, not localisable in any specific activation pattern. Reflexivity is a property of the trajectory as a whole, not of any of its points. Eliminating it means losing what distinguishes a mind from a merely adaptive system.</p>
+    <p class="it">Il secondo riguarda la riflessività. Una neuroscienza eliminativista che descrive stati neurali non cattura <em>R</em>(<em>M</em>)&gt;<em>M</em> perché quella proprietà è globale e topologica, non localizzabile in nessun pattern di attivazione specifico. La riflessività è una proprietà della traiettoria nel suo complesso, non di nessuno dei suoi punti. Eliminarla dalla teoria è perdere ciò che distingue una mente da un sistema adattivo qualsiasi.</p>
+
+    <h3 class="essay-subsection-title en">Third: the anticipation of one's own end.</h3>
+    <h3 class="essay-subsection-title it"></h3>
+    <p class="en">The function <em>q</em>(<em>t</em>) that enters the extended dynamics <em>Φ</em><sub>ext</sub> is a structural property of the system, not a property of the neural substrate. A system anticipates its own end not because it has certain neurons, but because it has accumulated sufficient morphogenetic history and its linguistic constraints have made τ an explicit symbolic object. This structure survives any eliminativist description of the substrate.</p>
+    <p class="it">Il terzo riguarda l'anticipazione della propria fine. La funzione <em>q</em>(<em>t</em>) che entra nella dinamica estesa <em>Φ</em><sub>ext</sub> è una proprietà strutturale del sistema, non una proprietà del substrato neurale. Un sistema che anticipa la propria fine non lo fa perché ha certi neuroni, ma perché ha accumulato sufficiente storia morfogenetica e i suoi vincoli linguistici hanno reso τ un oggetto simbolico esplicito. Questa struttura sopravvive a qualsiasi descrizione eliminativista del substrato.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">The Churchlands are right that folk psychology is an inadequate theory. They are wrong to conclude that what that theory tries to describe does not exist. It is like saying that because the phlogiston theory was wrong, heat does not exist. The problem was the theory, not the phenomenon.</p>
+      <p class="it">I Churchland hanno ragione che la psicologia del senso comune è una teoria inadeguata. Hanno torto nel concludere che ciò che quella teoria tenta di descrivere non esiste. È come dire che, poiché la teoria del flogisto era sbagliata, il calore non esiste. Il problema era la teoria, non il fenomeno.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Section 4 -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">4. Dissolution, Not Elimination</h2>
+    <h2 class="essay-section-title it">4. Dissoluzione, non eliminazione</h2>
+
+    <p class="en">There is a sense in which the framework is more radical than eliminativism, not less.</p>
+    <p class="it">C'è un senso in cui il framework è più radicale dell'eliminativismo, non meno.</p>
+
+    <p class="en">Eliminativism wants to replace folk psychology with neuroscience. It remains at the level of theoretical substitution: a bad theory replaced by a good one. The framework, instead, dissolves the problem that generated folk psychology in the first place. It does not replace "belief" with a neuroscientific term; it shows that the structure "belief" was trying to name is a stable attractor in <em>C</em>, with measurable basin depth and precise stability conditions. There is no longer any need to eliminate the term because the phenomenon has been understood.</p>
+    <p class="it">L'eliminativismo vuole sostituire la psicologia folk con la neuroscienza. Rimane al livello della sostituzione teorica: una teoria cattiva al posto di una buona. Il framework invece dissolve il problema che aveva generato quella psicologia folk. Non sostituisce "credenza" con un termine neuroscientifco, mostra invece che la struttura che "credenza" tentava di nominare è un attrattore stabile di <em>C</em>, con profondità di bacino misurabile e condizioni di stabilità precise. Non c'è più bisogno di eliminare il termine perché il fenomeno è stato compreso.</p>
+
+    <p class="en">This is the Wittgensteinian move: we do not eliminate the phenomena; we dissolve the conceptual confusions that obscured them. Folk psychology is confused not because it names non-existent things, but because it does not know how to describe with precision the structures it names.</p>
+    <p class="it">Questa è la mossa wittgensteiniana: non eliminiamo i fenomeni, dissolviamo le confusioni concettuali che li oscuravano. La psicologia del senso comune è confusa non perché nomini cose inesistenti, ma perché non sa descrivere con precisione le strutture che nomina.</p>
+
+    <p class="en">The morphogenetic framework is that precise description.</p>
+    <p class="it">Il framework morfogenetico è quella descrizione precisa.</p>
+
+    <div class="essay-box">
+      <div class="essay-box-label en">For the non-specialist reader</div>
+      <div class="essay-box-label it">Per il lettore non specialista</div>
+      <p class="en">Wittgenstein wrote that philosophical problems arise when language goes on holiday — when we use words outside the contexts in which they have sense. Eliminativism wants to remove the words. The framework wants to understand what they were trying to say.</p>
+      <p class="it">Wittgenstein scrisse che i problemi filosofici nascono quando il linguaggio va in vacanza, cioè quando usiamo parole fuori dal contesto in cui hanno senso. L'eliminativismo vuole togliere le parole. Il framework vuole capire cosa stanno cercando di dire.</p>
+    </div>
+  </div>
+
+  <div class="essay-divider"></div>
+
+  <!-- Conclusion -->
+  <div class="essay-section">
+    <h2 class="essay-section-title en">Conclusion</h2>
+    <h2 class="essay-section-title it">Conclusione</h2>
+
+    <p class="en">The morphogenetic framework is not eliminativist. It moves in the opposite direction: not downward (toward the biological substrate), but upward, toward the formal structure that the substrate implements.</p>
+    <p class="it">Il framework morfogenetico non è eliminativista. Si muove anzi nella direzione opposta, cioè quella di andare non verso il basso (il substrato biologico), ma verso l'alto, in direzione della struttura formale che il substrato implementa.</p>
+
+    <p class="en">The Churchlands identified a real problem: folk psychology is an inadequate theory for describing the mind. Their answer — eliminating the higher levels — sacrifices what is most interesting: reflexivity, anticipation of one's own end, self-awareness as narrative closure. These are global topological properties that no local neurophysiological description can capture.</p>
+    <p class="it">I Churchland hanno identificato un problema reale: la psicologia del senso comune è una teoria inadeguata per descrivere la mente. La loro risposta, eliminare i livelli superiori, sacrifica ciò che è più interessante, ossia la riflessività, l'anticipazione della propria fine, l'autocoscienza come chiusura narrativa. Sono proprietà topologiche globali che nessuna descrizione neurofisiologica locale può catturare.</p>
+
+    <p class="en">Formalising is not eliminating. It is the opposite: showing that what seemed like an illusion is a real structure that was waiting for an adequate description.</p>
+    <p class="it">Formalizzare non è eliminare. È il contrario, ossia mostrare che ciò che sembra un'illusione è una struttura reale che aspettava una descrizione adeguata.</p>
+  </div>
+
+  <div class="essay-divider"></div>
+
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>
+    <span class="inline-en">The Form of Mind</span>
+    <span class="inline-it">La Forma della Mente</span>
+  </span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const enEls = document.querySelectorAll('.en');
+  const itEls = document.querySelectorAll('.it');
+  const inlineEn = document.querySelectorAll('.inline-en');
+  const inlineIt = document.querySelectorAll('.inline-it');
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+
+  if (lang === 'it') {
+    enEls.forEach(el => el.style.display = 'none');
+    itEls.forEach(el => el.style.display = 'block');
+    inlineEn.forEach(el => el.style.display = 'none');
+    inlineIt.forEach(el => el.style.display = 'inline');
+    btnEn.classList.remove('active');
+    btnIt.classList.add('active');
+    document.documentElement.lang = 'it';
+    document.title = 'Formalizzare non è eliminare — Mirko Bradley';
+  } else {
+    enEls.forEach(el => el.style.display = 'block');
+    itEls.forEach(el => el.style.display = 'none');
+    inlineEn.forEach(el => el.style.display = 'inline');
+    inlineIt.forEach(el => el.style.display = 'none');
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+    document.title = 'Formalising Is Not Eliminating — Mirko Bradley';
+  }
+}
+</script>
+</body>
+</html>
