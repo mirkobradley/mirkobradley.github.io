@@ -165,6 +165,7 @@ function loadGiscus(l){
   s.async = true;
   document.getElementById('giscus-container').appendChild(s);
 }
+function applyLang(){if(new URLSearchParams(location.search).get('lang')==='it')toggleLang();}window.addEventListener('DOMContentLoaded',applyLang);
 function toggleLang(){
   lang = lang === 'en' ? 'it' : 'en';
   document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
