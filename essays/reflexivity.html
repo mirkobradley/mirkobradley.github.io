@@ -537,6 +537,6 @@ function setLang(lang) {
     document.title = 'Reflexivity — Mirko Bradley';
   }
 }
-</script>
+<script>if(new URLSearchParams(location.search).get('lang')==='it'){document.querySelectorAll('[data-en]').forEach(el=>{el.innerHTML=el.dataset.it;});var t=document.querySelector('.lang-toggle');if(t)t.textContent='EN';}</script>
 </body>
 </html>
