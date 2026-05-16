@@ -114,7 +114,7 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
 </footer>
 
 <script>
-let lang = 'en';
+let lang = localStorage.getItem('lang') || 'en';
 function toggleLang(){
   lang = lang === 'en' ? 'it' : 'en';
   document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
