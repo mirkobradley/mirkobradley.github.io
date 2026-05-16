@@ -118,6 +118,7 @@ function toggleLang(){
   document.querySelectorAll('[data-en]').forEach(el => {
     el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
   });
+}
 if(new URLSearchParams(location.search).get('lang')==='it') setLang('it');
 </script>
 </body>
