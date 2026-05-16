@@ -38,6 +38,9 @@
     .inline-it { display: none; }
     .inline-en { display: inline; }
 
+    .essay-link a.it { display: none; }
+    .essay-link a.en { display: block; }
+
     nav {
       position: sticky;
       top: 0;
@@ -454,7 +457,11 @@
     <div class="essay-link">
       <a href="essays/fin-06.html" class="en">Compute Has Become an Asset Class</a>
       <a href="essays/fin-06.html" class="it">Il compute è diventato un'asset class</a>
-    </div>                        
+    </div>
+    <div class="essay-forthcoming">
+      <span class="en">forthcoming</span>
+      <span class="it">in preparazione</span>
+    </div>
     <div class="essay-forthcoming">
       <span class="en">forthcoming</span>
       <span class="it">in preparazione</span>
@@ -565,25 +572,27 @@
 
 <script>
 function setLang(lang) {
-  const enEls = document.querySelectorAll('.en');
-  const itEls = document.querySelectorAll('.it');
-  const inlineEn = document.querySelectorAll('.inline-en');
-  const inlineIt = document.querySelectorAll('.inline-it');
   const btnEn = document.getElementById('btn-en');
   const btnIt = document.getElementById('btn-it');
+
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? (el.tagName === 'A' ? 'block' : 'block') : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? (el.tagName === 'A' ? 'block' : 'block') : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+
   if (lang === 'it') {
-    enEls.forEach(el => el.style.display = 'none');
-    itEls.forEach(el => el.style.display = 'block');
-    inlineEn.forEach(el => el.style.display = 'none');
-    inlineIt.forEach(el => el.style.display = 'inline');
     btnEn.classList.remove('active');
     btnIt.classList.add('active');
     document.documentElement.lang = 'it';
   } else {
-    enEls.forEach(el => el.style.display = 'block');
-    itEls.forEach(el => el.style.display = 'none');
-    inlineEn.forEach(el => el.style.display = 'inline');
-    inlineIt.forEach(el => el.style.display = 'none');
     btnEn.classList.add('active');
     btnIt.classList.remove('active');
     document.documentElement.lang = 'en';
