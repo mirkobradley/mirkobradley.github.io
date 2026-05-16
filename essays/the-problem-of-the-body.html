@@ -432,7 +432,8 @@ function setLang(lang) {
     document.documentElement.lang = 'en';
     document.title = 'The Problem of the Body — Mirko Bradley';
   }
+if(new URLSearchParams(location.search).get('lang')==='it') setLang('it');
 }
-<script>if(new URLSearchParams(location.search).get('lang')==='it'){document.querySelectorAll('[data-en]').forEach(el=>{el.innerHTML=el.dataset.it;});var t=document.querySelector('.lang-toggle');if(t)t.textContent='EN';}</script>
+</script>
 </body>
 </html>
