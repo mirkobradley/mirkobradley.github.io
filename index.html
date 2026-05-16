@@ -385,7 +385,7 @@
     </div>
     <div class="essay-link">
       <a href="essays/the-problem-of-the-body.html" class="en">The Problem of the Body</a>
-      <a href="essays/the-problem-of-the-body.html" class="it">Il problema del corpo</a>
+      <a href="essays/the-problem-of-subjectivity.html" class="it">Il problema del corpo</a>
     </div>
     <div class="essay-link">
       <a href="essays/the-problem-of-dynamics.html" class="en">The Problem of Dynamics</a>
@@ -469,7 +469,7 @@
     <div class="essay-link">
       <a href="essays/fin-09.html" class="en">Systemic Risk Is Now Cognitive</a>
       <a href="essays/fin-09.html" class="it">Il rischio sistemico ora è cognitivo</a>
-      </div>
+    </div>
     <div class="essay-forthcoming">
       <span class="en">forthcoming</span>
       <span class="it">in preparazione</span>
@@ -574,12 +574,11 @@
 function setLang(lang) {
   const btnEn = document.getElementById('btn-en');
   const btnIt = document.getElementById('btn-it');
-
   document.querySelectorAll('.en').forEach(el => {
-    el.style.display = lang === 'en' ? (el.tagName === 'A' ? 'block' : 'block') : 'none';
+    el.style.display = lang === 'en' ? 'block' : 'none';
   });
   document.querySelectorAll('.it').forEach(el => {
-    el.style.display = lang === 'it' ? (el.tagName === 'A' ? 'block' : 'block') : 'none';
+    el.style.display = lang === 'it' ? 'block' : 'none';
   });
   document.querySelectorAll('.inline-en').forEach(el => {
     el.style.display = lang === 'en' ? 'inline' : 'none';
@@ -587,7 +586,6 @@ function setLang(lang) {
   document.querySelectorAll('.inline-it').forEach(el => {
     el.style.display = lang === 'it' ? 'inline' : 'none';
   });
-
   if (lang === 'it') {
     btnEn.classList.remove('active');
     btnIt.classList.add('active');
@@ -597,7 +595,13 @@ function setLang(lang) {
     btnIt.classList.remove('active');
     document.documentElement.lang = 'en';
   }
+  localStorage.setItem('lang', lang);
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('lang') || 'en';
+  setLang(saved);
+});
+</script>
 </body>
 </html>
