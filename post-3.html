@@ -121,7 +121,6 @@ footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-c
 
 <script>
 let lang = new URLSearchParams(location.search).get('lang') || 'en';
-function applyLang(){if(new URLSearchParams(location.search).get('lang')==='it')toggleLang();}window.addEventListener('DOMContentLoaded',applyLang);
 function toggleLang(){
   lang = lang === 'en' ? 'it' : 'en';
   document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
@@ -129,6 +128,10 @@ function toggleLang(){
     el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
   });
 }
+document.querySelectorAll('[data-en]').forEach(el => {
+  el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+});
+document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
 </script>
 
 </body>
