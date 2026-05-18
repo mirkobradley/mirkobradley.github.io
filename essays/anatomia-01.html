@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRT: How to Package a Disaster — Mirko Bradley</title>
+<meta name="description" content="JPMorgan, Morgan Stanley, Goldman Sachs and Citi are desperately trying to dump billions in AI data center debt. Anyone who lived through 2008 recognizes the pattern.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1410;
+  --ink-muted:#5a4e42;
+  --ink-faint:#9a8f84;
+  --paper:#f7f4ef;
+  --accent:#b85c1a;
+  --rule:rgba(26,20,16,0.12);
+  --serif:'EB Garamond',Georgia,serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.75;-webkit-font-smoothing:antialiased}
+
+nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem}
+.nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:0.05em;color:var(--ink);text-decoration:none}
+.nav-right{display:flex;gap:2rem;align-items:center}
+.nav-back{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;transition:color 0.2s}
+.nav-back:hover{color:var(--accent)}
+.lang-toggle{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;background:none;border:1px solid var(--rule);color:var(--ink-muted);padding:0.3rem 0.7rem;cursor:pointer;transition:all 0.2s}
+.lang-toggle:hover{color:var(--accent);border-color:var(--accent)}
+
+.post{max-width:680px;margin:0 auto;padding:6rem 3rem 8rem}
+.post-meta{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
+.post h1{font-size:2.4rem;font-weight:400;line-height:1.15;margin-bottom:3rem;color:var(--ink)}
+.post p{margin-bottom:1.6rem;color:var(--ink)}
+.post p:last-child{margin-bottom:0}
+.post p.closing{font-style:italic}
+
+.post-footer{margin-top:5rem;padding-top:2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+.post-footer-label{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.08em;text-transform:uppercase}
+.post-next{font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:0.08em}
+.post-next:hover{text-decoration:underline}
+
+.sources{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.04em;line-height:1.8}
+
+footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;margin-top:4rem}
+.footer-text{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}
+  .post{padding:4rem 1.5rem 6rem}
+  .post h1{font-size:1.8rem}
+  footer{flex-direction:column;gap:0.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">M.B.</a>
+  <div class="nav-right">
+    <a class="nav-back" href="../index.html#essays">← Essays</a>
+    <button class="lang-toggle" onclick="toggleLang()">IT</button>
+  </div>
+</nav>
+
+<article class="post">
+
+  <p class="post-meta"
+     data-en="Anatomy · 01"
+     data-it="Anatomia · 01">Anatomy · 01</p>
+
+  <h1
+    data-en="SRT: How to Package a Disaster"
+    data-it="SRT: come si impacchetta un disastro">SRT: How to Package a Disaster</h1>
+
+  <p
+    data-en="May 2026. JPMorgan, Morgan Stanley, Goldman Sachs and Citi are desperately trying to dump billions in AI data center debt. The instrument is called SRT &mdash; Significant Risk Transfer. Beautiful name. Pure financial poetry. Instead of killing the risk, they just move it somewhere else: to pension funds, private credit shops, hedge funds &mdash; anyone dumb enough to buy a position they didn&rsquo;t build and don&rsquo;t understand."
+    data-it="Maggio 2026. JPMorgan, Morgan Stanley, Goldman Sachs e Citi stanno cercando di liberarsi di miliardi di dollari di debito legato ai data center dell&rsquo;IA. Lo strumento si chiama SRT, Significant Risk Transfer. Il nome è un capolavoro di eufemismo finanziario: invece di essere eliminato, il rischio viene spostato verso fondi pensione, fondi di private credit, hedge fund, verso chi non ha costruito la posizione e non conosce la geometria del problema.">May 2026. JPMorgan, Morgan Stanley, Goldman Sachs and Citi are desperately trying to dump billions in AI data center debt. The instrument is called SRT &mdash; Significant Risk Transfer. Beautiful name. Pure financial poetry. Instead of killing the risk, they just move it somewhere else: to pension funds, private credit shops, hedge funds &mdash; anyone dumb enough to buy a position they didn&rsquo;t build and don&rsquo;t understand.</p>
+
+  <p
+    data-en="In 2025 AI accounted for over a third of all global private credit deals, up from 17% five years earlier. The banks financed the great data center gold rush with hard-ons and smiles. Now they&rsquo;ve hit their internal exposure limits and need bagholders. Some loans are already being offered at a discount. When investment bankers say the numbers are &ldquo;beyond anything we&rsquo;ve ever seen,&rdquo; that&rsquo;s polite speak for: we have no fucking clue how to get out of this."
+    data-it="Nel 2025 l&rsquo;IA ha rappresentato oltre un terzo di tutti i deal di private credit globale, rispetto al 17% dei cinque anni precedenti. Le banche hanno finanziato la corsa ai data center con entusiasmo. Ora hanno raggiunto i propri limiti di esposizione interna e cercano acquirenti. Alcuni prestiti vengono offerti a sconto. Quando i banchieri d&rsquo;investimento descrivono le cifre come &ldquo;fuori scala rispetto a qualsiasi cosa abbiamo mai immaginato&rdquo;, quella è la traduzione elegante di: non sappiamo come uscirne.">In 2025 AI accounted for over a third of all global private credit deals, up from 17% five years earlier. The banks financed the great data center gold rush with hard-ons and smiles. Now they&rsquo;ve hit their internal exposure limits and need bagholders. Some loans are already being offered at a discount. When investment bankers say the numbers are &ldquo;beyond anything we&rsquo;ve ever seen,&rdquo; that&rsquo;s polite speak for: we have no fucking clue how to get out of this.</p>
+
+  <p
+    data-en="Anyone who lived through 2008 recognizes the pattern. Banks build the monster, collect the fees, then when it gets too big to hide they repackage it and call it &ldquo;prudent risk management.&rdquo;"
+    data-it="Chi ha visto il 2008 riconosce la struttura. Le banche costruiscono l&rsquo;esposizione, alimentano il ciclo, incassano le commissioni. Poi, quando la massa diventa ingestibile, la distribuiscono attraverso strumenti opachi presentandola come gestione prudente del rischio.">Anyone who lived through 2008 recognizes the pattern. Banks build the monster, collect the fees, then when it gets too big to hide they repackage it and call it &ldquo;prudent risk management.&rdquo;</p>
+
+  <p
+    data-en="The Financial Stability Board has already flagged it: the concentration of foundational AI models in three or four players is repeating the exact same geometry as pre-2008. If one collapses, the contagion is systemic. Back then it was liquidity risk. Today it&rsquo;s cognitive access risk."
+    data-it="Il Financial Stability Board ha già segnalato che la concentrazione dell&rsquo;infrastruttura cognitiva AI in pochi provider replica la geometria della dipendenza pre-2008. Tre o quattro soggetti controllano i modelli fondazionali su cui gira tutto il resto. Se uno collassa, il contagio è sistemico. Nel 2008 il rischio era di liquidità, oggi è di accessibilità cognitiva.">The Financial Stability Board has already flagged it: the concentration of foundational AI models in three or four players is repeating the exact same geometry as pre-2008. If one collapses, the contagion is systemic. Back then it was liquidity risk. Today it&rsquo;s cognitive access risk.</p>
+
+  <p
+    data-en="I wrote it in the paper &ldquo;The Trap&rdquo;: when every relevant agent uses the same models to make decisions, the behavioral diversity that historically absorbed systemic shocks disappears. The system collapses in sync, amplified by the very tools that made it grow."
+    data-it="L&rsquo;ho scritto nel paper &ldquo;La Trappola&rdquo;: quando tutti gli agenti rilevanti usano gli stessi modelli per decidere, la diversità comportamentale che ha storicamente assorbito gli shock sistemici scompare. Il sistema collassa in modo sincrono e amplificato, con gli stessi strumenti che ha usato per crescere, predicendo la traiettoria fino al 2050.">I wrote it in the paper &ldquo;The Trap&rdquo;: when every relevant agent uses the same models to make decisions, the behavioral diversity that historically absorbed systemic shocks disappears. The system collapses in sync, amplified by the very tools that made it grow.</p>
+
+  <p
+    data-en="And the best part? The banks now selling SRTs on AI data centers are using AI models to assess the risk of those same SRTs. The loop is closed. Beautifully, fatally closed."
+    data-it="Le banche che ora vendono SRT sui data center AI usano modelli AI per valutare il rischio di quegli stessi SRT. Il loop è chiuso.">And the best part? The banks now selling SRTs on AI data centers are using AI models to assess the risk of those same SRTs. The loop is closed. Beautifully, fatally closed.</p>
+
+  <p class="closing"
+    data-en="The risk didn&rsquo;t disappear. It just changed address. As always."
+    data-it="Il rischio non è scomparso. Ha cambiato indirizzo. Come sempre.">The risk didn&rsquo;t disappear. It just changed address. As always.</p>
+
+  <div class="sources"
+    data-en="Sources: Financial Times, 3 May 2026 &middot; Financial Stability Board, October 2025 &middot; FSB, November 2024"
+    data-it="Fonti: Financial Times, 3 maggio 2026 &middot; Financial Stability Board, ottobre 2025 &middot; FSB, novembre 2024">Sources: Financial Times, 3 May 2026 &middot; Financial Stability Board, October 2025 &middot; FSB, November 2024</div>
+
+  <div class="post-footer">
+    <span class="post-footer-label"
+      data-en="Anatomy"
+      data-it="Anatomia">Anatomy</span>
+    <a class="post-next" href="../index.html#essays"
+      data-en="← Back to Essays"
+      data-it="← Torna agli Essays">← Back to Essays</a>
+  </div>
+
+</article>
+
+<footer>
+  <span class="footer-text">© 2025 Mirko Bradley</span>
+  <span class="footer-text"
+    data-en="All content open access."
+    data-it="Tutti i contenuti in accesso aperto.">All content open access.</span>
+</footer>
+
+<script>
+let lang = new URLSearchParams(location.search).get('lang') || 'en';
+function toggleLang(){
+  lang = lang === 'en' ? 'it' : 'en';
+  document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+  });
+}
+document.querySelectorAll('[data-en]').forEach(el => {
+  el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+});
+document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+</script>
+
+</body>
+</html>
