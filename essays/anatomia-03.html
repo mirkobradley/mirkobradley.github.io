@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenAI: The Linchpin Nobody Has Ever Taken Apart — Mirko Bradley</title>
+<meta name="description" content="OpenAI is the linchpin. Anyone know who their auditor is? Michael Burry posted that on X and moved on. Nobody answered.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1410;
+  --ink-muted:#5a4e42;
+  --ink-faint:#9a8f84;
+  --paper:#f7f4ef;
+  --accent:#b85c1a;
+  --rule:rgba(26,20,16,0.12);
+  --serif:'EB Garamond',Georgia,serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.75;-webkit-font-smoothing:antialiased}
+
+nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem}
+.nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:0.05em;color:var(--ink);text-decoration:none}
+.nav-right{display:flex;gap:2rem;align-items:center}
+.nav-back{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;transition:color 0.2s}
+.nav-back:hover{color:var(--accent)}
+.lang-toggle{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;background:none;border:1px solid var(--rule);color:var(--ink-muted);padding:0.3rem 0.7rem;cursor:pointer;transition:all 0.2s}
+.lang-toggle:hover{color:var(--accent);border-color:var(--accent)}
+
+.post{max-width:680px;margin:0 auto;padding:6rem 3rem 8rem}
+.post-meta{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
+.post h1{font-size:2.4rem;font-weight:400;line-height:1.15;margin-bottom:3rem;color:var(--ink)}
+.post p{margin-bottom:1.6rem;color:var(--ink)}
+.post p:last-child{margin-bottom:0}
+.post p.closing{font-style:italic}
+
+.post-footer{margin-top:5rem;padding-top:2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+.post-footer-label{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.08em;text-transform:uppercase}
+.post-next{font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:0.08em}
+.post-next:hover{text-decoration:underline}
+
+.sources{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.04em;line-height:1.8}
+
+footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;margin-top:4rem}
+.footer-text{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}
+  .post{padding:4rem 1.5rem 6rem}
+  .post h1{font-size:1.8rem}
+  footer{flex-direction:column;gap:0.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">M.B.</a>
+  <div class="nav-right">
+    <a class="nav-back" href="../index.html#essays">← Essays</a>
+    <button class="lang-toggle" onclick="toggleLang()">IT</button>
+  </div>
+</nav>
+
+<article class="post">
+
+  <p class="post-meta"
+     data-en="Anatomy · 03"
+     data-it="Anatomia · 03">Anatomy · 03</p>
+
+  <h1
+    data-en="OpenAI: The Linchpin Nobody Has Ever Taken Apart"
+    data-it="OpenAI: il perno che nessuno ha mai smontato">OpenAI: The Linchpin Nobody Has Ever Taken Apart</h1>
+
+  <p
+    data-en="&ldquo;OpenAI is the linchpin. Anyone know who their auditor is?&rdquo;"
+    data-it="&ldquo;OpenAI è il perno. Qualcuno sa chi è il suo revisore contabile?&rdquo;"><em>&ldquo;OpenAI is the linchpin. Anyone know who their auditor is?&rdquo;</em></p>
+
+  <p
+    data-en="Michael Burry posted that on X and moved on. Nobody answered him because the answer is uncomfortable. Almost no one knows who audits OpenAI. Its certified financial statements do not exist in any form that serious investors would accept. The numbers in circulation come from journalistic leaks, third-party SEC filings, and projections shared with investors bound by NDAs."
+    data-it="Michael Burry ha scritto questa frase su X e poi è andato avanti. Nessuno gli ha risposto perché la risposta è scomoda: il revisore contabile di OpenAI non lo conosce quasi nessuno, i suoi bilanci certificati non esistono nel senso in cui li intende chi investe in una società quotata e i numeri che circolano vengono da leak giornalistici, da filing SEC di terzi e da proiezioni condivise con investitori che hanno firmato accordi di riservatezza.">Michael Burry posted that on X and moved on. Nobody answered him because the answer is uncomfortable. Almost no one knows who audits OpenAI. Its certified financial statements do not exist in any form that serious investors would accept. The numbers in circulation come from journalistic leaks, third-party SEC filings, and projections shared with investors bound by NDAs.</p>
+
+  <p
+    data-en="We are talking about a company valued at 852 billion dollars with no publicly certified balance sheet."
+    data-it="Parliamo di un&rsquo;azienda da 852 miliardi di dollari di valutazione, senza un bilancio pubblico certificato.">We are talking about a company valued at 852 billion dollars with no publicly certified balance sheet.</p>
+
+  <p
+    data-en="The numbers that are known look like this. In 2025 OpenAI generated 13 billion in revenue and spent 22 billion to do it. Net loss: 9 billion. It spent a dollar and sixty-nine cents for every dollar earned. In the third quarter of 2025 alone it lost 12 billion in three months. The burn rate is projected to remain at 57 percent of revenue in 2026 and 2027. By 2028 operating losses are expected to reach 74 billion in a single year before a hypothetical pivot to profitability in 2029-2030. Cumulative losses through 2029 are estimated at 115 billion."
+    data-it="I numeri che si conoscono, o che si crede di conoscere, sono questi. Nel 2025 OpenAI ha generato 13 miliardi di ricavi e speso 22 miliardi per farlo. Perdita netta: 9 miliardi. Un dollaro e sessantanove centesimi di costo per ogni dollaro guadagnato. Nel solo terzo trimestre 2025 la perdita è stata di 12 miliardi in tre mesi. Il burn rate resterà al 57% dei ricavi nel 2026 e nel 2027. Nel 2028 le perdite operative sono proiettate a 74 miliardi in un anno solo, prima di un ipotetico pivot alla profittabilità nel 2029-2030. La perdita cumulativa fino al 2029 è stimata in 115 miliardi.">The numbers that are known look like this. In 2025 OpenAI generated 13 billion in revenue and spent 22 billion to do it. Net loss: 9 billion. It spent a dollar and sixty-nine cents for every dollar earned. In the third quarter of 2025 alone it lost 12 billion in three months. The burn rate is projected to remain at 57 percent of revenue in 2026 and 2027. By 2028 operating losses are expected to reach 74 billion in a single year before a hypothetical pivot to profitability in 2029-2030. Cumulative losses through 2029 are estimated at 115 billion.</p>
+
+  <p
+    data-en="CFO Sarah Friar has stated that the company has healthy margins and could break even whenever it wants. Sam Altman has said the same thing to journalists over dinner. Neither has ever shown a balance sheet."
+    data-it="Il CFO Sarah Friar ha dichiarato che l&rsquo;azienda ha margini sani e potrebbe andare in pareggio quando vuole. Sam Altman ha detto la stessa cosa a un gruppo di giornalisti a cena. Nessuno dei due ha mostrato un bilancio.">CFO Sarah Friar has stated that the company has healthy margins and could break even whenever it wants. Sam Altman has said the same thing to journalists over dinner. Neither has ever shown a balance sheet.</p>
+
+  <p
+    data-en="This opacity is not accidental. OpenAI is not a public company so it has no obligation to disclose anything to the public. It quietly shifted from non-profit to for-profit while raising hundreds of billions. Investors signed NDAs. The numbers that surface do so indirectly: a Microsoft SEC filing here, a document shared with investors there, an anonymous source at the Wall Street Journal. As one analyst who tried to reconcile the available data wrote: the numbers do not add up and nobody is required to explain why."
+    data-it="La struttura dell&rsquo;opacità non è accidentale. OpenAI non è quotata, quindi non ha obblighi di disclosure pubblica verso nessuno. Ha cambiato natura giuridica da no-profit a for-profit mentre raccoglieva centinaia di miliardi, una trasformazione che in condizioni normali avrebbe richiesto un livello straordinario di trasparenza. Gli investitori hanno firmato NDA. I numeri che escono lo fanno per via indiretta: un filing SEC di Microsoft qui, un documento condiviso con investitori lì, una fonte anonima al Wall Street Journal. Come ha scritto un analista che ha cercato di riconciliare i dati disponibili: i conti non tornano e nessuno è obbligato a spiegare perché.">This opacity is not accidental. OpenAI is not a public company so it has no obligation to disclose anything to the public. It quietly shifted from non-profit to for-profit while raising hundreds of billions. Investors signed NDAs. The numbers that surface do so indirectly: a Microsoft SEC filing here, a document shared with investors there, an anonymous source at the Wall Street Journal. As one analyst who tried to reconcile the available data wrote: the numbers do not add up and nobody is required to explain why.</p>
+
+  <p
+    data-en="OpenAI is not just another startup. It is the linchpin of the entire system. Banks issuing debt on AI data centers use OpenAI as their benchmark for future demand. Fund managers build valuations on OpenAI models. OpenAI is the justification for the whole narrative: the reference model, the capability benchmark, the living proof that AI is worth what the market says it is worth. If OpenAI cracks there is no longer a center. And the center has no public financials."
+    data-it="OpenAI non è una startup qualsiasi. È il perno dell&rsquo;intero sistema. Le banche che emettono debito sui data center usano OpenAI come benchmark di domanda futura. I fund manager costruiscono le loro valutazioni su modelli OpenAI. OpenAI è la giustificazione dell&rsquo;intera narrativa: è il modello di riferimento, il benchmark di capacità, la prova vivente che l&rsquo;IA vale quello che vale. Se OpenAI si incrina, non c&rsquo;è più un centro e il centro non ha un bilancio pubblico.">OpenAI is not just another startup. It is the linchpin of the entire system. Banks issuing debt on AI data centers use OpenAI as their benchmark for future demand. Fund managers build valuations on OpenAI models. OpenAI is the justification for the whole narrative: the reference model, the capability benchmark, the living proof that AI is worth what the market says it is worth. If OpenAI cracks there is no longer a center. And the center has no public financials.</p>
+
+  <p
+    data-en="Here is the simple truth: OpenAI does not generate enough money to cover its costs. It spends 1.69 dollars for every dollar it makes. It survives only because it keeps raising fresh private capital. The last round was 122 billion in March 2026. But every new round must be larger than the previous one because the losses are growing and will keep growing. At some point private capital will stop coming or it will come on terms that destroy the current valuation. Or OpenAI will go public and forced disclosure will reveal numbers the market is unwilling to accept."
+    data-it="Il punto è questo: OpenAI non genera abbastanza denaro per sostenere i propri costi. Spende 1,69 dollari per ogni dollaro che guadagna. Sopravvive perché continua a raccogliere capitale privato, l&rsquo;ultimo round è stato 122 miliardi a marzo 2026. Ma ogni round deve essere più grande del precedente perché le perdite crescono e cresceranno. A un certo punto il capitale privato smette di arrivare, o arriva a condizioni che distruggono la valutazione attuale, o OpenAI va in borsa e la disclosure forzata mostra numeri che il mercato non è disposto ad accettare.">Here is the simple truth: OpenAI does not generate enough money to cover its costs. It spends 1.69 dollars for every dollar it makes. It survives only because it keeps raising fresh private capital. The last round was 122 billion in March 2026. But every new round must be larger than the previous one because the losses are growing and will keep growing. At some point private capital will stop coming or it will come on terms that destroy the current valuation. Or OpenAI will go public and forced disclosure will reveal numbers the market is unwilling to accept.</p>
+
+  <p
+    data-en="This is not a prediction of fraud. It is arithmetic. A company that burns far more than it earns at an accelerating rate requires continuous external financing. If that financing slows or stops the company cuts operations, lays off staff, reduces compute. The models degrade or become more expensive. Demand falls. Revenue falls. The spiral tightens."
+    data-it="Non è una previsione di frode. È aritmetica. Un&rsquo;azienda che brucia più di quello che guadagna, in misura crescente, ha bisogno di finanziamento esterno continuo. Se quel finanziamento si interrompe o si riduce, l&rsquo;azienda riduce operazioni, licenzia, taglia capacità computazionale. I modelli peggiorano o diventano più costosi. La domanda cala. Le entrate calano. Il ciclo si avvita.">This is not a prediction of fraud. It is arithmetic. A company that burns far more than it earns at an accelerating rate requires continuous external financing. If that financing slows or stops the company cuts operations, lays off staff, reduces compute. The models degrade or become more expensive. Demand falls. Revenue falls. The spiral tightens.</p>
+
+  <p
+    data-en="There is a precedent worth remembering. Enron was the seventh-largest company in America by market cap. It had a respected auditor, Arthur Andersen, certifying its books. It had analysts covering it, investment-grade ratings, and a powerful narrative about transforming the energy market. When the structure was exposed nothing remained. The difference with OpenAI is that Enron at least had public financials to falsify."
+    data-it="C&rsquo;è un precedente che vale la pena ricordare. Enron era la settima azienda americana per capitalizzazione. Aveva un revisore contabile, Arthur Andersen, che certificava i bilanci. Aveva analisti che la seguivano, rating investment grade, una narrativa potente sulla trasformazione del mercato energetico. Quando la struttura è venuta a galla, non è rimasto niente. La differenza con OpenAI è che Enron almeno aveva un bilancio pubblico da falsificare.">There is a precedent worth remembering. Enron was the seventh-largest company in America by market cap. It had a respected auditor, Arthur Andersen, certifying its books. It had analysts covering it, investment-grade ratings, and a powerful narrative about transforming the energy market. When the structure was exposed nothing remained. The difference with OpenAI is that Enron at least had public financials to falsify.</p>
+
+  <p
+    data-en="The real risk of an IPO according to those who have studied OpenAI&rsquo;s financial structure is not that investors will refuse to buy. It is that going public would force a level of disclosure that would fundamentally reshape the loss trajectory the private markets have so far chosen to ignore."
+    data-it="Il rischio reale di una quotazione in borsa, secondo chi ha analizzato la struttura finanziaria di OpenAI, non è che gli investitori rifiutino di comprare, ma che diventare pubblica forzerebbe un livello di disclosure che rimodellerebbe la traiettoria delle perdite in un modo che il capitale privato ha finora scelto di ignorare.">The real risk of an IPO according to those who have studied OpenAI&rsquo;s financial structure is not that investors will refuse to buy. It is that going public would force a level of disclosure that would fundamentally reshape the loss trajectory the private markets have so far chosen to ignore.</p>
+
+  <p
+    data-en="They chose to ignore it. Not failed to see it. Ignored it."
+    data-it="Il capitale privato ha scelto di ignorare. Non di non vedere. Di ignorare.">They chose to ignore it. Not failed to see it. Ignored it.</p>
+
+  <p class="closing"
+    data-en="The linchpin holds as long as nobody takes it apart."
+    data-it="Il perno regge finché nessuno lo smonta.">The linchpin holds as long as nobody takes it apart.</p>
+
+  <div class="sources"
+    data-en="Sources: Investing.com, May 2026 &middot; Where&rsquo;s Your Ed At, November 2025 &middot; Fortune, November 2025 &middot; Wall Street Journal, 2025 &middot; Michael Burry on X, 2026"
+    data-it="Fonti: Investing.com, maggio 2026 &middot; Where&rsquo;s Your Ed At, novembre 2025 &middot; Fortune, novembre 2025 &middot; Wall Street Journal, 2025 &middot; Michael Burry su X, 2026">Sources: Investing.com, May 2026 &middot; Where&rsquo;s Your Ed At, November 2025 &middot; Fortune, November 2025 &middot; Wall Street Journal, 2025 &middot; Michael Burry on X, 2026</div>
+
+  <div class="post-footer">
+    <span class="post-footer-label"
+      data-en="Anatomy"
+      data-it="Anatomia">Anatomy</span>
+    <a class="post-next" href="anatomia-02.html"
+      data-en="← Anatomy 02: When the Buyer Is Also the Seller"
+      data-it="← Anatomia 02: Quando chi compra è anche quello che vende">← Anatomy 02: When the Buyer Is Also the Seller</a>
+  </div>
+
+</article>
+
+<footer>
+  <span class="footer-text">© 2025 Mirko Bradley</span>
+  <span class="footer-text"
+    data-en="All content open access."
+    data-it="Tutti i contenuti in accesso aperto.">All content open access.</span>
+</footer>
+
+<script>
+let lang = new URLSearchParams(location.search).get('lang') || 'en';
+function toggleLang(){
+  lang = lang === 'en' ? 'it' : 'en';
+  document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+  });
+}
+document.querySelectorAll('[data-en]').forEach(el => {
+  el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+});
+document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+</script>
+
+</body>
+</html>
