@@ -205,8 +205,36 @@
 
     .postura-block p:last-child { margin-bottom: 0; }
 
-    .essays-category { margin-bottom: 3.5rem; }
-    .essays-category:last-child { margin-bottom: 0; }
+    .essays-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .essays-column-left {
+      padding-right: 2rem;
+      border-right: 0.5px solid var(--rule);
+    }
+
+    .essays-column-right {
+      padding-left: 2rem;
+    }
+
+    .essays-column-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 0.5px solid var(--rule);
+      min-height: 2.8rem;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .essays-category { margin-top: 3.5rem; }
 
     .essays-category-label {
       font-family: 'DM Mono', monospace;
@@ -390,6 +418,9 @@
       .hero h1 { font-size: 36px; }
       .about-inner { flex-direction: column; gap: 1.5rem; }
       footer { padding: 1.2rem 1.5rem; }
+      .essays-grid { grid-template-columns: 1fr; }
+      .essays-column-left { padding-right: 0; border-right: none; border-bottom: 0.5px solid var(--rule); padding-bottom: 2rem; margin-bottom: 2rem; }
+      .essays-column-right { padding-left: 0; }
     }
   </style>
 </head>
@@ -448,44 +479,59 @@
 
 <section id="essays">
   <div class="section-label">Essays</div>
-  <div class="essay-link">
-  <a href="essays/geofinanza-01.html" class="en">TSMC: The Invisible Linchpin of the World</a>
-  <a href="essays/geofinanza-01.html?lang=it" class="it">TSMC: il perno invisibile del mondo</a>
-  </div>
 
-    <div class="essays-category">
-    <div class="essays-category-label">
-      <span class="inline-en">Anatomy of a Catastrophe: the Financial Black Box of AI</span>
-      <span class="inline-it">Anatomia di una catastrofe: la Black Box finanziaria dell'IA</span>
+  <div class="essays-grid">
+
+    <div class="essays-column-left">
+      <div class="essays-column-label">
+        <span class="inline-en">Geofinance: the Struggle for Global Power</span>
+        <span class="inline-it">Geofinanza: la lotta per il potere globale</span>
+      </div>
+      <div class="essay-link">
+        <a href="essays/geofinanza-01.html" class="en">TSMC: The Invisible Linchpin of the World</a>
+        <a href="essays/geofinanza-01.html?lang=it" class="it">TSMC: il perno invisibile del mondo</a>
+      </div>
+      <div class="essay-forthcoming">
+        <span class="inline-en">Coming soon</span>
+        <span class="inline-it">In arrivo</span>
+      </div>
     </div>
-    <div class="essay-link">
-      <a href="essays/anatomia-01.html" class="en">SRT: How to Package a Disaster</a>
-      <a href="essays/anatomia-01.html?lang=it" class="it">SRT: come si impacchetta un disastro</a>
+
+    <div class="essays-column-right">
+      <div class="essays-column-label">
+        <span class="inline-en">Anatomy of a Catastrophe: the Financial Black Box of AI</span>
+        <span class="inline-it">Anatomia di una catastrofe: la black box finanziaria dell'IA</span>
+      </div>
+      <div class="essay-link">
+        <a href="essays/anatomia-01.html" class="en">SRT: How to Package a Disaster</a>
+        <a href="essays/anatomia-01.html?lang=it" class="it">SRT: come si impacchetta un disastro</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/anatomia-02.html" class="en">When the Buyer Is Also the Seller</a>
+        <a href="essays/anatomia-02.html?lang=it" class="it">Quando chi compra è anche quello che vende</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/anatomia-03.html" class="en">OpenAI: The Linchpin Nobody Has Ever Taken Apart</a>
+        <a href="essays/anatomia-03.html?lang=it" class="it">OpenAI: il perno che nessuno ha mai smontato</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/anatomia-04.html" class="en">Bitcoin: The Alternative That Became The Same Thing</a>
+        <a href="essays/anatomia-04.html?lang=it" class="it">Bitcoin: l'alternativa che è diventata la stessa cosa</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/anatomia-05.html" class="en">Bitcoin: The Freedom of Dictators</a>
+        <a href="essays/anatomia-05.html?lang=it" class="it">Bitcoin: la libertà dei dittatori</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/anatomia-06.html" class="en">Bitcoin: When the Enemy Buys the Revolution</a>
+        <a href="essays/anatomia-06.html?lang=it" class="it">Bitcoin: quando il nemico compra la rivoluzione</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/anatomia-07.html" class="en">OpenAI: The Moment of Truth</a>
+        <a href="essays/anatomia-07.html?lang=it" class="it">OpenAI: il momento della verità</a>
+      </div>
     </div>
-    <div class="essay-link">
-      <a href="essays/anatomia-02.html" class="en">When the Buyer Is Also the Seller</a>
-      <a href="essays/anatomia-02.html?lang=it" class="it">Quando chi compra è anche quello che vende</a>
-    </div>
-    <div class="essay-link">
-      <a href="essays/anatomia-03.html" class="en">OpenAI: The Linchpin Nobody Has Ever Taken Apart</a>
-      <a href="essays/anatomia-03.html?lang=it" class="it">OpenAI: il perno che nessuno ha mai smontato</a>
-    </div>
-    <div class="essay-link">
-      <a href="essays/anatomia-04.html" class="en">Bitcoin: The Alternative That Became The Same Thing</a>
-      <a href="essays/anatomia-04.html?lang=it" class="it">Bitcoin: l'alternativa che è diventata la stessa cosa</a>
-    </div>
-    <div class="essay-link">
-      <a href="essays/anatomia-05.html" class="en">Bitcoin: The Freedom of Dictators</a>
-      <a href="essays/anatomia-05.html?lang=it" class="it">Bitcoin: la libertà dei dittatori</a>
-    </div>
-    <div class="essay-link">
-      <a href="essays/anatomia-06.html" class="en">Bitcoin: When the Enemy Buys the Revolution</a>
-      <a href="essays/anatomia-06.html?lang=it" class="it">Bitcoin: quando il nemico compra la rivoluzione</a>
-    </div>
-    <div class="essay-link">
-      <a href="essays/anatomia-07.html" class="en">OpenAI: The Moment of Truth</a>
-      <a href="essays/anatomia-07.html?lang=it" class="it">OpenAI: il momento della verità</a>
-    </div>
+
   </div>
 
   <div class="essays-category">
@@ -625,6 +671,7 @@
       <a href="https://zenodo.org/records/20202124" target="_blank" rel="noopener">The Infrastructure of Power: Finance and Artificial Intelligence</a>
       <div class="paper-links">
         <a href="https://zenodo.org/records/20202124" target="_blank" rel="noopener">Zenodo</a>
+        <a href="https://ssrn.com" target="_blank" rel="noopener">SSRN</a>
         <a href="https://www.academia.edu/167201605" target="_blank" rel="noopener">Academia.edu</a>
       </div>
     </div>
@@ -632,6 +679,7 @@
       <a href="https://www.academia.edu/167201605" target="_blank" rel="noopener">L'infrastruttura del potere: finanza e intelligenza artificiale</a>
       <div class="paper-links">
         <a href="https://zenodo.org/records/20202124" target="_blank" rel="noopener">Zenodo</a>
+        <a href="https://ssrn.com" target="_blank" rel="noopener">SSRN</a>
         <a href="https://www.academia.edu/167201605" target="_blank" rel="noopener">Academia.edu</a>
       </div>
     </div>
@@ -695,8 +743,8 @@
   <div class="about-inner">
     <img src="photo.jpeg" alt="Mirko Bradley" class="about-photo" />
     <div class="about-text">
-      <p class="en">Mirko Bradley. PhD in Complex Systems. Trader & Educator.</p>
-      <p class="it">Mirko Bradley. PhD in sistemi complessi. Trader & Docente.</p>
+      <p class="en">Mirko Bradley. PhD in Complex Systems. Trader.</p>
+      <p class="it">Mirko Bradley. PhD in sistemi complessi. Trader.</p>
       <p class="about-postura en">He works inside the systems he studies. This position is the observation point. The critique you find here comes from the inside. The Blind Spot Collective is the research and analysis group that supports his work.</p>
       <p class="about-postura it">Lavora dentro i sistemi che studia. Questa posizione è il punto di osservazione. La critica che trovi qui nasce dall'interno. The Blind Spot Collective è il gruppo di ricerca e analisi che lo supporta nel suo lavoro.</p>
       <a href="mailto:mirko.bradley@gmail.com" class="about-email">mirko.bradley@gmail.com</a>
