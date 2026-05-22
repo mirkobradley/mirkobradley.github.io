@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Chip Is the New Oil — Mirko Bradley</title>
+<meta name="description" content="Every year China spends as much importing chips as it does importing oil. Whoever controls the production of advanced chips controls the future of military, economic, and technological power.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1410;
+  --ink-muted:#5a4e42;
+  --ink-faint:#9a8f84;
+  --paper:#f7f4ef;
+  --accent:#b85c1a;
+  --rule:rgba(26,20,16,0.12);
+  --serif:'EB Garamond',Georgia,serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.75;-webkit-font-smoothing:antialiased}
+
+nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem}
+.nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:0.05em;color:var(--ink);text-decoration:none}
+.nav-right{display:flex;gap:2rem;align-items:center}
+.nav-back{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;transition:color 0.2s}
+.nav-back:hover{color:var(--accent)}
+.lang-toggle{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;background:none;border:1px solid var(--rule);color:var(--ink-muted);padding:0.3rem 0.7rem;cursor:pointer;transition:all 0.2s}
+.lang-toggle:hover{color:var(--accent);border-color:var(--accent)}
+
+.post{max-width:680px;margin:0 auto;padding:6rem 3rem 8rem}
+.post-meta{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
+.post h1{font-size:2.4rem;font-weight:400;line-height:1.15;margin-bottom:3rem;color:var(--ink)}
+.post p{margin-bottom:1.6rem;color:var(--ink)}
+.post p:last-child{margin-bottom:0}
+.post p.closing{font-style:italic}
+
+.post-footer{margin-top:5rem;padding-top:2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+.post-footer-label{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.08em;text-transform:uppercase}
+.post-next{font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:0.08em}
+.post-next:hover{text-decoration:underline}
+
+.sources{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.04em;line-height:1.8}
+
+footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;margin-top:4rem}
+.footer-text{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}
+  .post{padding:4rem 1.5rem 6rem}
+  .post h1{font-size:1.8rem}
+  footer{flex-direction:column;gap:0.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">M.B.</a>
+  <div class="nav-right">
+    <a class="nav-back" href="../index.html#essays">← Essays</a>
+    <button class="lang-toggle" onclick="toggleLang()">IT</button>
+  </div>
+</nav>
+
+<article class="post">
+
+  <p class="post-meta"
+     data-en="Geofinance · 04"
+     data-it="Geofinanza · 04">Geofinance · 04</p>
+
+  <h1
+    data-en="The Chip Is the New Oil"
+    data-it="Il chip è il nuovo petrolio">The Chip Is the New Oil</h1>
+
+  <p
+    data-en="In the 20th century oil was the resource that determined the fate of nations. Whoever controlled it dominated industry, transportation, and the military. Wars were fought to secure it and alliances were built around it. Countries without oil were dependent on those who had it. In the 21st century that resource is the semiconductor. Every year China spends as much importing chips as it does importing oil. This is not a coincidence. It is a measure of how essential chips have become."
+    data-it="Nel Novecento il petrolio era la risorsa che determinava il destino delle nazioni. Chi lo controllava dominava l&rsquo;industria, i trasporti, l&rsquo;esercito. Le guerre si facevano per assicurarselo e le alleanze si costruivano attorno ad esso. I paesi senza petrolio erano dipendenti da chi ce l&rsquo;aveva. Nel ventunesimo secolo quella risorsa si chiama semiconduttore. La Cina ogni anno spende per importare chip quanto spende per importare petrolio. Non è una coincidenza. È una misura di quanto i chip siano diventati essenziali.">In the 20th century oil was the resource that determined the fate of nations. Whoever controlled it dominated industry, transportation, and the military. Wars were fought to secure it and alliances were built around it. Countries without oil were dependent on those who had it. In the 21st century that resource is the semiconductor. Every year China spends as much importing chips as it does importing oil. This is not a coincidence. It is a measure of how essential chips have become.</p>
+
+  <p
+    data-en="To understand why semiconductors have become so strategic, consider what they do. A semiconductor is the brain of every electronic device: the smartphone, the computer, the modern car, the cruise missile, facial recognition systems, and artificial intelligence models. Without advanced chips you cannot build modern weapons, train frontier AI models, or run 5G networks. Whoever controls the production of advanced chips controls the future of military, economic, and technological power. This is not an exaggeration. It is why the United States and China are fighting the most important battle of our time on this exact ground."
+    data-it="Per comprendere perché i chip siano diventati così strategici bisogna capire cosa fanno. Un semiconduttore è il cervello di qualsiasi dispositivo elettronico: lo smartphone, il computer, l&rsquo;automobile moderna, il missile da crociera, il sistema di riconoscimento facciale, il modello di intelligenza artificiale. Senza chip avanzati non si costruisce un&rsquo;arma moderna, non si addestra un modello AI, non si gestisce una rete 5G. Chi controlla la produzione di chip avanzati controlla il futuro militare, economico e tecnologico. Non è un&rsquo;esagerazione, è la ragione per cui Stati Uniti e Cina stanno combattendo la battaglia più importante del nostro tempo proprio su questo terreno.">To understand why semiconductors have become so strategic, consider what they do. A semiconductor is the brain of every electronic device: the smartphone, the computer, the modern car, the cruise missile, facial recognition systems, and artificial intelligence models. Without advanced chips you cannot build modern weapons, train frontier AI models, or run 5G networks. Whoever controls the production of advanced chips controls the future of military, economic, and technological power. This is not an exaggeration. It is why the United States and China are fighting the most important battle of our time on this exact ground.</p>
+
+  <p
+    data-en="The chip war officially began in 2022, when the Biden administration introduced the strictest export controls ever imposed on technology. The logic is simple: if China cannot buy advanced American chips, it cannot build advanced weapons or train frontier AI models. The controls hit three levels: finished chips, the equipment to make them, and the software to design them. It is like blocking the factory, the machinery, and the blueprints at the same time."
+    data-it="La guerra dei chip comincia ufficialmente nel 2022, quando l&rsquo;amministrazione Biden introduce i controlli più severi mai imposti sulle esportazioni di tecnologia. La logica è semplice: se la Cina non può comprare chip avanzati americani, non può costruire armamenti avanzati né addestrare modelli AI di frontiera. I controlli colpiscono tre livelli: i chip finiti, le attrezzature per produrli e il software per progettarli. È come bloccare contemporaneamente la fabbrica, i macchinari e i progetti.">The chip war officially began in 2022, when the Biden administration introduced the strictest export controls ever imposed on technology. The logic is simple: if China cannot buy advanced American chips, it cannot build advanced weapons or train frontier AI models. The controls hit three levels: finished chips, the equipment to make them, and the software to design them. It is like blocking the factory, the machinery, and the blueprints at the same time.</p>
+
+  <p
+    data-en="The main target is Nvidia. Nvidia produces the GPU chips that power artificial intelligence. Without them you cannot train large language models like ChatGPT, run AI data centers, or develop automated targeting systems for military use. Since 2022 the United States has progressively banned the sale of Nvidia&rsquo;s most powerful chips to China. Every time Nvidia tried to circumvent the ban by creating a slightly less powerful version for the Chinese market, the US government lowered the threshold further. It is an endless chase."
+    data-it="Il bersaglio principale è Nvidia. Nvidia produce i chip GPU che sono il motore dell&rsquo;intelligenza artificiale: senza di essi non si addestrano i grandi modelli linguistici come ChatGPT, non si gestiscono i data center AI, non si sviluppano sistemi di riconoscimento automatico per uso militare. Dal 2022 in poi gli Stati Uniti hanno progressivamente vietato la vendita dei chip Nvidia più potenti alla Cina. Ogni volta che Nvidia ha cercato di aggirare il divieto creando una versione leggermente meno potente appositamente per il mercato cinese, il governo americano ha abbassato ulteriormente la soglia. È un inseguimento continuo.">The main target is Nvidia. Nvidia produces the GPU chips that power artificial intelligence. Without them you cannot train large language models like ChatGPT, run AI data centers, or develop automated targeting systems for military use. Since 2022 the United States has progressively banned the sale of Nvidia&rsquo;s most powerful chips to China. Every time Nvidia tried to circumvent the ban by creating a slightly less powerful version for the Chinese market, the US government lowered the threshold further. It is an endless chase.</p>
+
+  <p
+    data-en="The paradox of this chase became clear in March 2026. At Nvidia&rsquo;s GTC conference, CEO Jensen Huang announced orders for over 400,000 H200 chips from major Chinese companies: ByteDance, Alibaba, Tencent. But Nvidia has not collected a single dollar from these sales. The chips have been produced and the orders confirmed, yet delivery depends on permission from the Chinese government. Nvidia has the chips, the Chinese customers want them, but the real game is being played between Washington and Beijing, not between seller and buyer."
+    data-it="Il paradosso di questo inseguimento emerge chiaramente nel marzo 2026. Alla conferenza GTC di Nvidia, il CEO Jensen Huang annuncia di aver ricevuto ordini per oltre 400.000 chip H200 da grandi aziende cinesi: ByteDance, Alibaba, Tencent. Ma Nvidia non ha ancora incassato un dollaro da queste vendite. Il motivo: i chip sono stati prodotti, gli ordini sono stati confermati, ma la consegna dipende dal permesso del governo di Pechino. Nvidia ha i chip, i clienti cinesi li vogliono, ma la partita si gioca tra Washington e Pechino, non tra un venditore e un compratore.">The paradox of this chase became clear in March 2026. At Nvidia&rsquo;s GTC conference, CEO Jensen Huang announced orders for over 400,000 H200 chips from major Chinese companies: ByteDance, Alibaba, Tencent. But Nvidia has not collected a single dollar from these sales. The chips have been produced and the orders confirmed, yet delivery depends on permission from the Chinese government. Nvidia has the chips, the Chinese customers want them, but the real game is being played between Washington and Beijing, not between seller and buyer.</p>
+
+  <p
+    data-en="On the Chinese side the response has two parts. The first is immediate retaliation: in the summer of 2025 Beijing imposed restrictions on the export of rare earths, the critical metals needed to produce chips, batteries, and advanced weapons. The second is the long-term plan: building an independent supply chain. SMIC, China&rsquo;s leading chipmaker, has made real progress. It has developed manufacturing processes approaching 5 nanometers without using Dutch ASML lithography equipment, which the United States has banned from export to China. It is not yet at TSMC&rsquo;s level, but the gap is narrowing."
+    data-it="Dal lato cinese la risposta ha due componenti. La prima è la ritorsione immediata: nell&rsquo;estate del 2025 Pechino impone restrizioni sulle esportazioni di terre rare, i metalli essenziali per produrre chip, batterie e sistemi d&rsquo;arma. La seconda è il piano a lungo termine: costruire una filiera indipendente. SMIC, il principale produttore cinese di chip, ha fatto progressi reali. Ha sviluppato processi produttivi che si avvicinano ai 5 nanometri senza usare le attrezzature litografiche olandesi di ASML, che gli Stati Uniti hanno vietato di esportare in Cina. Non è ancora all&rsquo;altezza di TSMC, ma la distanza si sta riducendo.">On the Chinese side the response has two parts. The first is immediate retaliation: in the summer of 2025 Beijing imposed restrictions on the export of rare earths, the critical metals needed to produce chips, batteries, and advanced weapons. The second is the long-term plan: building an independent supply chain. SMIC, China&rsquo;s leading chipmaker, has made real progress. It has developed manufacturing processes approaching 5 nanometers without using Dutch ASML lithography equipment, which the United States has banned from export to China. It is not yet at TSMC&rsquo;s level, but the gap is narrowing.</p>
+
+  <p
+    data-en="However, there is a structural limit China still cannot overcome. Producing advanced chips requires equipment that only a few countries can build. The most important machine is called EUV (Extreme Ultraviolet Lithography): a giant printer that etches transistors onto silicon using ultraviolet light. Only one company in the world makes it: the Dutch firm ASML. Each EUV machine costs about 150 million euros and requires components from over 5,000 suppliers worldwide. The United States convinced the Netherlands not to sell these machines to China. Without EUV, China cannot reliably produce chips below 7 nanometers at industrial scale."
+    data-it="C&rsquo;è però un limite strutturale che la Cina non riesce ancora a superare. Produrre chip avanzati richiede attrezzature che solo pochi paesi sanno costruire. La macchina più importante si chiama EUV, Extreme Ultraviolet Lithography: è una stampante gigantesca che incide i transistor sul silicio usando raggi ultravioletti. Nel mondo esiste solo un&rsquo;azienda che la produce: ASML, olandese. Ogni macchina EUV costa circa 150 milioni di euro e richiede componenti da oltre 5.000 fornitori in tutto il mondo. Gli Stati Uniti hanno convinto i Paesi Bassi a non vendere queste macchine alla Cina. Senza EUV, la Cina non può produrre chip sotto i 7 nanometri in modo affidabile e su scala industriale.">However, there is a structural limit China still cannot overcome. Producing advanced chips requires equipment that only a few countries can build. The most important machine is called EUV (Extreme Ultraviolet Lithography): a giant printer that etches transistors onto silicon using ultraviolet light. Only one company in the world makes it: the Dutch firm ASML. Each EUV machine costs about 150 million euros and requires components from over 5,000 suppliers worldwide. The United States convinced the Netherlands not to sell these machines to China. Without EUV, China cannot reliably produce chips below 7 nanometers at industrial scale.</p>
+
+  <p
+    data-en="The result is an increasingly deep technological bifurcation. On one side the American bloc with TSMC, Samsung, Nvidia, ASML, and Intel. On the other the Chinese bloc with SMIC, Huawei, and a supply chain still partially dependent on the outside but developing rapidly. In the middle are countries trying to remain neutral, such as India, Vietnam, and Mexico, which are becoming the new destinations for reshoring."
+    data-it="Il risultato è una biforcazione tecnologica sempre più profonda. Da un lato il blocco americano, con TSMC, Samsung, Nvidia, ASML, Intel. Dall&rsquo;altro il blocco cinese, con SMIC, Huawei e una catena produttiva ancora parzialmente dipendente dall&rsquo;esterno ma in rapido sviluppo. In mezzo ci sono i paesi che cercano di restare neutrali, come India, Vietnam, Messico, che diventano le nuove mete del reshoring, cioè del trasferimento di produzioni fuori dalla Cina senza portarle negli Stati Uniti.">The result is an increasingly deep technological bifurcation. On one side the American bloc with TSMC, Samsung, Nvidia, ASML, and Intel. On the other the Chinese bloc with SMIC, Huawei, and a supply chain still partially dependent on the outside but developing rapidly. In the middle are countries trying to remain neutral, such as India, Vietnam, and Mexico, which are becoming the new destinations for reshoring.</p>
+
+  <p
+    data-en="The cost of all this is enormous. Building a new advanced chip factory in 2026 costs between 35 and 43 billion dollars, 30 percent more than a few years ago. The United States has allocated 52 billion through the CHIPS Act. Europe has allocated 43 billion with its European Chips Act. China has invested over 150 billion in the last ten years. None of these investments are driven by market logic. They are all driven by national security logic. This is the kind of spending you make when preparing for war, not when optimizing a business."
+    data-it="Il costo di tutto questo è enorme. Costruire una nuova fabbrica di chip avanzati nel 2026 costa tra 35 e 43 miliardi di dollari, il 30% in più rispetto a pochi anni fa. Gli Stati Uniti hanno stanziato 52 miliardi con il CHIPS Act. L&rsquo;Europa ha stanziato 43 miliardi con il suo European Chips Act. La Cina ha investito oltre 150 miliardi negli ultimi dieci anni. Nessuno di questi investimenti è guidato dalla logica di mercato. Tutti sono guidati dalla logica della sicurezza nazionale. È il tipo di spesa che si fa quando si prepara una guerra, non quando si ottimizza un business.">The cost of all this is enormous. Building a new advanced chip factory in 2026 costs between 35 and 43 billion dollars, 30 percent more than a few years ago. The United States has allocated 52 billion through the CHIPS Act. Europe has allocated 43 billion with its European Chips Act. China has invested over 150 billion in the last ten years. None of these investments are driven by market logic. They are all driven by national security logic. This is the kind of spending you make when preparing for war, not when optimizing a business.</p>
+
+  <p class="closing"
+    data-en="In the 20th century wars were fought for oil. In the 21st century they are fought for chips. The difference is that this war is currently being waged with tariffs, bans, and subsidies instead of armies. For now."
+    data-it="Nel Novecento le guerre si facevano per il petrolio. Nel ventunesimo secolo si fanno per i chip. La differenza è che questa guerra, per ora, si combatte con dazi, divieti e sussidi invece che con eserciti. Per ora.">In the 20th century wars were fought for oil. In the 21st century they are fought for chips. The difference is that this war is currently being waged with tariffs, bans, and subsidies instead of armies. For now.</p>
+
+  <div class="sources"
+    data-en="Sources: CEPA, February 2025 &middot; Oplexa, March 2026 &middot; Modern Diplomacy, November 2025 &middot; War on the Rocks, January 2026 &middot; Geopolitical Monitor, January 2026 &middot; ProfileNews, May 2026"
+    data-it="Fonti: CEPA, febbraio 2025 &middot; Oplexa, marzo 2026 &middot; Modern Diplomacy, novembre 2025 &middot; War on the Rocks, gennaio 2026 &middot; Geopolitical Monitor, gennaio 2026 &middot; ProfileNews, maggio 2026">Sources: CEPA, February 2025 &middot; Oplexa, March 2026 &middot; Modern Diplomacy, November 2025 &middot; War on the Rocks, January 2026 &middot; Geopolitical Monitor, January 2026 &middot; ProfileNews, May 2026</div>
+
+  <div class="post-footer">
+    <span class="post-footer-label"
+      data-en="Geofinance"
+      data-it="Geofinanza">Geofinance</span>
+    <a class="post-next" href="geofinanza-03.html"
+      data-en="← Geofinance 03: The End of Trust"
+      data-it="← Geofinanza 03: La fine della fiducia">← Geofinance 03: The End of Trust</a>
+  </div>
+
+</article>
+
+<footer>
+  <span class="footer-text">© 2025 Mirko Bradley</span>
+  <span class="footer-text"
+    data-en="All content open access."
+    data-it="Tutti i contenuti in accesso aperto.">All content open access.</span>
+</footer>
+
+<script>
+let lang = new URLSearchParams(location.search).get('lang') || 'en';
+function toggleLang(){
+  lang = lang === 'en' ? 'it' : 'en';
+  document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+  });
+}
+document.querySelectorAll('[data-en]').forEach(el => {
+  el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+});
+document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+</script>
+
+</body>
+</html>
