@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The End of Trust — Mirko Bradley</title>
+<meta name="description" content="Global trade is still at historic highs. What has ended is not trade. It is trust.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1410;
+  --ink-muted:#5a4e42;
+  --ink-faint:#9a8f84;
+  --paper:#f7f4ef;
+  --accent:#b85c1a;
+  --rule:rgba(26,20,16,0.12);
+  --serif:'EB Garamond',Georgia,serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.75;-webkit-font-smoothing:antialiased}
+
+nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem}
+.nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:0.05em;color:var(--ink);text-decoration:none}
+.nav-right{display:flex;gap:2rem;align-items:center}
+.nav-back{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;transition:color 0.2s}
+.nav-back:hover{color:var(--accent)}
+.lang-toggle{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;background:none;border:1px solid var(--rule);color:var(--ink-muted);padding:0.3rem 0.7rem;cursor:pointer;transition:all 0.2s}
+.lang-toggle:hover{color:var(--accent);border-color:var(--accent)}
+
+.post{max-width:680px;margin:0 auto;padding:6rem 3rem 8rem}
+.post-meta{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
+.post h1{font-size:2.4rem;font-weight:400;line-height:1.15;margin-bottom:3rem;color:var(--ink)}
+.post p{margin-bottom:1.6rem;color:var(--ink)}
+.post p:last-child{margin-bottom:0}
+.post p.closing{font-style:italic}
+
+.post-footer{margin-top:5rem;padding-top:2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+.post-footer-label{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.08em;text-transform:uppercase}
+.post-next{font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:0.08em}
+.post-next:hover{text-decoration:underline}
+
+.sources{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.04em;line-height:1.8}
+
+footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;margin-top:4rem}
+.footer-text{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}
+  .post{padding:4rem 1.5rem 6rem}
+  .post h1{font-size:1.8rem}
+  footer{flex-direction:column;gap:0.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">M.B.</a>
+  <div class="nav-right">
+    <a class="nav-back" href="../index.html#essays">← Essays</a>
+    <button class="lang-toggle" onclick="toggleLang()">IT</button>
+  </div>
+</nav>
+
+<article class="post">
+
+  <p class="post-meta"
+     data-en="Geofinance · 03"
+     data-it="Geofinanza · 03">Geofinance · 03</p>
+
+  <h1
+    data-en="The End of Trust"
+    data-it="La fine della fiducia">The End of Trust</h1>
+
+  <p
+    data-en="There is a widespread misunderstanding about de-globalization. Many believe it means the end of world trade, that ships stop sailing and containers stop moving. That is not the case. Global trade is still at historic highs. Goods continue to flow. What has ended is not trade. It is trust."
+    data-it="C&rsquo;è un malinteso diffuso sulla de-globalizzazione. Molti pensano che significhi la fine del commercio mondiale, che le navi smettano di navigare e i container di muoversi. Non è così. Il commercio globale è ancora ai massimi storici. Le merci continuano a circolare. Quello che è finito non è il commercio. È la fiducia.">There is a widespread misunderstanding about de-globalization. Many believe it means the end of world trade, that ships stop sailing and containers stop moving. That is not the case. Global trade is still at historic highs. Goods continue to flow. What has ended is not trade. It is trust.</p>
+
+  <p
+    data-en="Trust in the most concrete sense: a country&rsquo;s willingness to depend on another for something essential. For decades the United States accepted dependence on China for manufactured goods. China accepted dependence on the United States for technology. Europe accepted dependence on Russia for gas. Everyone depended on Taiwan for chips. It was a system of mutual dependencies that worked as long as everyone trusted the others enough not to weaponize those dependencies."
+    data-it="Fiducia nel senso più concreto: la disponibilità di un paese a dipendere da un altro per qualcosa di essenziale. Per decenni gli Stati Uniti hanno accettato di dipendere dalla Cina per i beni manufatti. La Cina ha accettato di dipendere dagli Stati Uniti per la tecnologia. L&rsquo;Europa ha accettato di dipendere dalla Russia per il gas. Tutti dipendevano da Taiwan per i chip. Era un sistema di dipendenze reciproche che funzionava finché tutti si fidavano abbastanza degli altri da non usare quelle dipendenze come arma.">Trust in the most concrete sense: a country&rsquo;s willingness to depend on another for something essential. For decades the United States accepted dependence on China for manufactured goods. China accepted dependence on the United States for technology. Europe accepted dependence on Russia for gas. Everyone depended on Taiwan for chips. It was a system of mutual dependencies that worked as long as everyone trusted the others enough not to weaponize those dependencies.</p>
+
+  <p
+    data-en="Then something changed."
+    data-it="Poi qualcosa è cambiato.">Then something changed.</p>
+
+  <p
+    data-en="The first warning sign appeared in 2008, when the financial crisis revealed how fragile global supply chains really were. But the turning point came in 2018, when Trump imposed the first tariffs on China. A tariff is a tax on imports: if you buy a Chinese product, you pay an extra percentage to the American state. The effect is to make Chinese goods more expensive for American consumers and less competitive. Trump&rsquo;s tariffs were not just an economic move. They were a political statement: America no longer trusts China as a trading partner."
+    data-it="Il primo segnale era già visibile nel 2008, quando la crisi finanziaria ha mostrato quanto fossero fragili le catene produttive globali. Ma il momento della svolta è il 2018, quando Trump impone i primi dazi sulla Cina. Un dazio è una tassa sulle importazioni: se compri un prodotto cinese, paghi una percentuale extra allo Stato americano. L&rsquo;effetto è rendere i prodotti cinesi più costosi per i consumatori americani e meno competitivi rispetto ai prodotti locali. I dazi di Trump non erano solo una mossa economica, ma anche una dichiarazione politica: l&rsquo;America non si fida più della Cina come partner commerciale.">The first warning sign appeared in 2008, when the financial crisis revealed how fragile global supply chains really were. But the turning point came in 2018, when Trump imposed the first tariffs on China. A tariff is a tax on imports: if you buy a Chinese product, you pay an extra percentage to the American state. The effect is to make Chinese goods more expensive for American consumers and less competitive. Trump&rsquo;s tariffs were not just an economic move. They were a political statement: America no longer trusts China as a trading partner.</p>
+
+  <p
+    data-en="Biden kept almost all of Trump&rsquo;s tariffs. In his second term Trump raised them further, to levels approaching an embargo. The result is measurable: by the end of 2025, imports and exports between the US and China had fallen by more than 25 percent. In April 2025 China practically stopped buying American exports. Without the trade war that began in 2017, US exports to China would have been nearly 60 percent higher in 2025, about 90 billion dollars more every year."
+    data-it="Biden ha mantenuto quasi tutti i dazi di Trump. Nel suo secondo mandato Trump li ha alzati ulteriormente, fino a livelli che si avvicinano a un embargo, cioè un blocco quasi totale delle importazioni. Il risultato è misurabile: entro la fine del 2025 gli import ed export tra USA e Cina sono calati di oltre il 25%. Nell&rsquo;aprile 2025 la Cina ha praticamente smesso di comprare esportazioni americane. Senza le guerre commerciali dal 2017, le esportazioni americane verso la Cina sarebbero state quasi il 60% più alte nel 2025, circa 90 miliardi di dollari in più ogni anno.">Biden kept almost all of Trump&rsquo;s tariffs. In his second term Trump raised them further, to levels approaching an embargo. The result is measurable: by the end of 2025, imports and exports between the US and China had fallen by more than 25 percent. In April 2025 China practically stopped buying American exports. Without the trade war that began in 2017, US exports to China would have been nearly 60 percent higher in 2025, about 90 billion dollars more every year.</p>
+
+  <p
+    data-en="But tariffs are only the surface. The deeper change is in the principle guiding economic decisions. For forty years the dominant principle was efficiency: buy from the cheapest place, produce where costs are lowest, optimize every link in the chain. Today the dominant principle is security: buy from the most reliable place, produce where you have control, never depend on anyone for what you cannot afford to lose. Efficiency and security are opposing goals. Maximizing one means sacrificing the other."
+    data-it="Ma i dazi sono solo la superficie. Il cambiamento più profondo è nel principio che guida le decisioni economiche. Per quarant&rsquo;anni il principio dominante era l&rsquo;efficienza: compra dal posto più economico, produci dove costa meno e ottimizza ogni fase della catena produttiva. Oggi il principio dominante è la sicurezza: compra dal posto più affidabile, produci dove hai controllo, non dipendere da nessuno per le cose che non puoi permetterti di perdere. Efficienza e sicurezza sono obiettivi opposti. Massimizzare uno significa sacrificare l&rsquo;altro.">But tariffs are only the surface. The deeper change is in the principle guiding economic decisions. For forty years the dominant principle was efficiency: buy from the cheapest place, produce where costs are lowest, optimize every link in the chain. Today the dominant principle is security: buy from the most reliable place, produce where you have control, never depend on anyone for what you cannot afford to lose. Efficiency and security are opposing goals. Maximizing one means sacrificing the other.</p>
+
+  <p
+    data-en="This shift has a name: friend-shoring. Instead of buying from the cheapest country, you buy from an ally. Instead of optimizing a single global supply chain, you build regional chains among countries that trust each other enough. The world is dividing into blocs: an American bloc, a Chinese bloc, and a Europe struggling to stay in the middle."
+    data-it="Questo cambiamento ha un nome: friend-shoring. Invece di comprare dal paese più economico, si compra dal paese alleato. Invece di ottimizzare la catena produttiva globale, si costruiscono catene produttive regionali tra paesi che si fidano abbastanza gli uni degli altri. Il mondo si sta dividendo in blocchi: un blocco americano, un blocco cinese, con un&rsquo;Europa che cerca di stare nel mezzo senza riuscirci del tutto.">This shift has a name: friend-shoring. Instead of buying from the cheapest country, you buy from an ally. Instead of optimizing a single global supply chain, you build regional chains among countries that trust each other enough. The world is dividing into blocs: an American bloc, a Chinese bloc, and a Europe struggling to stay in the middle.</p>
+
+  <p
+    data-en="Covid accelerated everything. When Chinese factories closed in 2020 and supply chains seized up, every government understood how dangerous it was to rely on a single supplier for essential goods. Masks, medicines, chips, steel: suddenly it was obvious that the logic of efficiency had created systemic vulnerabilities no one had calculated. The pandemic turned de-globalization from a trend into explicit policy."
+    data-it="Il Covid ha accelerato tutto questo. Quando nel 2020 le fabbriche cinesi hanno chiuso e le catene produttive si sono bloccate, ogni governo ha capito quanto fosse pericoloso dipendere da un unico fornitore per beni essenziali. Mascherine, farmaci, chip, acciaio: improvvisamente era chiaro che la logica dell&rsquo;efficienza aveva creato vulnerabilità sistemiche che nessuno aveva calcolato. La pandemia ha trasformato la de-globalizzazione da tendenza a politica esplicita.">Covid accelerated everything. When Chinese factories closed in 2020 and supply chains seized up, every government understood how dangerous it was to rely on a single supplier for essential goods. Masks, medicines, chips, steel: suddenly it was obvious that the logic of efficiency had created systemic vulnerabilities no one had calculated. The pandemic turned de-globalization from a trend into explicit policy.</p>
+
+  <p
+    data-en="There is a historical precedent worth remembering, even if it is uncomfortable. At the beginning of the 20th century the world economy was highly integrated. International trade was at record levels. The great European powers were deeply interdependent. Many economists of the time argued that war between them would be economically suicidal and therefore impossible. In 1914 the First World War broke out. Today&rsquo;s de-globalization does not necessarily lead to war, but those who believe economic interdependence guarantees peace should remember that this argument has already been disproven once, in the worst possible way."
+    data-it="C&rsquo;è un precedente storico che vale la pena ricordare, anche se è scomodo. All&rsquo;inizio del Novecento l&rsquo;economia mondiale era altamente integrata. Il commercio internazionale era ai massimi. Le grandi potenze europee erano profondamente interdipendenti. Molti economisti dell&rsquo;epoca sostenevano che una guerra tra esse sarebbe stata economicamente suicida e quindi impossibile. Nel 1914 scoppiò la Prima Guerra Mondiale. La de-globalizzazione di oggi non porta necessariamente alla guerra, ma chi pensa che l&rsquo;interdipendenza economica garantisca la pace dovrebbe ricordare che questo argomento è già stato confutato una volta, nel modo peggiore possibile.">There is a historical precedent worth remembering, even if it is uncomfortable. At the beginning of the 20th century the world economy was highly integrated. International trade was at record levels. The great European powers were deeply interdependent. Many economists of the time argued that war between them would be economically suicidal and therefore impossible. In 1914 the First World War broke out. Today&rsquo;s de-globalization does not necessarily lead to war, but those who believe economic interdependence guarantees peace should remember that this argument has already been disproven once, in the worst possible way.</p>
+
+  <p
+    data-en="China responded to American pressure with a move Friedman never foresaw: control over rare earths. Rare earths are a group of metals essential for chips, batteries, electric motors, and advanced weapons systems. China controls over 60 percent of global production and nearly 90 percent of processing. In the summer of 2025, in response to American tariffs, Beijing imposed export restrictions on rare earths to the United States. It was a clear warning: you can tax our goods, but you depend on us for the materials you need to build yours."
+    data-it="La Cina ha risposto alla pressione americana con una mossa che Friedman non aveva previsto: il controllo sulle terre rare. Le terre rare sono un gruppo di metalli essenziali per la produzione di chip, batterie, motori elettrici, sistemi d&rsquo;arma avanzati. La Cina ne controlla oltre il 60% della produzione mondiale e quasi il 90% della lavorazione. Nell&rsquo;estate del 2025, come risposta ai dazi americani, Pechino ha imposto restrizioni all&rsquo;esportazione di terre rare verso gli Stati Uniti. Era un avvertimento preciso: potete tassare le nostre merci, ma dipendete da noi per i materiali con cui costruite le vostre.">China responded to American pressure with a move Friedman never foresaw: control over rare earths. Rare earths are a group of metals essential for chips, batteries, electric motors, and advanced weapons systems. China controls over 60 percent of global production and nearly 90 percent of processing. In the summer of 2025, in response to American tariffs, Beijing imposed export restrictions on rare earths to the United States. It was a clear warning: you can tax our goods, but you depend on us for the materials you need to build yours.</p>
+
+  <p
+    data-en="This is the new face of economic geopolitics. No longer armies clashing on battlefields, but supply chains used as levers of pressure. Whoever controls a critical material, a strategic port, or a key technology holds power measured not in military divisions but in economic dependencies."
+    data-it="Questo è il nuovo volto della geopolitica economica. Non più eserciti che si scontrano su campi di battaglia, ma catene produttive usate come leve di pressione. Chi controlla un materiale critico, un porto strategico, una tecnologia chiave ha un potere che non si misura in divisioni militari ma in dipendenze economiche.">This is the new face of economic geopolitics. No longer armies clashing on battlefields, but supply chains used as levers of pressure. Whoever controls a critical material, a strategic port, or a key technology holds power measured not in military divisions but in economic dependencies.</p>
+
+  <p class="closing"
+    data-en="The world has not de-globalized. It has re-globalized around distrust."
+    data-it="Il mondo non si è de-globalizzato. Si è ri-globalizzato attorno alla diffidenza.">The world has not de-globalized. It has re-globalized around distrust.</p>
+
+  <div class="sources"
+    data-en="Sources: Council on Foreign Relations, May 2026 &middot; Peterson Institute for International Economics, 2025 &middot; BOK Financial, January 2026 &middot; Bruegel Policy Brief, 2024 &middot; MASEconomics, May 2026"
+    data-it="Fonti: Council on Foreign Relations, maggio 2026 &middot; Peterson Institute for International Economics, 2025 &middot; BOK Financial, gennaio 2026 &middot; Bruegel Policy Brief, 2024 &middot; MASEconomics, maggio 2026">Sources: Council on Foreign Relations, May 2026 &middot; Peterson Institute for International Economics, 2025 &middot; BOK Financial, January 2026 &middot; Bruegel Policy Brief, 2024 &middot; MASEconomics, May 2026</div>
+
+  <div class="post-footer">
+    <span class="post-footer-label"
+      data-en="Geofinance"
+      data-it="Geofinanza">Geofinance</span>
+    <a class="post-next" href="geofinanza-02.html"
+      data-en="← Geofinance 02: The World Was Flat. For a While"
+      data-it="← Geofinanza 02: Il mondo è stato piatto. Per un po'">← Geofinance 02: The World Was Flat. For a While</a>
+  </div>
+
+</article>
+
+<footer>
+  <span class="footer-text">© 2025 Mirko Bradley</span>
+  <span class="footer-text"
+    data-en="All content open access."
+    data-it="Tutti i contenuti in accesso aperto.">All content open access.</span>
+</footer>
+
+<script>
+let lang = new URLSearchParams(location.search).get('lang') || 'en';
+function toggleLang(){
+  lang = lang === 'en' ? 'it' : 'en';
+  document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+  });
+}
+document.querySelectorAll('[data-en]').forEach(el => {
+  el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+});
+document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+</script>
+
+</body>
+</html>
