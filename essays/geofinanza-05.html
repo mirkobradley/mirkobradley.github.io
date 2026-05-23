@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Weapons of the Chip War — Mirko Bradley</title>
+<meta name="description" content="Before discussing the weapons, we must clarify Taiwan's status. Otherwise nothing that follows, or the broader US-China relationship, makes sense.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1410;
+  --ink-muted:#5a4e42;
+  --ink-faint:#9a8f84;
+  --paper:#f7f4ef;
+  --accent:#b85c1a;
+  --rule:rgba(26,20,16,0.12);
+  --serif:'EB Garamond',Georgia,serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.75;-webkit-font-smoothing:antialiased}
+
+nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem}
+.nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:0.05em;color:var(--ink);text-decoration:none}
+.nav-right{display:flex;gap:2rem;align-items:center}
+.nav-back{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;transition:color 0.2s}
+.nav-back:hover{color:var(--accent)}
+.lang-toggle{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;background:none;border:1px solid var(--rule);color:var(--ink-muted);padding:0.3rem 0.7rem;cursor:pointer;transition:all 0.2s}
+.lang-toggle:hover{color:var(--accent);border-color:var(--accent)}
+
+.post{max-width:680px;margin:0 auto;padding:6rem 3rem 8rem}
+.post-meta{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
+.post h1{font-size:2.4rem;font-weight:400;line-height:1.15;margin-bottom:3rem;color:var(--ink)}
+.post p{margin-bottom:1.6rem;color:var(--ink)}
+.post p:last-child{margin-bottom:0}
+.post p.closing{font-style:italic}
+
+.post-footer{margin-top:5rem;padding-top:2rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+.post-footer-label{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.08em;text-transform:uppercase}
+.post-next{font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:0.08em}
+.post-next:hover{text-decoration:underline}
+
+.sources{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.04em;line-height:1.8}
+
+footer{border-top:1px solid var(--rule);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;margin-top:4rem}
+.footer-text{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}
+  .post{padding:4rem 1.5rem 6rem}
+  .post h1{font-size:1.8rem}
+  footer{flex-direction:column;gap:0.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">M.B.</a>
+  <div class="nav-right">
+    <a class="nav-back" href="../index.html#essays">← Essays</a>
+    <button class="lang-toggle" onclick="toggleLang()">IT</button>
+  </div>
+</nav>
+
+<article class="post">
+
+  <p class="post-meta"
+     data-en="Geofinance · 05"
+     data-it="Geofinanza · 05">Geofinance · 05</p>
+
+  <h1
+    data-en="The Weapons of the Chip War"
+    data-it="Le armi della guerra dei chip">The Weapons of the Chip War</h1>
+
+  <p
+    data-en="Before discussing the weapons, we must clarify Taiwan&rsquo;s status. Otherwise nothing that follows or the broader US-China relationship makes sense."
+    data-it="Prima di parlare delle armi, bisogna chiarire lo statuto di Taiwan, altrimenti non si capisce nulla di quello che segue e, più in generale, dei rapporti fra Stati Uniti e Cina.">Before discussing the weapons, we must clarify Taiwan&rsquo;s status. Otherwise nothing that follows or the broader US-China relationship makes sense.</p>
+
+  <p
+    data-en="Taiwan is an island of 23 million people that has governed itself since 1949, when the Chinese Nationalist government fled there after losing the civil war to Mao&rsquo;s communists. Since then Taiwan has had its own parliament, its own military, its own currency, and its own foreign policy. In every practical sense, Taiwan is an independent state. Yet it is not formally recognized as such, and this distinction lies at the heart of one of the most dangerous geopolitical ambiguities in the world."
+    data-it="Taiwan è un&rsquo;isola di 23 milioni di abitanti che si autogoverna dal 1949, quando il governo nazionalista cinese vi si rifugiò dopo la sconfitta nella guerra civile contro i comunisti di Mao. Da allora Taiwan ha un proprio parlamento, un proprio esercito, una propria moneta e una propria politica estera. In tutti i fatti pratici, Taiwan è uno stato indipendente. Ma non lo è formalmente, e questa distinzione è al centro di una delle ambiguità geopolitiche più pericolose del mondo.">Taiwan is an island of 23 million people that has governed itself since 1949, when the Chinese Nationalist government fled there after losing the civil war to Mao&rsquo;s communists. Since then Taiwan has had its own parliament, its own military, its own currency, and its own foreign policy. In every practical sense, Taiwan is an independent state. Yet it is not formally recognized as such, and this distinction lies at the heart of one of the most dangerous geopolitical ambiguities in the world.</p>
+
+  <p
+    data-en="China considers Taiwan a rebellious province that must be reunified with the mainland, by force if necessary. This position is non-negotiable for Beijing, as it is written into the Chinese constitution and repeated by every leader of the Communist Party. The United States officially follows the &ldquo;One China&rdquo; policy, acknowledging that there is only one China and taking note of Beijing&rsquo;s claim that Taiwan is part of it. Formally, the US does not recognize Taiwan as a sovereign state and has no official diplomatic relations with it."
+    data-it="La Cina considera Taiwan una provincia ribelle che deve essere riunificata con il continente, con la forza se necessario. Questa non è una posizione negoziabile per Pechino, perché è scritta nella costituzione cinese e ribadita da ogni leader del Partito Comunista. Gli Stati Uniti seguono ufficialmente la politica della &ldquo;Cina unica&rdquo;, riconoscendo che esiste una sola Cina e prendendo atto della posizione cinese che Taiwan ne fa parte. Sul piano formale, gli Stati Uniti non riconoscono Taiwan come stato sovrano e non hanno relazioni diplomatiche formali con esso.">China considers Taiwan a rebellious province that must be reunified with the mainland, by force if necessary. This position is non-negotiable for Beijing, as it is written into the Chinese constitution and repeated by every leader of the Communist Party. The United States officially follows the &ldquo;One China&rdquo; policy, acknowledging that there is only one China and taking note of Beijing&rsquo;s claim that Taiwan is part of it. Formally, the US does not recognize Taiwan as a sovereign state and has no official diplomatic relations with it.</p>
+
+  <p
+    data-en="Yet the United States sells weapons to Taiwan, maintains relations through the American Institute in Taiwan (which functions as an embassy in all but name), and is bound by the Taiwan Relations Act of 1979, which commits it to provide Taiwan with the means to defend itself. Would the US intervene militarily if China attacked Taiwan? It does not say yes, but it also does not say no. This deliberate ambiguity is designed to deter China from attacking and Taiwan from formally declaring independence."
+    data-it="Eppure, gli Stati Uniti vendono armi a Taiwan, mantengono relazioni attraverso l&rsquo;American Institute in Taiwan, che è di fatto un&rsquo;ambasciata senza chiamarsi tale, e sono vincolati dal Taiwan Relations Act del 1979, che li impegna a fornire a Taiwan i mezzi per difendersi. Se la Cina attaccasse Taiwan, gli Stati Uniti interverrebbero militarmente? Non lo dicono, ma non dicono nemmeno che non lo farebbero. Questa ambiguità è deliberata, serve a scoraggiare la Cina dall&rsquo;attaccare e Taiwan dal dichiarare formalmente l&rsquo;indipendenza, che provocherebbe immediatamente una crisi militare.">Yet the United States sells weapons to Taiwan, maintains relations through the American Institute in Taiwan (which functions as an embassy in all but name), and is bound by the Taiwan Relations Act of 1979, which commits it to provide Taiwan with the means to defend itself. Would the US intervene militarily if China attacked Taiwan? It does not say yes, but it also does not say no. This deliberate ambiguity is designed to deter China from attacking and Taiwan from formally declaring independence.</p>
+
+  <p
+    data-en="With TSMC the relationship has become even tighter. The United States convinced TSMC to build factories in Arizona for strategic reasons: in the event of a crisis in the Taiwan Strait, Washington wants guaranteed access to the world&rsquo;s most advanced technology. TSMC founder Morris Chang has publicly stated that these factories will cost far more and be less efficient than those in Taiwan, but they are being built anyway because Washington asked and is paying for them."
+    data-it="Con TSMC la relazione si è fatta ancora più stretta. Gli Stati Uniti hanno convinto TSMC a costruire fabbriche in Arizona per ragioni strategiche, poiché in caso di crisi nello Stretto di Taiwan, Washington avrebbe accesso garantito alla tecnologia più avanzata del mondo. Morris Chang, il fondatore di TSMC, ha dichiarato pubblicamente che queste fabbriche costeranno molto di più e saranno meno efficienti di quelle taiwanesi, ma che le costruiscono lo stesso perché Washington lo chiede e paga per averle.">With TSMC the relationship has become even tighter. The United States convinced TSMC to build factories in Arizona for strategic reasons: in the event of a crisis in the Taiwan Strait, Washington wants guaranteed access to the world&rsquo;s most advanced technology. TSMC founder Morris Chang has publicly stated that these factories will cost far more and be less efficient than those in Taiwan, but they are being built anyway because Washington asked and is paying for them.</p>
+
+  <p
+    data-en="This is the context in which the chip war must be understood. It is not a commercial war between companies. It is a strategic war between states, fought with economic and legal tools rather than military ones."
+    data-it="Questo è il contesto dentro cui va letta la guerra dei chip, che non è una guerra commerciale tra aziende, ma una guerra strategica tra stati, combattuta con strumenti economici e giuridici invece che militari.">This is the context in which the chip war must be understood. It is not a commercial war between companies. It is a strategic war between states, fought with economic and legal tools rather than military ones.</p>
+
+  <p
+    data-en="The first weapon is the Entity List. This is a blacklist managed by the US Bureau of Industry and Security. Companies placed on it cannot purchase American technology without a special license, which is rarely granted. Huawei was added in 2019 and has since been unable to buy chips from Qualcomm, software from Google, or equipment from Applied Materials. The result was immediate: Huawei lost its leadership in the smartphone market because it could no longer produce advanced chips. Today the list includes hundreds of Chinese companies, from chipmakers to military research labs."
+    data-it="La prima arma di questa guerra si chiama Entity List, lista delle entità. È una lista nera gestita dal Bureau of Industry and Security americano, per cui le aziende che ci finiscono non possono acquistare tecnologia americana senza una licenza speciale, che viene concessa raramente. Huawei ci è finita nel 2019 e da allora non può comprare chip da Qualcomm, software da Google e attrezzature da Applied Materials. Il risultato è stato immediato: Huawei ha perso la leadership nel mercato degli smartphone perché non poteva più produrre chip avanzati. Oggi la lista contiene centinaia di aziende cinesi, dalle produttrici di chip ai laboratori di ricerca militare.">The first weapon is the Entity List. This is a blacklist managed by the US Bureau of Industry and Security. Companies placed on it cannot purchase American technology without a special license, which is rarely granted. Huawei was added in 2019 and has since been unable to buy chips from Qualcomm, software from Google, or equipment from Applied Materials. The result was immediate: Huawei lost its leadership in the smartphone market because it could no longer produce advanced chips. Today the list includes hundreds of Chinese companies, from chipmakers to military research labs.</p>
+
+  <p
+    data-en="The second weapon is the Foreign Direct Product Rule. This is the boldest and most controversial measure. It states that any product, even if manufactured outside the United States, falls under US jurisdiction if it uses American technology or software at any stage of its production or design. In practice, this allows the US to control what TSMC produces in Taiwan, because TSMC uses American software to design chips. This rule enabled the blocking of TSMC from producing chips for Huawei, even though TSMC is a Taiwanese company operating on Taiwanese soil. It is an unprecedented extraterritorial extension of American law."
+    data-it="La seconda arma è la Foreign Direct Product Rule, la regola sul prodotto derivato estero. È la mossa più audace e più controversa. Dice questo: se un prodotto, anche fabbricato fuori dagli Stati Uniti, usa tecnologia o software americano in qualsiasi fase della sua produzione o progettazione, cade sotto la giurisdizione americana. In pratica significa che gli USA possono controllare ciò che TSMC produce a Taiwan, perché TSMC usa software americano per progettare i chip. Questa regola ha permesso di bloccare TSMC dal produrre chip per Huawei anche se TSMC è un&rsquo;azienda taiwanese che opera su suolo taiwanese. È un&rsquo;estensione extraterritoriale del diritto americano che non ha precedenti nella storia commerciale.">The second weapon is the Foreign Direct Product Rule. This is the boldest and most controversial measure. It states that any product, even if manufactured outside the United States, falls under US jurisdiction if it uses American technology or software at any stage of its production or design. In practice, this allows the US to control what TSMC produces in Taiwan, because TSMC uses American software to design chips. This rule enabled the blocking of TSMC from producing chips for Huawei, even though TSMC is a Taiwanese company operating on Taiwanese soil. It is an unprecedented extraterritorial extension of American law.</p>
+
+  <p
+    data-en="The third weapon is the CHIPS Act, signed by Biden in August 2022. It allocates 52 billion dollars to incentivize chip production in the United States, but contains a clause more important than the subsidies: any company receiving funds cannot expand its production in China for ten years. TSMC, Samsung, and Intel accepted the money and the restriction. It is a way to use American public money as leverage to separate global supply chains."
+    data-it="La terza arma è il CHIPS Act, firmato da Biden nell&rsquo;agosto 2022. Stanzia 52 miliardi di dollari per incentivare la produzione di chip negli Stati Uniti, ma contiene una clausola che vale più dei sussidi: chi riceve i fondi non può espandere la propria produzione in Cina per dieci anni. TSMC, Samsung, Intel hanno accettato i soldi e si sono vincolati alla clausola. È un modo per usare il denaro pubblico americano come leva per separare le catene produttive globali.">The third weapon is the CHIPS Act, signed by Biden in August 2022. It allocates 52 billion dollars to incentivize chip production in the United States, but contains a clause more important than the subsidies: any company receiving funds cannot expand its production in China for ten years. TSMC, Samsung, and Intel accepted the money and the restriction. It is a way to use American public money as leverage to separate global supply chains.</p>
+
+  <p
+    data-en="The fourth weapon is multilateral diplomacy. The United States convinced the Netherlands not to sell ASML&rsquo;s EUV machines to China. It convinced Japan to restrict exports of chip manufacturing equipment. It has built a Western technological bloc that isolates China from frontier technology. Every allied country that joins pays a real economic cost, since China is a massive market, but Washington has applied enough pressure to make strategic considerations prevail over commercial ones."
+    data-it="La quarta arma è la diplomazia multilaterale. Gli Stati Uniti hanno convinto i Paesi Bassi a non vendere le macchine EUV di ASML alla Cina. Hanno convinto il Giappone a restringere le esportazioni di attrezzature per la produzione di chip. Hanno costruito un blocco tecnologico occidentale che isola la Cina dalla tecnologia di frontiera. Ogni paese alleato che aderisce paga un costo economico reale, perché la Cina è un mercato enorme, ma Washington ha esercitato una pressione sufficiente a far prevalere le considerazioni strategiche su quelle commerciali.">The fourth weapon is multilateral diplomacy. The United States convinced the Netherlands not to sell ASML&rsquo;s EUV machines to China. It convinced Japan to restrict exports of chip manufacturing equipment. It has built a Western technological bloc that isolates China from frontier technology. Every allied country that joins pays a real economic cost, since China is a massive market, but Washington has applied enough pressure to make strategic considerations prevail over commercial ones.</p>
+
+  <p
+    data-en="The system has structural limits. China has responded by trying to circumvent every restriction. Some Chinese companies have restructured to escape the Entity List. Nvidia has created specially calibrated versions of its chips to stay just below US control thresholds. China has increased purchases of legacy chips to build stockpiles and has accelerated investments in SMIC to reduce dependence on foreign technology."
+    data-it="Il sistema ha però dei limiti strutturali. La Cina ha risposto cercando di aggirare ogni controllo. Alcune aziende cinesi si sono ristrutturate per uscire dalla Entity List. Nvidia ha creato versioni dei suoi chip appositamente calibrate per restare appena sotto le soglie di controllo americane. La Cina ha aumentato gli acquisti di chip legacy, quelli meno avanzati non soggetti a restrizioni, per costruire scorte e ha accelerato gli investimenti in SMIC per ridurre la dipendenza dall&rsquo;esterno.">The system has structural limits. China has responded by trying to circumvent every restriction. Some Chinese companies have restructured to escape the Entity List. Nvidia has created specially calibrated versions of its chips to stay just below US control thresholds. China has increased purchases of legacy chips to build stockpiles and has accelerated investments in SMIC to reduce dependence on foreign technology.</p>
+
+  <p
+    data-en="The American strategy has a name: &ldquo;small yard, high fence.&rdquo; The idea is not to block everything, but to protect the most critical technologies with maximum rigor. The problem is that the yard keeps expanding every time China finds a way around the fence."
+    data-it="La strategia americana ha un nome: &ldquo;small yard, high fence&rdquo;, piccolo cortile, recinzione alta. L&rsquo;idea è di non cercare di bloccare tutto, ma di proteggere con il massimo rigore le tecnologie più critiche. Il problema è che il cortile tende ad allargarsi ogni volta che la Cina trova un modo per aggirare la recinzione.">The American strategy has a name: &ldquo;small yard, high fence.&rdquo; The idea is not to block everything, but to protect the most critical technologies with maximum rigor. The problem is that the yard keeps expanding every time China finds a way around the fence.</p>
+
+  <p class="closing"
+    data-en="Taiwan sits at the center of all this. It is not just the factory of the world&rsquo;s most advanced chips. It is living proof that technology and geopolitics have become inseparable. Its legal ambiguity, neither fully sovereign state nor Chinese province, is the most dangerous gray zone of the 21st century."
+    data-it="Taiwan è al centro di tutto questo. Non è solo la fabbrica del mondo dei chip avanzati. È la prova vivente che la tecnologia e la geopolitica sono diventate inseparabili. La sua ambiguità giuridica, né stato sovrano né provincia cinese, è la più pericolosa zona grigia del ventunesimo secolo.">Taiwan sits at the center of all this. It is not just the factory of the world&rsquo;s most advanced chips. It is living proof that technology and geopolitics have become inseparable. Its legal ambiguity, neither fully sovereign state nor Chinese province, is the most dangerous gray zone of the 21st century.</p>
+
+  <div class="sources"
+    data-en="Sources: EA Forum, January 2025 &middot; Congress.gov CRS Report R48642, September 2025 &middot; Holland &amp; Knight, December 2024 &middot; CSIS, April 2025 &middot; Bureau of Industry and Security, 2022-2025"
+    data-it="Fonti: EA Forum, gennaio 2025 &middot; Congress.gov CRS Report R48642, settembre 2025 &middot; Holland &amp; Knight, dicembre 2024 &middot; CSIS, aprile 2025 &middot; Bureau of Industry and Security, 2022-2025">Sources: EA Forum, January 2025 &middot; Congress.gov CRS Report R48642, September 2025 &middot; Holland &amp; Knight, December 2024 &middot; CSIS, April 2025 &middot; Bureau of Industry and Security, 2022-2025</div>
+
+  <div class="post-footer">
+    <span class="post-footer-label"
+      data-en="Geofinance"
+      data-it="Geofinanza">Geofinance</span>
+    <a class="post-next" href="geofinanza-04.html"
+      data-en="← Geofinance 04: The Chip Is the New Oil"
+      data-it="← Geofinanza 04: Il chip è il nuovo petrolio">← Geofinance 04: The Chip Is the New Oil</a>
+  </div>
+
+</article>
+
+<footer>
+  <span class="footer-text">© 2025 Mirko Bradley</span>
+  <span class="footer-text"
+    data-en="All content open access."
+    data-it="Tutti i contenuti in accesso aperto.">All content open access.</span>
+</footer>
+
+<script>
+let lang = new URLSearchParams(location.search).get('lang') || 'en';
+function toggleLang(){
+  lang = lang === 'en' ? 'it' : 'en';
+  document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+  });
+}
+document.querySelectorAll('[data-en]').forEach(el => {
+  el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.it;
+});
+document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'IT' : 'EN';
+</script>
+
+</body>
+</html>
