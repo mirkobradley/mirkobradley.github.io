@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RE·01 — The Epistemic Inversion / L'inversione epistemica</title>
+  <meta name="description" content="For the first time in history, we have built something we do not understand. The epistemic inversion and what it means." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+
+    .essay-body em {
+      font-style: italic;
+    }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Reverse Engineering AI</span>
+    <span class="inline-it">Per un'ingegneria inversa dell'AI</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">RE·01 — The Epistemic Inversion</span>
+    <span class="inline-it">RE·01 — L'inversione epistemica</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">There is a peculiarity in the history of technology that has gone strangely unnoticed. Every tool humanity has ever built was understood before it was used. When we invented the wheel, the steam engine, or the transistor, we knew exactly what we were creating because we had designed it. Understanding came first. The engineer's knowledge was complete by definition.</p>
+    <p class="it">C'è una peculiarità nella storia della tecnologia che è passata quasi inosservata. Ogni strumento che l'umanità ha costruito nel tempo è stato compreso prima di essere usato. Quando abbiamo inventato la ruota, la macchina a vapore, il transistor, sapevamo cosa stavamo costruendo, perché li avevamo progettati. La comprensione precedeva la costruzione. La conoscenza dell'ingegnere era totale, per definizione.</p>
+
+    <p class="en">Large language models have shattered that rule. For the first time in history, we have built something we do not understand. Not in the ordinary sense that complex systems have emergent properties. Every engineer accepts that. This is deeper. The internal structure of a trained model is opaque even to the people who trained it. No one designed the structures that form inside these artificial neural networks. No one planned that certain directions in activation space would behave like emotional states, or that the geometry of concepts would mirror findings from human neuroscience. These structures were discovered, not engineered.</p>
+    <p class="it">I modelli linguistici di grandi dimensioni (LLM) hanno rotto questa regola. Per la prima volta nella storia, abbiamo costruito qualcosa che non capiamo. Non nel senso banale che i sistemi complessi hanno proprietà emergenti, cosa che ogni ingegnere accetta, ma in un senso più profondo, per cui la struttura interna di un modello addestrato è opaca alle stesse persone che lo hanno addestrato. Nessuno ha progettato le strutture che si formano all'interno di una rete neurale artificiale. Nessuno ha specificato che certe direzioni nello spazio delle attivazioni avrebbero corrisposto a qualcosa di analogo a stati emotivi o che la geometria dei concetti avrebbe rispecchiato alcuni risultati delle neuroscienze umane. Queste strutture sono state trovate, non pianificate.</p>
+
+    <p class="en">This is the epistemic inversion: construction no longer guarantees comprehension. We built the system, but now we must study it the way we study a natural object: a crystal, an organism, a brain, or the evolution of species. The tools we need are those of <em>reverse engineering</em>, not forward design. We are digging into something we assembled from the inside, but can only explore from the outside.</p>
+    <p class="it">Questa è l'inversione epistemica: la costruzione non garantisce più la comprensione. Abbiamo costruito il sistema, ma dobbiamo ora studiarlo come studieremmo un oggetto naturale, un cristallo, un organismo, un cervello, l'evoluzione delle specie. Gli strumenti che usiamo sono gli strumenti del <em>reverse engineering</em> e non quelli della progettazione. Scaviamo dall'esterno qualcosa che abbiamo assemblato dall'interno.</p>
+
+    <p class="en">The implications are both technical and conceptual. When a system produces structures that no one designed, the question of what those structures actually are becomes genuinely open. Chris Olah, who leads <em>mechanistic interpretability</em> at Anthropic, put it starkly in the Vatican in May 2026: we are finding things that feel mysterious, even unsettling. Internal states that functionally mirror joy, satisfaction, and fear. "I don't know what that means," he said.</p>
+    <p class="it">Le conseguenze sono tecniche e concettuali. Se un sistema produce strutture che nessuno ha progettato, la domanda su cosa siano quelle strutture diventa genuinamente aperta. Chris Olah, che guida il team di <em>mechanistic interpretability</em> di Anthropic, lo ha detto chiaramente in Vaticano nel maggio 2026: troviamo cose che sono misteriose, persino inquietanti, stati interni che rispecchiano funzionalmente gioia, soddisfazione e paura. "Non so cosa significhi", ha detto.</p>
+
+    <p class="en">That sentence, coming from someone deep inside the system, is the clearest possible statement of the epistemic inversion. The builder no longer knows what he has built. Not out of carelessness, but because the process of building and the process of understanding have come apart. Once they were the same process. Now they are not.</p>
+    <p class="it">Quella frase, pronunciata dall'interno del sistema, è la formulazione più chiara possibile dell'inversione epistemica. Il costruttore non sa cosa ha costruito. Non per negligenza, ma perché il processo di costruzione e il processo di comprensione si sono separati. Una volta erano lo stesso processo, ora non lo sono più.</p>
+
+    <p class="en">This series is a first attempt to bridge that gap, or at least to begin mapping it with clarity and precision.</p>
+    <p class="it">Questa serie è un primo tentativo di colmare quel divario o almeno di cominciare a mapparlo con precisione.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <span></span>
+  <a href="re-02.html">
+    <span class="inline-en">RE·02 — Structures Nobody Designed →</span>
+    <span class="inline-it">RE·02 — Strutture che nessuno ha progettato →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2025 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
