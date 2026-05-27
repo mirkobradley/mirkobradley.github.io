@@ -188,6 +188,28 @@
       margin-bottom: 3rem;
     }
 
+    .essays-columns {
+      display: grid;
+      grid-template-columns: 1fr 0.5px 1fr;
+      gap: 0 3rem;
+    }
+
+    .essays-column-divider {
+      background: var(--rule);
+      width: 0.5px;
+    }
+
+    .essays-column-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1.8rem;
+      padding-bottom: 1rem;
+      border-bottom: 0.5px solid var(--bg-darker);
+    }
+
     .essay-link {
       padding: 1.2rem 0;
       border-bottom: 0.5px solid var(--bg-darker);
@@ -203,6 +225,14 @@
     }
 
     .essay-link a:hover { color: var(--accent); }
+
+    .essay-forthcoming {
+      padding: 1.2rem 0;
+      border-bottom: 0.5px solid var(--bg-darker);
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      color: var(--ink-faint);
+    }
 
     .paper-item {
       padding: 1.2rem 0;
@@ -305,6 +335,12 @@
       .hero h1 { font-size: 36px; }
       .about-inner { flex-direction: column; gap: 1.5rem; }
       footer { padding: 1.2rem 1.5rem; }
+      .essays-columns {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .essays-column-divider { display: none; }
+      .essays-column-right { margin-top: 3rem; border-top: 0.5px solid var(--rule); padding-top: 2rem; }
     }
   </style>
 </head>
@@ -314,7 +350,7 @@
   <a href="#" class="nav-brand">Mirko Bradley</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#mind"><span class="inline-en">The Form of Mind</span><span class="inline-it">La Forma della Mente</span></a></li>
+      <li><a href="#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
       <li><a href="#papers">Papers</a></li>
       <li><a href="#about">About</a></li>
     </ul>
@@ -343,67 +379,110 @@
   <div class="hero-rule"></div>
 </div>
 
-<section id="mind">
-  <div class="section-label"><span class="inline-en">The Form of Mind</span><span class="inline-it">La Forma della Mente</span></div>
-  <div class="essay-link">
-    <a href="essays/why-consciousness-is-mathematical.html" class="en">Why Consciousness Is Mathematical</a>
-    <a href="essays/why-consciousness-is-mathematical.html?lang=it" class="it">Perché la coscienza è matematica</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/consciousness-as-information.html" class="en">Consciousness as Information</a>
-    <a href="essays/consciousness-as-information.html?lang=it" class="it">La coscienza come informazione</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/objections-and-clarifications.html" class="en">Objections and Clarifications</a>
-    <a href="essays/objections-and-clarifications.html?lang=it" class="it">Obiezioni e chiarimenti</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/the-problem-of-subjectivity.html" class="en">The Problem of Subjectivity</a>
-    <a href="essays/the-problem-of-subjectivity.html?lang=it" class="it">Il problema della soggettività</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/the-problem-of-the-body.html" class="en">The Problem of the Body</a>
-    <a href="essays/the-problem-of-the-body.html?lang=it" class="it">Il problema del corpo</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/the-problem-of-dynamics.html" class="en">The Problem of Dynamics</a>
-    <a href="essays/the-problem-of-dynamics.html?lang=it" class="it">Il problema della dinamica</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/the-problem-of-global-consciousness.html" class="en">The Problem of Global Consciousness</a>
-    <a href="essays/the-problem-of-global-consciousness.html?lang=it" class="it">Il problema della coscienza globale</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/searle-and-the-chinese-room.html" class="en">Searle and the Chinese Room</a>
-    <a href="essays/searle-and-the-chinese-room.html?lang=it" class="it">Searle e la stanza cinese</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/fodor-modularity-language-of-thought.html" class="en">Fodor: Modularity and Language of Thought</a>
-    <a href="essays/fodor-modularity-language-of-thought.html?lang=it" class="it">Fodor: modularismo e linguaggio del pensiero</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/the-configuration-space.html" class="en">The Configuration Space</a>
-    <a href="essays/the-configuration-space.html?lang=it" class="it">Lo spazio delle configurazioni</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/constraints-and-structural-tension.html" class="en">Constraints and Structural Tension</a>
-    <a href="essays/constraints-and-structural-tension.html?lang=it" class="it">I vincoli e la tensione strutturale</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/morphogenetic-dynamics.html" class="en">Morphogenetic Dynamics</a>
-    <a href="essays/morphogenetic-dynamics.html?lang=it" class="it">La dinamica morfogenetica</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/reflexivity.html" class="en">Reflexivity</a>
-    <a href="essays/reflexivity.html?lang=it" class="it">La riflessività</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/language-and-self-awareness.html" class="en">Language and Self-Awareness</a>
-    <a href="essays/language-and-self-awareness.html?lang=it" class="it">Linguaggio e autocoscienza</a>
-  </div>
-  <div class="essay-link">
-    <a href="essays/formalising-is-not-eliminating.html" class="en">Formalising Is Not Eliminating</a>
-    <a href="essays/formalising-is-not-eliminating.html?lang=it" class="it">Formalizzare non è eliminare</a>
+<section id="essays">
+  <div class="section-label"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></div>
+  <div class="essays-columns">
+
+    <div class="essays-column-left">
+      <div class="essays-column-label">
+        <span class="inline-en">The Form of Mind</span>
+        <span class="inline-it">La Forma della Mente</span>
+      </div>
+      <div class="essay-link">
+        <a href="essays/why-consciousness-is-mathematical.html" class="en">Why Consciousness Is Mathematical</a>
+        <a href="essays/why-consciousness-is-mathematical.html?lang=it" class="it">Perché la coscienza è matematica</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/consciousness-as-information.html" class="en">Consciousness as Information</a>
+        <a href="essays/consciousness-as-information.html?lang=it" class="it">La coscienza come informazione</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/objections-and-clarifications.html" class="en">Objections and Clarifications</a>
+        <a href="essays/objections-and-clarifications.html?lang=it" class="it">Obiezioni e chiarimenti</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/the-problem-of-subjectivity.html" class="en">The Problem of Subjectivity</a>
+        <a href="essays/the-problem-of-subjectivity.html?lang=it" class="it">Il problema della soggettività</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/the-problem-of-the-body.html" class="en">The Problem of the Body</a>
+        <a href="essays/the-problem-of-the-body.html?lang=it" class="it">Il problema del corpo</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/the-problem-of-dynamics.html" class="en">The Problem of Dynamics</a>
+        <a href="essays/the-problem-of-dynamics.html?lang=it" class="it">Il problema della dinamica</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/the-problem-of-global-consciousness.html" class="en">The Problem of Global Consciousness</a>
+        <a href="essays/the-problem-of-global-consciousness.html?lang=it" class="it">Il problema della coscienza globale</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/searle-and-the-chinese-room.html" class="en">Searle and the Chinese Room</a>
+        <a href="essays/searle-and-the-chinese-room.html?lang=it" class="it">Searle e la stanza cinese</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/fodor-modularity-language-of-thought.html" class="en">Fodor: Modularity and Language of Thought</a>
+        <a href="essays/fodor-modularity-language-of-thought.html?lang=it" class="it">Fodor: modularismo e linguaggio del pensiero</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/the-configuration-space.html" class="en">The Configuration Space</a>
+        <a href="essays/the-configuration-space.html?lang=it" class="it">Lo spazio delle configurazioni</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/constraints-and-structural-tension.html" class="en">Constraints and Structural Tension</a>
+        <a href="essays/constraints-and-structural-tension.html?lang=it" class="it">I vincoli e la tensione strutturale</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/morphogenetic-dynamics.html" class="en">Morphogenetic Dynamics</a>
+        <a href="essays/morphogenetic-dynamics.html?lang=it" class="it">La dinamica morfogenetica</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/reflexivity.html" class="en">Reflexivity</a>
+        <a href="essays/reflexivity.html?lang=it" class="it">La riflessività</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/language-and-self-awareness.html" class="en">Language and Self-Awareness</a>
+        <a href="essays/language-and-self-awareness.html?lang=it" class="it">Linguaggio e autocoscienza</a>
+      </div>
+      <div class="essay-link">
+        <a href="essays/formalising-is-not-eliminating.html" class="en">Formalising Is Not Eliminating</a>
+        <a href="essays/formalising-is-not-eliminating.html?lang=it" class="it">Formalizzare non è eliminare</a>
+      </div>
+    </div>
+
+    <div class="essays-column-divider"></div>
+
+    <div class="essays-column-right">
+      <div class="essays-column-label">
+        <span class="inline-en">Reverse Engineering AI</span>
+        <span class="inline-it">Per un'ingegneria inversa dell'AI</span>
+      </div>
+      <div class="essay-forthcoming">
+        <span class="inline-en">RE·01 — The Epistemic Inversion</span>
+        <span class="inline-it">RE·01 — L'inversione epistemica</span>
+      </div>
+      <div class="essay-forthcoming">
+        <span class="inline-en">RE·02 — Structures Nobody Designed</span>
+        <span class="inline-it">RE·02 — Strutture che nessuno ha progettato</span>
+      </div>
+      <div class="essay-forthcoming">
+        <span class="inline-en">RE·03 — The Reversed Mirror</span>
+        <span class="inline-it">RE·03 — Lo specchio rovesciato</span>
+      </div>
+      <div class="essay-forthcoming">
+        <span class="inline-en">RE·04 — Vectors, Constraints, Language</span>
+        <span class="inline-it">RE·04 — Vettori, vincoli, linguaggio</span>
+      </div>
+      <div class="essay-forthcoming">
+        <span class="inline-en">RE·05 — Mechanistic Interpretability</span>
+        <span class="inline-it">RE·05 — La mechanistic interpretability</span>
+      </div>
+      <div class="essay-forthcoming">
+        <span class="inline-en">RE·06 — The Conscious AI Project</span>
+        <span class="inline-it">RE·06 — Il progetto di AI cosciente</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
