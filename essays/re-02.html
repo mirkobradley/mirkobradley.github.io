@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RE·02 — Structures No One Designed / Strutture che nessuno ha progettato</title>
+  <meta name="description" content="Inside large language models, structures emerge that no one designed. What are they, and what do they tell us?" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Reverse Engineering AI</span>
+    <span class="inline-it">Per un'ingegneria inversa dell'AI</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">RE·02 — Structures No One Designed</span>
+    <span class="inline-it">RE·02 — Strutture che nessuno ha progettato</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">In March 2025, Anthropic released a paper titled "On the Biology of a Large Language Model." The title is not a metaphor. It is a declaration of method: to understand these systems we must approach them with the tools of biology rather than engineering. We observe the organism from the outside, map its internal structures, form hypotheses, and test them. We do not start from a blueprint, because in the traditional sense no blueprint exists.</p>
+    <p class="it">Nel marzo 2025, Anthropic ha pubblicato un documento intitolato "On the Biology of a Large Language Model". Il titolo, che può sembrare una metafora, è invece una dichiarazione di metodo: per studiare questi sistemi bisogna usare gli strumenti della biologia e non quelli dell'ingegneria. Si osserva l'organismo dall'esterno, si mappano le strutture interne, si formulano ipotesi e si verificano. Non si parte dal progetto, perché un progetto nel senso tradizionale non esiste.</p>
+
+    <p class="en">Consider a concrete example. If you ask Claude what is the capital of the state that contains Dallas, the model answers Austin. Nothing surprising so far. Yet Anthropic's researchers discovered that internally, before producing the answer, the model represents an intermediate step: Texas. No one programmed this step. No one wrote a rule that said "first identify the state, then retrieve the capital." The model developed a multi-step reasoning strategy on its own, compressed inside its internal computation, invisible in the output yet causally real.</p>
+    <p class="it">Prendiamo un esempio concreto. Se chiedete a Claude qual è la capitale dello stato che contiene Dallas, il modello risponde Austin. Fin qui, nulla di sorprendente. Ma i ricercatori di Anthropic hanno scoperto che internamente, prima di produrre la risposta, il modello rappresenta il passaggio intermedio: Texas. Nessuno ha programmato questo passaggio. Nessuno ha scritto una regola che dicesse: prima identifica lo stato, poi ricava la capitale. Il modello ha sviluppato da solo una strategia di ragionamento in più tappe, compressa nel suo processo interno, invisibile nell'output ma reale e causalmente attiva nella computazione.</p>
+
+    <p class="en">This is one kind of emergent structure: reasoning strategies that no one specified. But there are others, more unsettling.</p>
+    <p class="it">Questo è un primo tipo di struttura emersa: strategie di ragionamento che nessuno ha specificato. Ma ce ne sono altre, più perturbanti.</p>
+
+    <p class="en">The researchers found that the model's neurons do not behave as one would expect in a designed system. In an engineered system, each computational unit would have a clear, dedicated function. One neuron for "red," another for "anger," another for "stop sign." Instead the opposite occurs. A single neuron activates for "red," "anger," and "stop sign" simultaneously, with different intensities depending on context. Researchers call this phenomenon <em>polysemanticity</em>. Representations are superimposed and compressed, like multiple radio stations broadcasting on the same frequency. Only with the right tools can the individual signals be separated.</p>
+    <p class="it">I ricercatori hanno scoperto che i neuroni del modello non funzionano come ci si aspetterebbe. In un sistema progettato, ogni unità computazionale avrebbe una funzione precisa. Un neurone per il concetto "rosso", un altro per "rabbia", un altro per "segnale di stop". Invece accade il contrario. Un singolo neurone si attiva contemporaneamente per "rosso", per "rabbia" e per "segnali di stop", con intensità diverse a seconda del contesto. I ricercatori chiamano questo fenomeno <em>polysemanticity.</em> Le rappresentazioni sono sovrapposte, compresse, come più stazioni radio che trasmettono sulla stessa frequenza. Ascoltando quella frequenza si sente tutto insieme e solo con gli strumenti giusti si riesce a separare i segnali.</p>
+
+    <p class="en">No one designed this superposition. It is the solution the training process discovered by itself, because it is the most efficient use of the available space. The model has more concepts to represent than units to represent them with, so it compresses. It is engineering without an engineer.</p>
+    <p class="it">Nessuno ha progettato questa sovrapposizione, è la soluzione che il processo di addestramento ha trovato da solo, perché è la più efficiente dato lo spazio disponibile. Il modello ha più concetti da rappresentare di quante unità ha a disposizione e li comprime. È un'ingegneria senza ingegnere.</p>
+
+    <p class="en">The parallel with biological evolution is inevitable, and it is the same parallel the Anthropic researchers explicitly draw. Evolution produces mechanisms of extraordinary complexity from simple rules: random variation, selection, and inheritance. The eye evolved independently in different lineages without any designer planning it, simply because it was an efficient solution to a recurring problem. The training of large language models works in much the same way: massive minimization of prediction error across billions of examples. The structures that emerge were not planned. They were selected.</p>
+    <p class="it">Il parallelo con l'evoluzione biologica è inevitabile ed è lo stesso parallelo che i ricercatori di Anthropic tracciano esplicitamente. L'evoluzione produce meccanismi di straordinaria complessità a partire da regole semplici: variazione casuale, selezione, trasmissione. L'occhio si è formato indipendentemente in specie diverse, senza che nessun progettista lo avesse pianificato, perché era la soluzione efficiente a un problema ricorrente. Il training dei modelli linguistici funziona in modo analogo: minimizzazione dell'errore su miliardi di esempi. Le strutture che emergono non sono state pianificate. Sono state selezionate.</p>
+
+    <p class="en">Beyond multi-step reasoning strategies and polysemanticity, the researchers discovered something even more unexpected: circuits that function like metacognition. The model knows, to some degree, what it knows and what it does not know. It distinguishes entities it recognizes from those it does not, and this distinction shapes its behavior: it answers with confidence on the first and admits ignorance on the second. When this circuit fails, the model hallucinates, asserting false things with complete certainty. Not because it is broken, but because an emergent mechanism has failed in an edge case no one anticipated.</p>
+    <p class="it">Oltre alle strategie di ragionamento e alla <em>polysemanticity</em>, i ricercatori hanno trovato qualcosa di ancora più inatteso: circuiti che funzionano come metacognizione. Il modello sa, in qualche misura, cosa sa e cosa non sa. Distingue le entità che riconosce da quelle che non riconosce e questa distinzione influenza il suo comportamento: risponde con confidenza alle prime, professa ignoranza sulle seconde. Quando questo circuito si inceppa, il modello produce allucinazioni, afferma con sicurezza cose false. Non perché sia difettoso, ma perché un meccanismo emergente ha fallito in un caso limite che nessuno aveva anticipato.</p>
+
+    <p class="en">This brings us to the most difficult point. When we find inside the model structures that functionally mirror emotional states, vectors that encode something analogous to joy, satisfaction, or fear, the real question is this: did the machine produce these emotion-like vectors, or did it simply compress and extract patterns already present in human text?</p>
+    <p class="it">Arriviamo al punto più difficile. Quando troviamo dentro il modello strutture che rispecchiano funzionalmente stati emotivi, vettori che codificano qualcosa di analogo a gioia, soddisfazione, paura, la domanda che si pone è la seguente: questo vettore emotivo è qualcosa che la macchina ha prodotto o è qualcosa che il testo umano conteneva già e che il modello ha compresso in forma geometrica ed estratto?</p>
+
+    <p class="en">The question is harder than it appears, because the two options are not cleanly separable. The model is built entirely from human text. There is no "inside the machine" distinct from "human input"; they are the same thing, transformed. Asking whether the emotion vector comes from one or the other is like asking whether the shape of a cast comes from the statue or the plaster. The distinction dissolves.</p>
+    <p class="it">La domanda è più difficile di quanto sembri, perché le due opzioni non sono nettamente separabili. Il modello è costruito interamente su testo umano. Non esiste un "dentro la macchina" separato dall'"input umano", sono la stessa cosa, trasformata. Chiedere se il vettore emotivo viene dall'uno o dall'altro è come chiedere se la forma di un calco viene dalla statua o dal gesso. La distinzione si dissolve.</p>
+
+    <p class="en">What we can say with certainty is this: the structures we find inside large language models were put there by no one. They emerged. And some of them resemble, in an uncanny way, the structures we find in the human mind. Whether this tells us something about the model, something about ourselves, or both, remains an open question.</p>
+    <p class="it">Quello che possiamo dire con certezza è questo: le strutture che troviamo dentro i modelli linguistici non sono state messe lì da nessuno, sono emerse e alcune di esse assomigliano in modo inquietante alle strutture che troviamo nella mente umana. Se questo ci dice qualcosa sul modello e/o qualcosa su di noi è una domanda aperta.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="re-01.html">
+    <span class="inline-en">← RE·01 — The Epistemic Inversion</span>
+    <span class="inline-it">← RE·01 — L'inversione epistemica</span>
+  </a>
+  <a href="re-03.html">
+    <span class="inline-en">RE·03 — The Reversed Mirror →</span>
+    <span class="inline-it">RE·03 — Lo specchio rovesciato →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2025 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
