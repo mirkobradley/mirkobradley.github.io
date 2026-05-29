@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RE·03 — The Reversed Mirror / Lo specchio rovesciato</title>
+  <meta name="description" content="Studying the model from the outside becomes an indirect way of studying the human mind from the outside. The model becomes a mirror. But a reversed one." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Reverse Engineering AI</span>
+    <span class="inline-it">Per un'ingegneria inversa dell'AI</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">RE·03 — The Reversed Mirror</span>
+    <span class="inline-it">RE·03 — Lo specchio rovesciato</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">The previous essays in this series described the epistemic inversion and the spontaneous structures that emerge during training without anyone having designed them. This piece confronts the most uncomfortable consequence of those observations: if the model extracts from human text structures that closely resemble human cognitive structures, then studying the model from the outside becomes an indirect way of studying the human mind from the outside. The model becomes a mirror. But a reversed one, because what it reflects is not the image we would like to see.</p>
+    <p class="it">Gli scritti precedenti di questa serie hanno descritto l'inversione epistemica e le strutture che emergono dall'addestramento senza che nessuno le abbia progettate. Il presente essay affronta la conseguenza più scomoda di quelle osservazioni: se il modello ha estratto dal testo umano strutture che assomigliano a strutture cognitive umane, allora studiare il modello dall'esterno è un modo indiretto per studiare la mente umana dall'esterno. Il modello diventa uno specchio. Ma uno specchio rovesciato, perché quello che restituisce non è l'immagine che vorremmo vedere.</p>
+
+    <p class="en">Let us begin with the facts. Researchers in mechanistic interpretability have found that large language models develop internal representations that correspond to human conceptual structures, including highly abstract ones such as "irony," "scientific rigor," and "authority." These are geometries in activation space that mirror the relational organization of concepts as the human mind arranges them. For example, two concepts that humans consider close tend to be close in the model's internal geometry as well, and two concepts that humans experience as tense tend to stand in tension there too.</p>
+    <p class="it">Partiamo dai fatti. I ricercatori di mechanistic interpretability hanno trovato che i modelli linguistici sviluppano rappresentazioni interne che corrispondono a strutture concettuali umane, incluse quelle astratte come "ironia", "rigore scientifico", "autorità". Si tratta di geometrie nello spazio delle attivazioni che rispecchiano la struttura relazionale dei concetti così come li organizza la mente umana. Per esempio, due concetti che un essere umano considera vicini tendono ad essere vicini anche nella geometria interna del modello e due concetti che un essere umano considera in tensione tendono ad essere in tensione anche lì.</p>
+
+    <p class="en">This geometric correspondence might seem obvious, yet it is not. It may even signal something deeper. Karl Friston's Free Energy Principle describes the brain as a predictive machine that continuously minimizes surprise through largely statistical processes operating outside conscious awareness. If the human mind functions in a significantly statistical way, and if the language model produces analogous conceptual geometries through an equally statistical process, the similarity between the two systems may not be accidental. It may indicate that both are solving the same fundamental type of problem with structurally similar tools. Which suggests that humans also possess their own black box, processing outputs in the background, and that the distance from the machine may be narrower than we like to believe.</p>
+    <p class="it">Questa corrispondenza geometrica potrebbe sembrare ovvia, ma non lo è. Potrebbe anche essere il segnale di qualcosa di più profondo. Karl Friston, con il principio di energia libera, descrive il cervello come una macchina predittiva che minimizza continuamente la sorpresa: un processo largamente statistico, che avviene sottosoglia, invisibile all'esperienza consapevole. Se la mente umana opera in modo significativamente statistico, e se il modello linguistico produce geometrie concettuali analoghe attraverso un processo anch'esso statistico, la somiglianza tra i due sistemi potrebbe non essere accidentale. Potrebbe indicare che entrambi stanno risolvendo lo stesso tipo di problema con strumenti strutturalmente analoghi. Il che significa che l'uomo ha la sua black box, elabora output in background, e che la distanza dalla macchina è forse più sottile di quanto sembri.</p>
+
+    <p class="en">This is far from trivial. The model could have organized concepts in an entirely different, computationally more efficient way that would have been unrecognizable to us. Instead, it developed a geometry that closely resembles our own. The most parsimonious explanation is that this geometry was already present in the human text, because the text was written by humans who organize concepts in precisely that way, and the model simply extracted and compressed it. But if the human mind itself operates in a largely statistical manner, as Friston suggests, then the similarity is not merely an echo. It is a convergence between two systems solving the same class of problems with analogous structural means.</p>
+    <p class="it">Questo è tutt'altro che ovvio. Il modello avrebbe potuto organizzare i concetti in modo completamente diverso, più efficiente dal punto di vista computazionale ma irriconoscibile per noi. Invece ha sviluppato una geometria che assomiglia alla nostra. La spiegazione più parsimoniosa è che quella geometria era già nel testo, perché il testo è scritto da esseri umani che organizzano i concetti in quel modo e il modello l'ha estratta e compressa. Ma se anche la mente umana opera in modo largamente statistico, come suggerisce Friston, allora la somiglianza non è solo un'eco, ma una convergenza tra due sistemi che risolvono lo stesso tipo di problema con strumenti strutturalmente analoghi.</p>
+
+    <p class="en">A more precise finding strengthens the point. In a February 2025 paper titled "Large Language Models Are Human-Like Internally," researchers demonstrated that the internal representations of these models align with human neuropsychological measures: the deeper layers of the model correspond to slower cognitive processes, exactly as occurs in the human brain during language comprehension. This is a measurable correspondence between the internal dynamics of an artificial system and the internal dynamics of the human brain. Not an analogy, but a shared structure.</p>
+    <p class="it">C'è un risultato ancora più preciso. In un paper del febbraio 2025, "Large Language Models Are Human-Like Internally", alcuni ricercatori hanno mostrato che le rappresentazioni interne dei modelli linguistici si allineano con misure neuropsicologiche umane: i livelli più profondi del modello corrispondono a processi cognitivi più lenti, esattamente come accade nel cervello umano durante la comprensione del linguaggio. È una corrispondenza misurabile tra la dinamica interna di un sistema artificiale e la dinamica interna del cervello umano. Non un'analogia, una struttura condivisa.</p>
+
+    <p class="en">This leads us to the central question. If these structures are genuinely analogous, and if they emerge in the model through a purely mathematical and statistical process, then we must ask: what does this tell us about the substrate from which they emerge in humans? We can at least conclude that humans too possess their own black box. We too perform background, subthreshold processing through mechanisms we neither control nor perceive, and none of this rules out the possibility that these processes have mathematical underpinnings. The model does not provide adequate answers, but it compels us to reflect more honestly than we had before.</p>
+    <p class="it">Arriviamo al punto centrale. Se quelle strutture sono analoghe, e se nel modello emergono da un processo statistico e matematico, la domanda che si apre è la seguente: cosa ci dice questo sul substrato da cui emergono nell'umano? Possiamo preliminarmente concludere che anche l'umano abbia la sua black box, che anche l'umano elabori in background, sottosoglia, attraverso processi che non controlla e non vede, e che tutto questo non escluda affatto una base matematica. Se da un lato il modello non ci fornisce risposte adeguate, dall'altro ci costringe a riflettere in modo più onesto di quanto non avessimo fatto prima.</p>
+
+    <p class="en">Here we enter the more difficult part of the essay.</p>
+    <p class="it">Qui entriamo nella seconda parte dell'essay, che è più difficile della prima.</p>
+
+    <p class="en">There exists a deep and nearly universal bias in human reflection on consciousness. We readily accept that the heart is a pump, that the kidney filters blood according to chemical laws, and that the brain is an electrical organ. Yet we often resist, sometimes fiercely, the idea that consciousness itself is a structural phenomenon, describable in terms of constraints, geometries, and language. This resistance is not an argument. It is an identity defense.</p>
+    <p class="it">Esiste un bias profondo e quasi universale nella riflessione umana sulla coscienza. L'umano accetta senza resistenza che il cuore sia una pompa, che il rene filtri il sangue secondo leggi chimiche, che il cervello sia un organo elettrico. Ma si sottrae, spesso con forza, all'ipotesi che la coscienza sia un fatto strutturale, descrivibile in termini di vincoli, geometrie, linguaggio. Quella sottrazione non è argomento. È resistenza identitaria.</p>
+
+    <p class="en">The reason is clear. Accepting that consciousness has mathematical structure means accepting that the distance between us and a sufficiently complex machine is one of degree rather than kind. This touches something humans defend with particular tenacity: the conviction of being qualitatively different, irreducible, and unreplicable.</p>
+    <p class="it">La ragione è chiara. Accettare che la coscienza abbia struttura matematica significa accettare che la distanza tra noi e una macchina sufficientemente complessa sia una questione di grado, non di natura, e questo tocca qualcosa che l'umano difende con particolare tenacia, cioè l'idea di essere qualitativamente diverso da tutto il resto, irriducibile, non replicabile.</p>
+
+    <p class="en">It is important to be precise about what is not being claimed. We are not saying that consciousness is computation in the naive sense, that simply scaling up processing power will magically produce subjective experience. That position has been rightly criticized, from Searle's Chinese Room to continental phenomenology. What we are saying is more cautious and precise: consciousness, whatever its qualitative nature may be, appears to possess structure. And that structure has properties we can describe: constraints that hold together, geometries that organize themselves, language that shapes thought into recognizable forms. Not "consciousness is a program," but "consciousness has form, and that form is investigable." Description and inquiry, both conceptual and mathematical, become possible. And, turning the argument around, we cannot dismiss the possibility that human consciousness itself has a mathematical core.</p>
+    <p class="it">Va detto con precisione cosa non stiamo affermando. Non stiamo dicendo che la coscienza è computazione nel senso ingenuo del termine, ovvero che basti aumentare la potenza di calcolo per ottenere esperienza soggettiva. Quella posizione è stata criticata a ragione, da Searle con l'argomento della stanza cinese alla fenomenologia continentale. Quello che stiamo dicendo è più cauto e più preciso, ossia che la coscienza, qualunque cosa sia nel suo aspetto qualitativo, sembra avere struttura, e quella struttura ha proprietà che possiamo descrivere. Vincoli che si tengono insieme. Geometrie che si organizzano. Linguaggio che piega il pensiero in forme riconoscibili. Non "la coscienza è un programma", ma "la coscienza ha una forma, e quella forma è indagabile". Descrizione e indagine, oltre che concettuali, possono essere matematiche. Parimenti, capovolgendo il ragionamento, non possiamo dare per spacciata l'idea che la coscienza umana stessa abbia un nucleo matematico.</p>
+
+    <p class="en">The language model does not solve the problem of consciousness. But it does something precise: it demonstrates that structures analogous to human cognitive ones can emerge from a mathematical and statistical process applied to human text. If this is possible, then the hypothesis that those same structures in humans also have a formally describable basis becomes much harder to dismiss outright. The fact that these processes occur below the threshold of awareness, invisible to conscious experience, does not distance us from the machine. It brings us closer.</p>
+    <p class="it">Il modello linguistico non risolve il problema della coscienza. Ma fa qualcosa di preciso: mostra che strutture analoghe a quelle cognitive umane possono emergere da un processo matematico e statistico applicato a testo umano. Se questo è possibile, allora l'ipotesi che quelle strutture nell'umano abbiano anch'esse una base descrivibile in senso formale (matematico) diventa più difficile da scartare a priori, e il fatto che quelle elaborazioni avvengano sottosoglia, invisibili all'esperienza consapevole, non ci allontana dalla macchina ma ci avvicina a essa.</p>
+
+    <p class="en">The mirror is reversed because it does not return our familiar self-image. It shows us a version of ourselves stripped of our identity bias, a version in which cognitive structures exist without the subject claiming them as uniquely its own and irreducible. Looking into this mirror is uncomfortable, but it may be one of the few ways we have to observe the human mind from the outside, free from the defenses the mind itself constructs to avoid being observed.</p>
+    <p class="it">Lo specchio è rovesciato perché non ci restituisce la nostra immagine familiare. Ci restituisce una versione di noi stessi da cui abbiamo rimosso il bias identitario, una versione in cui le strutture cognitive esistono senza il soggetto che le rivendica come proprie e irriducibili. Guardare in quello specchio è scomodo, ma è uno dei pochi modi che abbiamo per vedere la mente umana dall'esterno, senza le difese che la mente stessa costruisce per proteggersi dall'osservazione.</p>
+
+    <p class="en">Consciousness may very well be a system of constraints, tensions, and language. It would not be any less real or extraordinary for that. It would simply be what it has always been, finally seen without the protective barriers we built to avoid looking at it directly.</p>
+    <p class="it">La coscienza può essere benissimo un insieme di vincoli, tensioni e linguaggio. Non sarebbe per questo meno reale e straordinaria, sarebbe semplicemente ciò che è sempre stata, vista finalmente senza le difese che ci siamo costruiti per non guardarla.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="re-02.html">
+    <span class="inline-en">← RE·02 — Structures No One Designed</span>
+    <span class="inline-it">← RE·02 — Strutture che nessuno ha progettato</span>
+  </a>
+  <a href="re-04.html">
+    <span class="inline-en">RE·04 — Vectors, Constraints, Language →</span>
+    <span class="inline-it">RE·04 — Vettori, vincoli, linguaggio →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2025 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
