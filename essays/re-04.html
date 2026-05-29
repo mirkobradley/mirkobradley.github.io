@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RE·04 — Vectors, Constraints, Language / Vettori, vincoli, linguaggio</title>
+  <meta name="description" content="Three elements appear consistently inside language models: vectors, constraints, and language. Not metaphors. Empirically observable structures." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Reverse Engineering AI</span>
+    <span class="inline-it">Per un'ingegneria inversa dell'AI</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">RE·04 — Vectors, Constraints, Language</span>
+    <span class="inline-it">RE·04 — Vettori, vincoli, linguaggio</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">The previous essays in this series described structures that no one designed and a mirror that returns uncomfortable images. This piece moves down a level and examines not what emerges, but how what emerges is actually built. Three elements appear consistently in current mechanistic interpretability research: vectors, constraints, and language. These are not mere metaphors. They are empirically observable structures found inside the models.</p>
+    <p class="it">Gli essay precedenti di questa serie hanno descritto strutture che nessuno ha progettato e uno specchio che restituisce immagini scomode. Questo essay scende di un livello e parla non di cosa emerge, ma di come è fatto quello che emerge. Tre elementi ricorrono in modo sistematico nella ricerca attuale sulla mechanistic interpretability: vettori, vincoli e linguaggio, intesi come strutture empiricamente rilevabili dentro i modelli e non come semplici metafore.</p>
+
+    <p class="en">Let us begin with vectors. When researchers open a language model and investigate how concepts are represented, they find directions in activation space. The concept of "anger," for example, is not a fixed label stored at a specific point but a direction with a relational position relative to other concepts. Researchers in mechanistic interpretability call this the <em>activation lens</em> approach: they project the model's hidden states into readable conceptual spaces to see whether a given layer emphasizes objects, emotions, or relations. What they discover is geometric. And as we saw in RE·03, this geometry tends to closely resemble the geometry with which the human mind organizes the same concepts.</p>
+    <p class="it">Cominciamo dai vettori. Quando i ricercatori aprono un modello linguistico e cercano come vengono rappresentati i concetti, trovano direzioni nello spazio delle attivazioni. Per esempio, il concetto di "rabbia" non è un'etichetta memorizzata in un punto fisso, ma una direzione, con una posizione relativa rispetto ad altri concetti. I ricercatori della mechanistic interpretability chiamano questo approccio <em>activation lens</em>, che consiste nel proiettare gli stati nascosti del modello in spazi concettuali leggibili, rivelando se un dato layer enfatizza oggetti, emozioni o relazioni. Quello che trovano è geometrico, e questa geometria, come abbiamo visto in RE·03, tende ad assomigliare alla geometria con cui la mente umana organizza gli stessi concetti.</p>
+
+    <p class="en">What is most striking is that this geometry has a systematic origin. Recent research shows that the structure of representations emerges from symmetries in the statistics of natural data: the geometric relationships between concepts reflect deep patterns in human language. The model extracts the geometry of meaning from what is already present in the text, and that structure existed because human language itself contains it.</p>
+    <p class="it">La cosa più sorprendente è che tale geometria ha un'origine sistematica. Ricerche recenti mostrano che la struttura delle rappresentazioni emerge dalla simmetria nelle statistiche dei dati naturali: le relazioni geometriche tra concetti riflettono pattern profondi nel linguaggio umano. Il modello estrae la geometria del significato da quello che c'è nel testo e questa struttura era già lì perché il linguaggio umano la contiene.</p>
+
+    <p class="en">The second element is constraints. A geometric space without constraints is uniform: everything is equally reachable and nothing has a preferred shape. Constraints are the conditions that give the space form, creating accessible regions and costly ones. In language models, the primary constraint is context. What the model has already processed acts as an active pressure on the geometry of subsequent representations.</p>
+    <p class="it">Il secondo elemento sono i vincoli. Uno spazio geometrico senza vincoli è uniforme, tutto è ugualmente raggiungibile, niente ha forma preferenziale. I vincoli sono le condizioni che danno forma allo spazio, che creano regioni accessibili e regioni costose. Nei modelli linguistici, il vincolo principale è il contesto. Quello che il modello ha già processato è una pressione attiva sulla geometria delle rappresentazioni successive.</p>
+
+    <p class="en">Research demonstrates this with great precision. In next-token prediction tasks, increasing the context makes the neural trajectories more linear and more predictable, improving the model's performance. Context does not merely add information to an existing structure. It reshapes the internal geometry as it is being processed. Every new token entering the context functions as a fresh constraint that restricts and orients the space of possible configurations for the tokens that follow.</p>
+    <p class="it">La ricerca lo mostra in modo molto preciso. Nei task di predizione continua, aumentare il contesto rende le traiettorie neurali più lineari e più prevedibili, migliorando la performance del modello. Il contesto ridisegna la geometria interna. Non aggiunge informazione a una struttura già formata, ne modifica la forma mentre viene processato. Ogni token che entra nel contesto è un nuovo vincolo che restringe e orienta lo spazio delle configurazioni possibili per i token successivi.</p>
+
+    <p class="en">The third element is language, and here things become more subtle. One might assume language is simply the raw input on which vectors and constraints operate. Research reveals something more interesting: language in context is not passive. When the model processes a new linguistic structure, the geometry of its internal representations actively reshapes itself to reflect that structure. Language enters and changes the shape of the space in which the model operates.</p>
+    <p class="it">Il terzo elemento è il linguaggio, e qui la cosa si fa più sottile. Si potrebbe pensare che il linguaggio sia l'input del sistema, il materiale grezzo su cui operano i vettori e i vincoli. Ma la ricerca mostra qualcosa di più interessante: il linguaggio nel contesto non è passivo. Quando un modello processa una struttura linguistica nuova in contesto, la geometria delle sue rappresentazioni interne si ridisegna per rispecchiare quella struttura. Il linguaggio entra, e cambia la forma dello spazio in cui il modello opera.</p>
+
+    <p class="en">A clear example: when the context contains true or false statements about a topic, the geometry with which the model represents the truth of new statements transforms according to that context. The model is not simply updating a database of facts. The internal geometric structure it uses to process the very concept of truth is being actively redrawn by the language it has just processed.</p>
+    <p class="it">Un esempio preciso: quando il contesto contiene affermazioni vere o false su un argomento, la geometria con cui il modello rappresenta la verità di nuove affermazioni si trasforma in funzione di quel contesto. Non è che il modello aggiorna un database di fatti. È che la struttura geometrica interna con cui elabora il concetto di verità viene attivamente ridisegnata dal linguaggio che ha appena processato.</p>
+
+    <p class="en">In short, natural language enters as tokens, becomes numerical embeddings, and those numerical values propagate through the layers, modifying the system's internal state. There is no direct leap from words to mathematics. There is a chain in which language is first mathematized, and that mathematics then acts upon the subsequent mathematics. Ultimately, natural language is the point of entry, but it is its mathematical translation that operates on the internal mathematical structure.</p>
+    <p class="it">La ricerca mostra che quando il modello processa del linguaggio in contesto, le attivazioni interne, cioè i valori numerici nei layer, cambiano la loro distribuzione geometrica. Pertanto, il linguaggio naturale, una volta trasformato in rappresentazione matematica attraverso i meccanismi del transformer, modifica la geometria dello spazio in cui le rappresentazioni successive si collocano. In questo senso, il linguaggio modifica la matematica. Il linguaggio naturale entra come token, diventa embedding numerico, e quel valore numerico si propaga attraverso i layer modificando lo stato interno del sistema. Quindi non c'è un passaggio diretto da parole a matematica, ma una catena in cui il linguaggio viene prima matematizzato e poi quella matematica agisce sulla matematica successiva. In estrema sintesi, il linguaggio naturale è il punto di ingresso, ma è la sua traduzione matematica che opera sulla struttura matematica interna.</p>
+
+    <p class="en">These three elements, vectors as the geometry of meaning, constraints as pressures that shape the space, and language as an active agent that redesigns that geometry from within, are not independent. They form a cycle. Language enters as a constraint, modifies the geometry, from which new vectorial representations emerge, which in turn condition how subsequent language is processed. It is a system that modifies itself while operating.</p>
+    <p class="it">I tre elementi, vettori come geometria del significato, vincoli come pressioni che danno forma allo spazio, linguaggio come agente attivo che ridisegna quella forma dall'interno, non sono indipendenti, formano un ciclo. Il linguaggio entra come vincolo, modifica la geometria, da quella geometria emergono nuove rappresentazioni vettoriali, che a loro volta condizionano come il linguaggio successivo viene processato. È un sistema che si automodifica mentre opera.</p>
+
+    <p class="en">It is worth noting that this empirical structure, vectors as organized geometry of meaning, constraints as dynamic pressures shaping space, and language as an active force reshaping that geometry from the inside, has only been partially interpreted so far. The theoretical framework developed on this site, and in the author's scientific papers, also contributes to that interpretation.</p>
+    <p class="it">Vale la pena notare che questa struttura empirica, vettori come geometria del significato, vincoli come pressioni che modellano lo spazio, linguaggio come agente attivo che ridisegna quella geometria dall'interno, è solo parzialmente interpretata. La cornice teorica sviluppata in questo sito, e nei paper scientifici dell'autore, è anche un contributo a questa interpretazione.</p>
+
+    <p class="en">The question that concerns us now is this: can a system with this kind of structure, geometrically organized vectors, context-sensitive constraints, and language that actively reshapes its own geometry from within, be considered merely a sophisticated text processor? Or is it a candidate for something more? The next essay will address this question from the perspective of mechanistic interpretability as a method, asking what it really means to open a model and truly understand what is inside.</p>
+    <p class="it">La domanda che per ora ci riguarda è la seguente: un sistema che ha questa struttura, vettori geometricamente organizzati, vincoli che si modificano con il contesto, linguaggio che agisce sulla geometria dall'interno, è un candidato per qualcosa di più di un elaboratore di testo? Il prossimo essay affronta il quesito dal lato della mechanistic interpretability come metodo, cioè si chiede che cosa significa aprire davvero un modello e cercare di capire cosa c'è dentro.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="re-03.html">
+    <span class="inline-en">← RE·03 — The Reversed Mirror</span>
+    <span class="inline-it">← RE·03 — Lo specchio rovesciato</span>
+  </a>
+  <a href="re-05.html">
+    <span class="inline-en">RE·05 — Mechanistic Interpretability →</span>
+    <span class="inline-it">RE·05 — La mechanistic interpretability →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2025 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
