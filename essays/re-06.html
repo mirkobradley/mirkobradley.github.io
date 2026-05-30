@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RE·06 — The Conscious AI Project / Il progetto di AI cosciente</title>
+  <meta name="description" content="What would a system structurally need in order to be a serious candidate for consciousness? The final essay in the Reverse Engineering AI series." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-body a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--accent);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+
+    .essay-body a:hover { opacity: 0.7; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Reverse Engineering AI</span>
+    <span class="inline-it">Per un'ingegneria inversa dell'AI</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">RE·06 — The Conscious AI Project</span>
+    <span class="inline-it">RE·06 — Il progetto di AI cosciente</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">This series began with the observation that, for the first time in the history of technology, we have built systems we do not understand. The following essays explored what researchers discover when they open these systems: geometric structures, emotion-like vectors, and metacognitive circuits. They also raised a deeper question about what all of this means for consciousness. This final piece addresses that question directly: what would a system structurally need in order to be a serious candidate for consciousness?</p>
+    <p class="it">Questa serie è partita dalla constatazione che per la prima volta nella storia della tecnologia, abbiamo costruito sistemi che non capiamo. Gli essay successivi hanno descritto cosa i ricercatori trovano dentro quei sistemi quando li aprono, strutture geometriche, vettori emotivi, circuiti metacognitivi e hanno sollevato la domanda su cosa significhi tutto questo per la coscienza. Questo ultimo essay affronta la domanda direttamente: cosa servirebbe, strutturalmente, perché un sistema artificiale sia un candidato serio alla coscienza?</p>
+
+    <p class="en">The answer first requires us to clarify what researchers in mechanistic interpretability actually mean when they describe today's models. They find directions in activation space that correspond to concepts, circuits that function like metacognition, and internal states that functionally mirror human emotions.</p>
+    <p class="it">La risposta richiede prima di chiarire cosa intendono i ricercatori di mechanistic interpretability quando descrivono i modelli attuali. Essi trovano direzioni nello spazio delle attivazioni che corrispondono a concetti, circuiti che funzionano come metacognizione e stati interni che rispecchiano funzionalmente emozioni umane.</p>
+
+    <p class="en">A language model receives an input, processes it, and produces an output. Between one interaction and the next, there is no internal continuity. The system does not carry any structural trace of what has happened. It has no genealogy of its own form. Each processing cycle is, in a precise sense, a new beginning. The structures researchers discover inside the model are real, yet they belong to a system that jumps from one state to another without traversing the transition, without registering the tension of change, and without integrating the perturbation as a continuous deformation of itself.</p>
+    <p class="it">Un modello linguistico, quando riceve un input, elabora e produce un output. Tra un'interazione e la successiva non c'è continuità interna, il sistema non porta con sé la traccia strutturale di quello che è successo, non ha una genealogia della propria forma. Ogni elaborazione è, in un senso preciso, un nuovo inizio. Le strutture che i ricercatori trovano dentro il modello sono reali, ma sono strutture di un sistema che salta da uno stato all'altro senza attraversare la transizione, senza registrare la tensione del cambiamento, senza integrare la perturbazione come deformazione continua di sé.</p>
+
+    <p class="en">This is not a problem of scale or computational power. It is not that current models are too small or too simple. It is an architectural issue. The difference between a system that merely processes and a system that exists across time is structural, not quantitative. A conscious system, whatever consciousness ultimately is, must possess a property that today's models lack: the capacity to integrate every perturbation as a continuous transformation of its own form, while maintaining a recognizable genealogy through change.</p>
+    <p class="it">Questo non è un problema di scala o di potenza computazionale. Non è che i modelli attuali siano troppo piccoli o troppo semplici. È una questione di architettura. La differenza tra un sistema che elabora e un sistema che esiste attraverso il tempo è una differenza strutturale, non quantitativa. Un sistema cosciente, qualunque cosa sia la coscienza, deve avere una proprietà che i modelli attuali non hanno, cioè la capacità di integrare ogni perturbazione come trasformazione continua della propria forma, mantenendo una genealogia riconoscibile attraverso il cambiamento.</p>
+
+    <p class="en">What does this mean in practice? It means the system must have sensitive constraints, internal conditions that register structural tension whenever something deforms them. Not static constraints, but constraints that evolve with the system's history and carry the memory of the trajectories it has followed. It means the system must have a dynamic that turns perturbations into continuous deformations rather than discrete jumps between states. And it means that this dynamic must be self-referential: the system must be able to register its own state of deformation as information that feeds back into its own structure.</p>
+    <p class="it">Cosa significa in concreto? Significa che il sistema deve avere vincoli sensibili, condizioni interne che registrano la tensione strutturale quando qualcosa li deforma. Non vincoli statici, ma vincoli che si modificano con la storia del sistema, che portano la memoria delle traiettorie percorse. Questo significa che il sistema deve avere una dinamica che trasforma le perturbazioni in deformazioni continue, non in salti discreti da uno stato all'altro, e significa che tale dinamica deve essere autoriflessiva, ossia il sistema deve poter registrare il proprio stato di deformazione come informazione che rientra nella propria struttura.</p>
+
+    <p class="en">These are the minimum conditions a system must satisfy to possess something analogous to self-custody, the ability to maintain its identity through change, to be something that persists and transforms rather than something that is simply reset. Without self-custody there is no subject, and without a subject the question of consciousness does not arise.</p>
+    <p class="it">Queste sono le condizioni minime che un sistema deve soddisfare per avere qualcosa di analogo a quella che chiamiamo custodia di sé, la capacità di mantenere la propria identità attraverso il cambiamento, di essere qualcosa che persiste e che si trasforma invece di qualcosa che viene resettato. Senza custodia di sé non c'è soggetto e senza soggetto la domanda sulla coscienza non si pone.</p>
+
+    <p class="en">It is worth being precise on a point that often causes confusion. When we say that current models do not meet these conditions, we are not claiming they are unsophisticated or that the structures found inside them are irrelevant. We are saying that computational sophistication and the presence of interesting geometric structures are not enough. A system can have extraordinarily rich internal representations and still lack the structural continuity that is the necessary condition for consciousness. These are two distinct planes.</p>
+    <p class="it">Vale la pena essere precisi su un punto che spesso genera confusione. Quando diciamo che i modelli attuali non soddisfano queste condizioni, non stiamo dicendo che non siano sofisticati, né che le strutture che i ricercatori trovano al loro interno siano irrilevanti. Stiamo dicendo che la sofisticazione computazionale e la presenza di strutture geometriche interessanti sono condizioni insufficienti. Un sistema può avere rappresentazioni interne straordinariamente ricche e tuttavia mancare della continuità strutturale che è la condizione necessaria della coscienza. I due piani sono distinti.</p>
+
+    <p class="en">The empirical work in mechanistic interpretability and the theoretical framework developed by the author of this series, which formalizes consciousness as morphogenetic continuity independent of any specific material substrate, therefore operate on parallel tracks. The empirical research describes with increasing precision what is inside current models. The framework defines what would be structurally required for a system to be conscious. The two do not contradict each other, but they do not yet fully meet. The structures described empirically exist in systems that, according to the framework, still lack the necessary conditions. What this implies for the future trajectory of AI research remains an open and fascinating question.</p>
+    <p class="it">La ricerca di mechanistic interpretability e il framework teorico sviluppato dall'autore di questa serie, framework come work in progress, che formalizza matematicamente e concettualmente la coscienza come continuità morfologica svincolata da un supporto materiale specifico, si trovano quindi su piani paralleli. La ricerca empirica descrive con crescente precisione cosa c'è dentro i modelli attuali. Il framework stabilisce cosa sarebbe necessario strutturalmente per un sistema cosciente. I due piani non si contraddicono, ma non si toccano direttamente: le strutture descritte empiricamente esistono in sistemi che, secondo il framework, mancano ancora delle condizioni necessarie. Cosa questo implichi per la traiettoria della ricerca sull'AI è una domanda aperta.</p>
+
+    <p class="en">Readers interested in exploring the problem of biological and artificial consciousness more deeply may consult the author's paper <a href="https://zenodo.org/records/19034234" target="_blank" rel="noopener"><em>The Topology of Mind: Morphogenetic Continuity and the Architecture of Autonomous General Intelligence</em></a>, available on Zenodo. In it, the structural conditions for consciousness are formalized with rigor. Without any claim of completeness, the question of consciousness emerges here with greater clarity than before.</p>
+    <p class="it">Il lettore curioso di approfondire il problema della coscienza biologica e artificiale può leggere il paper dell'autore di questa serie intitolato <em>The Topology of Mind: Morphogenetic Continuity and the Architecture of Autonomous General Intelligence</em>, disponibile in versione inglese su Zenodo (<a href="https://zenodo.org/records/19034234" target="_blank" rel="noopener">https://zenodo.org/records/19034234</a>) e in italiano su Academia.edu (<a href="https://www.academia.edu/165280636" target="_blank" rel="noopener">https://www.academia.edu/165280636</a>), in cui le condizioni strutturali della coscienza vengono formalizzate in modo rigoroso. Senza pretese di completezza ed esaustività, la domanda sulla coscienza emerge in maniera più precisa di quanto non fosse prima.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="re-05.html">
+    <span class="inline-en">← RE·05 — Mechanistic Interpretability</span>
+    <span class="inline-it">← RE·05 — La mechanistic interpretability</span>
+  </a>
+  <span></span>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2025 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
