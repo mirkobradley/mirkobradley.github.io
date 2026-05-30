@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RE·05 — Mechanistic Interpretability / La mechanistic interpretability</title>
+  <meta name="description" content="The machine does not read itself. We read it. What mechanistic interpretability is, how it works, and the paradox at the heart of AI research." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Reverse Engineering AI</span>
+    <span class="inline-it">Per un'ingegneria inversa dell'AI</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">RE·05 — Mechanistic Interpretability</span>
+    <span class="inline-it">RE·05 — La mechanistic interpretability</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">Mechanistic interpretability is sometimes understood as a property of AI systems, a measure of how transparent or readable they are in the abstract. That framing is misleading. What the field actually describes is a practice: the researcher's active work of interpreting the internal mechanisms of the machine. The machine does not read itself. We read it, using the tools of reverse engineering, just as an anatomist dissects an organism to understand how it functions. The subject is always the researcher. The object is always the internal structure of the model.</p>
+    <p class="it">Il termine <em>mechanistic interpretability</em> è spesso tradotto in italiano come "interpretabilità meccanica", ma quella traduzione è fuorviante. Suggerisce una proprietà del sistema, quanto esso sia trasparente o leggibile in astratto. Quello di cui parliamo è invece la pratica dell'interpretazione dei meccanismi interni della macchina da parte del ricercatore. La macchina non si legge da sola, siamo noi che la leggiamo con gli strumenti del reverse engineering, come un anatomista che apre un organismo per capire come funziona. Il soggetto è il ricercatore e l'oggetto è la struttura interna del modello.</p>
+
+    <p class="en">This conceptual clarification defines the entire epistemic stance of the field. Dario Amodei, CEO of Anthropic, has stated explicitly: "We don't know how our own AI creations work." That sentence, spoken by someone who built the systems, is the necessary premise for mechanistic interpretability as a discipline. If we already knew, there would be nothing left to interpret.</p>
+    <p class="it">Questa precisazione concettuale conferisce forma alla postura epistemica dell'intero campo. Dario Amodei, CEO di Anthropic, ha detto esplicitamente: "Non sappiamo come funzionano le nostre stesse creazioni di AI." Quella frase, pronunciata da chi ha costruito il sistema, è la premessa necessaria della mechanistic interpretability come disciplina: se lo sapessimo, non ci sarebbe nulla da interpretare.</p>
+
+    <p class="en">A useful distinction should be made here. Andrej Karpathy, one of the most prominent communicators in AI, works from the inside out. He starts from the mathematics, the transformer architecture, and the training mechanisms, building understanding from the ground up. He answers the question: how is it made? Researchers in mechanistic interpretability, beginning with Chris Olah and the Anthropic team, work in the opposite direction. The model is already trained. It exists as a finished object, and they study it from the outside as one would study an organism. They answer the question: what has it become? The two approaches are not incompatible, but they are fundamentally different, and the second is the more recent one.</p>
+    <p class="it">C'è un'utile distinzione da fare a questo punto. Andrej Karpathy, uno dei più noti divulgatori dell'AI, lavora dall'interno verso l'esterno, parte dalla matematica, dall'architettura del transformer, dai meccanismi di addestramento e costruisce comprensione dal basso. Risponde alla domanda: come è fatto? I ricercatori di mechanistic interpretability, a partire da Chris Olah e dal team di Anthropic, lavorano nella direzione opposta. Il modello è già addestrato, è già lì come oggetto compiuto e lo si studia dall'esterno come si studierebbe un organismo. Rispondono alla domanda: cosa è diventato? Le due direzioni non sono incompatibili, ma sono fondamentalmente diverse e la seconda è la più nuova.</p>
+
+    <p class="en">The concrete tools of mechanistic interpretability are <em>features</em> and <em>circuits</em>. A feature is an internal representation that corresponds to an interpretable concept: a direction in activation space that consistently activates in the presence of certain inputs. The most famous example is the Golden Gate Bridge feature discovered by Anthropic in Claude 3 Sonnet, a specific neural activation pattern that fires every time the model processes information related to the Golden Gate Bridge. When researchers artificially amplified that feature, the model began inserting references to the Golden Gate Bridge in every response, regardless of context. A circuit, by contrast, is a connected sequence of features, the computational pathway the model follows from prompt to response, traceable step by step.</p>
+    <p class="it">Gli strumenti concreti della mechanistic interpretability sono due: <em>features</em> e <em>circuits</em>. Una feature è una rappresentazione interna che corrisponde a un concetto interpretabile: una direzione nello spazio delle attivazioni che si attiva in modo consistente in presenza di certi input. Il caso più famoso è la feature del Golden Gate Bridge trovata da Anthropic in Claude 3 Sonnet: una specifica configurazione di attivazioni neurali che si attiva ogni volta che il modello processa informazioni legate al Golden Gate Bridge. Quando i ricercatori hanno amplificato artificialmente quella feature, il modello ha cominciato a inserire il Golden Gate Bridge in ogni risposta, indipendentemente dal contesto. Un circuito è invece una sequenza di features collegate, cioè il percorso computazionale che il modello segue dal prompt alla risposta, tracciabile passo per passo.</p>
+
+    <p class="en">In 2025, Anthropic significantly expanded this research. Rather than identifying isolated features, researchers began tracing sequences of features, mapping the full paths the models take from prompt to output. This revealed which concepts activate first, how activation propagates through the network, which intermediate representations emerge, and how the model eventually arrives at its final response. The MIT Technology Review named mechanistic interpretability one of the ten breakthrough technologies of 2026.</p>
+    <p class="it">Nel 2025 Anthropic ha esteso questa ricerca in modo significativo. Invece di identificare features isolate, i ricercatori hanno cominciato a tracciare sequenze di features, mappando i percorsi che i modelli seguono dal prompt alla risposta. Questo ha rivelato quali concetti si attivano inizialmente, come l'attivazione si propaga attraverso la rete, quali rappresentazioni intermedie emergono, e come il modello arriva infine a un output. Il MIT Technology Review ha riconosciuto la mechanistic interpretability come una delle dieci tecnologie breakthrough del 2026.</p>
+
+    <p class="en">Here the paradox that this series has been preparing since the first essay becomes clear. Inside the laboratories building these systems, two groups rarely engage in deep dialogue. On one side are the designers who understand the mathematics of the architecture, manage training, and optimize performance. Their goal is functional. The question of what is actually emerging inside is not their main concern. On the other side are the mechanistic interpretability researchers who examine what comes out, trace features and circuits, and describe structures. Yet they often do so without a broader theory explaining why those structures take the form they do and what they imply.</p>
+    <p class="it">Qui emerge il paradosso che questa serie ha preparato fin dal primo essay. Dentro i laboratori che costruiscono questi sistemi esistono due gruppi che raramente si parlano in modo profondo. Da un lato ci sono i progettisti che conoscono la matematica dell'architettura, gestiscono l'addestramento e ottimizzano la performance. Il loro obiettivo è funzionale. La domanda su cosa emerge dall'interno non è la loro domanda. Dall'altro ci sono i ricercatori di mechanistic interpretability che guardano cosa esce fuori, tracciano features e circuiti, descrivono strutture. Ma lo fanno spesso senza una teoria che dica loro perché quelle strutture hanno la forma che hanno e cosa implicano.</p>
+
+    <p class="en">The black box persists not because of a lack of tools, but because of the lack of a shared theoretical framework capable of connecting the two directions. The designers lack a theory of what should emerge. The interpreters lack a theory of why it emerges. As a result, the most significant discoveries, causally active emotion vectors, metacognitive circuits, geometries that mirror human neuroscience, are described with impressive empirical precision but remain suspended, without a deeper explanation of what they mean for the nature of the system that contains them. This paradox unfolds inside the very labs building the world's most advanced AI systems.</p>
+    <p class="it">La black box persiste non per mancanza di strumenti, ma per mancanza di un framework teorico condiviso che connetta le due direzioni. I progettisti non hanno la teoria di cosa dovrebbe emergere e i ricercatori dell'interpretazione non hanno una teoria del perché emerge. Il risultato è che le scoperte più significative, vettori emotivi causalmente attivi, circuiti metacognitivi, geometrie che rispecchiano le neuroscienze umane, vengono descritte con precisione empirica ma restano sospese, senza una spiegazione di cosa significano per la natura del sistema che le ospita. Questo paradosso avviene all'interno degli stessi laboratori che costruiscono i sistemi più avanzati del mondo.</p>
+
+    <p class="en">Mechanistic interpretability is still a young discipline, yet it has already produced an irreversible shift in perspective. Before its development, the question "what is inside the model?" was largely rhetorical. We knew there were weights, activations, and gradients, but the conceptual level seemed inaccessible. Today we know that the conceptual level is accessible, that there are readable structures, and that reverse engineering the internal mechanisms is possible. What is still missing is the theory that transforms these empirical discoveries into genuine understanding. The next essay represents an attempt in that direction.</p>
+    <p class="it">La mechanistic interpretability è giovane come disciplina formale, ma ha già prodotto un cambio di prospettiva irreversibile. Prima del suo sviluppo, la domanda "cosa c'è dentro il modello?" era retorica, si sapeva che c'erano pesi, attivazioni, gradienti, ma il livello concettuale sembrava inaccessibile. Ora sappiamo che il livello concettuale è accessibile, che ci sono strutture leggibili e che il reverse engineering dei meccanismi interni è possibile. Quello che manca è la teoria che trasformi quelle scoperte empiriche in comprensione. Il prossimo essay è un tentativo in quella direzione.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="re-04.html">
+    <span class="inline-en">← RE·04 — Vectors, Constraints, Language</span>
+    <span class="inline-it">← RE·04 — Vettori, vincoli, linguaggio</span>
+  </a>
+  <a href="re-06.html">
+    <span class="inline-en">RE·06 — The Conscious AI Project →</span>
+    <span class="inline-it">RE·06 — Il progetto di AI cosciente →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2025 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
