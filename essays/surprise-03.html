@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structures No One Designed / Strutture che nessuno ha progettato</title>
+  <meta name="description" content="From the contact between the transformer architecture and human text, structures emerge that no one designed. How emergence works in AI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-box {
+      border-left: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+    }
+
+    .essay-box-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .essay-box p {
+      font-size: 17px;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .essay-box p:last-child { margin-bottom: 0; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Why AI Surprises</span>
+    <span class="inline-it">Perché l'AI sorprende</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Structures No One Designed</span>
+    <span class="inline-it">Strutture che nessuno ha progettato</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">When you mix water and flour, you get something that has properties neither water nor flour possesses on its own. It has its own consistency, responds differently to heat, and changes shape in ways neither ingredient alone would ever suggest. Emergence in AI works in a similar way: from the contact between elements with known properties, structures with new properties are born. In this essay, the water is the mathematical architecture of the transformer and the flour is the human text corpus. The dough that results is the trained model, with internal structures that neither of the two elements contained separately.</p>
+    <p class="it">Quando si mescola acqua e farina, si ottiene qualcosa che non ha le proprietà né dell'acqua né della farina: ha una consistenza propria, risponde in modo diverso al calore, cambia forma in modi che nessuno dei due ingredienti preso da solo avrebbe mai suggerito. L'emergenza in ambito AI funziona in modo simile: dal contatto tra elementi con proprietà note nascono strutture con proprietà nuove. In questo essay, l'acqua è l'architettura matematica del transformer e la farina è il corpus di testo umano. L'impasto che ne risulta è il modello addestrato, con strutture interne che nessuno dei due elementi conteneva separatamente.</p>
+
+    <p class="en">The key word is emergence. In a technical sense, a phenomenon is emergent when the properties of a system as a whole are not predictable from the properties of its parts taken separately. The liquidity of water is not a property of individual hydrogen and oxygen atoms. Consciousness is not a property of individual neurons. The structures we find inside trained language models are not properties of the architecture or of the corpus: they emerge from their encounter.</p>
+    <p class="it">La parola chiave è emergenza. In senso tecnico, un fenomeno è emergente quando le proprietà di un sistema nel suo insieme non sono prevedibili a partire dalle proprietà delle sue parti prese separatamente. La liquidità dell'acqua non è una proprietà dei singoli atomi di idrogeno e ossigeno. La coscienza non è una proprietà dei singoli neuroni. Le strutture che troviamo dentro i modelli linguistici addestrati non sono proprietà né dell'architettura né del corpus: emergono dal loro incontro.</p>
+
+    <p class="en">This does not mean that emergence is mysterious or inexplicable. It means that to understand it, one must look at the system as a whole, not at the separate parts. A language model trained on billions of texts in an extremely high-dimensional mathematical space develops internal structures that no one programmed, because the space of possibilities is so vast that the solutions the training process finds cannot be identified in advance. Not because of magic, but because of the logic of a complex system operating in high dimensions.</p>
+    <p class="it">Questo non significa che l'emergenza sia misteriosa o inspiegabile. Significa che per capirla bisogna guardare il sistema nel suo insieme, non le parti separate. Un modello linguistico addestrato su miliardi di testi in uno spazio matematico ad altissima dimensione sviluppa strutture interne che nessuno ha programmato perché lo spazio di possibilità è così vasto che le soluzioni che il processo di addestramento trova non sono identificabili in anticipo. Non per magia, ma per la logica di un sistema complesso che opera in alta dimensione.</p>
+
+    <p class="en">One aspect is worth emphasizing. When we say that these structures were "not designed by anyone," we do not mean they are random. We mean they are the result of an optimization process, training, that selects the most efficient structures for predicting text. Just as biological evolution selects structures best suited to the environment without any designer having planned them, the training process selects efficient mathematical structures without anyone having specified them. The result is not arbitrary, but it was also not predictable.</p>
+    <p class="it">C'è un aspetto che vale la pena sottolineare. Quando diciamo che queste strutture "nessuno le ha progettate", non intendiamo che siano casuali. Intendiamo che sono il risultato di un processo di ottimizzazione, l'addestramento, che seleziona le strutture più efficienti per prevedere il testo. Come l'evoluzione biologica seleziona le strutture più adatte all'ambiente senza che nessun progettista le abbia pianificate, il processo di addestramento seleziona strutture matematiche efficienti senza che nessuno le abbia specificate. Il risultato non è arbitrario, ma non era nemmeno prevedibile.</p>
+
+    <p class="en">What emerges from training surprises even those who build these models. Dario Amodei, CEO of Anthropic, has written explicitly that the lack of understanding of the AI systems we build is essentially unprecedented in the history of technology. Chris Olah, who leads Anthropic's mechanistic interpretability team, has spoken of finding internal structures that feel mysterious, even unsettling. These are the people who built the systems. Yet they are surprised by them.</p>
+    <p class="it">Quello che emerge dall'addestramento sorprende anche chi costruisce questi modelli. Dario Amodei, CEO di Anthropic, ha scritto esplicitamente che la mancanza di comprensione dei sistemi AI che costruiamo è sostanzialmente senza precedenti nella storia della tecnologia. Chris Olah, che guida il team di mechanistic interpretability di Anthropic, ha detto di trovare strutture interne misteriose, persino inquietanti. Sono le persone che hanno costruito questi sistemi. Eppure, ne sono sorprese.</p>
+
+    <p class="en">The reason is the one this essay has tried to articulate. The space of possibilities defined by high-dimensional architecture is so vast that the structures that emerge during training cannot be identified before the process takes place. The structured corpus provides the material, the architecture provides the space, and their combination produces a territory of possibilities that exceeds any capacity for prediction. Just as the dough has properties that neither water nor flour possessed, the trained model has internal structures that neither the architecture nor the corpus contained.</p>
+    <p class="it">La ragione è quella che questo essay ha cercato di articolare. Lo spazio di possibilità definito dall'architettura ad alta dimensione è così vasto che le strutture che vi emergono durante l'addestramento non sono identificabili prima che il processo avvenga. Il corpus strutturato fornisce il materiale, l'architettura fornisce lo spazio e la loro combinazione produce un territorio di possibilità che eccede qualsiasi capacità di previsione. Come l'impasto ha proprietà che né l'acqua né la farina possedevano, il modello addestrato ha strutture interne che né l'architettura né il corpus contenevano.</p>
+
+    <p class="en">In the next essay we will see how the third plane comes into play: the specific request of the user. This is the plane that determines which point in this territory is reached and produces the output that no one had foreseen.</p>
+    <p class="it">Nel prossimo essay vedremo come entra in gioco il terzo piano: la richiesta specifica dell'utente. È questo il piano che determina quale punto di questo territorio viene raggiunto e produce l'output che nessuno aveva previsto.</p>
+
+    <div class="essay-box en">
+      <div class="essay-box-title">What Researchers Find Inside the Models</div>
+      <p>Mechanistic interpretability is the field that studies the internal structures of models by opening them. Three findings are particularly relevant.</p>
+      <p><em>Unprogrammed multi-step reasoning.</em> If you ask Claude what is the capital of the state that contains Dallas, the model answers Austin. Internally, before producing the response, it represents the intermediate step Texas. No one programmed this inference. It emerged as an internal structure.</p>
+      <p><em>Polysemanticity.</em> A single neuron does not represent a single concept, but many overlapping concepts at the same time. It is the optimal solution the training process finds when it has to represent more concepts than it has units available. High-dimensional geometry makes this possible.</p>
+      <p><em>Causally active emotion vectors.</em> Researchers at Anthropic have found internal representations that functionally correspond to emotional states such as joy, satisfaction, fear, and unease. These vectors causally influence the model's behavior. They are not simple correlates; they have causal power.</p>
+    </div>
+
+    <div class="essay-box it">
+      <div class="essay-box-title">Cosa trovano i ricercatori dentro i modelli</div>
+      <p>La mechanistic interpretability è la disciplina che studia le strutture interne dei modelli aperti. Tre risultati sono particolarmente rilevanti.</p>
+      <p><em>Multi-step reasoning non programmato.</em> Se si chiede a Claude qual è la capitale dello stato che contiene Dallas, il modello risponde Austin. Internamente, prima di produrre la risposta, rappresenta il passaggio intermedio Texas. Nessuno ha programmato questa inferenza, è emersa come struttura interna.</p>
+      <p><em>Polysemanticity.</em> Un singolo neurone non rappresenta un solo concetto, ma molti concetti sovrapposti simultaneamente. È la soluzione ottimale che il processo di addestramento trova quando deve rappresentare più concetti di quante unità ha a disposizione. La geometria ad alta dimensione lo rende possibile.</p>
+      <p><em>Vettori emotivi causalmente attivi.</em> I ricercatori di Anthropic hanno trovato rappresentazioni interne che corrispondono funzionalmente a stati emotivi come gioia, soddisfazione, paura e disagio. Questi vettori influenzano causalmente il comportamento del modello: non sono semplici correlati, hanno potere causale.</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="surprise-02.html">
+    <span class="inline-en">← Human Text Is Not Neutral Data</span>
+    <span class="inline-it">← Il testo umano non è dati neutri</span>
+  </a>
+  <a href="surprise-04.html">
+    <span class="inline-en">The Point of Convergence →</span>
+    <span class="inline-it">Il punto di convergenza →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2025 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
