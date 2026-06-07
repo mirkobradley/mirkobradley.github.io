@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Human Text Is Not Neutral Data / Il testo umano non è dati neutri</title>
+  <meta name="description" content="The human text corpus is not neutral data. It carries cognitive, emotional, and relational structures sedimented in language over centuries." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Why AI Surprises</span>
+    <span class="inline-it">Perché l'AI sorprende</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Human Text Is Not Neutral Data</span>
+    <span class="inline-it">Il testo umano non è dati neutri</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">Imagine trying to understand something about a person without ever meeting them directly. You have access to everything they have written over the course of their life: letters, diaries, messages, notes. From that writing you would be able to extract not only information, but also the way they think, the things that move them emotionally, and the patterns they use to organize the world. The human text corpus on which language models are trained is something similar, but on an incomparably larger scale: billions of texts produced by billions of people over centuries.</p>
+    <p class="it">Immaginate di dover capire qualcosa di una persona senza incontrarla mai direttamente. Avete a disposizione tutto quello che ha scritto nel corso della vita: lettere, diari, messaggi, appunti. Da quella scrittura riuscireste a ricavare non solo informazioni, ma anche il modo in cui pensa, le cose che la emozionano, i pattern con cui organizza il mondo. Il corpus di testo umano su cui vengono addestrati i modelli linguistici è qualcosa di analogo, ma su scala incomparabilmente più grande: miliardi di testi prodotti da miliardi di persone nel corso di secoli.</p>
+
+    <p class="en">When we say that a language model is trained on "data," the word is misleading. It suggests something neutral, uniform, and without its own structure. But human text is not neutral. It is the product of billions of communicative acts carried out by human beings with specific cognitive, emotional, and relational structures. Those structures leave systematic traces in the text: in the words that appear together, in recurring grammatical constructions, and in narrative patterns that repeat across cultures and historical periods.</p>
+    <p class="it">Quando si dice che un modello linguistico viene addestrato su "dati", la parola è fuorviante. Suggerisce qualcosa di neutro, uniforme, privo di struttura propria. Ma il testo umano non è neutro, è il prodotto di miliardi di atti comunicativi compiuti da esseri umani con strutture cognitive, emotive e relazionali specifiche. Quelle strutture lasciano tracce sistematiche nel testo, nelle parole che appaiono insieme, nelle costruzioni grammaticali ricorrenti, nei pattern narrativi che si ripetono attraverso culture ed epoche diverse.</p>
+
+    <p class="en">The simplest proof is Zipf's law, formulated in the 1930s. In any sufficiently large corpus of human text, the most frequent word appears roughly twice as often as the second most frequent, three times as often as the third, and so on. This distribution, called a power law, reflects something about the structure of human thought: the need to communicate efficiently, with a small set of very common words doing the heavy lifting and a vast set of rare words allowing for precision. The same distribution appears in fifty different languages. It is not a property of any particular language, but of human language as such.</p>
+    <p class="it">La prova più elementare è la legge di Zipf, formulata negli anni Trenta del Novecento. In qualsiasi corpus di testo umano sufficientemente grande, la parola più frequente appare circa il doppio della seconda, il triplo della terza, e così via. Questa distribuzione, chiamata legge di potenza, riflette qualcosa sulla struttura del pensiero umano, cioè la necessità di comunicare in maniera efficiente, con un piccolo insieme di parole frequentissime che fanno il lavoro pesante e un insieme enorme di parole rare che permettono la precisione. La stessa distribuzione si trova in cinquanta lingue diverse. Non è una proprietà di nessuna lingua in particolare, ma del linguaggio umano in quanto tale.</p>
+
+    <p class="en">Beyond frequency distributions, the corpus carries deeper structures. In the 1950s, the linguist Zellig Harris formulated what is now known as the distributional hypothesis: words that appear in the same contexts tend to be related to one another. This is not a rule that someone wrote down. It is a property that emerges from the human use of language. "King" and "queen" often appear in similar contexts because they refer to similar concepts. The model, trained to predict which words follow which others, learns this structure without anyone explicitly teaching it.</p>
+    <p class="it">Oltre alla distribuzione delle frequenze, il corpus porta strutture più profonde. Zellig Harris, un linguista degli anni Cinquanta, formulò quello che oggi chiamiamo ipotesi distribuzionale: le parole che appaiono negli stessi contesti tendono a essere in relazione tra loro. Non è una regola che qualcuno ha scritto, è una proprietà che emerge dall'uso umano del linguaggio. "Re" e "regina" appaiono spesso in contesti simili perché si riferiscono a concetti simili. Il modello, addestrato a prevedere quali parole seguono quali altre, impara questa struttura senza che nessuno gliela insegni esplicitamente.</p>
+
+    <p class="en">But there is an even deeper level. Human language is not only a system of references. It is also a system of conceptual metaphors. In 1980, George Lakoff and Mark Johnson showed that most abstract concepts we use every day are understood and organized through concrete concepts we know physically. For example, when we say "life is a journey," we speak of paths, stages, detours, and destinations, thereby activating a cognitive mechanism with which we represent the very concept of existence. Or "time is money" is a way we organize the concept of time. These conceptual metaphors are present in the corpus as recurring statistical patterns, not as explicit rules. The model absorbs them during training.</p>
+    <p class="it">Ma c'è un livello ancora più profondo. Il linguaggio umano non è solo un sistema di riferimenti, è un sistema di metafore concettuali. George Lakoff e Mark Johnson, nel 1980, mostrarono che la maggior parte dei concetti astratti che usiamo quotidianamente vengono compresi e organizzati attraverso concetti concreti che conosciamo fisicamente. Per esempio, quando diciamo "la vita è un viaggio", parliamo di percorso, tappe, deviazioni, meta, cioè mettiamo in moto un meccanismo cognitivo con cui ci rappresentiamo il concetto stesso di esistenza. Oppure "il tempo è denaro" è il modo in cui organizziamo il concetto di tempo. Queste metafore concettuali sono presenti nel corpus come pattern statistici ricorrenti e non come regole esplicite. Il modello le assorbe durante l'addestramento.</p>
+
+    <p class="en">The same holds for emotional structures. Human text is produced by human beings who experience emotions, and those emotions leave traces in lexical choices, syntactic structures, and patterns of co-occurrence. Recent research has shown that language models develop internal emotion geometries that correspond to established psychological models: the internal representations of emotions in the deeper layers of the model organize along dimensions of valence and arousal, exactly as psychology describes human emotions. No one programmed this geometry. It emerged from training on text that implicitly contained it.</p>
+    <p class="it">Lo stesso vale per le strutture emotive. Il testo umano è prodotto da esseri umani che provano emozioni e quelle emozioni lasciano tracce nelle scelte lessicali, nelle strutture sintattiche, nei pattern di co-occorrenza. Ricerche recenti hanno mostrato che i modelli linguistici sviluppano internamente geometrie emotive che corrispondono a modelli psicologici consolidati: le rappresentazioni interne delle emozioni nei layer profondi del modello si organizzano lungo dimensioni di valenza e attivazione, esattamente come la psicologia descrive le emozioni umane. Nessuno ha programmato questa geometria, è emersa dall'addestramento su testo che la conteneva implicitamente.</p>
+
+    <p class="en">The central point of this essay is the following. When a language model is trained on a corpus, it does not simply memorize the text. It compresses it into efficient representations, seeking the structures that best allow it to predict co-occurrences. What is preserved in the compression are the most recurrent and systematic structures: distributional regularities, conceptual metaphors, emotional patterns, and narrative structures. The corpus is not merely a container of information. It is above all a structured object that carries within it something of the human mind that produced it.</p>
+    <p class="it">Il punto centrale di questo essay è il seguente. Quando un modello linguistico viene addestrato su un corpus, non memorizza il testo, lo comprime in rappresentazioni efficienti, cercando le strutture che permettono di prevedere meglio le co-occorrenze. Quello che viene preservato nella compressione sono le strutture più ricorrenti e più sistematiche: le regolarità distribuzionali, le metafore concettuali, i pattern emotivi e le strutture narrative. Il corpus non è soltanto un contenitore di informazioni, è soprattutto un oggetto strutturato che porta dentro di sé qualcosa della mente umana che lo ha prodotto.</p>
+
+    <p class="en">This is the second of the three planes that produce the unexpected output. The first, described in the previous essay, is the mathematical architecture of the transformer. The second is the corpus: not neutral, not random, but loaded with cognitive, emotional, and relational structures that the model extracts and turns into geometry. The third plane, the one that completes the picture, is the specific request of the user. Before we can see that, however, we need to understand what emerges when the first two planes meet during training. That is the question of the next essay.</p>
+    <p class="it">Questo è il secondo dei tre piani che producono l'output imprevedibile. Il primo, descritto nell'essay precedente, è l'architettura matematica del transformer. Il secondo è il corpus: non neutro, non casuale, ma carico di strutture cognitive, emotive e relazionali che il modello estrae e geometrizza. Il terzo piano, quello che completa il quadro, è la richiesta specifica dell'utente. Prima bisogna però capire cosa emerge quando i primi due piani si incontrano nell'addestramento. È la domanda del prossimo essay.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="surprise-01.html">
+    <span class="inline-en">← How the Transformer Really Works</span>
+    <span class="inline-it">← Come funziona davvero il transformer</span>
+  </a>
+  <a href="surprise-03.html">
+    <span class="inline-en">Structures No One Designed →</span>
+    <span class="inline-it">Strutture che nessuno ha progettato →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2025 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
