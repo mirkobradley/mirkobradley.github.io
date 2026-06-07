@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI·01 — How the Transformer Really Works / Come funziona davvero il transformer</title>
+  <meta name="description" content="The transformer performs mathematical operations on numbers. Understanding which operations, and why they produce what they produce, is the starting point of this series." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-formula {
+      text-align: center;
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin: 0.8rem 0 1.6rem;
+      font-style: italic;
+    }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Why AI Surprises</span>
+    <span class="inline-it">Perché l'AI sorprende</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">AI·01 — How the Transformer Really Works</span>
+    <span class="inline-it">AI·01 — Come funziona davvero il transformer</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">Imagine you have a text written in a language you do not know. You cannot understand the words, but you can observe which words appear close to each other, which ones repeat together, and which ones occupy similar positions in sentences. From those observations you can build a map of the relationships between the symbols, even without knowing what they mean. The transformer does something structurally similar, on a vastly larger scale and with precise mathematical tools.</p>
+    <p class="it">Immaginate di avere davanti un testo scritto in una lingua che non conoscete. Non capite le parole, ma potete osservare quali parole appaiono vicine, quali si ripetono insieme e quali occupano posizioni simili nelle frasi. Da quelle osservazioni riuscite a costruire una mappa delle relazioni tra i simboli, anche senza sapere cosa significano. Il transformer fa qualcosa di strutturalmente analogo, su scala enormemente maggiore e con strumenti matematici precisi.</p>
+
+    <p class="en">When we say that an AI model "reads" a text, we are using a metaphor. The model does not read in the way a human being does. It performs mathematical operations on numbers. Understanding which operations it performs, and why they produce what they produce, is the starting point of this series.</p>
+    <p class="it">Quando si dice che un modello di intelligenza artificiale "legge" un testo, si usa una metafora. Il modello non legge nel senso in cui lo fa un essere umano, esegue operazioni matematiche su numeri. Capire quali operazioni, e perché producono quello che producono, è il punto di partenza di questa serie.</p>
+
+    <p class="en">The first step is turning words into numbers. Every word, or more precisely every fragment of text the model treats as a basic unit, is converted into a vector, that is, a list of numbers, typically between 768 and 12,288 values. This vector is not arbitrary. It is learned during training so that words with similar meanings end up close to each other in mathematical space. "King" and "queen" are closer to each other than "king" and "table," because those words appear in similar contexts in the text the model was trained on, and the training process encoded that proximity in geometric form.</p>
+    <p class="it">Il primo passaggio è la trasformazione delle parole in numeri. Ogni parola, o più precisamente ogni frammento di testo che il modello usa come unità di base, viene convertita in un vettore, cioè in una lista di numeri, tipicamente tra 768 e 12.288 valori. Questo vettore non è arbitrario, ma viene appreso durante l'addestramento in modo che parole con significati simili si trovino vicine nello spazio matematico. "Re" e "regina" sono più vicini tra loro che "re" e "tavolo", perché quelle parole appaiono in contesti simili nel testo su cui il modello è stato addestrato e il processo di addestramento ha codificato quella prossimità in forma geometrica.</p>
+
+    <p class="en">The second step is the central mechanism of the transformer: attention. To understand it, consider a sentence: "The bank refused the loan because it was in difficulty." Who was in difficulty, the bank or the applicant? To answer, one must understand the relationships between the words. The attention mechanism does exactly this: for each word in the sentence, it calculates how relevant every other word is for interpreting it correctly. The word "it" looks at all the other words in the sentence and decides which one to connect to, based on the entire context.</p>
+    <p class="it">Il secondo passaggio è il meccanismo centrale del transformer: l'attenzione. Per capirlo, immaginiamo una frase: "La banca ha rifiutato il prestito perché era in difficoltà." Chi era in difficoltà, la banca o il richiedente? Per rispondere, bisogna capire le relazioni tra le parole. Il meccanismo di attenzione fa esattamente questo: per ogni parola della frase, calcola quanto ogni altra parola è rilevante per interpretarla correttamente. La parola "era" guarda tutte le altre parole della frase e decide a quale agganciarsi, in funzione del contesto intero.</p>
+
+    <p class="en">This calculation happens through three projections of the same starting vector: a <em>query</em> (what this word is looking for), a <em>key</em> (what every other word offers), and a <em>value</em> (what every other word transmits if selected). The dot product between query and key measures relevance. The softmax function turns those scores into weights that sum to one. The final result is a weighted average of the values, in which the most relevant words carry more weight. The equation is:</p>
+    <p class="it">Questo calcolo avviene attraverso tre proiezioni dello stesso vettore di partenza: una <em>query</em> (cosa sta cercando questa parola), una <em>key</em> (cosa offre ogni altra parola) e un <em>value</em> (cosa trasmette ogni altra parola se viene selezionata). Il prodotto scalare tra query e key misura la rilevanza. La funzione softmax converte quei punteggi in pesi che sommano a uno. Il risultato finale è una media pesata dei valori, in cui le parole più rilevanti pesano di più. L'equazione è:</p>
+
+    <div class="essay-formula en">Attention(<em>Q</em>, <em>K</em>, <em>V</em>) = softmax(<em>QK</em><sup><em>T</em></sup> / √<em>d</em><sub><em>k</em></sub>) <em>V</em>.</div>
+    <div class="essay-formula it">Attention(<em>Q</em>, <em>K</em>, <em>V</em>) = softmax(<em>QK</em><sup><em>T</em></sup> / √<em>d</em><sub><em>k</em></sub>) <em>V</em>.</div>
+
+    <p class="en">This is the only equation in this series. It is worth reading it slowly. <em>Q</em>, <em>K</em>, and <em>V</em> are the three projections described above. The product <em>QK</em><sup><em>T</em></sup> measures the relevance between every pair of words. The factor √<em>d</em><sub><em>k</em></sub> stabilizes the calculations as dimensions grow. Softmax turns the scores into weights. The final product with <em>V</em> produces the result: a new representation of each word, enriched by the context.</p>
+    <p class="it">Questa è l'unica equazione di questa serie. Vale la pena leggerla con calma. <em>Q</em>, <em>K</em> e <em>V</em> sono le tre proiezioni descritte sopra. Il prodotto <em>QK</em><sup><em>T</em></sup> misura la rilevanza tra ogni coppia di parole. Il fattore √<em>d</em><sub><em>k</em></sub> serve a stabilizzare i calcoli al crescere delle dimensioni. Softmax trasforma i punteggi in pesi. Il prodotto finale per <em>V</em> produce il risultato: una nuova rappresentazione di ogni parola, arricchita dal contesto.</p>
+
+    <p class="en">The transformer applies this mechanism multiple times in parallel, each time with different parameters: each attention "head" looks at the sequence from a different perspective. One might capture grammatical relations, another semantic relations, another long-distance references. The results are combined.</p>
+    <p class="it">Il transformer applica questo meccanismo più volte in parallelo, con parametri diversi ogni volta: ogni "testa" di attenzione guarda la sequenza da una prospettiva diversa. Una potrebbe catturare relazioni grammaticali, un'altra relazioni semantiche, un'altra ancora riferimenti a distanza. I risultati vengono combinati.</p>
+
+    <p class="en">On top of this comes the residual stream: a vector that runs through the entire network from beginning to end, accumulating contributions from every layer without erasing them. It is not a technical detail. It is what allows the model to build increasingly rich representations as the text moves through the layers. Each layer reads from the residual stream, adds something, and writes it back. The final result emerges from the accumulation of all these contributions.</p>
+    <p class="it">A tutto questo si aggiunge il residual stream: un vettore che attraversa l'intera rete dall'inizio alla fine, accumulando contributi da ogni layer senza cancellarli. Non è un dettaglio tecnico, è ciò che permette al modello di costruire rappresentazioni sempre più ricche mentre il testo avanza attraverso i layer. Ogni layer legge dal residual stream, aggiunge qualcosa e lo riscrive. Il risultato finale emerge dall'accumulo di tutti questi contributi.</p>
+
+    <p class="en">What we have described is a system of linear mathematical operations, with some non-linearities (the softmax, the activation functions in the feed-forward layers). Nothing more. Yet from this system emerge structures that no one designed: multi-step reasoning, emotional representations, metacognitive abilities. How is that possible? That is the question this series sets out to answer, one essay at a time.</p>
+    <p class="it">Quello che abbiamo descritto è un sistema di operazioni matematiche lineari, con alcune non linearità (la softmax, le funzioni di attivazione nei layer feed-forward). Niente di più. Eppure, da questo sistema emergono strutture che nessuno ha progettato: ragionamenti in più passi, rappresentazioni emotive, capacità metacognitive. Come è possibile? È la domanda cui questa serie si propone di rispondere, un essay alla volta.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <span></span>
+  <a href="ai-02.html">
+    <span class="inline-en">AI·02 — Human Text Is Not Neutral Data →</span>
+    <span class="inline-it">AI·02 — Il testo umano non è dati neutri →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2025 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.essay-formula').forEach(el => {
+    if (el.classList.contains('en')) el.style.display = lang === 'en' ? 'block' : 'none';
+    if (el.classList.contains('it')) el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
