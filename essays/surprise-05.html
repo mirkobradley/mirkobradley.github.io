@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why We Cannot Reconstruct the Path / Perché non possiamo ricostruire il percorso</title>
+  <meta name="description" content="Once an AI output is produced, can we reconstruct the path that generated it? The answer is no, for reasons that are both epistemic and ontological." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-body a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--accent);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+
+    .essay-body a:hover { opacity: 0.7; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Why AI Surprises</span>
+    <span class="inline-it">Perché l'AI sorprende</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Why We Cannot Reconstruct the Path</span>
+    <span class="inline-it">Perché non possiamo ricostruire il percorso</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">Pour three glasses of different liquids into a basin and stir. The result is there in front of you, visible and measurable. But can you reconstruct exactly how many milliliters were in the second glass, and precisely where in the basin they ended up, and how they interacted molecule by molecule with the other liquids? No. Not because the tools are lacking, but because the mixing has produced something new in which the original contributions no longer exist as separate entities.</p>
+    <p class="it">Versate tre bicchieri di liquidi diversi in una bacinella e mescolate. Il risultato è lì davanti a voi, visibile e misurabile. Ma potete ricostruire esattamente quanti millilitri erano nel secondo bicchiere, e in quale punto preciso della bacinella sono finiti, e come hanno interagito molecola per molecola con gli altri liquidi? No. Non perché manchino gli strumenti, ma perché la mescolanza ha prodotto qualcosa di nuovo in cui i contributi originali non esistono più come entità separate.</p>
+
+    <p class="en">The previous essay showed that the output of a language model was not calculable in advance. This essay answers the question that naturally follows: once the output has been produced, can we at least reconstruct afterward the path that generated it? The answer is no, and the reasons are two, distinct and both precise.</p>
+    <p class="it">L'essay precedente ha mostrato che l'output di un modello linguistico non era calcolabile in anticipo. Questo essay risponde alla domanda che ne segue naturalmente: una volta prodotto l'output, possiamo almeno ricostruire a ritroso il percorso che lo ha generato? La risposta è no, e le ragioni sono due, distinte ed entrambe precise.</p>
+
+    <p class="en">The first reason is epistemic. Mechanistic interpretability, the field that studies the internal structures of models, has shown that it is possible to trace segments of the computational path after the fact. The Dallas→Texas→Austin example demonstrates this: after the model answered, researchers reconstructed the internal path that produced that response. But this reconstruction is partial. For complex outputs, the path runs through hundreds of layers, thousands of internal structures, and overlapping, interacting circuits. The complexity exceeds the capacity for complete mapping. This is a limit that goes beyond technical difficulty, because the internal structure of the path was built through billions of interdependent updates, and this interdependence cannot be fully reconstructed, for reasons the next paragraph clarifies.</p>
+    <p class="it">La prima ragione è epistemica. La mechanistic interpretability, la disciplina che studia le strutture interne dei modelli, ha mostrato che è possibile tracciare a posteriori segmenti del percorso computazionale. L'esempio di Dallas→Texas→Austin lo dimostra: dopo che il modello ha risposto, i ricercatori hanno ricostruito il percorso interno che ha prodotto quella risposta. Ma questa ricostruzione è parziale. Per output complessi, il percorso attraversa centinaia di layer, migliaia di strutture interne, circuiti sovrapposti e interagenti. La complessità supera la capacità di mappatura completa. È un limite che va oltre la difficoltà tecnica, perché la struttura interna del percorso si è costituita attraverso miliardi di aggiornamenti interdipendenti e questa interdipendenza non è ricostruibile in senso pieno per le ragioni che il paragrafo successivo chiarisce.</p>
+
+    <p class="en">The second reason is ontological and deeper. During training, every parameter update modified the overall structure of the model, which modified the way the next example was processed, which modified the structure, and so on for billions of iterations. The final result is a global configuration in which the original contributions have dissolved. The waters have merged, and this is an ontological fact.</p>
+    <p class="it">La seconda ragione è ontologica ed è più profonda. Durante l'addestramento, ogni aggiornamento dei parametri ha modificato la struttura complessiva del modello, che ha modificato il modo in cui l'esempio successivo è stato processato, che ha modificato la struttura, e così via per miliardi di iterazioni. Il risultato finale è una configurazione globale in cui i contributi originali si sono dissolti. Le acque si sono confuse ed è un fatto ontologico.</p>
+
+    <p class="en">This is the crucial point. The original contributions, every single text in the corpus, every single update during training, no longer exist as separable entities in the final structure. The latter is ontologically different from the sum of its contributions. Reconstructing the complete path is not impossible because the data have been lost. It is impossible because those data, in the sense of separable and traceable contributions, never existed as such in the configuration the model developed.</p>
+    <p class="it">Questo è il punto cruciale. I contributi originali, ogni singolo testo del corpus, ogni singolo aggiornamento durante l'addestramento, non esistono più come entità separabili nella struttura finale. Quest'ultima è ontologicamente diversa dalla somma dei suoi contributi. Ricostruire il percorso completo non è impossibile perché i dati sono andati persi, è impossibile perché quei dati, nel senso di contributi separabili e tracciabili, non sono mai esistiti come tali nella configurazione che il modello ha sviluppato.</p>
+
+    <p class="en">Let us return to the liquids. The basin contains something measurable. You can analyze the chemical composition of the result with all the precision you want, but this analysis will not tell you how many milliliters were in the second glass, because that distinction has dissolved in the mixture. The language model operates according to the same logic, on an enormously larger scale: billions of parameters have merged through billions of updates, and the distinction between the contributions has dissolved in the global configuration.</p>
+    <p class="it">Torniamo ai liquidi. La bacinella contiene qualcosa di misurabile. Potete analizzare la composizione chimica del risultato con tutta la precisione che volete, ma questa analisi non vi dirà quanti millilitri erano nel secondo bicchiere, perché quella distinzione si è dissolta nella mescolanza. Il modello linguistico funziona nella stessa logica, su scala enormemente maggiore: miliardi di parametri si sono mescolati attraverso miliardi di aggiornamenti e la distinzione tra i contributi si è dissolta nella configurazione globale.</p>
+
+    <p class="en">This structural opacity is not unique to artificial models. Human language has the same structure. It has been constituted through millennia of interactions among millions of speakers, each of whom modified the language while using it, which modified the speakers, in a circle with no external point of entry. A first linguistic subject is inconceivable, because a linguistic subject presupposes an already existing linguistic community, and a linguistic community presupposes linguistic subjects. The model, trained on that language, inherits this structural opacity. Its irreducibility reflects the irreducibility of the phenomenon that generated it.</p>
+    <p class="it">Questa opacità strutturale non è propria solo dei modelli artificiali. Il linguaggio umano ha la stessa struttura, si è costituito attraverso millenni di interazioni tra milioni di parlanti, ciascuno dei quali ha modificato la lingua mentre la usava, che ha modificato i parlanti, in un circolo senza punto di ingresso esterno. Non è concepibile un primo soggetto linguistico, perché un soggetto linguistico presuppone una comunità linguistica già esistente e una comunità linguistica presuppone soggetti linguistici. Il modello, addestrato su quel linguaggio, eredita questa opacità strutturale. La sua irriducibilità riflette l'irriducibilità del fenomeno che lo ha generato.</p>
+
+    <p class="en">This series has passed through five stations: the mathematical architecture of the transformer, the human text corpus as a structured object, the structures no one designed, the point of convergence among the three planes, and now the irreducible opacity of the path. The result is not a definitive explanation, but a more precise map of the problem. AI surprises us because it operates in a space of possibilities that exceeds any prediction, because it produces new facts in the world, and because the path that leads there dissolves at the moment it is constituted. Like waters that merge.</p>
+    <p class="it">Questa serie ha percorso cinque stazioni. L'architettura matematica del transformer. Il corpus di testo umano come oggetto strutturato. Le strutture che nessuno ha progettato. Il punto di convergenza tra i tre piani. E ora l'opacità irriducibile del percorso. Il risultato non è una spiegazione definitiva, ma una mappa più precisa del problema. L'AI sorprende perché opera in uno spazio di possibilità che eccede qualsiasi previsione, perché produce fatti nuovi nel mondo e perché il percorso che la porta lì si dissolve nel momento in cui si costituisce. Come le acque che si confondono.</p>
+
+    <p class="en">Those who wish to explore the formal foundations of this series can read the author's paper <a href="https://zenodo.org/records/20580349" target="_blank" rel="noopener"><em>The Unpredicted Output: Mathematical Structure and Human Interaction in Artificial Intelligence</em></a>, available on Zenodo and in Italian on <a href="https://www.academia.edu/168354560" target="_blank" rel="noopener">Academia.edu</a>.</p>
+    <p class="it">Chi vuole approfondire le basi formali di questa serie può leggere il paper dell'autore <em>The Unpredicted Output: Mathematical Structure and Human Interaction in Artificial Intelligence</em>, disponibile su <a href="https://zenodo.org/records/20580349" target="_blank" rel="noopener">Zenodo</a> e in versione italiana su <a href="https://www.academia.edu/168354560" target="_blank" rel="noopener">Academia.edu</a>.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="surprise-04.html">
+    <span class="inline-en">← The Point of Convergence</span>
+    <span class="inline-it">← Il punto di convergenza</span>
+  </a>
+  <span></span>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2025 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
