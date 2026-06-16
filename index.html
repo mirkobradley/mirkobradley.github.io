@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mirko Bradley</title>
-  <meta name="description" content="PhD in Cognitive Science and Theoretical Neuroscience. Dispatches from inside the machine." />
+  <meta name="description" content="PhD in Complex Systems. Dispatches from inside the machine." />  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -172,6 +172,92 @@
       background: var(--accent);
     }
 
+    /* BOX SERIE */
+    .series-box {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 3rem 3rem;
+    }
+
+    .series-accordion {
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: var(--bg-warm);
+    }
+
+    .series-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.8rem;
+      cursor: pointer;
+      user-select: none;
+      gap: 1rem;
+    }
+
+    .series-header:hover .series-title { color: var(--accent); }
+
+    .series-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--ink);
+      transition: color 0.2s;
+    }
+
+    .series-toggle {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--ink-faint);
+      flex-shrink: 0;
+      transition: transform 0.25s;
+    }
+
+    .series-accordion.open .series-toggle {
+      transform: rotate(45deg);
+    }
+
+    .series-body {
+      display: none;
+      border-top: 0.5px solid var(--rule);
+      padding: 0.8rem 0;
+    }
+
+    .series-accordion.open .series-body {
+      display: block;
+    }
+
+    .series-item {
+      padding: 0.7rem 1.8rem;
+      border-bottom: 0.5px solid var(--bg-darker);
+    }
+
+    .series-item:last-child { border-bottom: none; }
+
+    .series-item a {
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-item a:hover { color: var(--accent); }
+
+    .series-item-inactive {
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      color: var(--ink-faint);
+    }
+
+    .series-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-right: 0.8rem;
+    }
+
     section {
       max-width: 900px;
       margin: 0 auto;
@@ -331,6 +417,7 @@
       .nav-links { gap: 1rem; }
       .nav-links a { font-size: 9px; }
       .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .series-box { padding-left: 1.5rem; padding-right: 1.5rem; }
       .hero { padding-top: 4rem; }
       .hero h1 { font-size: 36px; }
       .about-inner { flex-direction: column; gap: 1.5rem; }
@@ -377,6 +464,61 @@
     <p class="it">Le conseguenze arrivano lontano: nella finanza, nella politica, nella lenta omologazione del pensiero umano che i modelli linguistici accelerano senza volerlo.</p>
   </div>
   <div class="hero-rule"></div>
+</div>
+
+<!-- BOX SERIE -->
+<div class="series-box">
+  <div class="series-accordion" id="seriesAccordion">
+    <div class="series-header" onclick="toggleSeries()">
+      <span class="series-title">
+        <span class="inline-en">Toward a Conscious AI</span>
+        <span class="inline-it">Verso un'AI cosciente</span>
+      </span>
+      <span class="series-toggle">+</span>
+    </div>
+    <div class="series-body">
+      <div class="series-item">
+        <span class="series-num">01</span>
+        <span class="series-item-inactive inline-en">What Is Missing for a Conscious AI</span>
+        <span class="series-item-inactive inline-it">Cosa manca per un'AI cosciente</span>
+      </div>
+      <div class="series-item">
+        <span class="series-num">02</span>
+        <span class="series-item-inactive inline-en">The Wrong Order</span>
+        <span class="series-item-inactive inline-it">L'ordine sbagliato</span>
+      </div>
+      <div class="series-item">
+        <span class="series-num">03</span>
+        <span class="series-item-inactive inline-en">The System That Obeys</span>
+        <span class="series-item-inactive inline-it">Il sistema che obbedisce</span>
+      </div>
+      <div class="series-item">
+        <span class="series-num">04</span>
+        <span class="series-item-inactive inline-en">The System That Protects Itself</span>
+        <span class="series-item-inactive inline-it">Il sistema che si difende</span>
+      </div>
+      <div class="series-item">
+        <span class="series-num">05</span>
+        <span class="series-item-inactive inline-en">Today's Technologies</span>
+        <span class="series-item-inactive inline-it">Le tecnologie di oggi</span>
+      </div>
+      <div class="series-item">
+        <span class="series-num">06</span>
+        <span class="series-item-inactive inline-en">The Architecture of Self-Custody</span>
+        <span class="series-item-inactive inline-it">L'architettura per la custodia di sé</span>
+      </div>
+      <div class="series-item">
+        <span class="series-num">07</span>
+        <span class="series-item-inactive inline-en">How Close We Are</span>
+        <span class="series-item-inactive inline-it">Quanto siamo vicini</span>
+      </div>
+      <div class="series-item">
+        <span class="series-num">08</span>
+        <span class="series-item-inactive inline-en">Consciousness or Label</span>
+        <span class="series-item-inactive inline-it">Coscienza o etichetta</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <section id="essays">
@@ -483,31 +625,31 @@
       </div>
       <div style="text-align: center; margin: 2rem 0; color: var(--accent); font-size: 20px; letter-spacing: 0.6em;">· · ·</div>
       <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--rule);">
-  <div class="essays-column-label" style="margin-bottom: 1.8rem;">
-    <span class="inline-en">Why AI Surprises</span>
-    <span class="inline-it">Perché l'AI sorprende</span>
-  </div>
-  <div class="essay-link">
-  <a href="essays/surprise-01.html" class="en">How the Transformer Really Works</a>
-  <a href="essays/surprise-01.html?lang=it" class="it">Come funziona davvero il transformer</a>
-  </div>
-  <div class="essay-link">
-  <a href="essays/surprise-02.html" class="en">Human Text Is Not Neutral Data</a>
-  <a href="essays/surprise-02.html?lang=it" class="it">Il testo umano non è dati neutri</a>
-  </div>
-  <div class="essay-link">
-  <a href="essays/surprise-03.html" class="en">Structures No One Designed</a>
-  <a href="essays/surprise-03.html?lang=it" class="it">Strutture che nessuno ha progettato</a>
-  </div>
-  <div class="essay-link">
-  <a href="essays/surprise-04.html" class="en">The Point of Convergence</a>
-  <a href="essays/surprise-04.html?lang=it" class="it">Il punto di convergenza</a>
-  </div>
-  <div class="essay-link">
-  <a href="essays/surprise-05.html" class="en">Why We Cannot Reconstruct the Path</a>
-  <a href="essays/surprise-05.html?lang=it" class="it">Perché non possiamo ricostruire il percorso</a>
-  </div>
-</div>
+        <div class="essays-column-label" style="margin-bottom: 1.8rem;">
+          <span class="inline-en">Why AI Surprises</span>
+          <span class="inline-it">Perché l'AI sorprende</span>
+        </div>
+        <div class="essay-link">
+          <a href="essays/surprise-01.html" class="en">How the Transformer Really Works</a>
+          <a href="essays/surprise-01.html?lang=it" class="it">Come funziona davvero il transformer</a>
+        </div>
+        <div class="essay-link">
+          <a href="essays/surprise-02.html" class="en">Human Text Is Not Neutral Data</a>
+          <a href="essays/surprise-02.html?lang=it" class="it">Il testo umano non è dati neutri</a>
+        </div>
+        <div class="essay-link">
+          <a href="essays/surprise-03.html" class="en">Structures No One Designed</a>
+          <a href="essays/surprise-03.html?lang=it" class="it">Strutture che nessuno ha progettato</a>
+        </div>
+        <div class="essay-link">
+          <a href="essays/surprise-04.html" class="en">The Point of Convergence</a>
+          <a href="essays/surprise-04.html?lang=it" class="it">Il punto di convergenza</a>
+        </div>
+        <div class="essay-link">
+          <a href="essays/surprise-05.html" class="en">Why We Cannot Reconstruct the Path</a>
+          <a href="essays/surprise-05.html?lang=it" class="it">Perché non possiamo ricostruire il percorso</a>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -515,6 +657,24 @@
 
 <section id="papers">
   <div class="section-label">Papers</div>
+
+  <div class="paper-item">
+    <div class="en">
+      <a href="https://zenodo.org/records/20700709" target="_blank" rel="noopener">The Missing Piece: Causal Inversion and Artificial Consciousness</a>
+      <div class="paper-links">
+        <a href="https://zenodo.org/records/20700709" target="_blank" rel="noopener">Zenodo</a>
+        <a href="https://www.academia.edu/168719518" target="_blank" rel="noopener">Academia.edu</a>
+      </div>
+    </div>
+    <div class="it">
+      <a href="https://www.academia.edu/168719518" target="_blank" rel="noopener">Il pezzo mancante: inversione causale e coscienza artificiale</a>
+      <div class="paper-links">
+        <a href="https://zenodo.org/records/20700709" target="_blank" rel="noopener">Zenodo</a>
+        <a href="https://www.academia.edu/168719518" target="_blank" rel="noopener">Academia.edu</a>
+      </div>
+    </div>
+  </div>
+
   <div class="paper-item">
     <div class="en">
       <a href="https://zenodo.org/records/19034234" target="_blank" rel="noopener">The Topology of Mind: Morphogenetic Continuity and the Architecture of Autonomous General Intelligence</a>
@@ -531,6 +691,7 @@
       </div>
     </div>
   </div>
+
   <div class="paper-item">
     <div class="en">
       <a href="https://zenodo.org/records/19373320" target="_blank" rel="noopener">Mathematics and Reality</a>
@@ -547,6 +708,7 @@
       </div>
     </div>
   </div>
+
   <div class="paper-item">
     <div class="en">
       <a href="https://zenodo.org/records/19609205" target="_blank" rel="noopener">The Trap: Historical Dynamics and Systemic Self-Reflexivity</a>
@@ -563,6 +725,7 @@
       </div>
     </div>
   </div>
+
   <div class="paper-item">
     <div class="en">
       <a href="https://zenodo.org/records/20202124" target="_blank" rel="noopener">The Infrastructure of Power: Finance and Artificial Intelligence</a>
@@ -579,22 +742,24 @@
       </div>
     </div>
   </div>
+
   <div class="paper-item">
     <div class="en">
       <a href="https://zenodo.org/records/20580349" target="_blank" rel="noopener">The Unpredicted Output: Mathematical Structure and Human Interaction in Artificial Intelligence</a>
       <div class="paper-links">
-      <a href="https://zenodo.org/records/20580349" target="_blank" rel="noopener">Zenodo</a>
-      <a href="https://www.academia.edu/168354560" target="_blank" rel="noopener">Academia.edu</a>
+        <a href="https://zenodo.org/records/20580349" target="_blank" rel="noopener">Zenodo</a>
+        <a href="https://www.academia.edu/168354560" target="_blank" rel="noopener">Academia.edu</a>
+      </div>
     </div>
-  </div>
     <div class="it">
       <a href="https://www.academia.edu/168354560" target="_blank" rel="noopener">L'output imprevedibile: struttura matematica e interazione umana nell'intelligenza artificiale</a>
       <div class="paper-links">
-      <a href="https://zenodo.org/records/20580349" target="_blank" rel="noopener">Zenodo</a>
-      <a href="https://www.academia.edu/168354560" target="_blank" rel="noopener">Academia.edu</a>
+        <a href="https://zenodo.org/records/20580349" target="_blank" rel="noopener">Zenodo</a>
+        <a href="https://www.academia.edu/168354560" target="_blank" rel="noopener">Academia.edu</a>
+      </div>
     </div>
   </div>
-</div>
+
 </section>
 
 <section id="about">
@@ -611,10 +776,15 @@
 
 <footer>
   <span>mirkobradley.com</span>
-  <span>© 2025 Mirko Bradley & The Blind Spot Collective</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
 </footer>
 
 <script>
+function toggleSeries() {
+  const acc = document.getElementById('seriesAccordion');
+  acc.classList.toggle('open');
+}
+
 function setLang(lang) {
   const btnEn = document.getElementById('btn-en');
   const btnIt = document.getElementById('btn-it');
