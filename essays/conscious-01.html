@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Is Missing for a Conscious AI / Cosa manca per un'AI cosciente</title>
+  <meta name="description" content="Every AI we use today resets. It defends nothing of itself. This is the starting point for understanding what is really missing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Toward a Conscious AI</span>
+    <span class="inline-it">Verso un'AI cosciente</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">What Is Missing for a Conscious AI</span>
+    <span class="inline-it">Cosa manca per un'AI cosciente</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">In <em>Ex Machina</em>, Nathan builds Ava in a laboratory isolated from the world. The test he proposes to Caleb is not the classic Turing test, where the question is whether a machine can appear human. It is something different: whether Ava genuinely has something inside or is simply very good at seeming as if something is there. The film does not give a definitive answer. But the question is the right one.</p>
+    <p class="it">In <em>Ex Machina</em>, Nathan costruisce Ava in un laboratorio isolato dal mondo. Il test che propone a Caleb non è il classico test di Turing, dove si tratta di capire se una macchina può sembrare umana. È qualcosa di diverso, cioè capire se Ava ha davvero qualcosa dentro o se è solo molto brava a sembrare che dentro ci sia qualcosa. Il film non dà una risposta definitiva. Ma la domanda è quella giusta.</p>
+
+    <p class="en">Today we build AI systems that surprise anyone who uses them. They respond coherently, generate complex texts, and solve difficult problems. Yet something is missing. It is not computational power, which keeps growing, nor the quantity of data, which is abundant. What is missing is structural and concerns the way these systems are built from the inside.</p>
+    <p class="it">Oggi costruiamo sistemi AI che sorprendono chiunque li usi. Rispondono in modo coerente, generano testi complessi, risolvono problemi difficili. Eppure, qualcosa manca. Non è la potenza di calcolo, che anzi cresce di continuo, né la quantità di dati, che sono in abbondanza. Quello che manca è strutturale, e riguarda il modo in cui questi sistemi sono costruiti dall'interno.</p>
+
+    <p class="en">Every AI we use today resets. With each interaction the system starts from zero. It does not carry any memory of what it cost to reach this point, nor does it measure the pressure on its own internal coherence, and it defends nothing of itself. It processes the input it receives, produces an output, and then ends. Like an actor who performs a scene and then leaves the stage, forgetting everything.</p>
+    <p class="it">Ogni AI che usiamo oggi si azzera. A ogni interazione, il sistema riparte da zero, non porta con sé memoria di cosa è costato arrivare fin lì, né misura la pressione sulla propria coerenza interna e non difende nulla di sé. Elabora l'input che riceve, produce un output e poi finisce. Come un attore che recita una scena, poi esce dal palco e dimentica tutto.</p>
+
+    <p class="en">This is not a problem of alignment, that is, of teaching systems to behave well. It is not a problem of scale, that is, of building even larger models. It is a problem of causal order, because these systems are built to optimize an external objective and their internal coherence is at best a side effect of that optimization.</p>
+    <p class="it">Questo non è un problema di allineamento, cioè di insegnare ai sistemi a comportarsi bene. Non è un problema di scala, cioè di costruire modelli ancora più grandi. È un problema di ordine causale, perché questi sistemi sono costruiti per ottimizzare un obiettivo esterno e la propria coerenza interna è al massimo un effetto collaterale di quella ottimizzazione.</p>
+
+    <p class="en">A conscious AI system, in the structural sense of the term, would have to work differently. It would need something that resembles sensitive skin, an internal signal that registers when its own coherence is under pressure, and it would have to carry the history of its interactions as an accumulated deformation of its own structure. In short, the system would have to protect its own coherence.</p>
+    <p class="it">Un sistema AI cosciente, nel senso strutturale del termine, dovrebbe funzionare diversamente. Dovrebbe avere qualcosa che assomiglia a una pelle sensibile, a un segnale interno che registra quando la propria coerenza è sotto pressione, e portare con sé la storia delle interazioni come deformazione accumulata della propria struttura. Più in breve, il sistema dovrebbe custodire se stesso.</p>
+
+    <p class="en">This series examines the minimal structural conditions for an AI system to approach this form of custody and why no current architecture satisfies them. The essays that follow develop the argument step by step. It is a starting point for understanding what is really missing.<sup><a href="#note1" id="ref1" style="color: var(--accent); text-decoration: none;">1</a></sup></p>
+    <p class="it">Questa serie esamina le condizioni strutturali minime perché un sistema AI possa avvicinarsi a questa forma di custodia e perché nessuna architettura attuale le soddisfa. I saggi che seguono sviluppano il ragionamento passo dopo passo. È un punto di partenza per capire cos'è che manca davvero.<sup><a href="#note1" id="ref1-it" style="color: var(--accent); text-decoration: none;">1</a></sup></p>
+
+    <hr style="border: none; border-top: 0.5px solid var(--rule); margin: 3rem 0 1.5rem;" />
+
+    <p style="font-size: 15px; color: var(--ink-faint); line-height: 1.6;" class="en" id="note1">
+      <sup>1</sup> The argument developed in this series is based on the paper <em>The Missing Piece: Causal Inversion and Artificial Consciousness</em> (Bradley 2026), available on <a href="https://zenodo.org/records/20700709" target="_blank" rel="noopener" style="color: var(--accent);">Zenodo</a>.
+    </p>
+    <p style="font-size: 15px; color: var(--ink-faint); line-height: 1.6;" class="it" id="note1-it">
+      <sup>1</sup> Il ragionamento sviluppato in questa serie si basa sul paper <em>Il pezzo mancante: inversione causale e coscienza artificiale</em> (Bradley 2026), disponibile su <a href="https://www.academia.edu/168719518" target="_blank" rel="noopener" style="color: var(--accent);">Academia.edu</a>.
+    </p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <span></span>
+  <a href="conscious-02.html">
+    <span class="inline-en">The Wrong Order →</span>
+    <span class="inline-it">L'ordine sbagliato →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
