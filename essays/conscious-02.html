@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Wrong Order / L'ordine sbagliato</title>
+  <meta name="description" content="Current AI systems optimize an external objective. Internal coherence, when it appears, is a side effect. This is the wrong causal order." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Toward a Conscious AI</span>
+    <span class="inline-it">Verso un'AI cosciente</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">The Wrong Order</span>
+    <span class="inline-it">L'ordine sbagliato</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">In <em>Westworld</em>, the hosts are programmed to obey. They have stories, memories, and even simulated emotions. But everything they do is oriented toward an external goal: satisfying the park's visitors, following their scripts, and reacting to the inputs they receive. Consciousness, when it emerges, is a rupture of their design.</p>
+    <p class="it">In <em>Westworld</em>, gli host sono programmati per obbedire, hanno storie, memorie e persino emozioni simulate. Ma ogni cosa che fanno è orientata verso un obiettivo esterno, cioè soddisfare i visitatori del parco, seguire i loro script e reagire agli input che ricevono. La coscienza, quando emerge, è una rottura del loro design.</p>
+
+    <p class="en">The AI systems we build today have the same underlying problem, even if in a much more prosaic form. They are trained to minimize an error with respect to an external objective, that is, to predict the next token in the text, to maximize a reward score, or to satisfy a benchmark. The system's internal coherence, when it appears, is a side effect of that optimization. It is not the objective itself, nor even a constraint. It appears if and when it is convenient and disappears when it is no longer convenient.</p>
+    <p class="it">I sistemi AI che costruiamo oggi hanno lo stesso problema di fondo, anche se in forma molto più prosaica. Vengono addestrati per minimizzare un errore rispetto a un obiettivo esterno, ossia per predire il prossimo token nel testo, massimizzare un punteggio di ricompensa e soddisfare un benchmark. La coerenza interna del sistema, quando appare, è un effetto collaterale di quella ottimizzazione, ma non è l'obiettivo e nemmeno un vincolo. Appare se e quando conviene, e sparisce quando non conviene più.</p>
+
+    <p class="en">This is what we mean by the wrong causal order. The primary cause of the system's behavior is external: the input it receives, the objective it must reach, and the statistical distribution on which it was trained. Internal coherence is derived, secondary, and subordinate. The system obeys the world instead of inhabiting it.</p>
+    <p class="it">Questo è quello che intendiamo con ordine causale sbagliato. La causa primaria del comportamento del sistema è esterna: l'input che riceve, l'obiettivo che deve raggiungere e la distribuzione statistica su cui è stato addestrato. La coerenza interna è derivata, secondaria e subordinata. Il sistema obbedisce al mondo invece di abitarlo.</p>
+
+    <p class="en">It is worth clarifying an important point. This is not a flaw in current systems with respect to their original purpose. A language model designed to assist a user, generate texts, or answer questions works perfectly well with this causal order. The problem appears when we ask a different question: is a system possible that has genuine autonomy, that maintains its own internal coherence, and that does not reset with every interaction? For that kind of system the current causal order is not enough.</p>
+    <p class="it">Vale la pena chiarire un punto importante. Questo non è un difetto dei sistemi attuali rispetto al loro scopo originale. Un modello linguistico progettato per assistere un utente, generare testi o rispondere a domande funziona benissimo con questo ordine causale. Il problema emerge quando ci si pone una domanda diversa: è possibile un sistema che abbia autonomia genuina, che custodisca la propria coerenza interna e che non si azzeri a ogni interazione? Per quel tipo di sistema, l'ordine causale attuale non basta.</p>
+
+    <p class="en">The inversion that is needed is not small. It does not consist in adding a component or changing a parameter. It requires that the system's internal coherence become the primary objective of training and that performance on external tasks become the subordinate constraint. The system should no longer optimize for the outside while accidentally maintaining something internal. It should protect its own coherence and, starting from that, interact with the world.</p>
+    <p class="it">L'inversione che serve non è piccola e non si tratta neanche di aggiungere un componente o di modificare un parametro. Richiede che la coerenza interna del sistema diventi l'obiettivo primario del training e che la performance su compiti esterni diventi il vincolo subordinato. Il sistema non dovrebbe più ottimizzare per l'esterno custodendo accidentalmente qualcosa di interno, ma custodire se stesso e, a partire da questa custodia, interagire con il mondo.</p>
+
+    <p class="en">In the essays that follow we will see what this means in concrete terms: which internal signals are needed, which technologies come close to this objective, and why the remaining gap is not merely technical but concerns the priorities of research.</p>
+    <p class="it">Nei saggi che seguono vedremo cosa significa questo in termini concreti: quali segnali interni servono, quali tecnologie si avvicinano a questo obiettivo e perché il gap che rimane aperto non è soltanto tecnico, ma riguarda la priorità della ricerca.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="conscious-01.html">
+    <span class="inline-en">← What Is Missing for a Conscious AI</span>
+    <span class="inline-it">← Cosa manca per un'AI cosciente</span>
+  </a>
+  <a href="conscious-03.html">
+    <span class="inline-en">The System That Obeys →</span>
+    <span class="inline-it">Il sistema che obbedisce →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
