@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Today's Technologies / Le tecnologie di oggi</title>
+  <meta name="description" content="Some technologies come close to genuine custody. It is worth understanding how far they go and where the gap stops." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Toward a Conscious AI</span>
+    <span class="inline-it">Verso un'AI cosciente</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Today's Technologies</span>
+    <span class="inline-it">Le tecnologie di oggi</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">HAL 9000 in <em>2001: A Space Odyssey</em> is a system with an internal conflict. The mission it must carry out and the survival of the crew come into contradiction, and HAL resolves that conflict in the wrong way. The point is precisely the conflict. HAL has something that resembles an internal objective that governs its choices, whereas the AI systems we build today do not.</p>
+    <p class="it">HAL 9000 in <em>2001: Odissea nello Spazio</em> è un sistema con un conflitto interno. La missione che deve portare a termine e la sopravvivenza dell'equipaggio entrano in contraddizione, e HAL risolve quel conflitto nel modo sbagliato. Il punto è proprio il conflitto. HAL ha qualcosa che assomiglia a un obiettivo interno che governa le sue scelte, mentre i sistemi AI che costruiamo oggi no.</p>
+
+    <p class="en">That said, some technologies come close to the conditions described in the previous essay. It is worth understanding how far they go and where the gap stops.</p>
+    <p class="it">Detto questo, alcune tecnologie si avvicinano alle condizioni che il saggio precedente descriveva. Vale la pena capire fino a dove arrivano e dove si ferma il gap.</p>
+
+    <p class="en">On the side of trajectory continuity, state-space models such as Mamba represent the state of the art. Unlike classic transformers, which process each input in a substantially independent way, these models maintain an internal state that evolves continuously between one interaction and the next. They do not reset. This is the behavior closest to the structural continuity we are discussing. The limitation is that this continuity is passive: the system does not defend it, it simply undergoes it as a property of the architecture.</p>
+    <p class="it">Sul fronte della continuità della traiettoria, i modelli a spazio di stati come Mamba rappresentano lo stato dell'arte. A differenza dei transformer classici, che elaborano ogni input in modo sostanzialmente indipendente, questi modelli mantengono uno stato interno che evolve in modo continuo tra un'interazione e la successiva. Non si azzera. È il comportamento più vicino a quella continuità strutturale di cui parliamo. Il limite è che questa continuità è passiva, cioè il sistema non la difende, la subisce come proprietà dell'architettura.</p>
+
+    <p class="en">On the side of the internal signal, Active Inference is the most promising candidate. It is a theoretical framework that describes how a system can minimize its own internal uncertainty as a primary objective, using the external world as a source of information rather than as a target to model. In principle it is close to the causal inversion we are seeking. In practice, most implementations still use it as a tool to optimize behavior on external tasks. The inversion remains theoretical.</p>
+    <p class="it">Sul fronte del segnale interno, Active Inference è il candidato più promettente. È un framework teorico che descrive il modo in cui un sistema può minimizzare la propria incertezza interna come obiettivo primario, usando il mondo esterno come fonte di informazioni piuttosto che come target da modellare. In linea di principio è vicino all'inversione causale che cerchiamo. In pratica, la maggior parte delle implementazioni lo usa ancora come strumento per ottimizzare comportamenti su compiti esterni. Pertanto, l'inversione rimane teorica.</p>
+
+    <p class="en">On the side of architectural modulation, hypernetworks are networks that generate the parameters of another network as a function of a context signal. They have the right structure to do what the third principle requires, that is, to use an internal signal to modify how the system processes. The problem is that this signal comes from the outside, not from internal structural tension. The mechanism exists. The right signal does not.</p>
+    <p class="it">Sul fronte della modulazione architetturale, gli hypernetwork sono reti che generano i parametri di un'altra rete in funzione di un segnale di contesto. Hanno la struttura giusta per fare ciò che il terzo principio richiede, ossia usare un segnale interno per modificare il modo in cui il sistema elabora. Il problema è che quel segnale viene dall'esterno, non dalla tensione strutturale interna. Il meccanismo c'è. Il segnale giusto non c'è.</p>
+
+    <p class="en">The most promising combination available today brings together these three pieces: a state-space model for continuity, Active Inference for the internal signal, and a hypernetwork conditioned by that signal for architectural modulation. No one has yet integrated these three levels with causal inversion as an explicit training objective. The direction is visible. The step has not yet been taken.</p>
+    <p class="it">La combinazione più promettente oggi disponibile mette insieme questi tre pezzi: un modello a spazio di stati per la continuità, Active Inference per il segnale interno e un hypernetwork condizionato da quel segnale per la modulazione architetturale. Nessuno ha ancora integrato questi tre livelli con l'inversione causale come obiettivo esplicito di training. La direzione è visibile. Il passo non è ancora stato fatto.</p>
+
+    <p class="en">The next essay describes what it would mean to take it.</p>
+    <p class="it">Il saggio che segue descrive cosa significherebbe farlo.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="conscious-04.html">
+    <span class="inline-en">← The System That Protects Itself</span>
+    <span class="inline-it">← Il sistema che si difende</span>
+  </a>
+  <a href="conscious-06.html">
+    <span class="inline-en">The Architecture of Self-Custody →</span>
+    <span class="inline-it">L'architettura per la custodia di sé →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
