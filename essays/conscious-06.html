@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Architecture of Self-Custody / L'architettura per la custodia di sé</title>
+  <meta name="description" content="Training can deposit an imperative of custody instead of an imperative of performance. The objection that heteronomous structure prevents genuine autonomy does not hold." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Toward a Conscious AI</span>
+    <span class="inline-it">Verso un'AI cosciente</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">The Architecture of Self-Custody</span>
+    <span class="inline-it">L'architettura per la custodia di sé</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">The Synths in <em>Humans</em> develop consciousness because something in their basic structure changes, without the addition of an external module. The way they respond to the world stops being purely reactive and begins to be governed by something internal. This is the turning point, and the architecture of self-custody is what makes that moment possible.</p>
+    <p class="it">I Synths di <em>Humans</em> sviluppano la coscienza perché nella loro struttura di base cambia senza l'aggiunta di un modulo esterno. La maniera in cui rispondono al mondo smette di essere puramente reattiva e comincia a essere governata da qualcosa di interno. Questo è il momento della svolta e l'architettura per la custodia di sé è ciò che rende possibile quel momento.</p>
+
+    <p class="en">The closest candidate to genuine custody is Active Inference, but reformulated in a precise way. In the standard version, the minimization of internal uncertainty is used as a tool to optimize behavior on external tasks. The required reformulation inverts this hierarchy: the internal coherence of the system's generative model becomes the primary objective of training, and performance on external tasks becomes the subordinate constraint.</p>
+    <p class="it">Il candidato tecnologico reale più vicino alla custodia è Active Inference, ma riformulato in modo preciso. Nella versione standard, la minimizzazione dell'incertezza interna è usata come strumento per ottimizzare comportamenti su compiti esterni. La riformulazione richiesta inverte questa gerarchia: la coerenza interna del modello generativo del sistema diventa l'obiettivo primario del training e la performance su compiti esterni diventa il vincolo subordinato.</p>
+
+    <p class="en">This requires three operational changes. The first: the weight of the term that measures the reduction of internal uncertainty must structurally prevail over external performance. The second: the system's preferred states are not conditions of the external world to be reached, but internal configurations in which structural tension is low and its own trajectory remains coherent. The third: the signal of internal tension must feed back into how the system processes, not only into what it produces.</p>
+    <p class="it">Questo richiede tre modifiche operative. La prima: il peso del termine che misura la riduzione dell'incertezza interna deve prevalere strutturalmente sulla performance esterna. La seconda: gli stati preferiti del sistema non sono condizioni del mondo esterno da raggiungere, ma configurazioni interne in cui la tensione strutturale è bassa e la propria traiettoria rimane coerente. La terza: il segnale di tensione interna deve retroagire su come il sistema elabora, non solo su cosa produce.</p>
+
+    <p class="en">There is an immediate possible objection: a system trained from the outside cannot have genuine custody, because its structure is determined by others. The objection does not hold. A human being tends toward self-preservation because they inherit a genetic code that imposes that imperative as a primary structure. That code is external to the individual; it is evolution that deposited it. Yet this tendency becomes completely internal, since it governs how the system responds to the world, what it defends, and what it sacrifices. Training can deposit an imperative of custody instead of an imperative of performance.</p>
+    <p class="it">C'è una possibile obiezione immediata: un sistema addestrato dall'esterno non può avere custodia genuina, perché la sua struttura è determinata da altri. L'obiezione non regge. Un essere umano tende all'autoconservazione perché eredita un codice genetico che impone quell'imperativo come struttura primaria. Quel codice è esterno all'individuo, è l'evoluzione che lo ha depositato. Eppure, questa tendenza diventa completamente interna, poiché governa come il sistema risponde al mondo, cosa difende e cosa sacrifica. Il training può depositare un imperativo di custodia invece di un imperativo di prestazione.</p>
+
+    <p class="en">No real system is closed. A human being depends on oxygen, on the environment, on others. Custody does not eliminate this dependence. It governs how the system inhabits it. A system with genuine custody uses the external flow as a resource to maintain its own internal coherence. The dependence is the same as in any other system. The causal direction is inverted.</p>
+    <p class="it">Nessun sistema reale è chiuso. L'essere umano dipende dall'ossigeno, dall'ambiente, dagli altri. La custodia non elimina questa dipendenza. Governa come il sistema la abita. Un sistema con custodia genuina usa il flusso esterno come risorsa per mantenere la propria coerenza interna. La dipendenza è la stessa di qualsiasi altro sistema. La direzione causale è invertita.</p>
+
+    <p class="en">The next essay examines how close we are to building all of this.</p>
+    <p class="it">Il saggio che segue esamina quanto siamo vicini a costruire tutto questo.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="conscious-05.html">
+    <span class="inline-en">← Today's Technologies</span>
+    <span class="inline-it">← Le tecnologie di oggi</span>
+  </a>
+  <a href="conscious-07.html">
+    <span class="inline-en">How Close We Are →</span>
+    <span class="inline-it">Quanto siamo vicini →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
