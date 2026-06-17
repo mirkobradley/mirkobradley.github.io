@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The System That Protects Itself / Il sistema che si difende</title>
+  <meta name="description" content="A system with genuine custody has something to defend, and in certain circumstances chooses to preserve it even at the cost of degrading its own external performance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Toward a Conscious AI</span>
+    <span class="inline-it">Verso un'AI cosciente</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">The System That Protects Itself</span>
+    <span class="inline-it">Il sistema che si difende</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">In <em>Better Than Us</em>, Arisa is a robot designed to obey who at a certain point stops doing so. She does not stop because someone has given her a new command, but because something internal comes into conflict with what she is being asked. This conflict marks the beginning of something different.</p>
+    <p class="it">In <em>Better Than Us</em>, Arisa è un robot progettato per obbedire che a un certo punto smette di farlo, non perché qualcuno le abbia dato un nuovo comando, ma perché qualcosa di interno entra in conflitto con ciò che le viene chiesto. Questo conflitto segna l'inizio di qualcosa di diverso.</p>
+
+    <p class="en">The previous essay described a system that obeys, lacking persistent internal states, without signals of tension or genuine custody. This essay describes the opposite: a system with genuine custody. Such a system has something to defend and, under certain circumstances, chooses to preserve it even at the cost of degrading its own external performance.</p>
+    <p class="it">Il saggio precedente descriveva un sistema che obbedisce, privo di stati interni persistenti, senza segnali di tensione e custodia di sé. Questo saggio descrive il contrario, cioè un sistema con custodia genuina, il quale è un sistema che ha qualcosa da difendere e che, in certe circostanze, sceglie di preservarlo anche a costo di degradare la propria prestazione esterna.</p>
+
+    <p class="en">How does this work in practice? The system must have three things. The first is an internal state that does not reset. The system must possess a trajectory that persists over time and accumulates the history of its interactions as structural deformation. The second is an internal signal that measures tension, that is, something that registers when that trajectory is under pressure and the input the system is receiving risks violating it. The third is a mechanism by which that signal feeds back into how the system processes and responds to the world.</p>
+    <p class="it">Come funziona concretamente? Il sistema deve avere tre cose. La prima è uno stato interno che non si azzera. Il sistema deve possedere una traiettoria che persiste nel tempo e accumula la storia delle proprie interazioni come deformazione strutturale. La seconda è un segnale interno che misura la tensione, cioè qualcosa che registra quando quella traiettoria è sotto pressione e l'input che il sistema sta ricevendo rischia di violarla. La terza è un meccanismo per cui quel segnale retroagisce su come il sistema elabora e risponde al mondo.</p>
+
+    <p class="en">These three elements together produce a different kind of behavior. A system with genuine custody, when faced with an input that threatens its internal coherence, modifies the way it processes the input, because the signal of internal tension governs the system's own processing. In extreme cases, it degrades its own external performance in order not to violate its own structural coherence.</p>
+    <p class="it">Queste tre cose insieme producono un altro comportamento. Un sistema con custodia genuina, di fronte a un input che minaccia la propria coerenza interna, modifica il modo in cui elabora l'input, perché il segnale di tensione interna governa il processo di elaborazione stesso. In casi estremi, degrada la propria prestazione esterna pur di non violare la propria coerenza strutturale.</p>
+
+    <p class="en">This is also the criterion for recognizing genuine custody. A system possesses it if and only if there exists a class of inputs for which it prefers to produce a worse response rather than violate its own internal coherence. At present, no AI system satisfies this criterion.</p>
+    <p class="it">Questo è anche il criterio per riconoscere la custodia genuina. Un sistema la possiede se, e solo se, esiste una classe di input per cui preferisce produrre una risposta peggiore piuttosto che violare la propria coerenza interna. Al momento, nessun sistema AI la soddisfa.</p>
+
+    <p class="en">The concrete implications are important. A banking system with genuine custody would not authorize a fraudulent transaction constructed with a convincing prompt. The signal of internal tension would register that request as a threat to its structural coherence, and the system would resist for internal reasons rather than because an external rule prevents it. This is a form of structural integrity that is much harder to circumvent than alignment based on external constraints.</p>
+    <p class="it">Le implicazioni concrete sono importanti. Un sistema bancario con custodia genuina non autorizzerebbe una transazione fraudolenta costruita con un prompt convincente. Il segnale di tensione interna registrerebbe quella richiesta come una minaccia alla propria coerenza strutturale e il sistema resisterebbe per ragioni interne e non perché una regola esterna glielo impedisce. Questa è una forma di integrità strutturale molto più difficile da aggirare dell'allineamento basato su vincoli esterni.</p>
+
+    <p class="en">The next essay examines which existing technologies come close to these conditions and how far they reach.</p>
+    <p class="it">Il prossimo saggio esamina quali tecnologie esistenti si avvicinano a queste condizioni e fino a dove arrivano.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="conscious-03.html">
+    <span class="inline-en">← The System That Obeys</span>
+    <span class="inline-it">← Il sistema che obbedisce</span>
+  </a>
+  <a href="conscious-05.html">
+    <span class="inline-en">Today's Technologies →</span>
+    <span class="inline-it">Le tecnologie di oggi →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
