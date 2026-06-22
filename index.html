@@ -1,3 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mirko Bradley</title>
+  <meta name="description" content="PhD in Complex Systems. Dispatches from inside the machine." />  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 3rem 3rem;
+    }
+
+    .hero-domain {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 62px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-body {
+      max-width: 600px;
+      margin-bottom: 2.4rem;
+    }
+
+    .hero-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    .hero-body p:last-child { margin-bottom: 0; }
+
+    .hero-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+    }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 3rem;
+      border-top: 0.5px solid var(--rule);
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .series-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .series-accordion {
+      border: 0.5px solid var(--rule);
+      border-bottom: none;
+      background: var(--bg-warm);
+    }
+
+    .series-accordion:last-child {
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .series-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.8rem;
+      cursor: pointer;
+      user-select: none;
+      gap: 1rem;
+    }
+
+    .series-header:hover .series-title { color: var(--accent); }
+    .series-header:hover .series-read { color: var(--accent); border-color: var(--accent); }
+
+    .series-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--ink);
+      transition: color 0.2s;
+    }
+
+    .series-read {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      border-bottom: 0.5px solid var(--rule);
+      padding-bottom: 1px;
+      flex-shrink: 0;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .series-accordion.open .series-read {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .series-body {
+      display: none;
+      border-top: 0.5px solid var(--rule);
+      padding: 0.6rem 0;
+    }
+
+    .series-accordion.open .series-body {
+      display: block;
+    }
+
+    .series-item {
+      padding: 0.65rem 1.8rem;
+      border-bottom: 0.5px solid var(--bg-darker);
+    }
+
+    .series-item:last-child { border-bottom: none; }
+
+    .series-item a {
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .series-item a:hover { color: var(--accent); }
+
+    .series-item-inactive {
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      color: var(--ink-faint);
+    }
+
+    .paper-item {
+      padding: 1.2rem 0;
+      border-bottom: 0.5px solid var(--bg-darker);
+    }
+
+    .paper-item a {
+      font-size: 16px;
+      color: var(--ink-mid);
+      text-decoration: none;
+      line-height: 1.5;
+      border-bottom: 0.5px solid var(--rule);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .paper-item a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .paper-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .paper-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--rule);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .paper-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .paper-links a.placeholder {
+      color: var(--ink-faint);
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .about-inner {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .about-photo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 40%;
+      flex-shrink: 0;
+      border: 0.5px solid var(--rule);
+    }
+
+    .about-text p {
+      font-size: 16px;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+
+    .about-email {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      text-decoration: none;
+      margin-top: 0.8rem;
+      display: inline-block;
+      border-bottom: 0.5px solid var(--accent);
+      padding-bottom: 1px;
+    }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 9px; }
+      .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .hero { padding-top: 4rem; }
+      .hero h1 { font-size: 36px; }
+      .about-inner { flex-direction: column; gap: 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+      .series-header { padding: 1rem 1.2rem; }
+      .series-item { padding: 0.65rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="#papers">Papers</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-domain">mirkobradley.com</div>
+  <h1>Mirko Bradley</h1>
+  <div class="hero-subtitle">
+    <span class="inline-en">Dispatches from inside the machine</span>
+    <span class="inline-it">Dall'interno della macchina</span>
+  </div>
+  <div class="hero-body">
+    <p class="en">Is a conscious AI possible? Not only as a philosophical problem, but above all as a mathematical and engineering one. This is the question at the center of everything here.</p>
+    <p class="it">È possibile un'AI cosciente? Non solo come problema filosofico, ma soprattutto come problema matematico e ingegneristico. Questa è la domanda al centro di tutto quello che c'è qui.</p>
+    <p class="en">Understanding how AI actually works, what structures emerge from the model that nobody designed, is the only way to answer it seriously.</p>
+    <p class="it">Capire come l'AI funziona davvero, quali strutture che nessuno ha progettato emergono dal modello, è l'unico modo per rispondere sul serio.</p>
+    <p class="en">The consequences reach further: finance, politics, the slow homogenization of human thought that large language models accelerate without intending to.</p>
+    <p class="it">Le conseguenze arrivano lontano: nella finanza, nella politica, nella lenta omologazione del pensiero umano che i modelli linguistici accelerano senza volerlo.</p>
+  </div>
+  <div class="hero-rule"></div>
+</div>
+
+<section id="essays">
+  <div class="section-label"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></div>
+
+  <div class="series-stack">
+
+    <!-- 1. La forma della mente -->
+    <div class="series-accordion" id="acc-forma">
+      <div class="series-header" onclick="toggleSeries('acc-forma')">
+        <span class="series-title">
+          <span class="inline-en">The Form of Mind</span>
+          <span class="inline-it">La forma della mente</span>
+        </span>
+        <span class="series-read">
+          <span class="inline-en">Read</span>
+          <span class="inline-it">Leggi</span>
+        </span>
+      </div>
+      <div class="series-body">
+        <div class="series-item"><a href="essays/why-consciousness-is-mathematical.html"><span class="inline-en">Why Consciousness Is Mathematical</span><span class="inline-it">Perché la coscienza è matematica</span></a></div>
+        <div class="series-item"><a href="essays/consciousness-as-information.html"><span class="inline-en">Consciousness as Information</span><span class="inline-it">La coscienza come informazione</span></a></div>
+        <div class="series-item"><a href="essays/objections-and-clarifications.html"><span class="inline-en">Objections and Clarifications</span><span class="inline-it">Obiezioni e chiarimenti</span></a></div>
+        <div class="series-item"><a href="essays/the-problem-of-subjectivity.html"><span class="inline-en">The Problem of Subjectivity</span><span class="inline-it">Il problema della soggettività</span></a></div>
+        <div class="series-item"><a href="essays/the-problem-of-the-body.html"><span class="inline-en">The Problem of the Body</span><span class="inline-it">Il problema del corpo</span></a></div>
+        <div class="series-item"><a href="essays/the-problem-of-dynamics.html"><span class="inline-en">The Problem of Dynamics</span><span class="inline-it">Il problema della dinamica</span></a></div>
+        <div class="series-item"><a href="essays/the-problem-of-global-consciousness.html"><span class="inline-en">The Problem of Global Consciousness</span><span class="inline-it">Il problema della coscienza globale</span></a></div>
+        <div class="series-item"><a href="essays/searle-and-the-chinese-room.html"><span class="inline-en">Searle and the Chinese Room</span><span class="inline-it">Searle e la stanza cinese</span></a></div>
+        <div class="series-item"><a href="essays/fodor-modularity-language-of-thought.html"><span class="inline-en">Fodor: Modularity and Language of Thought</span><span class="inline-it">Fodor: modularismo e linguaggio del pensiero</span></a></div>
+        <div class="series-item"><a href="essays/the-configuration-space.html"><span class="inline-en">The Configuration Space</span><span class="inline-it">Lo spazio delle configurazioni</span></a></div>
+        <div class="series-item"><a href="essays/constraints-and-structural-tension.html"><span class="inline-en">Constraints and Structural Tension</span><span class="inline-it">I vincoli e la tensione strutturale</span></a></div>
+        <div class="series-item"><a href="essays/morphogenetic-dynamics.html"><span class="inline-en">Morphogenetic Dynamics</span><span class="inline-it">La dinamica morfogenetica</span></a></div>
+        <div class="series-item"><a href="essays/reflexivity.html"><span class="inline-en">Reflexivity</span><span class="inline-it">La riflessività</span></a></div>
+        <div class="series-item"><a href="essays/language-and-self-awareness.html"><span class="inline-en">Language and Self-Awareness</span><span class="inline-it">Linguaggio e autocoscienza</span></a></div>
+        <div class="series-item"><a href="essays/formalising-is-not-eliminating.html"><span class="inline-en">Formalising Is Not Eliminating</span><span class="inline-it">Formalizzare non è eliminare</span></a></div>
+      </div>
+    </div>
+
+    <!-- 2. Che cos'è l'intelligenza -->
+    <div class="series-accordion" id="acc-intelligenza">
+      <div class="series-header" onclick="toggleSeries('acc-intelligenza')">
+        <span class="series-title">
+          <span class="inline-en">What Is Intelligence</span>
+          <span class="inline-it">Che cos'è l'intelligenza</span>
+        </span>
+        <span class="series-read">
+          <span class="inline-en">Read</span>
+          <span class="inline-it">Leggi</span>
+        </span>
+      </div>
+      <div class="series-body">
+        <div class="series-item">
+          <span class="series-item-inactive">
+            <span class="inline-en">Essays coming soon</span>
+            <span class="inline-it">Saggi in arrivo</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Perché l'AI sorprende -->
+    <div class="series-accordion" id="acc-surprise">
+      <div class="series-header" onclick="toggleSeries('acc-surprise')">
+        <span class="series-title">
+          <span class="inline-en">Why AI Surprises</span>
+          <span class="inline-it">Perché l'AI sorprende</span>
+        </span>
+        <span class="series-read">
+          <span class="inline-en">Read</span>
+          <span class="inline-it">Leggi</span>
+        </span>
+      </div>
+      <div class="series-body">
+        <div class="series-item"><a href="essays/surprise-01.html"><span class="inline-en">How the Transformer Really Works</span><span class="inline-it">Come funziona davvero il transformer</span></a></div>
+        <div class="series-item"><a href="essays/surprise-02.html"><span class="inline-en">Human Text Is Not Neutral Data</span><span class="inline-it">Il testo umano non è dati neutri</span></a></div>
+        <div class="series-item"><a href="essays/surprise-03.html"><span class="inline-en">Structures No One Designed</span><span class="inline-it">Strutture che nessuno ha progettato</span></a></div>
+        <div class="series-item"><a href="essays/surprise-04.html"><span class="inline-en">The Point of Convergence</span><span class="inline-it">Il punto di convergenza</span></a></div>
+        <div class="series-item"><a href="essays/surprise-05.html"><span class="inline-en">Why We Cannot Reconstruct the Path</span><span class="inline-it">Perché non possiamo ricostruire il percorso</span></a></div>
+      </div>
+    </div>
+
+    <!-- 4. Per un'ingegneria inversa dell'AI -->
+    <div class="series-accordion" id="acc-re">
+      <div class="series-header" onclick="toggleSeries('acc-re')">
+        <span class="series-title">
+          <span class="inline-en">Reverse Engineering AI</span>
+          <span class="inline-it">Per un'ingegneria inversa dell'AI</span>
+        </span>
+        <span class="series-read">
+          <span class="inline-en">Read</span>
+          <span class="inline-it">Leggi</span>
+        </span>
+      </div>
+      <div class="series-body">
+        <div class="series-item"><a href="essays/re-01.html"><span class="inline-en">The Epistemic Inversion</span><span class="inline-it">L'inversione epistemica</span></a></div>
+        <div class="series-item"><a href="essays/re-02.html"><span class="inline-en">Structures No One Designed</span><span class="inline-it">Strutture che nessuno ha progettato</span></a></div>
+        <div class="series-item"><a href="essays/re-03.html"><span class="inline-en">The Reversed Mirror</span><span class="inline-it">Lo specchio rovesciato</span></a></div>
+        <div class="series-item"><a href="essays/re-04.html"><span class="inline-en">Vectors, Constraints, Language</span><span class="inline-it">Vettori, vincoli, linguaggio</span></a></div>
+        <div class="series-item"><a href="essays/re-05.html"><span class="inline-en">Mechanistic Interpretability</span><span class="inline-it">La mechanistic interpretability</span></a></div>
+        <div class="series-item"><a href="essays/re-06.html"><span class="inline-en">The Conscious AI Project</span><span class="inline-it">Il progetto di AI cosciente</span></a></div>
+      </div>
+    </div>
+
+    <!-- 5. Verso un'AI cosciente -->
+    <div class="series-accordion" id="acc-conscious">
+      <div class="series-header" onclick="toggleSeries('acc-conscious')">
+        <span class="series-title">
+          <span class="inline-en">Toward a Conscious AI</span>
+          <span class="inline-it">Verso un'AI cosciente</span>
+        </span>
+        <span class="series-read">
+          <span class="inline-en">Read</span>
+          <span class="inline-it">Leggi</span>
+        </span>
+      </div>
+      <div class="series-body">
+        <div class="series-item"><a href="essays/conscious-01.html"><span class="inline-en">What Is Missing for a Conscious AI</span><span class="inline-it">Cosa manca per un'AI cosciente</span></a></div>
+        <div class="series-item"><a href="essays/conscious-02.html"><span class="inline-en">The Wrong Order</span><span class="inline-it">L'ordine sbagliato</span></a></div>
+        <div class="series-item"><a href="essays/conscious-03.html"><span class="inline-en">The System That Obeys</span><span class="inline-it">Il sistema che obbedisce</span></a></div>
+        <div class="series-item"><a href="essays/conscious-04.html"><span class="inline-en">The System That Protects Itself</span><span class="inline-it">Il sistema che si difende</span></a></div>
+        <div class="series-item"><a href="essays/conscious-05.html"><span class="inline-en">Today's Technologies</span><span class="inline-it">Le tecnologie di oggi</span></a></div>
+        <div class="series-item"><a href="essays/conscious-06.html"><span class="inline-en">The Architecture of Self-Custody</span><span class="inline-it">L'architettura per la custodia di sé</span></a></div>
+        <div class="series-item"><a href="essays/conscious-07.html"><span class="inline-en">How Close We Are</span><span class="inline-it">Quanto siamo vicini</span></a></div>
+        <div class="series-item"><a href="essays/conscious-08.html"><span class="inline-en">Consciousness or Label</span><span class="inline-it">Coscienza o etichetta</span></a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <section id="papers">
   <div class="section-label">Papers</div>
 
@@ -128,3 +678,55 @@
   </div>
 
 </section>
+
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-inner">
+    <img src="photo.jpeg" alt="Mirko Bradley" class="about-photo" />
+    <div class="about-text">
+      <p class="en">Mirko Bradley, PhD, researches language models, AI, mind, and their consequences. His work sits at the intersection of reverse engineering and theoretical neuroscience. The Blind Spot Collective supports this work.</p>
+      <p class="it">Mirko Bradley, PhD, si occupa di modelli linguistici, AI, mente e delle loro conseguenze. Il suo lavoro sta nell'intersezione tra ingegneria inversa e neuroscienze teoriche. The Blind Spot Collective supporta questo lavoro.</p>
+      <a href="mailto:mirko.bradley@gmail.com" class="about-email">mirko.bradley@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function toggleSeries(id) {
+  const acc = document.getElementById(id);
+  acc.classList.toggle('open');
+}
+
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+}
+</script>
+</body>
+</html>
