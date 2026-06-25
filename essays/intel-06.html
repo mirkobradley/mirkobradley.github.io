@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Psychometrics and Neuroscience Don't Talk / Perché psicometria e neuroscienze non si parlano</title>
+  <meta name="description" content="The gap between psychometrics and neuroscience is not a communication problem. It is structural." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .lang-toggle { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-toggle button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .essay-container { max-width: 680px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+    .essay-rule { width: 36px; height: 1.5px; background: var(--accent); margin-bottom: 3rem; }
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .essay-nav a:hover { color: var(--accent); }
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+  <div class="essay-series">
+    <span class="inline-en">What Is Intelligence</span>
+    <span class="inline-it">Che cos'è l'intelligenza</span>
+  </div>
+  <h1 class="essay-title">
+    <span class="inline-en">Why Psychometrics and Neuroscience Don't Talk</span>
+    <span class="inline-it">Perché psicometria e neuroscienze non si parlano</span>
+  </h1>
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+  <div class="essay-body">
+
+    <p class="en">The two disciplines appear to be talking about the same thing, because both deal with intelligence and produce data, models and theories. Yet they do not really communicate, in the sense that the results of one do not systematically modify the methods of the other. Psychometric tests are still constructed and interpreted more or less as they were fifty years ago, even though neuroscience has radically changed our understanding of the brain. This is a structural problem.</p>
+    <p class="it">Le due discipline sembrano parlare della stessa cosa, perché entrambe si occupano di intelligenza e producono dati, modelli e teorie. Eppure, non comunicano davvero, nel senso che i risultati dell'una non modificano in modo sistematico i metodi dell'altra. I test psicometrici vengono ancora costruiti e interpretati più o meno come cinquant'anni fa, nonostante le neuroscienze abbiano radicalmente cambiato la comprensione del cervello. Questo è un problema strutturale.</p>
+
+    <p class="en">The issue is that the two disciplines measure different objects. Psychometrics measures the behavioural output of a complex system under standardised conditions. Neuroscience describes that complex system, its architecture, its causal levels and its dynamic properties. The two levels of description do not overlap: one looks at the final product, the other at the mechanism that generates it.</p>
+    <p class="it">La questione è che le due discipline misurano oggetti diversi. La psicometria misura l'output comportamentale di un sistema complesso in condizioni standardizzate. Le neuroscienze descrivono quel sistema complesso, la sua architettura, i suoi livelli causali e le sue proprietà dinamiche. I due livelli di descrizione non si sovrappongono: uno guarda il prodotto finale e l'altro il meccanismo che lo genera.</p>
+
+    <p class="en">There is also a difference in ontological assumptions. Psychometrics treats intelligence as a relatively stable property of the individual, measurable in isolation and representable with a scalar number. Neuroscience shows that intelligence is an emergent property of an open, dynamic and distributed system, measurable at multiple causal levels. Reducing it to a single scalar number means losing almost everything that those levels reveal. The two models are theories about different objects.</p>
+    <p class="it">C'è anche una differenza di presupposti ontologici. La psicometria tratta l'intelligenza come una proprietà relativamente stabile dell'individuo, misurabile in isolamento e rappresentabile con un numero scalare. Le neuroscienze mostrano che l'intelligenza è una proprietà emergente di un sistema aperto, dinamico e distribuito, misurabile a più livelli causali. Ridurla a un unico numero scalare significa perdere quasi tutto ciò che quei livelli rivelano. I due modelli sono teorie su oggetti diversi.</p>
+
+    <p class="en">The internal crisis in psychometrics reflects exactly this tension. <em>Process Overlap Theory</em> (Kovacs and Conway 2016) demonstrates that the data do not allow us to distinguish between a model in which <em>g</em> is a real cause and a model in which <em>g</em> is a statistical artifact. Dynamic mutualism (van der Maas et al. 2006) shows that correlations between cognitive abilities can emerge during development without the existence of any unitary causal entity underneath. These critiques come from within the field of psychometrics itself. The theoretical foundation of the discipline is therefore unstable.</p>
+    <p class="it">La crisi interna alla psicometria riflette esattamente questa tensione. La <em>Process Overlap Theory</em> di Kovacs e Conway (2016) dimostra che i dati non consentono di distinguere tra un modello in cui <em>g</em> è una causa reale e un modello in cui <em>g</em> è un artefatto statistico. Il mutualismo dinamico di van der Maas (2006) mostra che le correlazioni tra abilità cognitive possono emergere dallo sviluppo senza che esista alcuna entità causale unitaria sottostante. Questi attacchi vengono dall'interno del campo psicometrico stesso. Il fondamento teorico della disciplina è, pertanto, instabile.</p>
+
+    <p class="en">Neuroscience, for its part, has increasingly precise tools for measuring the causal levels underlying intelligence: <em>DTI</em> for white-matter structure, <em>fMRI</em> for functional topology, wearable <em>EEG</em> for cognitive dynamics under naturalistic conditions. But these tools have not yet been integrated into a protocol of cognitive assessment. The technology exists, but the model that should guide it does not yet exist.</p>
+    <p class="it">Le neuroscienze, dal canto loro, hanno strumenti sempre più precisi per misurare i livelli causali sottostanti all'intelligenza. <em>DTI</em> per la struttura della sostanza bianca, <em>fMRI</em> per la topologia funzionale, <em>EEG</em> wearable per la dinamica cognitiva in condizioni naturali. Ma questi strumenti non sono ancora stati integrati in un protocollo di valutazione cognitiva. Esiste la tecnologia, ma non esiste ancora il modello che la orienti.</p>
+
+    <p class="en">The gap between psychometrics and neuroscience will not be closed by improving existing tests. It will not be closed by adding subtests, increasing the precision of measurements or correcting statistical biases. It will be closed by building a different model, grounded in a neurologically motivated definition of intelligence, that uses existing tools to measure the causal levels that psychometrics currently ignores. The next essay proposes how.</p>
+    <p class="it">Il divario tra psicometria e neuroscienze non si colma migliorando i test esistenti. Non si colma aggiungendo subtest, aumentando la precisione delle misure e correggendo i bias statistici. Si colma costruendo un modello diverso, fondato su una definizione neurologicamente motivata di intelligenza, che usi gli strumenti esistenti per misurare i livelli causali che la psicometria ignora. L'essay successivo propone come.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="intel-05.html">
+    <span class="inline-en">← The Brain Is Not a Closed Box</span>
+    <span class="inline-it">← Il cervello non è una scatola chiusa</span>
+  </a>
+  <a href="intel-07.html">
+    <span class="inline-en">The Three-Layer Model →</span>
+    <span class="inline-it">Il modello a tre strati →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => { el.style.display = lang === 'en' ? 'block' : 'none'; });
+  document.querySelectorAll('.it').forEach(el => { el.style.display = lang === 'it' ? 'block' : 'none'; });
+  document.querySelectorAll('.inline-en').forEach(el => { el.style.display = lang === 'en' ? 'inline' : 'none'; });
+  document.querySelectorAll('.inline-it').forEach(el => { el.style.display = lang === 'it' ? 'inline' : 'none'; });
+  if (lang === 'it') { btnIt.classList.add('active'); btnEn.classList.remove('active'); document.documentElement.lang = 'it'; }
+  else { btnEn.classList.add('active'); btnIt.classList.remove('active'); document.documentElement.lang = 'en'; }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
