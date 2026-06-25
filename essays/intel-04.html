@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From Neural Speed to Behaviour / Dalla velocità dei neuroni al comportamento</title>
+  <meta name="description" content="Intelligence depends on a four-level causal chain. Psychometrics measures only the last one." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .lang-toggle { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-toggle button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .essay-container { max-width: 680px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+    .essay-rule { width: 36px; height: 1.5px; background: var(--accent); margin-bottom: 3rem; }
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .essay-nav a:hover { color: var(--accent); }
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+  <div class="essay-series">
+    <span class="inline-en">What Is Intelligence</span>
+    <span class="inline-it">Che cos'è l'intelligenza</span>
+  </div>
+  <h1 class="essay-title">
+    <span class="inline-en">From Neural Speed to Behaviour</span>
+    <span class="inline-it">Dalla velocità dei neuroni al comportamento</span>
+  </h1>
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+  <div class="essay-body">
+
+    <p class="en">There is a simple experiment anyone can try: hold your hand near a flame and pull it back before you even feel pain. This movement requires a signal to travel along your nerves at a precise speed. If that speed were half as fast, the movement would arrive too late. If it were twice as fast, it would arrive too early. The speed at which neural signals travel is one of the fundamental variables that determine how the cognitive system works.</p>
+    <p class="it">C'è un esperimento semplice che chiunque può fare: mettete la mano vicino a una fiamma e ritraetela prima ancora di sentire dolore. Questo gesto richiede che un segnale percorra i vostri nervi a una velocità precisa. Se tale velocità fosse la metà, il gesto arriverebbe tardi. Se fosse il doppio, arriverebbe prima. La velocità con cui i segnali neurali viaggiano è una delle variabili fondamentali che determinano come funziona il sistema cognitivo.</p>
+
+    <p class="en">Axons, the extensions of neurons that transmit electrical signals, are covered by a sheath called myelin. Myelination increases conduction speed up to ten times compared with unmyelinated axons. This is a measurable physical fact, verifiable with advanced neuroimaging techniques, particularly the <em>MR g-ratio</em>, which calculates the ratio between the internal diameter of the axon and the external diameter including the myelin sheath. Lower values indicate thicker myelination and higher conduction velocity.</p>
+    <p class="it">Gli assoni, i prolungamenti dei neuroni che trasmettono i segnali elettrici, sono rivestiti da una guaina chiamata mielina. La mielinizzazione aumenta la velocità di conduzione fino a dieci volte rispetto agli assoni non mielinizzati. Questo è un dato fisico misurabile con tecniche di neuroimaging avanzate, in particolare con il <em>MR g-ratio</em>, che calcola il rapporto tra il diametro interno dell'assone e il diametro esterno comprensivo della guaina mielinica. Valori più bassi indicano una mielinizzazione più spessa e una velocità di conduzione più elevata.</p>
+
+    <p class="en">Studies based on visual evoked potentials show that axonal conduction velocity correlates positively with nonverbal intelligence scores, and this correlation explains a larger share of the variance in cognitive scores than that explained by absolute brain volume. In other words, the speed at which signals travel matters more than the overall size of the brain.</p>
+    <p class="it">Studi basati sui potenziali evocati visivi mostrano che la velocità di conduzione assonale correla positivamente con i punteggi di intelligenza non verbale e questa correlazione spiega una quota della varianza nei punteggi cognitivi superiore a quella spiegata dal volume cerebrale assoluto. In altri termini, la velocità con cui viaggiano i segnali conta più della dimensione complessiva del cervello.</p>
+
+    <p class="en">But there is an even more important fact: myelination is not fixed. It is a dynamic process that continues until the third decade of life and responds to environmental and cognitive stimulation. The physical substrate of cognitive efficiency is plastic. This means that conduction speed is not an immutable biological given, but a variable that changes according to experience.</p>
+    <p class="it">Ma c'è un dato ancora più importante: la mielinizzazione non è fissa. È un processo dinamico che continua fino alla terza decade di vita e che risponde alla stimolazione ambientale e cognitiva. Il substrato fisico dell'efficienza cognitiva è plastico. Questo significa che la velocità di conduzione non è un dato biologico immutabile, ma una variabile che si modifica in funzione dell'esperienza.</p>
+
+    <p class="en">From conduction speed we move to the next level: the topological efficiency of the connectome. A network with fast connections but poor organisation is not necessarily efficient. What matters is the combination of speed and architecture: how quickly information can reach distant nodes through short paths. This is the global efficiency of the network and it is the topological property that correlates most strongly with measures of fluid intelligence.</p>
+    <p class="it">Dalla velocità di conduzione si sale al livello successivo, ossia l'efficienza topologica del connettoma. Una rete con connessioni veloci ma mal organizzata non è necessariamente efficiente. Quello che conta è la combinazione di velocità e architettura: quanto rapidamente l'informazione riesce a raggiungere nodi distanti attraverso percorsi brevi. Questa è l'efficienza globale della rete ed è la proprietà topologica che correla più strettamente con le misure di intelligenza fluida.</p>
+
+    <p class="en">From the topological level we move to dynamic flexibility: the capacity of the network to reconfigure its architecture in response to task demands. Fluid intelligence, the capacity to confront novel problems, corresponds neurologically to the capacity to reach difficult network states, infrequent configurations that require a high degree of reorganisation. Crystallised intelligence, accumulated knowledge, corresponds to the capacity to reach easy network states, stable and frequently used configurations.</p>
+    <p class="it">Dal livello topologico si sale alla flessibilità dinamica: la capacità della rete di riconfigurare la propria architettura in risposta alle richieste del compito. L'intelligenza fluida, la capacità di affrontare problemi nuovi, corrisponde neurologicamente alla capacità di raggiungere stati di rete difficili, configurazioni infrequenti che richiedono un elevato grado di riorganizzazione. L'intelligenza cristallizzata, la conoscenza accumulata, corrisponde invece alla capacità di raggiungere stati di rete facili, configurazioni stabili e frequentemente utilizzate.</p>
+
+    <p class="en">From the combination of these three levels, speed, topology and flexibility, emerges the fourth: observable behaviour. This is where psychometrics stops. The test measures this final level, compresses it into a number and treats it as a measure of intelligence. But this number does not reflect the chain; it captures only its last link, ignoring the three that determine it. It is like judging the quality of an engine by its top speed while ignoring how it actually functions.</p>
+    <p class="it">Dall'insieme di questi tre livelli, velocità, topologia e flessibilità, emerge il quarto: il comportamento osservabile. È qui che si ferma la psicometria. Il test misura questo ultimo livello, lo comprime in un numero e lo tratta come misura dell'intelligenza. Ma questo numero non rispecchia la catena, ne cattura solo l'ultimo anello, ignorando i tre che lo determinano. È come giudicare la qualità di un motore dalla velocità di punta prescindendo dalle dinamiche di funzionamento.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="intel-03.html">
+    <span class="inline-en">← The Brain Is a Network</span>
+    <span class="inline-it">← Il cervello è una rete</span>
+  </a>
+  <a href="intel-05.html">
+    <span class="inline-en">The Brain Is Not a Closed Box →</span>
+    <span class="inline-it">Il cervello non è una scatola chiusa →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => { el.style.display = lang === 'en' ? 'block' : 'none'; });
+  document.querySelectorAll('.it').forEach(el => { el.style.display = lang === 'it' ? 'block' : 'none'; });
+  document.querySelectorAll('.inline-en').forEach(el => { el.style.display = lang === 'en' ? 'inline' : 'none'; });
+  document.querySelectorAll('.inline-it').forEach(el => { el.style.display = lang === 'it' ? 'inline' : 'none'; });
+  if (lang === 'it') { btnIt.classList.add('active'); btnEn.classList.remove('active'); document.documentElement.lang = 'it'; }
+  else { btnEn.classList.add('active'); btnIt.classList.remove('active'); document.documentElement.lang = 'en'; }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
