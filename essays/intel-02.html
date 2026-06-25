@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What the IQ Measures and What It Misses / Cosa misura il QI e cosa non vede</title>
+  <meta name="description" content="The IQ compresses a multidimensional structure into a single number. Here is what gets lost." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">What Is Intelligence</span>
+    <span class="inline-it">Che cos'è l'intelligenza</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">What the IQ Measures and What It Misses</span>
+    <span class="inline-it">Cosa misura il QI e cosa non vede</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">The most widely used intelligence test in the world is called the WAIS, the Wechsler Adult Intelligence Scale. It measures four things: how well you understand and use language, how quickly you process visual information, how well you can hold information in mind while manipulating it, and how quickly you perform simple cognitive tasks. In the end it produces a number. That number is your IQ.</p>
+    <p class="it">Il test di intelligenza più usato al mondo si chiama WAIS, Wechsler Adult Intelligence Scale. Misura quattro cose: quanto bene capite e usate il linguaggio, quanto siete veloci a elaborare informazioni visive, quanto riuscite a tenere in mente dati mentre li manipolate e quanto rapidamente eseguite compiti cognitivi semplici. Alla fine, produce un numero. Quel numero è il vostro QI.</p>
+
+    <p class="en">The number is constructed precisely: the population mean is 100 and the standard deviation is 15. This means that roughly 68% of people have an IQ between 85 and 115, and roughly 95% between 70 and 130. The number is normalised: it does not measure an absolute quantity, it measures where you stand in relation to others. It is a position in the distribution, not a measure of an intrinsic property.</p>
+    <p class="it">Il numero è costruito in modo preciso: la media della popolazione è 100, la deviazione standard è 15. Questo significa che circa il 68% delle persone ha un QI tra 85 e 115, e circa il 95% tra 70 e 130. Il numero è normalizzato: non misura una quantità assoluta, misura dove vi collocate rispetto agli altri. È una posizione nella distribuzione e non una misura di una proprietà intrinseca.</p>
+
+    <p class="en">The theoretical model behind current tests is called Cattell-Horn-Carroll, or CHC. It posits ten broad abilities, from working memory to processing speed, from fluid intelligence to crystallised intelligence. The tests measure some of them, but not all. The WAIS covers four. The Woodcock-Johnson IV covers seven. No test covers all ten. And no test measures the neurological level that underlies those abilities.</p>
+    <p class="it">Il modello teorico che sta dietro ai test attuali si chiama Cattell-Horn-Carroll, o CHC. Prevede dieci abilità ampie, dalla memoria di lavoro alla velocità di elaborazione, dall'intelligenza fluida a quella cristallizzata. I test ne misurano alcune, non tutte. Il WAIS ne copre quattro. Il Woodcock-Johnson IV ne copre sette. Nessun test copre le dieci. E nessun test misura il livello neurologico sottostante a quelle abilità.</p>
+
+    <p class="en">Here lies the first problem. The CHC model describes intelligence as a multidimensional structure with many distinct abilities. But at the end of the test all those dimensions are compressed into a single scalar number, the IQ. It is as if you took a city with streets, buildings, parks, water and sewage networks, and described it with a single number. The number might capture something real, but almost everything would be lost.</p>
+    <p class="it">Qui sta il primo problema. Il modello CHC descrive l'intelligenza come struttura multidimensionale, con molte abilità distinte. Ma alla fine del test tutte quelle dimensioni vengono compresse in un unico numero scalare, il QI. Come se prendeste una città con strade, edifici, parchi, reti idriche e fognarie, e la descriveste con un solo numero. Il numero potrebbe catturare qualcosa di reale, ma quasi tutto andrebbe perduto.</p>
+
+    <p class="en">The second problem concerns what the tests do not measure. They do not measure the speed of neural signal conduction, which depends on the myelination of axons. They do not measure the topological efficiency of the connectome, that is, how well the different regions of the brain are connected to each other. They do not measure the flexibility of the neural network, its capacity to reconfigure itself in front of new tasks. They do not register the emotional factor as a variable that modifies the conditions in which the cognitive system operates.</p>
+    <p class="it">Il secondo problema riguarda cosa i test non misurano. Non misurano la velocità di conduzione dei segnali neurali, che dipende dalla mielinizzazione degli assoni. Non misurano l'efficienza topologica del connettoma, cioè quanto bene le diverse regioni del cervello sono collegate tra loro. Non misurano la flessibilità della rete neurale, la sua capacità di riconfigurarsi di fronte a compiti nuovi. Non registrano il fattore emotivo come variabile che modifica le condizioni in cui il sistema cognitivo opera.</p>
+
+    <p class="en">The third problem is more subtle. The tests are administered under standardised and controlled conditions: a neutral environment, predefined stimuli, limited time. This presupposes that the brain is a closed system whose performance depends exclusively on stable internal parameters. But the brain does not work that way. It is an open system in continuous coupling with the body and the environment. Its performance varies according to emotional state, social context and stress load. The test captures a snapshot of the system under artificial conditions.</p>
+    <p class="it">Il terzo problema è il più sottile. I test vengono somministrati in condizioni standardizzate e controllate: ambiente neutro, stimoli predefiniti, tempo limitato. Questo presuppone che il cervello sia un sistema chiuso, le cui prestazioni dipendano solo da parametri interni stabili. Ma il cervello non funziona così. È un sistema aperto, in accoppiamento continuo con il corpo e l'ambiente. Le sue prestazioni variano in funzione dello stato emotivo, del contesto sociale e del carico di stress. Il test cattura un'istantanea del sistema in condizioni artificiali.</p>
+
+    <p class="en">The IQ measures something real. It is not a useless instrument. But it measures the shadow projected by a much more complex system, and treating that shadow as if it were the system itself is the fundamental error that this series intends to correct.</p>
+    <p class="it">Il QI misura qualcosa di reale. Non è uno strumento inutile. Ma misura l'ombra proiettata di un sistema molto più complesso, e trattare quell'ombra come se fosse il sistema è l'errore fondamentale che questa serie intende correggere.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="intel-01.html">
+    <span class="inline-en">← The Question Psychometrics Has Not Asked</span>
+    <span class="inline-it">← La domanda che la psicometria non si è posta</span>
+  </a>
+  <a href="intel-03.html">
+    <span class="inline-en">The Brain Is a Network →</span>
+    <span class="inline-it">Il cervello è una rete →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
