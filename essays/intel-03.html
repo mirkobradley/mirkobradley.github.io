@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Brain Is a Network / Il cervello è una rete</title>
+  <meta name="description" content="Intelligence is not localizable in a brain region. It is an emergent property of the global topology of the connectome." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">What Is Intelligence</span>
+    <span class="inline-it">Che cos'è l'intelligenza</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">The Brain Is a Network</span>
+    <span class="inline-it">Il cervello è una rete</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">For decades the neuron was the privileged unit of analysis in neuroscience. Researchers looked for specific brain regions associated with specific functions: language here, memory there, reasoning further up. This logic produced important results, but it also generated a distortion: the idea that intelligence is something localisable, a property of one part of the brain rather than another.</p>
+    <p class="it">Per decenni il neurone è stato l'unità di analisi privilegiata delle neuroscienze. Si cercavano regioni specifiche del cervello associate a funzioni specifiche: il linguaggio qui, la memoria là, il ragionamento più in su. Questa logica ha prodotto risultati importanti, ma ha anche generato una distorsione, ossia l'idea che l'intelligenza sia qualcosa di localizzabile, una proprietà di una parte del cervello piuttosto che di un'altra.</p>
+
+    <p class="en">Contemporary neuroscience has changed perspective. Intelligence is not localisable because it is not a property of one region, but a property of the entire network of cerebral connections. This is the central thesis of the <em>Network Neuroscience Theory</em> (Barbey 2018), the most solid theoretical framework currently available for understanding the neurological substrate of intelligence.</p>
+    <p class="it">Le neuroscienze contemporanee hanno cambiato prospettiva. L'intelligenza non è localizzabile perché non è una proprietà di una regione, ma una proprietà dell'intera rete di connessioni cerebrali. Questa è la tesi centrale della <em>Network Neuroscience Theory</em> (Barbey 2018), il framework teorico più solido attualmente disponibile per comprendere il substrato neurologico dell'intelligenza.</p>
+
+    <p class="en">The brain is a network in the technical sense of the term, that is, a set of nodes connected by arcs. The nodes are brain regions, the arcs are the structural and functional connections between them. This network is not uniform, because some regions are connected to many others, like hubs in an international airport, and handle a disproportionate amount of information traffic; while others are connected mainly to nearby regions, like local airports that serve short routes.</p>
+    <p class="it">Il cervello è una rete nel senso tecnico del termine, cioè un insieme di nodi connessi da archi. I nodi sono regioni cerebrali, gli archi sono le connessioni strutturali e funzionali tra di esse. Questa rete non è uniforme, perché alcune regioni sono collegate a molte altre, come hub in un aeroporto internazionale, e gestiscono una quantità sproporzionata del traffico di informazione; mentre altre sono collegate principalmente a regioni vicine, come aeroporti locali che servono rotte brevi.</p>
+
+    <p class="en">The topology of this network, that is, its overall shape, follows a pattern called <em>small-world</em>: high local connectivity, which guarantees the efficiency of modular processing, combined with long-distance connections that allow rapid global integration between distant modules. It is the same architecture that makes social networks and the internet efficient, and brains with higher cognitive performance tend to show a more efficient <em>small-world</em> architecture.</p>
+    <p class="it">La topologia di questa rete, cioè la sua forma complessiva, segue un pattern chiamato <em>small-world</em>: alta connettività locale, che garantisce l'efficienza dell'elaborazione modulare, combinata con connessioni a lunga distanza che permettono l'integrazione rapida tra moduli distanti. È la stessa architettura che rende efficienti le reti sociali e internet, e i cervelli con prestazioni cognitive più elevate tendono a mostrare un'architettura <em>small-world</em> più efficiente.</p>
+
+    <p class="en">What does all this mean for the concept of <em>g</em>, the general factor of intelligence? It means that <em>g</em> is not an entity localisable in the brain, but an emergent property of the global topology of the connectome. It emerges from the overall organisation of the network, not from one of its parts. Two people with the same IQ can have significantly different brain architectures, with strengths and weaknesses distributed differently.</p>
+    <p class="it">Cosa significa tutto questo per il concetto di <em>g</em>, il fattore generale di intelligenza? Significa che <em>g</em> non è un'entità localizzabile nel cervello, ma una proprietà emergente della topologia globale del connettoma ed emerge dall'organizzazione complessiva della rete, non da una sua parte. Due persone con lo stesso QI possono avere architetture cerebrali significativamente diverse, con punti di forza e debolezze distribuiti in modo diverso.</p>
+
+    <p class="en">There is another finding that changes the picture: the flow of information in the network is not symmetrical. Studies of directional functional connectivity show that some regions drive network activity, concentrated mainly in components of the attentional network, while others receive, concentrated predominantly in the <em>default mode network</em>. It is not enough to know how many connections a region has: you also need to know in which direction the information flows.</p>
+    <p class="it">C'è un altro dato che cambia il quadro: il flusso dell'informazione nella rete non è simmetrico. Studi di connettività funzionale direzionale mostrano che alcune regioni guidano l'attività della rete, concentrate principalmente nelle componenti della rete attentiva, mentre altre ricevono, concentrate prevalentemente nel <em>default mode network</em>. Non basta sapere quante connessioni ha una regione, perché bisogna sapere anche in che direzione fluisce l'informazione.</p>
+
+    <p class="en">This is the conceptual leap that psychometrics has not yet made. Measuring intelligence as if it were a scalar property of a system is like measuring the quality of a city by counting the number of buildings. The number says something, but it says almost nothing about what really matters: the structure of the road network, the distribution of services, the quality of the connections between neighbourhoods. Intelligence is a property of the network, not of the nodes.</p>
+    <p class="it">Questo è il salto concettuale che la psicometria non ha ancora compiuto. Misurare l'intelligenza come se fosse una proprietà scalare di un sistema è come misurare la qualità di una città contando il numero di edifici. Il numero dice qualcosa, ma non dice quasi nulla di quello che conta: la struttura della rete stradale, la distribuzione dei servizi, la qualità delle connessioni tra i quartieri. L'intelligenza è una proprietà della rete e non dei nodi.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="intel-02.html">
+    <span class="inline-en">← What the IQ Measures and What It Misses</span>
+    <span class="inline-it">← Cosa misura il QI e cosa non vede</span>
+  </a>
+  <a href="intel-04.html">
+    <span class="inline-en">From Neuron Speed to Behavior →</span>
+    <span class="inline-it">Dalla velocità dei neuroni al comportamento →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
