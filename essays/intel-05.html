@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Brain Is Not a Closed Box / Il cervello non è una scatola chiusa</title>
+  <meta name="description" content="The brain is an open system in continuous coupling with body and environment. Measuring intelligence in isolation misses most of what matters." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .lang-toggle { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-toggle button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .essay-container { max-width: 680px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+    .essay-rule { width: 36px; height: 1.5px; background: var(--accent); margin-bottom: 3rem; }
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .essay-nav a:hover { color: var(--accent); }
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+  <div class="essay-series">
+    <span class="inline-en">What Is Intelligence</span>
+    <span class="inline-it">Che cos'è l'intelligenza</span>
+  </div>
+  <h1 class="essay-title">
+    <span class="inline-en">The Brain Is Not a Closed Box</span>
+    <span class="inline-it">Il cervello non è una scatola chiusa</span>
+  </h1>
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+  <div class="essay-body">
+
+    <p class="en">Imagine you have to solve a difficult mathematical problem. Now imagine solving it in two very different situations: once after a good night's sleep, in a quiet environment, with no pressure; and another time after three days of intense stress, with an imminent deadline and an unresolved conflict on your mind. Your brain is the same. Your neural connections are the same. Yet your performance will be very different. This obvious fact has major consequences for the way we measure intelligence.</p>
+    <p class="it">Immaginate di dover risolvere un problema matematico difficile. Ora immaginate di doverlo risolvere in due situazioni diverse: una volta dopo una notte di sonno, in un ambiente tranquillo, senza pressioni; un'altra volta dopo tre giorni di stress intenso, con una scadenza imminente e un conflitto irrisolto in testa. Il vostro cervello è lo stesso. Le vostre connessioni neurali sono le stesse. Eppure, le prestazioni saranno molto diverse. Questo fatto ovvio ha conseguenze enormi per il modo in cui misuriamo l'intelligenza.</p>
+
+    <p class="en">Psychometric tests are administered under standardised and controlled conditions. The aim is to eliminate contextual variables in order to obtain a "pure" measure of cognitive capacity. But this choice presupposes that the brain is a closed system whose performance depends exclusively on stable internal parameters, regardless of what is happening outside.</p>
+    <p class="it">I test psicometrici vengono somministrati in condizioni standardizzate e controllate. L'obiettivo è eliminare le variabili di contesto per ottenere una misura "pura" della capacità cognitiva. Ma questa scelta presuppone che il cervello sia un sistema chiuso, le cui prestazioni dipendano esclusivamente da parametri interni stabili, indipendentemente da ciò che accade fuori.</p>
+
+    <p class="en">Contemporary neuroscience shows that this premise is false. The brain is an open system in continuous coupling with the body and the environment. The <em>Free Energy Principle</em> (Friston 2010) formalises the idea that the brain does not passively process the information it receives, but continuously generates predictions about what is about to happen, compares them with actual sensory data, and acts on the world to reduce the discrepancy between prediction and reality. Cognition is the very process of interaction between the internal system and the external world.</p>
+    <p class="it">Le neuroscienze contemporanee mostrano che questa premessa è falsa. Il cervello è un sistema aperto in accoppiamento continuo con il corpo e con l'ambiente. Il <em>Free Energy Principle</em> di Friston (2010) formalizza l'idea che il cervello non elabori passivamente le informazioni che riceve, ma che generi continuamente previsioni su ciò che sta per accadere, confrontale con i dati sensoriali reali e agendo sul mondo per ridurre la discrepanza tra previsione e realtà. La cognizione è il processo stesso dell'interazione tra sistema interno e mondo esterno.</p>
+
+    <p class="en">From this perspective, the emotional factor is a structural variable that modifies the conditions in which the cognitive system operates. The emotional structures of the brain, the limbic system and the medial prefrontal cortex, are not separate from the cognitive circuits. They share hub nodes and participate in the same circuits of global integration. The subject's emotional state is an integral part of the measurement of intelligence.</p>
+    <p class="it">In questa prospettiva, il fattore emotivo è una variabile strutturale che modifica le condizioni in cui il sistema cognitivo opera. Le strutture emotive del cervello, il sistema limbico e la corteccia prefrontale mediale, non sono separate dai circuiti cognitivi, condividono nodi hub e partecipano agli stessi circuiti di integrazione globale. Lo stato emotivo del soggetto è parte integrante della misura dell'intelligenza.</p>
+
+    <p class="en">The main implication for cognitive assessment is that a test administered under neutral conditions simply measures one part of overall cognitive capacity, particularly certain outputs, in a specific emotional state, context and moment. It is a measurement of how the neural network behaves under artificial conditions that do not exist in real life.</p>
+    <p class="it">La conseguenza principale per la valutazione cognitiva è che un test somministrato in condizioni neutrali misura semplicemente una parte della capacità cognitiva globale, in particolare determinati output, in uno stato emotivo, contesto e momento specifici. È una misurazione di come la rete neurale si comporta in condizioni artificiali che non esistono nella vita reale.</p>
+
+    <p class="en">There is an important corollary. If the brain is an open system, a person's cognitive profile is a trajectory rather than a fixed point. It therefore makes no sense to ask what someone's IQ is as if it were a stable property. It makes sense to ask how that person's cognitive system functions under different conditions, under varying emotional pressure and in different environmental contexts. This is a radically different question and it requires radically different tools.</p>
+    <p class="it">C'è un corollario importante. Se il cervello è un sistema aperto, il profilo cognitivo di una persona è una traiettoria invece che un punto fisso. Non ha senso, quindi, chiedersi qual è il QI di qualcuno come se fosse una proprietà stabile. Ha senso chiedersi come funziona il sistema cognitivo di quella persona in condizioni diverse, sotto pressione emotiva variabile e in contesti ambientali differenti. Questa è una domanda radicalmente diversa e richiede strumenti radicalmente diversi.</p>
+
+    <p class="en">The psychometric test captures a snapshot. But intelligence is a film.</p>
+    <p class="it">Il test psicometrico cattura un'istantanea. Ma l'intelligenza è un film.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="intel-04.html">
+    <span class="inline-en">← From Neural Speed to Behaviour</span>
+    <span class="inline-it">← Dalla velocità dei neuroni al comportamento</span>
+  </a>
+  <a href="intel-06.html">
+    <span class="inline-en">Why Psychometrics and Neuroscience Don't Talk →</span>
+    <span class="inline-it">Perché psicometria e neuroscienze non si parlano →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => { el.style.display = lang === 'en' ? 'block' : 'none'; });
+  document.querySelectorAll('.it').forEach(el => { el.style.display = lang === 'it' ? 'block' : 'none'; });
+  document.querySelectorAll('.inline-en').forEach(el => { el.style.display = lang === 'en' ? 'inline' : 'none'; });
+  document.querySelectorAll('.inline-it').forEach(el => { el.style.display = lang === 'it' ? 'inline' : 'none'; });
+  if (lang === 'it') { btnIt.classList.add('active'); btnEn.classList.remove('active'); document.documentElement.lang = 'it'; }
+  else { btnEn.classList.add('active'); btnIt.classList.remove('active'); document.documentElement.lang = 'en'; }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
