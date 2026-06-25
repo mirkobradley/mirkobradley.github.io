@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Question Psychometrics Has Not Asked / La domanda che la psicometria non si è posta</title>
+  <meta name="description" content="Psychometrics built its measurement tools before having a theory of what it was measuring. This is the starting point." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">What Is Intelligence</span>
+    <span class="inline-it">Che cos'è l'intelligenza</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">The Question Psychometrics Has Not Asked</span>
+    <span class="inline-it">La domanda che la psicometria non si è posta</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">Imagine an eight-year-old child sitting at a table with a clinician. In front of him are puzzles, number sequences and geometric figures. The child answers, makes mistakes, corrects himself. At the end of the session the clinician calculates a number. That number is communicated to the parents, entered into a file and sometimes used to guide educational decisions. It is called the intelligence quotient, or IQ, and it is treated as if it said something definitive about the child.</p>
+    <p class="it">Immaginate un bambino di otto anni seduto a un tavolo con un clinico. Davanti a lui ci sono puzzle, sequenze di numeri e figure geometriche. Il bambino risponde, sbaglia, si corregge. Alla fine della sessione il preposto calcola un numero. Quel numero viene comunicato ai genitori, inserito in un fascicolo e talvolta usato per orientare decisioni scolastiche. Si chiama quoziente di intelligenza (QI), e viene trattato come se dicesse qualcosa di definitivo sul bambino.</p>
+
+    <p class="en">But what exactly did that test measure? The honest answer is that psychometrics has never answered this question in a satisfactory way. Not because it has not tried, but because it reversed the logical order: it built measurement tools before it had a theory of what it was measuring. The result is a paradox that runs through the entire history of the discipline: the most measured construct in scientific psychology is also one of the least defined.</p>
+    <p class="it">Ma cosa ha misurato esattamente quel test? La risposta onesta è che la psicometria non ha mai risposto a questa domanda in modo soddisfacente. Non perché non ci abbia provato, ma perché ha invertito l'ordine logico: ha costruito gli strumenti di misura prima di avere una teoria di cosa stesse misurando. Il risultato è un paradosso che attraversa tutta la storia della disciplina: il costrutto più misurato della psicologia scientifica è anche uno dei meno definiti.</p>
+
+    <p class="en">The story begins with Spearman, who in 1904 observed an empirical fact: people who perform well on one type of cognitive task tend to perform well on others too. From this correlation he inferred the existence of a general factor, which he called <em>g</em>. It was a statistical inference, not a biological discovery. But from that moment <em>g</em> was treated as if it were something real, localisable and measurable. The leap from "there is a correlation" to "there is a causal entity" was never justified. It was simply assumed.</p>
+    <p class="it">La storia comincia con Spearman, che nel 1904 osserva un fatto empirico: chi va bene in un tipo di compito cognitivo tende ad andare bene anche negli altri. Da questa correlazione inferisce l'esistenza di un fattore generale, che chiama <em>g</em>. È un'inferenza statistica, non una scoperta biologica. Ma da quel momento <em>g</em> viene trattato come se fosse una cosa reale, localizzabile, misurabile. Il salto da "c'è una correlazione" a "c'è un'entità causale" non viene mai giustificato. Viene semplicemente assunto.</p>
+
+    <p class="en">From Spearman onwards, psychometrics built increasingly sophisticated tools to measure this construct. Cattell distinguished fluid and crystallised intelligence. Carroll analysed hundreds of datasets and proposed a hierarchical structure. McGrew consolidated everything in the Cattell-Horn-Carroll model, which today is the theoretical reference for the main tests. But the fundamental question, the one that should have come before everything else, remains unanswered: what is intelligence?</p>
+    <p class="it">Da Spearman in poi la psicometria costruisce strumenti sempre più sofisticati per misurare questo costrutto. Cattell distingue intelligenza fluida e cristallizzata. Carroll analizza centinaia di dataset e propone una struttura gerarchica. McGrew consolida tutto nel modello Cattell-Horn-Carroll, che oggi è il riferimento teorico dei test principali. Ma la domanda fondamentale, quella che avrebbe dovuto precedere tutto il resto, rimane senza risposta: cos'è l'intelligenza?</p>
+
+    <p class="en">The definitions that exist are descriptive, not explanatory. Gottfredson in 1997 defines it as the capacity to reason, plan, solve problems, think abstractly and learn rapidly. It is a list of functions, not a real theory. It is like defining life as the capacity to breathe, reproduce and nourish oneself. It works, but it explains nothing about the mechanism that produces those functions.</p>
+    <p class="it">Le definizioni che esistono sono descrittive, non esplicative. Gottfredson nel 1997 la definisce come capacità di ragionare, pianificare, risolvere problemi, pensare in astratto, apprendere rapidamente. È una lista di funzioni e non una teoria vera e propria. È come definire la vita come la capacità di respirare, riprodursi e nutrirsi. Va bene, ma non spiega nulla sul meccanismo che produce quelle funzioni.</p>
+
+    <p class="en">This series of essays starts from here. Not to demolish psychometrics, but to ask the question that psychometrics has not posed with sufficient rigour, and to show that contemporary neuroscience has begun to answer it, with tools and results that radically change the picture. The IQ does not disappear, but it is repositioned: from a measure of intelligence to a partial proxy for something more complex.</p>
+    <p class="it">Questa serie di essay parte da qui. Non per demolire la psicometria, ma per fare la domanda che la psicometria non si è posta con sufficiente rigore, e per mostrare che le neuroscienze contemporanee hanno cominciato a rispondervi, con strumenti e risultati che cambiano il quadro in modo radicale. Il QI non scompare, ma viene riposizionato, da misura dell'intelligenza a proxy parziale di qualcosa di più complesso.</p>
+
+    <p class="en">The child at the table with the clinician has a brain that operates on four simultaneous levels: the speed at which signals travel along his neurons, the global architecture of his brain network, the flexibility with which that network reconfigures itself in front of a new problem, and finally the observable behaviour that emerges from all of this. The test measures only the last level. The three previous ones remain invisible.</p>
+    <p class="it">Il bambino al tavolo con il clinico ha un cervello che opera su quattro livelli simultanei: la velocità con cui i segnali viaggiano lungo i suoi neuroni, l'architettura globale della rete cerebrale, la flessibilità con cui quella rete si riconfigura di fronte a un problema nuovo e, infine, il comportamento osservabile che emerge da tutto questo. Il test misura solo l'ultimo livello. I tre precedenti restano invisibili.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <span></span>
+  <a href="intel-02.html">
+    <span class="inline-en">What the IQ Measures and What It Misses →</span>
+    <span class="inline-it">Cosa misura il QI e cosa non vede →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
