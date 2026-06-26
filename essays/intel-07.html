@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Three-Layer Model / Il modello a tre strati</title>
+  <meta name="description" content="A concrete alternative to psychometrics: three layers of measurement grounded in neuroscience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .lang-toggle { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-toggle button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .essay-container { max-width: 680px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+    .essay-rule { width: 36px; height: 1.5px; background: var(--accent); margin-bottom: 3rem; }
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .essay-nav a:hover { color: var(--accent); }
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+  <div class="essay-series">
+    <span class="inline-en">What Is Intelligence</span>
+    <span class="inline-it">Che cos'è l'intelligenza</span>
+  </div>
+  <h1 class="essay-title">
+    <span class="inline-en">The Three-Layer Model</span>
+    <span class="inline-it">Il modello a tre strati</span>
+  </h1>
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+  <div class="essay-body">
+
+    <p class="en">The previous essays described how psychometrics measures the behavioral output of a complex system while ignoring the causal levels that determine it. This essay proposes an alternative model grounded in what neuroscience reveals about how the brain works.</p>
+    <p class="it">Gli essay precedenti hanno descritto come la psicometria misuri l'output comportamentale di un sistema complesso ignorando i livelli causali che lo determinano. Questo essay propone un modello alternativo, fondato su ciò che le neuroscienze mostrano sul funzionamento del cervello.</p>
+
+    <p class="en">The model is organized into three overlapping layers, each measuring a distinct level of the causal chain identified in the preceding essays. The three layers are complementary to one another. An individual's cognitive profile emerges from the integration of all three.</p>
+    <p class="it">Il modello è organizzato in tre strati sovrapposti, ciascuno dei quali misura un livello distinto della catena causale identificata negli essay precedenti. I tre strati sono tra loro complementari. Il profilo cognitivo di un individuo emerge dall'integrazione dei tre.</p>
+
+    <p class="en">The first layer is the structural neurological baseline. The tools are diffusion tensor imaging (<em>DTI</em>) for white matter structure and resting-state functional magnetic resonance imaging (resting-state <em>fMRI</em>) for the functional topology of the connectome. <em>DTI</em> allows measurement of the coherence and directionality of white matter tracts and, through the <em>MR g-ratio</em>, provides an estimate of axonal conduction velocity. Resting-state <em>fMRI</em> allows reconstruction of the brain network topology and calculation of its global efficiency. This layer is administered only once and provides the neurological anchor of the individual profile, that is, the description of the basic architecture on which everything else is built.</p>
+    <p class="it">Il primo strato è la baseline strutturale neurologica. Gli strumenti sono la trattografia a tensore di diffusione (<em>DTI</em>) per la struttura della sostanza bianca e la risonanza magnetica funzionale a riposo (<em>fMRI</em> a riposo) per la topologia funzionale del connettoma. Il <em>DTI</em> permette di misurare la coerenza e la direzionalità dei fasci di sostanza bianca e, attraverso il <em>MR g-ratio</em>, fornisce una stima della velocità di conduzione assonale. La <em>fMRI</em> a riposo permette di ricostruire la topologia della rete cerebrale e calcolare la sua efficienza globale. Questo strato viene somministrato una sola volta e fornisce l'ancora neurologica del profilo individuale, cioè la descrizione dell'architettura di base su cui tutto il resto si innesta.</p>
+
+    <p class="en">The second layer is dynamics in natural conditions. The tools are wearable devices: a wireless earpiece <em>EEG</em> system for continuous monitoring of brain activity, integrated with measurement of electrodermal activity (<em>EDA</em>) and electrocardiogram (<em>ECG</em>). <em>EDA</em> records variations in skin conductance associated with activation of the autonomic nervous system, providing a continuous index of emotional modulation. <em>ECG</em> provides measures of heart rate variability related to the state of autonomic regulation. The integration of the three signals allows reconstruction of the subject's cognitive and emotional dynamics in ecological conditions over an extended time span. The profile that emerges is a trajectory over time rather than a point on a scale.</p>
+    <p class="it">Il secondo strato è la dinamica in condizioni naturali. Gli strumenti sono dispositivi indossabili: un sistema <em>EEG</em> auricolare wireless per il monitoraggio continuo dell'attività cerebrale, integrato con la misurazione dell'attività elettrodermica (<em>EDA</em>) e dell'elettrocardiogramma (<em>ECG</em>). L'<em>EDA</em> registra le variazioni della conduttanza cutanea associate all'attivazione del sistema nervoso autonomo, fornendo un indice continuo della modulazione emotiva. L'<em>ECG</em> fornisce misure di variabilità della frequenza cardiaca correlate allo stato di regolazione autonoma. L'integrazione dei tre segnali permette di ricostruire la dinamica cognitiva ed emotiva del soggetto in condizioni ecologiche, su un arco temporale esteso. Il profilo che emerge è una traiettoria nel tempo e non un punto di una scala.</p>
+
+    <p class="en">The third layer is coherence under perturbation. It measures the trajectory of the response, that is, the stability of the network activation pattern as difficulty increases, the speed of recovery after an error, and the coherence between neural signals and behavioral performance. This is where the most significant differences emerge between cognitive profiles that IQ fails to distinguish because it only assigns a score to task execution.</p>
+    <p class="it">Il terzo strato è la coerenza sotto perturbazione. Si misura la traiettoria della risposta, ossia la stabilità del pattern di attivazione della rete al crescere della difficoltà, la velocità di recupero dopo un errore, la coerenza tra segnali neurali e la performance comportamentale. È qui che emergono le differenze più significative tra profili cognitivi che il QI non riesce a distinguere perché attribuisce soltanto un punteggio all'esecuzione di un compito.</p>
+
+    <p class="en">The three-layer model repositions IQ without eliminating it. IQ is a partial measure of the third layer under standardized conditions. It remains useful for identifying learning difficulties, evaluating the effectiveness of educational interventions, and comparing cognitive performance in homogeneous populations. However, it loses validity as a measure of intelligence in the general sense, as a predictive tool for cognitive functioning in real-world conditions, and as a criterion for describing cognitive profiles in the tails of the distribution. In these contexts, the three-layer model provides information that IQ cannot provide for structural reasons.</p>
+    <p class="it">Il modello a tre strati riposiziona il QI senza eliminarlo. Il QI è una misura parziale del terzo strato in condizioni standardizzate. Rimane utile per identificare difficoltà di apprendimento, valutare l'efficacia di interventi educativi e confrontare prestazioni cognitive in popolazioni omogenee. Perde però validità come misura dell'intelligenza in senso generale, come strumento predittivo del funzionamento cognitivo in condizioni reali e come criterio per descrivere profili cognitivi nelle code della distribuzione. In questi contesti, il modello a tre strati fornisce informazioni che il QI non può fornire per ragioni strutturali.</p>
+
+    <p class="en">The model describes a measurement architecture that is technically feasible with existing tools. The technology is there. What was missing was the theoretical framework to guide it. This is what this series has sought to build.</p>
+    <p class="it">Il modello descrive un'architettura di misurazione che è tecnicamente realizzabile con gli strumenti esistenti. La tecnologia c'è. Quello che mancava era il quadro teorico che la orientasse. Questo è ciò che questa serie ha cercato di costruire.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="intel-06.html">
+    <span class="inline-en">← Why Psychometrics and Neuroscience Don't Talk</span>
+    <span class="inline-it">← Perché psicometria e neuroscienze non si parlano</span>
+  </a>
+  <a href="intel-08.html">
+    <span class="inline-en">And Then There Is a Fourth Layer →</span>
+    <span class="inline-it">E poi c'è un quarto strato →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => { el.style.display = lang === 'en' ? 'block' : 'none'; });
+  document.querySelectorAll('.it').forEach(el => { el.style.display = lang === 'it' ? 'block' : 'none'; });
+  document.querySelectorAll('.inline-en').forEach(el => { el.style.display = lang === 'en' ? 'inline' : 'none'; });
+  document.querySelectorAll('.inline-it').forEach(el => { el.style.display = lang === 'it' ? 'inline' : 'none'; });
+  if (lang === 'it') { btnIt.classList.add('active'); btnEn.classList.remove('active'); document.documentElement.lang = 'it'; }
+  else { btnEn.classList.add('active'); btnIt.classList.remove('active'); document.documentElement.lang = 'en'; }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
