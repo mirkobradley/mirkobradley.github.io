@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intelligence Can Be Measured / L'intelligenza si può misurare</title>
+  <meta name="description" content="Intelligence can be measured. But you need to know what you are measuring." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .lang-toggle { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-toggle button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .essay-container { max-width: 680px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+    .essay-rule { width: 36px; height: 1.5px; background: var(--accent); margin-bottom: 3rem; }
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+    .essay-footnote {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 0.5px solid var(--rule);
+      font-size: 15px;
+      color: var(--ink-faint);
+      line-height: 1.6;
+    }
+    .essay-footnote a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .essay-nav a:hover { color: var(--accent); }
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+  <div class="essay-series">
+    <span class="inline-en">What Is Intelligence</span>
+    <span class="inline-it">Che cos'è l'intelligenza</span>
+  </div>
+  <h1 class="essay-title">
+    <span class="inline-en">Intelligence Can Be Measured</span>
+    <span class="inline-it">L'intelligenza si può misurare</span>
+  </h1>
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+  <div class="essay-body">
+
+    <p class="en">This series started from a question that psychometrics has not asked with sufficient rigor: what is intelligence? It showed that existing tools measure a behavioral output of a complex system while ignoring the causal levels that determine it and the general dynamic configuration. It proposed an alternative three-layer model, with the integration of a fourth. It is time to draw the conclusions.</p>
+    <p class="it">Questa serie è partita da una domanda che la psicometria non si è posta con sufficiente rigore: cos'è l'intelligenza? Ha mostrato che gli strumenti esistenti misurano un output comportamentale di un sistema complesso ignorando i livelli causali che lo determinano e la configurazione dinamica generale. Ha proposto un modello alternativo a tre strati, con l'integrazione di un quarto. È il momento di tirare le fila.</p>
+
+    <p class="en">Intelligence can be measured. This statement is not in question. What is in question is how. Psychometrics responded by building tools before having a theory. The result is a scalar number that compresses a multidimensional structure, produced under artificial conditions and that does not access the underlying levels. Therefore, psychometrics as conceived to date is insufficient.</p>
+    <p class="it">L'intelligenza si può misurare. Questa affermazione non è in discussione. Quello che è in discussione è come. La psicometria ha risposto costruendo strumenti prima di avere una teoria. Il risultato è un numero scalare che comprime una struttura multidimensionale, prodotto in condizioni artificiali e che non accede ai livelli sottostanti. Pertanto, la psicometria, come concepita sino a oggi, è insufficiente.</p>
+
+    <p class="en">Neuroscience provides the theory that psychometrics lacks. Intelligence is an emergent property of a complex, dynamic, and open connective structure. It depends on axonal conduction velocity, the topological efficiency of the connectome, the flexibility with which the network reconfigures in response to task demands, its ability to remain coherent under perturbation, and the quality of the predictive process with which the system models its environment. These levels are all measurable, with different tools, on different time scales.</p>
+    <p class="it">Le neuroscienze forniscono la teoria che manca alla psicometria. L'intelligenza è una proprietà emergente di una struttura connettiva complessa, dinamica e aperta. Dipende dalla velocità di conduzione assonale, dall'efficienza topologica del connettoma, dalla flessibilità con cui la rete si riconfigura in risposta alle richieste del compito, dalla sua capacità di mantenersi coerente sotto perturbazione e dalla qualità del processo predittivo con cui il sistema modella il proprio ambiente. Questi livelli sono tutti misurabili, con strumenti diversi, su scale temporali diverse.</p>
+
+    <p class="en">IQ survives as a circumscribed diagnostic tool. It is useful for identifying learning difficulties, evaluating the effectiveness of educational interventions, and comparing performance in homogeneous populations. It ceases to be a measure of intelligence in the general sense and the criterion by which we describe an individual's cognitive functioning.</p>
+    <p class="it">Il QI sopravvive come strumento diagnostico circoscritto. È utile per identificare difficoltà di apprendimento, valutare l'efficacia di interventi educativi, confrontare prestazioni in popolazioni omogenee. Cessa di essere una misura dell'intelligenza in senso generale e il criterio con cui descriviamo il funzionamento cognitivo di un individuo.</p>
+
+    <p class="en">Consequently, the very concept of cognitive profile changes. It is no longer a point on a scale, but a multidimensional description of what the network is made of, how it behaves in the real world, how well it holds up under pressure, and how accurately it models the environment. This description is much more useful, much more precise, and much more respectful of the complexity of what we are trying to measure.</p>
+    <p class="it">Conseguentemente, cambia il concetto stesso di profilo cognitivo che non è più un punto su una scala, ma una descrizione multidimensionale di com'è fatta la rete, come si comporta nel mondo reale, quanto regge sotto pressione e quanto accuratamente modella l'ambiente. Questa descrizione è molto più utile, molto più precisa e molto più rispettosa della complessità di ciò che stiamo cercando di misurare.</p>
+
+    <p class="en">The road is not short. The three/four-layer model requires tools and skills that are not yet integrated into a standard protocol. But the direction is clear, the tools exist, and the theoretical framework is solid.</p>
+    <p class="it">La strada non è breve. Il modello a tre/quattro strati richiede strumenti e competenze che non sono ancora integrati in un protocollo standard. Ma la direzione è chiara, gli strumenti esistono e il quadro teorico è solido.</p>
+
+    <p class="en">Intelligence can be measured, but you need to know what you are measuring.</p>
+    <p class="it">L'intelligenza si può misurare, però bisogna sapere cosa si sta misurando.</p>
+
+    <div class="essay-footnote">
+      <p class="en"><sup>1</sup> The reasoning developed in this series is based on the paper <em>What Is Intelligence: Toward an Integrated Model of Psychometrics and Neuroscience</em> (Bradley 2026), available on Zenodo: <a href="https://zenodo.org/records/20817391" target="_blank" rel="noopener">https://zenodo.org/records/20817391</a>.</p>
+      <p class="it"><sup>1</sup> Il ragionamento sviluppato in questa serie si basa sul paper <em>What Is Intelligence: Toward an Integrated Model of Psychometrics and Neuroscience</em> (Bradley 2026), disponibile su Zenodo: <a href="https://zenodo.org/records/20817391" target="_blank" rel="noopener">https://zenodo.org/records/20817391</a>.</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="intel-08.html">
+    <span class="inline-en">← And Then There Is a Fourth Layer</span>
+    <span class="inline-it">← E poi c'è un quarto strato</span>
+  </a>
+  <span></span>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => { el.style.display = lang === 'en' ? 'block' : 'none'; });
+  document.querySelectorAll('.it').forEach(el => { el.style.display = lang === 'it' ? 'block' : 'none'; });
+  document.querySelectorAll('.inline-en').forEach(el => { el.style.display = lang === 'en' ? 'inline' : 'none'; });
+  document.querySelectorAll('.inline-it').forEach(el => { el.style.display = lang === 'it' ? 'inline' : 'none'; });
+  if (lang === 'it') { btnIt.classList.add('active'); btnEn.classList.remove('active'); document.documentElement.lang = 'it'; }
+  else { btnEn.classList.add('active'); btnIt.classList.remove('active'); document.documentElement.lang = 'en'; }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
