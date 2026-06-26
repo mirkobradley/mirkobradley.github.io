@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>And Then There Is a Fourth Layer / E poi c'è un quarto strato</title>
+  <meta name="description" content="The three-layer model needs one more integration: the quality of the brain's predictive process." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .lang-toggle { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-toggle button.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .essay-container { max-width: 680px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+    .essay-rule { width: 36px; height: 1.5px; background: var(--accent); margin-bottom: 3rem; }
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .essay-nav a:hover { color: var(--accent); }
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+  <div class="essay-series">
+    <span class="inline-en">What Is Intelligence</span>
+    <span class="inline-it">Che cos'è l'intelligenza</span>
+  </div>
+  <h1 class="essay-title">
+    <span class="inline-en">And Then There Is a Fourth Layer</span>
+    <span class="inline-it">E poi c'è un quarto strato</span>
+  </h1>
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+  <div class="essay-body">
+
+    <p class="en">The three-layer model measures the structure of the brain network, its dynamics in real conditions, and its ability to remain coherent under pressure. It already represents a significant leap forward from traditional psychometrics. But the quality of the process by which the brain models its environment is not captured by the model presented so far. An integration is therefore needed.</p>
+    <p class="it">Il modello a tre strati misura la struttura della rete cerebrale, la sua dinamica in condizioni reali e la sua capacità di mantenersi coerente sotto pressione. È già un salto significativo rispetto alla psicometria tradizionale. Ma la qualità del processo con cui il cervello modella il proprio ambiente non è catturata dal modello fin qui esposto. Occorre dunque un'integrazione.</p>
+
+    <p class="en">Friston's <em>Free Energy Principle</em> (2010) describes the brain as a predictive system that actively responds to stimuli, generates predictions about what is about to happen, compares them with sensory data, and acts on the world to reduce the discrepancy between prediction and reality. In this perspective, cognition is the continuous minimization of prediction error.</p>
+    <p class="it">Il <em>Free Energy Principle</em> di Friston (2010) descrive il cervello come un sistema predittivo che reagisce attivamente agli stimoli, genera previsioni su ciò che sta per accadere, le confronta con i dati sensoriali, e agisce sul mondo per ridurre la discrepanza tra previsione e realtà. In questa prospettiva, la cognizione è minimizzazione continua dell'errore di predizione.</p>
+
+    <p class="en">This dimension is different from those measured by the three layers. The first layer measures what the network is made of. The second measures how it behaves in the real world. The third measures how well it holds up under pressure. The fourth would measure how accurately the system models its environment, how efficiently it updates its predictions in light of the data, and how quickly it corrects prediction errors.</p>
+    <p class="it">Questa dimensione è diversa da quelle misurate dai tre strati. Il primo strato misura com'è fatta la rete. Il secondo misura come si comporta nel mondo reale. Il terzo misura quanto regge sotto pressione. Il quarto misurerebbe quanto accuratamente il sistema modella il proprio ambiente, quanto efficientemente aggiorna le proprie previsioni alla luce dei dati e quanto velocemente corregge gli errori di predizione.</p>
+
+    <p class="en">Two people with the same network architecture, the same naturalistic dynamics, and the same coherence under perturbation can differ radically in the quality of their predictive process. One can model their environment with great precision, anticipate contextual variations, and update their predictions rapidly. The other can have an efficient network but a rigid predictive process that is insensitive to changes in conditions.</p>
+    <p class="it">Due persone con la stessa architettura di rete, la stessa dinamica naturalistica e la stessa coerenza sotto perturbazione possono differire radicalmente nella qualità del loro processo predittivo. Una può modellare il proprio ambiente con grande precisione, anticipare le variazioni del contesto, aggiornare rapidamente le proprie previsioni. L'altra può avere una rete efficiente ma un processo predittivo rigido, poco sensibile alla variazione delle condizioni.</p>
+
+    <p class="en">In this case too, the tools exist, Friston's mathematical framework is precise and powerful, but the translation into practical measures is still missing.</p>
+    <p class="it">Anche in questo caso, gli strumenti esistono, il framework matematico di Friston è preciso e potente, ma la traduzione in misure pratiche è ancora mancante.</p>
+
+    <p class="en">All this leads us to say that intelligence is also the quality of the continuous dialogue between the internal system and the external world. An intelligence that models its environment poorly is a limited intelligence, regardless of how efficient its network is or how stable its response to perturbations is.</p>
+    <p class="it">Tutto questo ci porta a dire che l'intelligenza è anche la qualità del dialogo continuo tra il sistema interno e il mondo esterno. Un'intelligenza che modella male il proprio ambiente è un'intelligenza limitata, indipendentemente da quanto sia efficiente la sua rete o quanto sia stabile la sua risposta alle perturbazioni.</p>
+
+    <p class="en">Intelligence, viewed from this perspective, is a property of the brain in relation.</p>
+    <p class="it">L'intelligenza, vista da questa prospettiva, è una proprietà del cervello in relazione.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="intel-07.html">
+    <span class="inline-en">← The Three-Layer Model</span>
+    <span class="inline-it">← Il modello a tre strati</span>
+  </a>
+  <a href="intel-09.html">
+    <span class="inline-en">Intelligence Can Be Measured →</span>
+    <span class="inline-it">L'intelligenza si può misurare →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => { el.style.display = lang === 'en' ? 'block' : 'none'; });
+  document.querySelectorAll('.it').forEach(el => { el.style.display = lang === 'it' ? 'block' : 'none'; });
+  document.querySelectorAll('.inline-en').forEach(el => { el.style.display = lang === 'en' ? 'inline' : 'none'; });
+  document.querySelectorAll('.inline-it').forEach(el => { el.style.display = lang === 'it' ? 'inline' : 'none'; });
+  if (lang === 'it') { btnIt.classList.add('active'); btnEn.classList.remove('active'); document.documentElement.lang = 'it'; }
+  else { btnEn.classList.add('active'); btnIt.classList.remove('active'); document.documentElement.lang = 'en'; }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
