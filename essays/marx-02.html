@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capital Outruns Wages by Design / Il capitale corre più veloce del salario, per regola</title>
+  <meta name="description" content="Wages have a structural ceiling that capital does not. The gap is not a historical accident — it follows necessarily from the existence of surplus." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container { max-width: 680px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule { width: 36px; height: 1.5px; background: var(--accent); margin-bottom: 3rem; }
+
+    .essay-body p { font-size: 19px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 1.6rem; }
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-diagram {
+      margin: 2.6rem 0;
+      padding: 1.6rem 1.2rem;
+      background: var(--bg-warm);
+      border: 0.5px solid var(--rule);
+      border-radius: 4px;
+    }
+
+    .essay-diagram svg { display: block; width: 100%; max-width: 560px; margin: 0 auto; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a, .essay-nav span.next-inactive {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+    .essay-nav span.next-inactive { color: var(--ink-faint); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--ink-faint); }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Mathematical Marxism</span>
+    <span class="inline-it">Marxismo matematico</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Capital Outruns Wages by Design</span>
+    <span class="inline-it">Il capitale corre più veloce del salario, per regola</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">Imagine a company that makes a profit every year. Part of it goes to wages, the rest is reinvested in new machinery, new facilities, and new technology. Over the years, average employee wages rise, but they rise slowly. The value of the capital owned by the company, on the other hand, grows much faster.</p>
+    <p class="it">Immagina un'azienda che ogni anno realizza un profitto. Una parte va agli stipendi, il resto viene reinvestito in nuovi macchinari, nuove sedi, nuove tecnologie. Negli anni lo stipendio medio dei dipendenti cresce, ma cresce lentamente. Il valore del capitale posseduto dall'azienda, invece, cresce molto più in fretta.</p>
+
+    <p class="en">Thomas Piketty made this observation famous with a simple formula: the return on capital systematically exceeds the growth rate of the economy. He showed it by analysing two centuries of historical data across dozens of countries. But no matter how solid the historical data, it remains an observation. It could be a phase, a coincidence, something that might change in the future.</p>
+    <p class="it">Thomas Piketty ha reso famosa questa osservazione con una formula semplice: il rendimento del capitale supera sistematicamente il tasso di crescita dell'economia. L'ha mostrato analizzando due secoli di dati storici su dozzine di paesi. Ma un dato storico, per quanto solido, resta un'osservazione e potrebbe essere un caso, una fase, qualcosa che in futuro potrebbe cambiare.</p>
+
+    <p class="en">The question left by the previous essay is whether this inequality is truly necessary or merely a contingent tendency of capitalism over the last two centuries.</p>
+    <p class="it">La domanda che l'essay precedente lascia in eredità è se questa disuguaglianza sia davvero necessaria o solo una tendenza contingente del capitalismo degli ultimi due secoli.</p>
+
+    <p class="en">The answer comes from a single fact already established: wages can never grow as fast as total value produced, because part of that value must remain as surplus. If wages could grow exactly in line with total output, the surplus would disappear, and with it the possibility of accumulating capital (something we have already seen is necessary for competitive survival).</p>
+    <p class="it">La risposta emerge da un unico fatto già stabilito: il salario non può mai crescere quanto il valore totale prodotto, perché una parte di quel valore deve restare come surplus. Se il salario potesse crescere esattamente quanto il valore prodotto, il surplus scomparirebbe e con esso la possibilità stessa di accumulare capitale, cosa che abbiamo visto essere necessaria per la sopravvivenza competitiva.</p>
+
+    <p class="en">This creates a structural ceiling on wage growth. It is not a ceiling imposed by anyone; it emerges from the logic of competition itself. Wages can rise, but always at a slower pace than overall value produced, because part of that value must continue to be retained as surplus.</p>
+    <p class="it">Questo produce un tetto strutturale alla crescita dei salari. Non è un tetto imposto da qualcuno, poiché emerge dalla stessa logica competitiva. I salari possono crescere, ma sempre a un ritmo inferiore rispetto al valore prodotto nel suo complesso, poiché parte di quel valore deve continuare a essere trattenuta come surplus.</p>
+
+    <p class="en">Accumulated capital, by contrast, faces no such ceiling. It grows in proportion to the reinvested surplus, without having to return anything to workers. The result is a structural scissors effect: capital grows faster and faster compared to the income workers can receive.</p>
+    <p class="it">Il capitale accumulato, invece, non ha lo stesso tetto e aumenta in proporzione al surplus reinvestito, senza dover restituire nulla ai lavoratori. Il risultato è una forbice che si allarga in modo strutturale: il capitale cresce sempre più velocemente del reddito che i lavoratori possono percepire.</p>
+
+    <div class="essay-diagram">
+      <svg viewBox="0 0 560 200" role="img">
+        <title><span class="inline-en">Capital and wages diverging over time</span></title>
+
+        <line x1="30" y1="170" x2="530" y2="170" stroke="#c5bdb3" stroke-width="1"/>
+        <line x1="30" y1="170" x2="30" y2="30" stroke="#c5bdb3" stroke-width="1"/>
+
+        <path d="M 30 150 C 200 130, 380 60, 520 25" fill="none" stroke="#b85c1a" stroke-width="2"/>
+        <path d="M 30 150 C 200 145, 380 138, 520 128" fill="none" stroke="#8a7f72" stroke-width="2"/>
+
+        <text x="524" y="20" font-family="EB Garamond, serif" font-size="16" fill="#2a2520">
+          <tspan class="inline-en">Capital</tspan><tspan class="inline-it">Capitale</tspan>
+        </text>
+        <text x="524" y="140" font-family="EB Garamond, serif" font-size="16" fill="#4a4038">
+          <tspan class="inline-en">Wages</tspan><tspan class="inline-it">Salario</tspan>
+        </text>
+
+        <text x="280" y="190" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" letter-spacing="1" fill="#8a7f72">
+          <tspan class="inline-en">THE GAP IS STRUCTURAL</tspan><tspan class="inline-it">LA FORBICE È STRUTTURALE</tspan>
+        </text>
+      </svg>
+    </div>
+
+    <p class="en">This allows us to reframe Piketty's discovery with greater force. It is not that capital has historically tended to yield more than the economy's growth rate. It is that it cannot do otherwise, because the very existence of surplus requires wages to lag systematically behind. Inequality is not a side effect of capitalism. It is how the system measures its own functioning.</p>
+    <p class="it">Questo permette di riformulare la scoperta di Piketty con più forza. Non è che il capitale tenda storicamente a rendere più del tasso di crescita dell'economia. È che non può fare altrimenti, dato che il surplus, per esistere, richiede che i salari restino sistematicamente indietro. Invece di essere un effetto collaterale del capitalismo, la disuguaglianza è il modo in cui esso misura il proprio stesso funzionamento.</p>
+
+    <p class="en">At this point in the argument, another question arises: what happens when different economies compete with one another?</p>
+    <p class="it">A questo punto del ragionamento, si pone un'altra domanda: che succede tra economie diverse in competizione tra loro?</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="marx-01.html">
+    <span class="inline-en">← Surplus Is a Structural Necessity</span>
+    <span class="inline-it">← Il surplus è una necessità strutturale</span>
+  </a>
+  <a href="marx-03.html">
+    <span class="inline-en">Why Rich Countries Need Poor Ones →</span>
+    <span class="inline-it">Perché i paesi ricchi hanno bisogno dei paesi poveri →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => { el.style.display = lang === 'en' ? 'block' : 'none'; });
+  document.querySelectorAll('.it').forEach(el => { el.style.display = lang === 'it' ? 'block' : 'none'; });
+  document.querySelectorAll('.inline-en').forEach(el => { el.style.display = lang === 'en' ? 'inline' : 'none'; });
+  document.querySelectorAll('.inline-it').forEach(el => { el.style.display = lang === 'it' ? 'inline' : 'none'; });
+  if (lang === 'it') {
+    btnIt.classList.add('active'); btnEn.classList.remove('active'); document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active'); btnIt.classList.remove('active'); document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
