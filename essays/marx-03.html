@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Rich Countries Need Poor Ones / Perché i paesi ricchi hanno bisogno dei paesi poveri</title>
+  <meta name="description" content="The same competitive constraint that operates inside a single economy also operates across the network of world economies — and it transfers value from smaller to larger nodes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container { max-width: 680px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule { width: 36px; height: 1.5px; background: var(--accent); margin-bottom: 3rem; }
+
+    .essay-body p { font-size: 19px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 1.6rem; }
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-diagram {
+      margin: 2.6rem 0;
+      padding: 1.6rem 1.2rem;
+      background: var(--bg-warm);
+      border: 0.5px solid var(--rule);
+      border-radius: 4px;
+    }
+
+    .essay-diagram svg { display: block; width: 100%; max-width: 560px; margin: 0 auto; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a, .essay-nav span.next-inactive {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+    .essay-nav span.next-inactive { color: var(--ink-faint); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--ink-faint); }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Mathematical Marxism</span>
+    <span class="inline-it">Marxismo matematico</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Why Rich Countries Need Poor Ones</span>
+    <span class="inline-it">Perché i paesi ricchi hanno bisogno dei paesi poveri</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">In 2003, two economists, Elsa Artadi and Xavier Sala-i-Martin, calculated that average income in sub-Saharan Africa at the end of the 1990s was lower than it had been in 1974. During the same period, the rest of the world grew at a rate close to three per cent per year.</p>
+    <p class="it">Nel 2003 due economisti, Elsa Artadi e Xavier Sala-i-Martin, hanno calcolato che il reddito medio dell'Africa subsahariana, alla fine degli anni Novanta, era più basso di quanto fosse nel 1974. Nello stesso periodo il resto del mondo cresceva a un ritmo prossimo al tre per cento l'anno.</p>
+
+    <p class="en">This fact seems to contradict the most common idea about global capitalism: that international trade, by opening markets, lifts everyone, even if at different speeds. The data tell a harsher story: in certain regions and periods, the pie actually shrank.</p>
+    <p class="it">È un dato che sembra contraddire l'idea più diffusa sul capitalismo globale, cioè che il commercio internazionale, aprendo i mercati, faccia crescere tutti, anche se a velocità diverse. I dati dicono qualcosa di più duro, cioè che in certe regioni e in certi periodi, la torta si è ridotta.</p>
+
+    <p class="en">We have already shown that capital grows faster than wages inside a single economy. The world, however, is a network of economies competing with one another, just as firms compete in the same market. In a network, the same competitive pressure produces an effect invisible within a single country: the transfer of value from those with less capital to those with more.</p>
+    <p class="it">Abbiamo già mostrato che il capitale cresce più in fretta del salario dentro una singola economia. Il mondo però è una rete di economie che competono tra loro, esattamente come le imprese competono nello stesso mercato. In una rete, la stessa costrizione competitiva produce un effetto che dentro un solo paese non si vede: il trasferimento di valore da chi ha meno capitale verso chi ne ha di più.</p>
+
+    <p class="en">The mechanism does not require any malicious intent. The bargaining power of a country in international markets depends on its relative capital size compared to others. A small economy negotiating with a large one does so from a weaker position on commodity prices, borrowing rates, and the terms on which foreign capital enters and leaves its territory. This asymmetry systematically translates into a flow of value from the smaller country to the larger one.</p>
+    <p class="it">Il meccanismo non richiede nessuna intenzione malevola. Il potere contrattuale di un paese nei mercati internazionali dipende dalla sua dimensione relativa di capitale rispetto agli altri. Un'economia piccola, che tratta con un'economia grande, negozia da una posizione più debole sui prezzi delle materie prime che esporta, sui tassi a cui si indebita e sulle condizioni con cui il capitale straniero entra ed esce dal suo territorio. Questa asimmetria si traduce, in modo sistematico, in un flusso di valore che va dal paese più piccolo verso quello più grande.</p>
+
+    <div class="essay-diagram">
+      <svg viewBox="0 0 560 260" role="img">
+        <title><span class="inline-en">Value flows from periphery to core</span></title>
+
+        <circle cx="280" cy="130" r="46" fill="none" stroke="#b85c1a" stroke-width="1.5"/>
+        <text x="280" y="135" text-anchor="middle" font-family="EB Garamond, serif" font-size="17" fill="#2a2520">
+          <tspan class="inline-en">Core</tspan><tspan class="inline-it">Centro</tspan>
+        </text>
+
+        <g>
+          <circle cx="80" cy="50" r="30" fill="none" stroke="#c5bdb3" stroke-width="1"/>
+          <line x1="105" y1="72" x2="240" y2="112" stroke="#b85c1a" stroke-width="1.3"/>
+          <polygon points="240,112 228,108 233,120" fill="#b85c1a"/>
+        </g>
+        <g>
+          <circle cx="80" cy="210" r="30" fill="none" stroke="#c5bdb3" stroke-width="1"/>
+          <line x1="105" y1="188" x2="240" y2="148" stroke="#b85c1a" stroke-width="1.3"/>
+          <polygon points="240,148 228,152 233,140" fill="#b85c1a"/>
+        </g>
+        <g>
+          <circle cx="480" cy="50" r="30" fill="none" stroke="#c5bdb3" stroke-width="1"/>
+          <line x1="455" y1="72" x2="320" y2="112" stroke="#b85c1a" stroke-width="1.3"/>
+          <polygon points="320,112 332,108 327,120" fill="#b85c1a"/>
+        </g>
+        <g>
+          <circle cx="480" cy="210" r="30" fill="none" stroke="#c5bdb3" stroke-width="1"/>
+          <line x1="455" y1="188" x2="320" y2="148" stroke="#b85c1a" stroke-width="1.3"/>
+          <polygon points="320,148 332,152 327,140" fill="#b85c1a"/>
+        </g>
+
+        <text x="280" y="250" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" letter-spacing="1" fill="#8a7f72">
+          <tspan class="inline-en">PERIPHERY</tspan><tspan class="inline-it">PERIFERIA</tspan>
+        </text>
+      </svg>
+    </div>
+
+    <p class="en">Three historically documented mechanisms illustrate this transfer. The first is the deterioration of the terms of trade: commodity prices tend to fall over time relative to the prices of manufactured goods. So countries exporting the former and importing the latter lose ground year after year, even if they sell the same quantities. The second is debt servicing: when a central bank like the Federal Reserve raises interest rates for domestic reasons, the debt burden of countries that borrowed in dollars explodes overnight, even though those countries did nothing different. The third is rent extraction in resource-based economies, where profits from extraction flow to foreign companies that own the necessary technology and capital.</p>
+    <p class="it">Tre meccanismi storici documentano questo trasferimento. Il primo è il deterioramento dei termini di scambio: i prezzi delle materie prime tendono a scendere nel tempo rispetto ai prezzi dei prodotti industriali; quindi, chi esporta le prime e importa i secondi perde terreno anno dopo anno, anche vendendo le stesse quantità. Il secondo è il servizio del debito: quando una banca centrale come la Federal Reserve alza i tassi di interesse per ragioni tutte interne agli Stati Uniti, il costo del debito dei paesi che si erano indebitati in dollari esplode all'istante, senza che quei paesi abbiano fatto nulla di diverso. Il terzo è l'estrazione di rendita nelle economie basate sulle materie prime, dove i profitti dell'estrazione defluiscono verso le imprese straniere che possiedono la tecnologia e il capitale necessari.</p>
+
+    <p class="en">The aggregate result is that capital concentration among the world's economies increases over time, not because of a conspiracy, but because of the same competitive logic that explained in the first episode why a firm must accumulate to survive. Because this concentration comes with a real transfer of value, the welfare of peripheral economies not only grows more slowly than that of rich countries but, in the most extreme cases (such as sub-Saharan Africa from the 1970s to the 1990s), can even decline in absolute terms.</p>
+    <p class="it">Il risultato aggregato è che la concentrazione del capitale tra le economie del mondo cresce nel tempo, non per una congiura, ma per la stessa logica competitiva che nella prima puntata spiegava perché un'impresa debba accumulare per sopravvivere. Poiché questa concentrazione si accompagna a un trasferimento reale di valore, il benessere delle economie periferiche non solo cresce più lentamente di quello dei paesi ricchi ma, nei casi più estremi come l'Africa subsahariana tra gli anni Settanta e Novanta, può addirittura arretrare in termini assoluti.</p>
+
+    <p class="en">One more question remains: if a poor country manages, against the odds, to grow faster and climb the rankings, does the problem disappear? Or does the burden simply shift to someone else?</p>
+    <p class="it">Ancora una questione: se un paese povero riesce, contro ogni previsione, a crescere più in fretta e a scalare la classifica, il problema si risolve? O il peso semplicemente si sposta su qualcun altro?</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="marx-02.html">
+    <span class="inline-en">← Capital Outruns Wages by Design</span>
+    <span class="inline-it">← Il capitale corre più veloce del salario, per regola</span>
+  </a>
+  <a href="marx-04.html">
+    <span class="inline-en">When an Empire Falls, Poverty Just Changes Hands →</span>
+    <span class="inline-it">Quando un impero cade, la povertà cambia solo padrone →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => { el.style.display = lang === 'en' ? 'block' : 'none'; });
+  document.querySelectorAll('.it').forEach(el => { el.style.display = lang === 'it' ? 'block' : 'none'; });
+  document.querySelectorAll('.inline-en').forEach(el => { el.style.display = lang === 'en' ? 'inline' : 'none'; });
+  document.querySelectorAll('.inline-it').forEach(el => { el.style.display = lang === 'it' ? 'inline' : 'none'; });
+  if (lang === 'it') {
+    btnIt.classList.add('active'); btnEn.classList.remove('active'); document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active'); btnIt.classList.remove('active'); document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
