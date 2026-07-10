@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>When an Empire Falls, Poverty Just Changes Hands / Quando un impero cade, la povertà cambia solo padrone</title>
+  <meta name="description" content="The dominant node in the world economy is not exempt from the competitive constraint either. When its position shifts, inequality does not disappear — it relocates." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container { max-width: 680px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule { width: 36px; height: 1.5px; background: var(--accent); margin-bottom: 3rem; }
+
+    .essay-body p { font-size: 19px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 1.6rem; }
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-diagram {
+      margin: 2.6rem 0;
+      padding: 1.6rem 1.2rem;
+      background: var(--bg-warm);
+      border: 0.5px solid var(--rule);
+      border-radius: 4px;
+    }
+
+    .essay-diagram svg { display: block; width: 100%; max-width: 560px; margin: 0 auto; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a, .essay-nav span.next-inactive {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+    .essay-nav span.next-inactive { color: var(--ink-faint); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--ink-faint); }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Mathematical Marxism</span>
+    <span class="inline-it">Marxismo matematico</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">When an Empire Falls, Poverty Just Changes Hands</span>
+    <span class="inline-it">Quando un impero cade, la povertà cambia solo padrone</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">In 1602 the Netherlands controlled the world's most profitable trade routes. A century and a half later it was Britain. Another century later, the baton passed to the United States. Each time, the centre of the global economic system shifted. Each time, one country stopped being dominant and another took its place.</p>
+    <p class="it">Nel 1602 l'Olanda controllava le rotte commerciali più redditizie del mondo. Un secolo e mezzo dopo era l'Inghilterra a dominarle. Un secolo dopo ancora, il testimone era passato agli Stati Uniti. Ogni volta, il centro del sistema economico mondiale si è spostato. Ogni volta, qualcuno ha smesso di essere il paese dominante e qualcun altro ha preso il suo posto.</p>
+
+    <p class="en">The question we asked was: if a poor country improves its position, does the problem of global inequality get solved? The answer requires looking also at the country at the top, not just the one climbing the ladder.</p>
+    <p class="it">La domanda che avevamo posto era: se un paese povero migliora la propria posizione, il problema della disuguaglianza globale si risolve? La risposta richiede di guardare anche al paese che sta al vertice, non solo a quello che sta scalando.</p>
+
+    <p class="en">The dominant country, no matter how rich, is not exempt from the same competitive constraint that applies to everyone else. It cannot stop at accumulating what is enough; it must continue growing faster than the system average, or others will overtake it. And to grow at that pace, the dominant country needs a steady inflow of value from somewhere in the periphery. This is a necessity dictated by its own position.</p>
+    <p class="it">Il paese dominante, per quanto ricco, non è esente dalla stessa costrizione competitiva che vale per tutti gli altri. Non può fermarsi ad accumulare quanto gli basta, deve continuare a crescere più della media del sistema, altrimenti altri paesi lo superano. E per crescere a quel ritmo, il paese dominante ha bisogno di un afflusso costante di valore da qualche parte della periferia. Questa è una necessità dettata dalla sua stessa posizione.</p>
+
+    <p class="en">This produces a precise consequence. If a single peripheral country improves its position and reduces the value it transfers to the centre, the dominant country's requirement does not disappear (it must be met by some other part of the system).</p>
+    <p class="it">Questo produce una conseguenza precisa. Se un singolo paese periferico migliora la propria posizione e riduce il valore che trasferisce verso il centro, il fabbisogno del paese dominante non sparisce, deve essere coperto da qualche altra parte del sistema.</p>
+
+    <div class="essay-diagram">
+      <svg viewBox="0 0 560 220" role="img">
+        <title><span class="inline-en">The core always receives the same weight; the sources shift</span></title>
+
+        <line x1="80" y1="70" x2="480" y2="70" stroke="#8a7f72" stroke-width="2"/>
+        <polygon points="280,50 292,70 268,70" fill="#8a7f72"/>
+        <line x1="280" y1="70" x2="280" y2="200" stroke="#c5bdb3" stroke-width="1"/>
+        <polygon points="270,196 290,196 280,214" fill="none" stroke="#c5bdb3" stroke-width="1"/>
+
+        <line x1="80" y1="70" x2="80" y2="110" stroke="#8a7f72" stroke-width="1.5"/>
+        <rect x="45" y="110" width="70" height="40" rx="3" fill="none" stroke="#b85c1a" stroke-width="1.3"/>
+        <text x="80" y="134" text-anchor="middle" font-family="EB Garamond, serif" font-size="15" fill="#2a2520">
+          <tspan class="inline-en">Core</tspan><tspan class="inline-it">Centro</tspan>
+        </text>
+
+        <line x1="480" y1="70" x2="480" y2="110" stroke="#8a7f72" stroke-width="1.5"/>
+        <rect x="425" y="110" width="110" height="40" rx="3" fill="none" stroke="#c5bdb3" stroke-width="1.3"/>
+        <text x="480" y="128" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" letter-spacing="0.5" fill="#4a4038">
+          <tspan class="inline-en">SOURCE A → B → C</tspan><tspan class="inline-it">FONTE A → B → C</tspan>
+        </text>
+        <text x="480" y="142" text-anchor="middle" font-family="DM Mono, monospace" font-size="8" fill="#8a7f72">
+          <tspan class="inline-en">(shifts over time)</tspan><tspan class="inline-it">(cambia nel tempo)</tspan>
+        </text>
+
+        <text x="280" y="200" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" letter-spacing="1" fill="#8a7f72">
+          <tspan class="inline-en">THE WEIGHT NEVER DISAPPEARS</tspan><tspan class="inline-it">IL PESO NON SCOMPARE MAI</tspan>
+        </text>
+      </svg>
+    </div>
+
+    <p class="en">From this follow two possibilities, and history shows both have occurred. The first is quiet displacement: the burden no longer carried by one country is absorbed by other peripheral countries, while the centre stays the same. The second is a genuine change of hierarchy: if a peripheral country's growth is strong enough to overtake the centre, the roles reverse. The rising country becomes the new centre. The old centre, if it cannot keep up, slides into a more peripheral position.</p>
+    <p class="it">Da qui seguono due possibilità e la storia mostra che si sono verificate entrambe. La prima è lo spostamento silenzioso, per cui il peso che un paese non porta più viene assorbito da altri paesi periferici, mentre il centro resta lo stesso. La seconda è il cambio di gerarchia vero e proprio: se la crescita di un paese periferico è così forte da superare quella del centro, i ruoli si invertono. Il paese che cresceva diventa il nuovo centro. Il vecchio centro, se non riesce a tenere il ritmo, scivola verso una posizione periferica.</p>
+
+    <p class="en">The hegemonic transitions (Netherlands to Britain, Britain to the United States) are exactly this second case. And the crucial point is that in none of these transitions did the inequality between core and periphery disappear. Who occupied the positions changed, but the structure remained the same.</p>
+    <p class="it">Le transizioni egemoniche, Olanda-Inghilterra, Inghilterra-Stati Uniti, sono esattamente questo secondo caso. E il punto cruciale è che in nessuna delle due transizioni la disuguaglianza tra centro e periferia è scomparsa. È cambiato chi occupava le due posizioni, ma la struttura è rimasta identica.</p>
+
+    <p class="en">Empires fall. Poverty does not — it simply changes hands.</p>
+    <p class="it">L'impero cade ma la povertà non finisce, cambia semplicemente padrone.</p>
+
+    <p class="en">At this point: if neither the growth of a single peripheral country nor a change of hegemony solves the problem, what can politics actually do inside a single country? This is where welfare and its limits come into play.</p>
+    <p class="it">A questo punto: se né la crescita di un singolo paese periferico né il cambio di egemonia risolvono il problema, cosa può fare la politica, dentro un singolo paese, per intervenire davvero? È qui che entra in scena il welfare e i suoi limiti.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="marx-03.html">
+    <span class="inline-en">← Why Rich Countries Need Poor Ones</span>
+    <span class="inline-it">← Perché i paesi ricchi hanno bisogno dei paesi poveri</span>
+  </a>
+  <span class="next-inactive">
+    <span class="inline-en">Welfare Has a Ceiling →</span>
+    <span class="inline-it">Il welfare ha un soffitto →</span>
+  </span>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => { el.style.display = lang === 'en' ? 'block' : 'none'; });
+  document.querySelectorAll('.it').forEach(el => { el.style.display = lang === 'it' ? 'block' : 'none'; });
+  document.querySelectorAll('.inline-en').forEach(el => { el.style.display = lang === 'en' ? 'inline' : 'none'; });
+  document.querySelectorAll('.inline-it').forEach(el => { el.style.display = lang === 'it' ? 'inline' : 'none'; });
+  if (lang === 'it') {
+    btnIt.classList.add('active'); btnEn.classList.remove('active'); document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active'); btnIt.classList.remove('active'); document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
