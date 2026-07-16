@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Three Roads, Walked Together / Tre strade da percorrere insieme</title>
+  <meta name="description" content="Economic democracy, selective withdrawal from the market, reform of international institutions: three structurally independent directions, none sufficient alone." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle { display: flex; gap: 5px; align-items: center; flex-shrink: 0; }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container { max-width: 680px; margin: 0 auto; padding: 4rem 3rem 6rem; }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule { width: 36px; height: 1.5px; background: var(--accent); margin-bottom: 3rem; }
+
+    .essay-body p { font-size: 19px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 1.6rem; }
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+    .essay-body a { color: var(--accent); text-decoration: none; border-bottom: 0.5px solid var(--accent); padding-bottom: 1px; }
+    .essay-body a:hover { color: var(--ink); border-color: var(--ink); }
+
+    .essay-diagram {
+      margin: 2.6rem 0;
+      padding: 1.6rem 1.2rem;
+      background: var(--bg-warm);
+      border: 0.5px solid var(--rule);
+      border-radius: 4px;
+    }
+
+    .essay-diagram svg { display: block; width: 100%; max-width: 560px; margin: 0 auto; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a, .essay-nav span.next-inactive {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+    .essay-nav span.next-inactive { color: var(--ink-faint); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--ink-faint); }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Mathematical Marxism</span>
+    <span class="inline-it">Marxismo matematico</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Three Roads, Walked Together</span>
+    <span class="inline-it">Tre strade da percorrere insieme</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">Across this series we have built, step by step, an argument that closes in on itself uncomfortably: surplus is necessary, capital always grows faster than wages, value shifts from periphery to centre, relative poverty survives even a change of empire, and welfare, however real, has a structural ceiling. If all of this is true, what is left to do?</p>
+    <p class="it">In questa serie abbiamo costruito, passo dopo passo, un argomento che si chiude su se stesso in modo scomodo: il surplus è necessario, il capitale cresce sempre più veloce del salario, il valore si sposta dalla periferia al centro, la povertà relativa sopravvive persino al cambio di impero e il welfare, per quanto reale, ha un soffitto strutturale. Se tutto questo è vero, cosa resta da fare?</p>
+
+    <p class="en">Three directions, none sufficient on its own.</p>
+    <p class="it">Tre direzioni, nessuna sufficiente da sola.</p>
+
+    <p class="en">The first is economic democracy: collective worker control over the businesses they work for. It acts on the same plane as welfare, the internal allocation of surplus, with one potentially interesting difference. Collectively owned capital might be less mobile than capital owned by absentee shareholders, simply because worker-owners cannot relocate themselves the way an investor can relocate capital. If this were true, economic democracy would begin to loosen the mobility constraint that erodes welfare over time.</p>
+    <p class="it">La prima è la democrazia economica: il controllo collettivo dei lavoratori sulle imprese in cui lavorano. Agisce sullo stesso piano del welfare, la ripartizione interna del surplus, con una differenza potenziale interessante. Un capitale posseduto collettivamente potrebbe essere meno mobile di un capitale posseduto da azionisti assenti, semplicemente perché i lavoratori-proprietari non possono delocalizzare se stessi come farebbe un investitore. Se questo fosse vero, la democrazia economica comincerebbe ad allentare il vincolo della mobilità che erode il welfare nel tempo.</p>
+
+    <p class="en">The second is selective withdrawal from the market: removing entire sectors, healthcare, education, water, from the logic of profit. Here the mechanism differs from redistribution. Surplus is not redistributed; it is eliminated at the root for those goods, taken entirely out of competition. What is lost is the allocative efficiency the market normally offers in those sectors. What is gained is full immunity from the extractive dynamic described throughout the previous episodes.</p>
+    <p class="it">La seconda è la sottrazione selettiva al mercato: togliere interi settori, sanità, istruzione, acqua, dalla logica del profitto. Qui il meccanismo è diverso da quello della redistribuzione. Non si ridistribuisce il surplus, lo si elimina alla radice per quei beni, sottraendoli interamente alla competizione. Si perde l'efficienza allocativa che il mercato normalmente offre in quei settori. Si guadagna l'immunità totale dalla dinamica estrattiva che abbiamo descritto in tutte le puntate precedenti.</p>
+
+    <p class="en">The third, and probably the hardest, is reform of international institutions: different trade rules, coordinated controls on capital movements, an International Monetary Fund governance not weighted by the GDP of the richest countries. It is the only one of the three directions that would act directly on the transfer mechanism between economies described in the third episode, not merely on its local consequences. And this is exactly why it faces the most resistance: those who control those rules today are precisely those who benefit from their current form.</p>
+    <p class="it">La terza, e probabilmente la più difficile, è la riforma delle istituzioni internazionali: regole commerciali diverse, controlli concordati sui movimenti di capitale, una governance del Fondo Monetario Internazionale che non sia ponderata sul prodotto interno lordo dei paesi più ricchi. È l'unica delle tre direzioni che agirebbe direttamente sul meccanismo di trasferimento tra economie descritto nella terza puntata, non solo sulle sue conseguenze locali. Ed è per questo la più osteggiata, perché chi controlla oggi quelle regole è precisamente chi beneficia della loro forma attuale.</p>
+
+    <div class="essay-diagram">
+      <svg viewBox="0 0 560 260" role="img">
+        <title><span class="inline-en">Three directions converge; none is enough alone</span></title>
+
+        <circle cx="280" cy="135" r="4" fill="#b85c1a"/>
+
+        <text x="90" y="42" text-anchor="middle" font-family="EB Garamond, serif" font-size="14" fill="#2a2520">
+          <tspan class="inline-en">Economic</tspan><tspan class="inline-it">Democrazia</tspan>
+        </text>
+        <text x="90" y="60" text-anchor="middle" font-family="EB Garamond, serif" font-size="14" fill="#2a2520">
+          <tspan class="inline-en">democracy</tspan><tspan class="inline-it">economica</tspan>
+        </text>
+        <line x1="115" y1="68" x2="255" y2="120" stroke="#b85c1a" stroke-width="1.3"/>
+        <polygon points="255,120 243,116 249,128" fill="#b85c1a"/>
+
+        <text x="470" y="42" text-anchor="middle" font-family="EB Garamond, serif" font-size="14" fill="#2a2520">
+          <tspan class="inline-en">International</tspan><tspan class="inline-it">Riforma</tspan>
+        </text>
+        <text x="470" y="60" text-anchor="middle" font-family="EB Garamond, serif" font-size="14" fill="#2a2520">
+          <tspan class="inline-en">reform</tspan><tspan class="inline-it">internazionale</tspan>
+        </text>
+        <line x1="445" y1="68" x2="305" y2="120" stroke="#b85c1a" stroke-width="1.3"/>
+        <polygon points="305,120 317,116 311,128" fill="#b85c1a"/>
+
+        <text x="280" y="225" text-anchor="middle" font-family="EB Garamond, serif" font-size="14" fill="#2a2520">
+          <tspan class="inline-en">Market withdrawal</tspan><tspan class="inline-it">Sottrazione al mercato</tspan>
+        </text>
+        <line x1="280" y1="205" x2="280" y2="150" stroke="#b85c1a" stroke-width="1.3"/>
+        <polygon points="280,150 274,162 286,162" fill="#b85c1a"/>
+
+        <text x="280" y="250" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" letter-spacing="1" fill="#8a7f72">
+          <tspan class="inline-en">NONE IS ENOUGH ALONE</tspan><tspan class="inline-it">NESSUNA BASTA DA SOLA</tspan>
+        </text>
+      </svg>
+    </div>
+
+    <p class="en">None of the three directions, taken in isolation, closes the circle. Economic democracy, without reform of the international network, risks the same historical erosion that already struck twentieth-century welfare. Market withdrawal leaves the accumulation dynamic untouched for everything that remains outside the protected sectors. International reform, on its own, would change the structure of the network without guaranteeing anything about distributive justice inside each country. All three variables must therefore be acted on simultaneously, precisely because they are structurally independent.</p>
+    <p class="it">Nessuna delle tre direzioni, presa isolatamente, chiude il cerchio. La democrazia economica, senza riforma della rete internazionale, rischia la stessa erosione storica che ha già colpito il welfare novecentesco. La sottrazione al mercato lascia intatta la dinamica di accumulazione per tutto ciò che resta fuori dai settori protetti. La riforma internazionale, da sola, modificherebbe la struttura della rete senza garantire nulla sulla giustizia distributiva interna a ciascun paese. Occorre quindi agire contemporaneamente su tutte e tre le variabili, proprio perché strutturalmente indipendenti.</p>
+
+    <p class="en">This entire journey, from the two bakers to here, grows out of a longer and more rigorous piece of work: the paper <em>"Capital Accumulation and Structural Impoverishment: Toward a Mathematical Marxism,"</em> where every step told here through images is demonstrated formally, with equations and propositions. Readers who want to follow the argument in its complete form can find the English version on <a href="https://zenodo.org/records/21238066" target="_blank" rel="noopener">Zenodo</a> and the Italian version on <a href="https://www.academia.edu/169820694" target="_blank" rel="noopener">Academia.edu</a>.</p>
+    <p class="it">Questo intero percorso, dai due panettieri fino a qui, nasce da un lavoro più esteso e più rigoroso: il paper <em>"Accumulo di capitale e impoverimento strutturale: per un marxismo matematico,"</em> dove ogni passaggio che qui abbiamo raccontato per immagini viene dimostrato formalmente, con equazioni e proposizioni. Chi vuole seguire l'argomento nella sua versione completa può trovarlo nella sua versione inglese su <a href="https://zenodo.org/records/21238066" target="_blank" rel="noopener">Zenodo</a> e in quella italiana su <a href="https://www.academia.edu/169820694" target="_blank" rel="noopener">Academia.edu</a>.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="marx-05.html">
+    <span class="inline-en">← Welfare Has a Ceiling: Where It Stops, and Why</span>
+    <span class="inline-it">← Il welfare ha un soffitto: dove si ferma e perché</span>
+  </a>
+  <span></span>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => { el.style.display = lang === 'en' ? 'block' : 'none'; });
+  document.querySelectorAll('.it').forEach(el => { el.style.display = lang === 'it' ? 'block' : 'none'; });
+  document.querySelectorAll('.inline-en').forEach(el => { el.style.display = lang === 'en' ? 'inline' : 'none'; });
+  document.querySelectorAll('.inline-it').forEach(el => { el.style.display = lang === 'it' ? 'inline' : 'none'; });
+  if (lang === 'it') {
+    btnIt.classList.add('active'); btnEn.classList.remove('active'); document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active'); btnIt.classList.remove('active'); document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
