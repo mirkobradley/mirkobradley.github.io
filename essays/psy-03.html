@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Where Does Suffering Begin? / Dove comincia la sofferenza?</title>
+  <meta name="description" content="Before birth, the foetus calibrates how strongly it will react to stress. Suffering begins with a calibration that continues to form after birth." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">The General Structure of Psychic Suffering</span>
+    <span class="inline-it">La struttura generale della sofferenza psichica</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Where Does Suffering Begin?</span>
+    <span class="inline-it">Dove comincia la sofferenza?</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">A baby is born and already has a history. For nine months it has lived inside a body that sent it news about the world outside. One piece of that news is stress. When the mother is under pressure, cortisol, the stress hormone, partly crosses the placenta and reaches the foetus.</p>
+    <p class="it">Un bambino nasce e ha già una storia. Per nove mesi ha vissuto dentro un corpo che gli mandava notizie sul mondo di fuori. Una di queste notizie è lo stress. Quando la madre è sotto pressione, il cortisolo, l’ormone dello stress, attraversa in parte la placenta e arriva al feto.</p>
+
+    <p class="en">What does the foetus do with it? Rather than simply recording a reading, it regulates a response. This is the difference between a thermometer and a thermostat. A thermometer stores a number. A thermostat stores a setting, that is, the force with which it will react when the temperature changes. The foetus is like a thermostat. From the mother’s signal it works out how strongly it will have to react when stress arrives. In physiology this force is called gain. For computational neuroscience it is a precision parameter, the same variable we met in the previous essay.</p>
+    <p class="it">Che cosa ne fa il feto? Più che registrare un dato, regola una risposta. Qui sta la differenza fra un termometro e un termostato. Il termometro conserva un numero. Il termostato conserva un’impostazione, cioè la forza con cui reagirà quando la temperatura cambia. Il feto è come un termostato. Dal segnale della madre ricava quanto forte dovrà reagire allo stress quando arriverà. In fisiologia questa forza si chiama guadagno. Per la neuroscienza computazionale è un parametro di precisione, la stessa variabile del saggio precedente.</p>
+
+    <p class="en">Why does the system work like this? The foetus behaves like someone packing a suitcase on the basis of a weather forecast. If the forecast announces a storm, they take storm gear, and if the storm arrives they have done well. If instead they find sunshine, they are carrying useless weight, and that weight has a cost. The calibration is an adaptation that pays a price when the real world differs from the one announced. This is an evolutionary interpretation and should be taken as such.</p>
+    <p class="it">Perché il sistema funziona così? Il feto si comporta come chi prepara la valigia sulla base di un bollettino meteo. Se il bollettino annuncia tempesta, prende l’equipaggiamento da tempesta, e se la tempesta arriva ha fatto bene. Se invece trova il sole, si porta dietro un peso inutile, e quel peso ha un costo. La taratura è un adattamento che paga quando il mondo reale si discosta da quello annunciato. Questa è un’interpretazione evolutiva e va presa come tale.</p>
+
+    <p class="en">How do you show that the effect is really prenatal? Asking mothers how much stress they have had is of little use, because the answers blend three things. There is the genetics the mother shares with her child, there is the way a more anxious mother will care for the child after birth and there is the way each woman recounts the same situation. You need a stress that strikes different women with different intensity, for reasons that have nothing to do with them.</p>
+    <p class="it">Come si mostra che l’effetto è davvero prenatale? Chiedere alle madri quanto stress hanno avuto serve a poco, perché le risposte mescolano tre cose. C’è la genetica che la madre condivide con il figlio, c’è il modo in cui una madre più ansiosa accudirà dopo la nascita e c’è il modo in cui ciascuna donna racconta la stessa situazione. Serve uno stress che colpisca donne diverse con intensità diversa, per ragioni che non dipendono da loro.</p>
+
+    <p class="en">In January 1998 an ice storm left entire regions of Quebec without power for days or weeks. Many women were pregnant and already being followed by two researchers, Suzanne King and David Laplante. For each of them it was possible to measure exposure, that is, the days without electricity, any evacuation and the damage to the home. An experiment that no one had designed and that reality offered.</p>
+    <p class="it">Nel gennaio 1998 una tempesta di ghiaccio lasciò per giorni o per settimane senza corrente intere regioni del Quebec. Molte donne erano incinte e già seguite da due ricercatori, Suzanne King e David Laplante. Per ciascuna fu possibile misurare l’esposizione, cioè i giorni senza elettricità, l’eventuale evacuazione e i danni alla casa. Un esperimento che nessuno aveva progettato, e che la realtà ha offerto.</p>
+
+    <p class="en">At thirteen, the children of the most affected women had higher cortisol reactivity. Over the years, however, the cohort showed something more important. The same prenatal stress increased the risk of very different outcomes, such as depression and schizophrenia on the one hand, anxiety and bipolar disorder on the other. Some of these disorders belong to the side of rigidity, others to that of instability. The outcome is not written in advance. Prenatal stress transmits a general vulnerability, just as smoking increases the risk of several diseases without saying which one will appear.</p>
+    <p class="it">A tredici anni i figli delle donne più colpite avevano una reattività del cortisolo più alta. Con gli anni, però, la coorte ha mostrato qualcosa di più importante. Lo stesso stress prenatale aumentava il rischio di esiti molto diversi, come depressione e schizofrenia da una parte, ansia e disturbo bipolare dall’altra. Alcuni di questi disturbi appartengono al registro della rigidità, altri a quello dell’instabilità. Il destino non è già scritto. Lo stress prenatale trasmette una vulnerabilità generale, come il fumo aumenta il rischio di più malattie senza dire quale comparirà.</p>
+
+    <p class="en">A word of caution. Cortisol seemed the obvious candidate to explain the passage from stress to suffering, but in the study it did not act as a mediator. How it happens remains to be clarified.</p>
+    <p class="it">Una cautela. Il cortisolo sembrava il candidato ovvio per spiegare il passaggio dallo stress alla sofferenza, ma nello studio non ha fatto da intermediario. Il modo in cui avviene resta da chiarire.</p>
+
+    <p class="en">The calibration, in any case, is not carved in stone. In Liverpool a study followed mothers with a first child, measuring depression during pregnancy, caresses in the first weeks of life and the newborns’ physiological response to stress. The link between depression during pregnancy and a weaker response appeared only where caresses were scarce. Where they were frequent, the effect vanished. A small and decisive detail, because what happens after birth can soften what happened before.</p>
+    <p class="it">La taratura, in ogni caso, non è una lastra incisa una volta per tutte. A Liverpool uno studio ha seguito madri al primo figlio, misurando la depressione in gravidanza, le carezze nelle prime settimane di vita e la risposta fisiologica dei neonati allo stress. Il legame fra depressione in gravidanza e risposta più debole compariva solo dove le carezze erano scarse. Dove erano frequenti, l’effetto spariva. Un dettaglio piccolo e decisivo, perché ciò che accade dopo la nascita può attenuare ciò che è accaduto prima.</p>
+
+    <p class="en">Suffering, then, does not begin with an event. It begins with a calibration, which forms before birth, continues to form afterwards and can be shifted by whoever cares for the child. Before and after birth are two phases of a single process. We have yet to see how the same root leads to such different outcomes.</p>
+    <p class="it">La sofferenza, allora, non comincia con un evento. Comincia con una taratura, che si forma prima della nascita, continua a formarsi dopo e può essere spostata da chi accudisce. Prima e dopo la nascita sono due fasi di un unico processo. Resta da vedere come una stessa radice porti a esiti così diversi.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="psy-02.html">
+    <span class="inline-en">← What Is Precision?</span>
+    <span class="inline-it">← Che cos’è la precisione?</span>
+  </a>
+  <a href="psy-04.html">
+    <span class="inline-en">Rigidity or Instability? →</span>
+    <span class="inline-it">Rigidità o instabilità? →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
