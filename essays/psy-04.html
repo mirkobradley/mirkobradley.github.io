@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rigidity or Instability? / Rigidità o instabilità?</title>
+  <meta name="description" content="The relationship with the caregiver teaches the child how far to trust bodily signals. Depending on how, the system either settles on a wrong value or cannot settle at all." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">The General Structure of Psychic Suffering</span>
+    <span class="inline-it">La struttura generale della sofferenza psichica</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Rigidity or Instability?</span>
+    <span class="inline-it">Rigidità o instabilità?</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">In the previous essay we left a question open. If the root is the same, why are the outcomes so different? Part of the answer lies in what happens after birth, in the relationship with the caregiver.</p>
+    <p class="it">Nel saggio precedente abbiamo lasciato aperta una domanda. Se la radice è la stessa, perché gli esiti sono così diversi? Una parte della risposta sta in ciò che accade dopo la nascita, nella relazione con chi accudisce.</p>
+
+    <p class="en">Someone who cares for a child does not only give them food, warmth and protection. They also give them the criterion for trusting their own bodily signals. If the child is hungry and cries, and someone responds promptly and consistently, they learn that this signal is reliable and worth listening to. If the response is unpredictable, sometimes it comes and sometimes it does not, they learn that the signal is uncertain. Fotopoulou and Tsakiris titled a 2017 paper <em>Mentalizing homeostasis</em>, precisely to say that the regulation of the body develops within a relationship. In the language of the previous essay, the relationship regulates the precision of internal signals.</p>
+    <p class="it">Chi si prende cura di un bambino non gli dà soltanto cibo, calore e protezione. Gli dà anche il criterio per fidarsi dei propri segnali corporei. Se il bambino ha fame e piange, e qualcuno risponde in modo tempestivo e coerente, impara che quel segnale è affidabile e che vale la pena ascoltarlo. Se la risposta è imprevedibile, a volte sì e a volte no, impara che il segnale è incerto. Fotopoulou e Tsakiris hanno intitolato un articolo del 2017 <em>Mentalizing homeostasis</em>, proprio per dire che la regolazione del corpo si sviluppa dentro una relazione. Con il linguaggio del saggio precedente, la relazione regola la precisione dei segnali interni.</p>
+
+    <p class="en">Two examples show how this process can deviate in opposite directions. The first is a child with avoidant attachment. In the <em>Strange Situation</em>, the procedure devised by Mary Ainsworth to observe how a child reacts when the mother leaves and then returns, this child shows no distress. They carry on playing, do not cry, and on the mother’s return they ignore her. On the surface they are calm, but the body tells a different story. Heart rate accelerates and cortisol rises, as in a crying child. The signal is there and it is strong, but the child has learned not to give it weight, because expressing it has never brought comfort. The system settles on a fixed value, however inadequate. This is rigidity.</p>
+    <p class="it">Due esempi mostrano come questo processo possa deviare in direzioni opposte. Il primo è un bambino con attaccamento evitante. Nella <em>Strange Situation</em>, la procedura ideata da Mary Ainsworth per osservare come reagisce un bambino quando la madre esce e poi rientra, questo bambino non mostra disagio. Continua a giocare, non piange, e al ritorno della madre la ignora. In superficie è tranquillo, ma il corpo dice altro. Il battito accelera e il cortisolo sale, come in un bambino che piange. Il segnale c’è ed è forte, ma il bambino ha imparato a non dargli peso, perché esprimerlo non ha mai portato conforto. Il sistema si ferma su un valore fisso, anche se inadeguato. Questa è la rigidità.</p>
+
+    <p class="en">The second example is a child with disorganised attachment. Here the caregiver is both a source of comfort and a source of fear, the paradox described by Main and Hesse. The child does not know whether to approach or withdraw, because the same gesture that should calm them can turn into a threat. No coherent strategy manages to form. The weight given to the signal oscillates between listening and dismissing, without ever settling. This is instability.</p>
+    <p class="it">Il secondo esempio è un bambino con attaccamento disorganizzato. Qui chi accudisce è insieme fonte di conforto e fonte di paura, il paradosso descritto da Main e Hesse. Il bambino non sa se avvicinarsi o allontanarsi, perché lo stesso gesto che dovrebbe calmarlo può trasformarsi in una minaccia. Nessuna strategia coerente riesce a formarsi. Il peso dato al segnale oscilla fra ascolto e scarto, senza mai fermarsi. Questa è l’instabilità.</p>
+
+    <p class="en">The difference between the two branches is therefore one of kind, not of degree. In rigidity the system gives a constant response, however inadequate. In instability it cannot maintain any constant response. In the image of the volume knob, in the first case the knob is stuck, in the second it never stays still. The first system settles on a wrong value, the second cannot settle on any.</p>
+    <p class="it">La differenza fra i due rami è dunque di tipo, non di grado. Nella rigidità il sistema dà una risposta costante, per quanto inadeguata. Nell’instabilità non riesce a mantenere nessuna risposta costante. Nell’immagine della manopola del volume, nel primo caso la manopola è bloccata, nel secondo non sta mai ferma. Il primo sistema si ferma su un valore sbagliato, il secondo non riesce a fermarsi su nessuno.</p>
+
+    <p class="en">A caution. The type of attachment sets the direction, but does not decide on its own. It acts together with the initial vulnerability, and neither is destiny.</p>
+    <p class="it">Una cautela. Il tipo di attaccamento orienta la direzione, ma non decide da solo. Agisce insieme alla vulnerabilità di partenza, e nessuno dei due è un destino.</p>
+
+    <p class="en">To see how real this distinction is, it is worth starting from an everyday phenomenon that we usually do not notice. No one can tickle themselves.</p>
+    <p class="it">Per vedere quanto sia reale questa distinzione conviene partire da un fenomeno quotidiano, che di solito non notiamo. Nessuno riesce a farsi il solletico da solo.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="psy-03.html">
+    <span class="inline-en">← Where Does Suffering Begin?</span>
+    <span class="inline-it">← Dove comincia la sofferenza?</span>
+  </a>
+  <a href="psy-05.html">
+    <span class="inline-en">Why Can’t We Tickle Ourselves? →</span>
+    <span class="inline-it">Perché non riusciamo a farci il solletico da soli? →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
