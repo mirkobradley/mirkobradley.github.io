@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Is Precision? / Che cos’è la precisione?</title>
+  <meta name="description" content="Precision is the trust the brain gives to the mismatch between what it expects and what arrives. Suffering begins where that regulation breaks down." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">The General Structure of Psychic Suffering</span>
+    <span class="inline-it">La struttura generale della sofferenza psichica</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">What Is Precision?</span>
+    <span class="inline-it">Che cos’è la precisione?</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">You are in a dark room and you hear a noise. It could be the wind, a burglar, the fridge. The brain does not wait to understand. It already has an expectation of what it is about to hear, and it compares it with what comes in. If they match, everything is quiet. If they do not, a mismatch arises, and the mismatch is the news. In technical language it is called a prediction error.</p>
+    <p class="it">Siete in una stanza al buio e sentite un rumore. Può essere il vento, un ladro, il frigorifero. Il cervello non aspetta di capire. Ha già un’aspettativa su ciò che sta per sentire, e la confronta con ciò che arriva. Se coincidono, tutto tace. Se non coincidono, nasce uno scarto, e lo scarto è la notizia. In gergo si chiama errore di previsione.</p>
+
+    <p class="en">But mismatches do not all carry the same weight. If a reliable friend tells you it is raining outside, you believe him. If a friend who is always wrong tells you, you wait and see. The brain does the same with every prediction error. It decides how much to trust that mismatch, and this trust is called precision. Note that precision is not a property of the signal. It is an estimate made by the brain, which has to guess whether the signal is clean or noisy.</p>
+    <p class="it">Ma gli scarti non hanno tutti lo stesso peso. Se un amico affidabile vi dice che fuori piove, gli credete. Se ve lo dice un amico che sbaglia sempre, aspettate di vedere. Il cervello fa lo stesso con ogni errore di previsione. Decide quanto fidarsi di quello scarto, e questa fiducia si chiama precisione. Va notato che la precisione non è una proprietà del segnale. È una stima del cervello, che deve indovinare se il segnale è pulito o disturbato.</p>
+
+    <p class="en">What the brain does depends on this trust. If it is high, the mismatch is taken seriously and the brain has to reduce it. It has two ways of doing so. It can change the expectation, and then it learns. Or it can act to bring the world, or the body, back in line with the prediction. If the trust is low, the mismatch is treated as noise and the expectation stays as it is.</p>
+    <p class="it">Da questa fiducia dipende ciò che il cervello fa. Se è alta, lo scarto viene preso sul serio e il cervello deve ridurlo. Ha due strade. Può cambiare l’aspettativa, e allora impara. Oppure può agire per riportare il mondo, o il corpo, dove la previsione lo voleva. Se la fiducia è bassa, lo scarto viene trattato come rumore e l’aspettativa resta com’è.</p>
+
+    <p class="en">Precision works like a volume knob. No setting is right in itself. In the dark room, with a loud noise, it is best to turn the volume up. While you are reading, with the fridge humming for hours, it is best to turn it down. A healthy brain adjusts the knob to the context.</p>
+    <p class="it">La precisione funziona come una manopola del volume. Nessun valore è giusto di per sé. Nella stanza buia, con un rumore forte, conviene alzare il volume. Mentre leggete, con il frigorifero che ronza da ore, conviene abbassarlo. Un cervello sano muove la manopola secondo il contesto.</p>
+
+    <p class="en">The same goes for the body. The brain constantly receives signals from within, the heartbeat, breathing, hunger, muscle tension. These too are predicted, and the mismatches they produce are weighed. If you have just climbed the stairs, the brain expected a strong heartbeat and no mismatch arises. If instead you are sitting at the table and your heart starts racing for no reason, the mismatch is there, and how much weight you give it decides whether it passes unnoticed or takes hold of you completely.</p>
+    <p class="it">Lo stesso vale per il corpo. Il cervello riceve di continuo segnali dall’interno, il battito, il respiro, la fame, la tensione dei muscoli. Anche questi vengono previsti, e anche i loro scarti vengono pesati. Se avete appena salito le scale, il cervello si aspettava un battito forte e non nasce nessuno scarto. Se invece siete seduti a tavola e il cuore parte da solo, lo scarto c’è, e quanto peso gli date decide se la cosa vi passa inosservata o se vi prende per intero.</p>
+
+    <p class="en">Here is the bridge from the introductory essay. For Solms, affect is the way a bodily state presents itself to consciousness when it is regulated. The laboratory measures the weight given to the error, that is, to the part of the signal that departs from what was expected, and we feel affect. The correspondence is very close, though imperfect, and for now we treat it as an inference.</p>
+    <p class="it">Qui si ritrova il ponte di cui parlava il saggio introduttivo. Per Solms l’affetto è il modo in cui uno stato del corpo si presenta alla coscienza quando viene regolato. Il laboratorio misura il peso dato all’errore, cioè a ciò che nel segnale si discosta dall’atteso, e noi sentiamo l’affetto. La corrispondenza è molto stretta, anche se imperfetta, e per ora la lasciamo come inferenza.</p>
+
+    <p class="en">Three outcomes are now possible. In the first, the knob moves with the context and the brain recalibrates, because the mismatch, when it is reliable, is able to correct the expectation. In the second, the knob stays stuck on one value, whatever happens, and the mismatch no longer corrects anything. In the third, the knob swings out of control, and the brain cannot settle on a value it can trust. Suffering begins where regulation breaks down, not where the signal is wrong.</p>
+    <p class="it">A questo punto si vedono tre esiti. Nel primo la manopola si muove con il contesto, e il cervello si ricalibra, perché lo scarto, quando è affidabile, riesce a correggere l’aspettativa. Nel secondo la manopola resta bloccata su un valore, qualunque cosa accada, e lo scarto smette di correggere. Nel terzo la manopola oscilla senza controllo, e il cervello non trova un valore su cui fidarsi. La sofferenza comincia dove la regolazione si rompe, e non dove il segnale è sbagliato.</p>
+
+    <p class="en">Let us go back to two cases. A man closes the door of his flat, starts down the stairs and halfway he stops. He goes back up to check that it is shut. He knows perfectly well that it is. He has just checked it. And yet the gesture repeats every morning. The weight given to his alarm stays very high and no evidence can bring it down. A depressed person says they feel bad because of work, then because of their relationship, then because of their health. The reasons change and the state remains identical, because the weight given to signals of unease stays fixed. These are two cases of the second outcome. We will meet the third later on.</p>
+    <p class="it">Riprendiamo due casi. Un uomo chiude la porta di casa, scende le scale e a metà strada si ferma. Risale a controllare che sia chiusa, e lo sa benissimo che lo è, l’ha appena controllata. Eppure il gesto si ripete ogni mattina. Il peso dato al suo allarme resta altissimo e nessuna prova riesce ad abbassarlo. Una persona depressa dice che sta male per il lavoro, poi per la relazione, poi per la salute. Le ragioni cambiano e lo stato resta identico, perché il peso dato ai segnali di malessere resta fisso. Sono due casi del secondo esito. Il terzo lo incontreremo più avanti.</p>
+
+    <p class="en">What we still need to understand is how a brain ends up regulating itself this way, and why in some cases the knob gets stuck and in others it swings. The next essay starts with the roots.</p>
+    <p class="it">Resta da capire come si arrivi a una regolazione così, e perché in certi casi si blocca e in altri oscilla. Il prossimo essay parte dalle radici.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="psy-01.html">
+    <span class="inline-en">← Why Doesn’t the Symptom Correct Itself?</span>
+    <span class="inline-it">← Perché il sintomo non si corregge da solo?</span>
+  </a>
+  <a href="psy-03.html">
+    <span class="inline-en">Where Does Suffering Begin? →</span>
+    <span class="inline-it">Dove comincia la sofferenza? →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
