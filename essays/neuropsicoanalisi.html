@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Neuropsychoanalysis? / Perché la neuropsicoanalisi?</title>
+  <meta name="description" content="Two rooms, one suffering: why psychoanalysis and neuroscience need each other, and where they meet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Neuropsychoanalysis and Psychopathology</span>
+    <span class="inline-it">Neuropsicoanalisi e psicopatologia</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Why Neuropsychoanalysis?</span>
+    <span class="inline-it">Perché la neuropsicoanalisi?</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">Picture two rooms. In the first, a man has been talking for months to an analyst about the suffering he lives with. He talks, repeats himself, and at some point realises he keeps saying the same sentence in different words. In the second, another man, with the same suffering, lies silent inside a scanner while a computer measures how his brain responds to signals from the body. The two rooms deal with the same thing, and each sees something that escapes the other.</p>
+    <p class="it">Immaginate due stanze. Nella prima un uomo parla da mesi con un analista di una sofferenza che lo abita. Racconta, si ripete, e a un certo punto si accorge di dire sempre la stessa frase con parole diverse. Nella seconda un altro uomo, con la stessa sofferenza, tace disteso sotto uno scanner mentre un computer misura come il suo cervello risponde ai segnali del corpo. Le due stanze parlano della stessa cosa, e ciascuna vede qualcosa che all’altra sfugge.</p>
+
+    <p class="en">The first room sees the logic. The symptom has a meaning, it repeats because it pays for something, and behind the story the subject tells, another is at work, one that stays in the shadows. Freud called it repression, compromise formation, resistance, and for more than a century clinical work has confirmed that these names point to something real. Yet this room lacks a means of measurement. A logic that can only be told risks remaining a story, and two analysts can read the same case in opposite ways, with no criterion to decide between them.</p>
+    <p class="it">La prima stanza vede la logica. Il sintomo ha un senso, si ripete perché paga qualcosa, e dietro la storia che il soggetto racconta ne lavora un’altra che resta in ombra. Freud la chiamò rimozione, compromesso, resistenza, e per più di un secolo l’ascolto clinico ha confermato che questi nomi indicano qualcosa di reale. A questa stanza manca però uno strumento di misura. Una logica che si può solo raccontare rischia di restare un racconto, e due analisti possono leggere lo stesso caso in modi opposti, mentre fra loro manca un criterio che decida.</p>
+
+    <p class="en">The second room sees the mechanism. It measures, compares, repeats the experiment with many people and produces figures that another laboratory can check. It lacks the question that matters most to the person who suffers: why the symptom always comes back the same, and what it means to him. It sees suffering in fragments, because diagnostic classification divides it into separate categories: depression on one side, anxiety on another, addiction on yet another, as if they were illnesses of different kinds.</p>
+    <p class="it">La seconda stanza vede il meccanismo. Misura, confronta, ripete l’esperimento con molte persone e ottiene numeri che un altro laboratorio può controllare. Le manca la domanda che sta a cuore a chi soffre: perché il sintomo ritorni sempre uguale, e che cosa voglia dire per lui. Vede la sofferenza a pezzi, perché la classificazione diagnostica la divide in categorie separate, la depressione da una parte, l’ansia da un’altra, la dipendenza da un’altra ancora, come se fossero malattie di specie diverse.</p>
+
+    <p class="en">At the beginning the two rooms were one. Freud was a neurologist, and in 1895 he drafted a “Project for a Scientific Psychology”, an attempt to ground psychology in the brain. He put it in a drawer and carried on with clinical work, because the tools to support it did not yet exist. For a century the two roads ran on parallel tracks, with few crossings.</p>
+    <p class="it">All’inizio le due stanze erano una sola. Freud era un neurologo, e nel 1895 scrisse un progetto per una psicologia fondata sul cervello. Lo lasciò nel cassetto e proseguì con la clinica, perché gli strumenti per sostenerlo mancavano. Per un secolo le due strade sono andate avanti su binari paralleli, con pochi incroci.</p>
+
+    <p class="en">Today there is a bridge, and it is called affect, the word Freud used for any felt state, from pain to pleasure. Mark Solms argues that affect is the way a bodily state presents itself to consciousness when it is regulated. Take hunger. A system that detects an empty stomach produces discomfort, and that discomfort is hunger itself, as it is experienced. From the outside one measures regulation, from the inside one feels affect, and the two descriptions deal with the same thing. Anyone who feels pain, fear or pleasure experiences from within what the laboratory describes from without.</p>
+    <p class="it">Oggi il ponte esiste, e si chiama affetto, la parola con cui Freud indicava ogni stato sentito, dal dolore al piacere. Mark Solms sostiene che l’affetto è il modo in cui uno stato del corpo si presenta alla coscienza quando viene regolato. Prendete la fame. Un sistema che rileva lo stomaco vuoto produce un disagio, e quel disagio è la fame stessa, così come la si vive. Dall’esterno si misura la regolazione, dall’interno si sente l’affetto, e le due descrizioni parlano della stessa cosa. Chi prova dolore, paura o piacere vive dall’interno ciò che il laboratorio descrive dall’esterno.</p>
+
+    <p class="en">Each room gains something from this. Psychoanalysis gains a way of checking its claims against data, and can ask whether repression really is work that costs energy. Neuroscience gains meaning, and can ask why a brain stays fixed on a wrong value. One example, which this series will develop. A study of a large sample of people with depression, anxiety, addictions and eating disorders found that the brain keeps the weight it gives to signals from the body fixed even when the body changes state. It stays locked on a single value. Clinicians know this as a conflict that remains tangled, and the laboratory describes it as rigidity. They are two names for the same thing.</p>
+    <p class="it">Da qui ciascuna stanza guadagna qualcosa. La psicoanalisi ottiene un controllo con i dati, e può chiedersi se la rimozione sia davvero un lavoro che costa energia. Le neuroscienze ottengono un senso, e possono chiedersi perché un cervello resti fisso su un valore sbagliato. Un esempio, che questa serie svilupperà. Uno studio su un ampio campione di persone con depressione, ansia, dipendenze e disturbi dell’alimentazione ha trovato che il cervello mantiene fermo il peso che dà ai segnali del corpo quando il corpo cambia stato. Rimane su un valore. La clinica lo conosce come un conflitto che resta aggrovigliato, e il laboratorio lo descrive come rigidità. Sono due nomi per la stessa cosa.</p>
+
+    <p class="en">Honesty requires saying how solid this bridge is. The correspondence between Freud’s concept of affect and what the laboratory calls precision, the weight given to a signal, is very close but imperfect. This series leaves the question open. For now it is a reasonable inference, and the work that follows is meant to put it to the test.</p>
+    <p class="it">Va detto con onestà quanto sia solido questo ponte. La corrispondenza fra l’affetto di Freud e ciò che il laboratorio chiama precisione, cioè il peso dato a un segnale, è molto stretta, e insieme imperfetta. Questa serie lascia aperta la questione. Per ora è un’inferenza ragionevole, e il lavoro che segue serve a metterla alla prova.</p>
+
+    <p class="en">In the essays that follow we begin with the symptom, because that is where the two rooms meet for the first time. The first asks why a symptom, for all the damage it does, keeps itself going.</p>
+    <p class="it">Nei prossimi essay si parte dal sintomo, perché è lì che le due stanze si incontrano per la prima volta. Il primo si chiede perché un sintomo, con tutto il danno che produce, resti in piedi da solo.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <span></span>
+  <a href="psy-01.html">
+    <span class="inline-en">Why Doesn’t the Symptom Correct Itself? →</span>
+    <span class="inline-it">Perché il sintomo non si corregge da solo? →</span>
+  </a>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
