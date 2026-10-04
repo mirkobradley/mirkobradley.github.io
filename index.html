@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mirko Bradley</title>
-  <meta name="description" content="PhD in Complex Systems. Dispatches from inside the machine." />  
+  <meta name="description" content="Mirko Bradley, PhD in Complex Systems. Essays and papers on the mind, natural and artificial, between logic, mathematics and psychoanalysis." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -385,6 +385,110 @@
       .series-header { padding: 1rem 1.2rem; }
       .series-item { padding: 0.65rem 1.2rem; }
     }
+
+    /* ---- Psicopatologia ---- */
+    :root { --psy: #3f5b4b; --psy-bg: #edeee7; }
+
+    .essays-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 230px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .psy-side { position: sticky; top: 5rem; }
+
+    .psy-box {
+      display: block;
+      width: 100%;
+      text-align: left;
+      font: inherit;
+      border: none;
+      cursor: pointer;
+      background: var(--psy);
+      color: var(--bg);
+      padding: 1.4rem 1.4rem 1.2rem;
+      transition: background 0.2s;
+    }
+
+    .psy-box:hover { background: #2f4638; }
+
+    .psy-box-label {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 0.9rem;
+    }
+
+    .psy-box-title {
+      display: block;
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.25;
+      margin-bottom: 1.1rem;
+    }
+
+    .psy-box-open {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-bottom: 0.5px solid currentColor;
+      padding-bottom: 1px;
+      width: fit-content;
+    }
+
+    .psy-panel {
+      display: none;
+      margin-top: 2rem;
+      padding: 1.6rem 1.8rem 1.8rem;
+      background: var(--psy-bg);
+      border-left: 3px solid var(--psy);
+      scroll-margin-top: 5rem;
+    }
+
+    .psy-panel.open { display: block; }
+
+    .psy-panel-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--psy);
+      margin-bottom: 0.6rem;
+    }
+
+    .psy-panel-intro {
+      font-size: 16px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+      margin-bottom: 1.4rem;
+    }
+
+    .psy-panel .series-header:hover .series-title { color: var(--psy); }
+    .psy-panel .series-header:hover .series-read,
+    .psy-panel .series-accordion.open .series-read { color: var(--psy); border-color: var(--psy); }
+    .psy-panel .series-item a:hover { color: var(--psy); }
+
+    .series-sub {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-top: 0.2rem;
+    }
+
+    @media (max-width: 700px) {
+      .essays-layout { grid-template-columns: 1fr; gap: 1.2rem; }
+      .psy-side { position: static; }
+      .psy-panel { padding: 1.2rem 1.2rem 1.4rem; }
+    }
   </style>
 </head>
 <body>
@@ -408,14 +512,14 @@
   <div class="hero-domain">mirkobradley.com</div>
   <h1>Mirko Bradley</h1>
   <div class="hero-subtitle">
-    <span class="inline-en">Gears of Reason</span>
-    <span class="inline-it">Ingranaggi della ragione</span>
+    <span class="inline-en">Gears of the Mind</span>
+    <span class="inline-it">Ingranaggi della mente</span>
   </div>
   <div class="hero-body">
-    <p class="en">Every domain governed by reason already possesses a logical structure operating within it, whether anyone notices or not. My work consists in tracing that structure.</p>
-    <p class="it">Ogni dominio governato dalla ragione possiede già una struttura logica che opera al suo interno, che qualcuno se ne accorga o no. Il mio lavoro consiste nel rintracciare questa struttura.</p>
-    <p class="en">Logic, understood in its strict sense, is the foundation of every rational discourse, of which mathematics is the fullest expression. I therefore configure logic as a kind of quasi-transcendental, and, at the same time, as the staging of every rational argument.</p>
-    <p class="it">La logica, intesa in senso rigoroso, è la base di ogni discorso razionale, di cui la matematica è la massima espressione. Configuro pertanto la logica come un "quasi trascendentale" e, allo stesso tempo, come "messa in scena" di ciascun argomento razionale.</p>
+    <p class="en">Every domain, beginning with the mind, already possesses a logical structure operating within it, whether anyone notices or not. My work consists in tracing that structure.</p>
+    <p class="it">Ogni dominio, a cominciare dalla mente, possiede già una struttura logica che opera al suo interno, che qualcuno se ne accorga o no. Il mio lavoro consiste nel rintracciare questa struttura.</p>
+    <p class="en">Logic, understood in its strict sense, is the foundation of every rational discourse, of which mathematics is the fullest expression. I therefore configure logic as a kind of quasi-transcendental, and, at the same time, as the staging of every rational argument. The mind is where this structure becomes most evident, because even where reason seems absent, in affect, in desire, in the unconscious, a second reason is at work, with a logic of its own.</p>
+    <p class="it">La logica, intesa in senso rigoroso, è la base di ogni discorso razionale, di cui la matematica è la massima espressione. Configuro pertanto la logica come un “quasi trascendentale” e, allo stesso tempo, come “messa in scena” di ciascun argomento razionale. La mente è il luogo in cui questa struttura si fa più evidente, perché anche dove la ragione sembra assente, nell’affetto, nel desiderio, nell’inconscio, opera una seconda ragione, con una logica propria.</p>
   </div>
   <div class="hero-rule"></div>
 </div>
@@ -423,6 +527,7 @@
 <section id="essays">
   <div class="section-label"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></div>
 
+<div class="essays-layout">
   <div class="series-stack">
 
     <!-- 1. La forma della mente -->
@@ -717,6 +822,46 @@
     </div>
 
   </div>
+
+  <aside class="psy-side">
+    <button class="psy-box" onclick="togglePsy()" aria-expanded="false" aria-controls="psy-panel">
+      <span class="psy-box-label"><span class="inline-en">Psychopathology</span><span class="inline-it">Psicopatologia</span></span>
+      <span class="psy-box-title">
+        <span class="inline-en">Structures of psychic suffering</span>
+        <span class="inline-it">Strutture della sofferenza psichica</span>
+      </span>
+      <span class="psy-box-open"><span class="inline-en">Open</span><span class="inline-it">Apri</span></span>
+    </button>
+  </aside>
+</div>
+
+<div class="psy-panel" id="psy-panel">
+  <div class="psy-panel-label"><span class="inline-en">Psychopathology</span><span class="inline-it">Psicopatologia</span></div>
+  <p class="psy-panel-intro en">Psychic suffering, in its forms and its structures. Accessible essays that accompany the research papers.</p>
+  <p class="psy-panel-intro it">La sofferenza psichica, nelle sue forme e nelle sue strutture. Saggi divulgativi che accompagnano i paper di ricerca.</p>
+
+  <div class="series-stack">
+    <div class="series-accordion" id="acc-psy-intro">
+      <div class="series-header" onclick="toggleSeries('acc-psy-intro')">
+        <span>
+          <span class="series-title">
+            <span class="inline-en">The General Structure of Psychic Suffering</span>
+            <span class="inline-it">La struttura generale della sofferenza psichica</span>
+          </span>
+          <span class="series-sub"><span class="inline-en">Introduction</span><span class="inline-it">Introduzione</span></span>
+        </span>
+        <span class="series-read"><span class="inline-en">Read</span><span class="inline-it">Leggi</span></span>
+      </div>
+      <div class="series-body">
+        <!-- Aggiungi qui un blocco per ogni essay pubblicato, copiando questo -->
+        <div class="series-item">
+          <a href="essays/psy-01.html" class="en">Why Doesn’t the Symptom Correct Itself?</a>
+          <a href="essays/psy-01.html?lang=it" class="it">Perché il sintomo non si corregge da solo?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </section>
 
 <section id="papers">
@@ -865,6 +1010,24 @@
       </div>
     </div>
   </div>
+
+  <!-- 9. The Fundamental Structure of Psychic Suffering -->
+  <div class="paper-item">
+    <div class="en">
+      <a href="https://zenodo.org/records/23135577" target="_blank" rel="noopener">The Fundamental Structure of Psychic Suffering: A Neuropsychoanalytic Approach</a>
+      <div class="paper-links">
+        <a href="https://zenodo.org/records/23135577" target="_blank" rel="noopener">Zenodo</a>
+        <a href="https://www.academia.edu/177138383/La_struttura_fondamentale_della_sofferenza_psichica_Un_approccio_neuropsicoanalitico" target="_blank" rel="noopener">Academia.edu</a>
+      </div>
+    </div>
+    <div class="it">
+      <a href="https://www.academia.edu/177138383/La_struttura_fondamentale_della_sofferenza_psichica_Un_approccio_neuropsicoanalitico" target="_blank" rel="noopener">La struttura fondamentale della sofferenza psichica: un approccio neuropsicoanalitico</a>
+      <div class="paper-links">
+        <a href="https://zenodo.org/records/23135577" target="_blank" rel="noopener">Zenodo</a>
+        <a href="https://www.academia.edu/177138383/La_struttura_fondamentale_della_sofferenza_psichica_Un_approccio_neuropsicoanalitico" target="_blank" rel="noopener">Academia.edu</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="about">
@@ -872,8 +1035,8 @@
   <div class="about-inner">
     <img src="photo.jpeg" alt="Mirko Bradley" class="about-photo" />
     <div class="about-text">
-      <p class="en">Mirko Bradley, PhD, is a British-Italian logician. His primary field of inquiry is the relationship between formal structures and reality. The Blind Spot Collective is the research group that supports him in this work.</p>
-      <p class="it">Mirko Bradley, PhD, è un logico italo-britannico. Il suo campo d'indagine prevalente è il rapporto tra strutture formali e reale. The Blind Spot Collective è il gruppo di ricerca che lo supporta in questo lavoro.</p>
+      <p class="en">Mirko Bradley, PhD, is a British-Italian logician with a training in epistemology and psychology. He studies the relationship between formal structures and reality, and for decades the centre of his research has been the mind, approached through psychoanalysis and the tools of mathematics, in a field that neuroscience is making ever more quantitative. The Blind Spot Collective is the research group that supports him in this work.</p>
+      <p class="it">Mirko Bradley, PhD, è un logico italo-britannico, con una formazione epistemologica e psicologica. Studia il rapporto tra strutture formali e reale, e da decenni il centro della sua ricerca è la mente, affrontata con l’approccio psicoanalitico e con gli strumenti della matematica, in un campo che le neuroscienze stanno rendendo sempre più quantitativo. The Blind Spot Collective è il gruppo di ricerca che lo supporta in questo lavoro.</p>
       <a href="mailto:mirko.bradley@gmail.com" class="about-email">mirko.bradley@gmail.com</a>
     </div>
   </div>
@@ -888,6 +1051,14 @@
 function toggleSeries(id) {
   const acc = document.getElementById(id);
   acc.classList.toggle('open');
+}
+
+function togglePsy() {
+  const panel = document.getElementById('psy-panel');
+  const box = document.querySelector('.psy-box');
+  const open = panel.classList.toggle('open');
+  box.setAttribute('aria-expanded', open);
+  if (open) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function setLang(lang) {
