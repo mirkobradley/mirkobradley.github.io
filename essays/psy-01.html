@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Doesn’t the Symptom Correct Itself? / Perché il sintomo non si corregge da solo?</title>
+  <meta name="description" content="A symptom is true and partial, and it keeps paying a cost. Why does it not correct itself? The first essay on the general structure of psychic suffering." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">The General Structure of Psychic Suffering</span>
+    <span class="inline-it">La struttura generale della sofferenza psichica</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Why Doesn’t the Symptom Correct Itself?</span>
+    <span class="inline-it">Perché il sintomo non si corregge da solo?</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">A man closes the door of his flat, starts down the stairs and halfway he stops. He goes back up, checks that the door is shut, comes down again and the urge returns. He knows perfectly well that the door is shut. He has just checked it. If you ask him why he does it, he answers without hesitation that he fears a burglary, a fire, some disaster. The answer is sincere. And yet tomorrow he will do the same, with even greater punctuality.</p>
+    <p class="it">Un uomo chiude la porta di casa, scende le scale e a metà strada si ferma. Risale, controlla che la porta sia chiusa, scende di nuovo e il bisogno ritorna. Sa benissimo che la porta è chiusa, l’ha appena controllata. Se gli chiedete perché lo fa, vi risponde senza esitare che teme un furto, un incendio, una disgrazia. La risposta è sincera. Eppure domani farà lo stesso, con una puntualità ancora maggiore.</p>
+
+    <p class="en">Take someone who is depressed. This week they tell you they feel bad because of work, the week after because of their relationship, and the week after that because of their health. The reasons keep changing and the state remains identical.</p>
+    <p class="it">Prendete una persona depressa. Questa settimana vi dice che sta male per il lavoro, la settimana dopo per la relazione, quella dopo ancora per la salute. Le ragioni cambiano di continuo e lo stato resta identico.</p>
+
+    <p class="en">In both cases the description the subject gives of themselves is true but partial. True because it matches what they experience, partial because it leaves out the logic of repetition. Many disciplines stop at the description and treat it as the whole phenomenon. Psychoanalysis adds a step and asks why a true description continues to produce the same outcome.</p>
+    <p class="it">In entrambi i casi la descrizione che il soggetto dà di sé è vera e parziale. Vera perché corrisponde a ciò che vive, parziale perché lascia fuori la logica della ripetizione. Molte discipline si fermano alla descrizione e la trattano come il fenomeno intero. La psicoanalisi aggiunge un passo e si chiede perché una descrizione vera continui a produrre lo stesso esito.</p>
+
+    <p class="en">Paul Ricoeur called this step the “hermeneutics of suspicion”, and grouped Marx, Nietzsche and Freud under it. The gesture they share is simple. It is to take seriously the version that a person or a society gives of itself, and then to ask what that version leaves out. For Marx, the wage looks like the fair price of labour. Beneath it lies surplus value, the part of what the worker produces that the wage leaves out. For Nietzsche, the morality of sacrifice looks like altruism. Beneath it lies a will to power that asserts itself precisely in renunciation. For Freud, the symptom looks like a malfunction. Beneath it lies a drive that finds satisfaction in that very malfunction. In all three cases the surface is the effect of something that has put on a disguise, and to interpret means to ask what that disguise covers.</p>
+    <p class="it">Paul Ricoeur chiamò questo passo “ermeneutica del sospetto”, e vi riunì Marx, Nietzsche e Freud. Il gesto comune è semplice. Prendere sul serio la versione che una persona o una società dà di sé, e poi chiedersi che cosa quella versione lascia fuori. Per Marx il salario sembra il prezzo giusto del lavoro. Sotto c’è il plusvalore, la parte di lavoro che l’operaio produce e che il salario lascia fuori. Per Nietzsche la morale del sacrificio sembra altruismo. Sotto c’è una volontà di potenza che si afferma proprio nel rinunciare. Per Freud il sintomo sembra un guasto. Sotto c’è una pulsione che in quel guasto trova soddisfazione. In tutti e tre i casi la superficie è l’effetto di qualcosa che si è messo un vestito, e interpretare significa chiedersi che cosa quel vestito copre.</p>
+
+    <p class="en">Suspicion on its own, however, explains little. The man on the stairs knows he has checked the door, and that knowledge remains inert. The depressed person knows their reasons keep changing, and that knowledge leaves them where they are. We still need to understand why something remains hidden rather than simply unknown, and why the symptom repeats with regularity while an error dissolves as soon as we recognise it.</p>
+    <p class="it">Il sospetto da solo, però, spiega poco. L’uomo sulle scale sa di aver controllato la porta, e questo sapere resta inerte. La persona depressa sa che le sue ragioni cambiano, e questo sapere la lascia ferma. Resta da capire perché qualcosa rimanga nascosto invece di restare semplicemente ignoto, e perché il sintomo si ripeta con regolarità mentre un errore si dissolve appena lo riconosciamo.</p>
+
+    <p class="en">This is where Freud breaks with the others. For him, what lies beneath is at work. It stays active, consumes resources, resists discovery. Repression is work. It spends energy to keep out of consciousness material that keeps pressing to get in, and the resistance we meet in analysis is the sign that this material is still alive. The man on the stairs pays every morning, and keeps paying because the alternative, whatever it is, costs him more.</p>
+    <p class="it">Qui sta lo scarto di Freud. Per lui ciò che sta sotto lavora. Si mantiene attivo, consuma risorse, resiste alla scoperta. La rimozione è un lavoro che impiega energia per tenere fuori dalla coscienza un materiale che continua a premere per entrare, e la resistenza che incontriamo in analisi è il segno che quel materiale è ancora vivo. L’uomo sulle scale paga ogni mattina, e continua a pagare perché l’alternativa, qualunque sia, gli costa di più.</p>
+
+    <p class="en">From this comes the consequence that guides the whole series. The symptom is a payment. Freud called it a compromise formation, an agreement between opposing forces, the best solution the conflict found at that moment. Whoever produces it pays to hold a balance in place, and the suffering is the cost of that balance.</p>
+    <p class="it">Da qui viene la conseguenza che guida tutta la serie. Il sintomo è un pagamento. Freud lo chiamava formazione di compromesso, un accordo fra spinte opposte, la soluzione migliore che il conflitto ha trovato in quel momento. Chi lo produce paga per tenere in piedi un equilibrio, e la sofferenza è il costo di quell’equilibrio.</p>
+
+    <p class="en">Describing how a symptom works leaves the decisive question open. Why, with all the damage it produces, doesn’t it correct itself? And how much does this resistance to change cost? Today we can try to make that cost measurable with the tools of computational neuroscience. The starting point is a single variable, the precision with which the brain weighs the signals from its own body, which is the subject of the next essay.</p>
+    <p class="it">Descrivere come funziona un sintomo lascia aperta la domanda decisiva. Perché, con tutto il danno che produce, non si corregge da solo? E quanto costa questa resistenza al cambiamento? Oggi possiamo provare a rendere quel costo misurabile con gli strumenti della neuroscienza computazionale. Il punto di partenza è una variabile sola, la precisione con cui il cervello pesa i segnali del proprio corpo, e di lei parleremo nel prossimo essay.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="neuropsicoanalisi.html">
+    <span class="inline-en">← Why Neuropsychoanalysis?</span>
+    <span class="inline-it">← Perché la neuropsicoanalisi?</span>
+  </a>
+  <span></span>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
