@@ -512,6 +512,19 @@
       margin-top: 0.2rem;
     }
 
+
+    /* ---- Box logica ---- */
+    :root { --logic: #4a566b; }
+    .logic-box {
+      text-decoration: none;
+      margin-top: 1rem;
+      background: var(--logic);
+      color: var(--bg);
+    }
+    .logic-box:hover { background: #39435a; }
+    .logic-box.en { display: block; }
+    .logic-box.it { display: none; }
+
     @media (max-width: 700px) {
       .essays-layout { grid-template-columns: 1fr; gap: 1.2rem; }
       .psy-side { position: static; }
@@ -543,7 +556,7 @@
     <span class="inline-en">Gears of the Mind</span>
     <span class="inline-it">Ingranaggi della mente</span>
   </div>
-    <div class="hero-body">
+  <div class="hero-body">
     <p class="en">Nature, Galileo wrote, is a book written in the language of mathematics. If human beings are part of it, it is reasonable to think that the mind can be known by the same criteria as the so-called “external world”. Theoretical neuroscience, intertwined with the philosophy of mind, is moving in this direction, and behind it lies logic, which for Aristotle was already the instrument of all knowledge and of which mathematics is the fullest expression. We are still far from understanding what consciousness is in itself, but even the most opaque aspects, such as desire, affect and the unconscious, seem to follow a logic that underlies our conscious narratives. This site presents for a general readership the studies I carry out in this field, with the help of the research group that supports me.</p>
     <p class="it">La natura, scriveva Galileo, è un libro scritto in lingua matematica. Se l’essere umano ne fa parte, è ragionevole pensare che la mente si possa conoscere con gli stessi criteri del cosiddetto “mondo esterno”. Le neuroscienze teoriche, intrecciate con la filosofia della mente, vanno in questa direzione, e dietro di loro c’è la logica, che già per Aristotele era lo strumento di ogni conoscenza e di cui la matematica è l’espressione più compiuta. Siamo ancora lontani dal capire che cosa sia la coscienza in sé, ma anche gli aspetti più opachi, come il desiderio, l’affettività e l’inconscio, sembrano seguire una logica sottostante alle narrazioni coscienti. Questo sito presenta in forma divulgativa gli studi che conduco in questo campo, con l’aiuto del gruppo di ricerca che mi sostiene.</p>
   </div>
@@ -858,6 +871,16 @@
       </span>
       <span class="psy-box-open"><span class="inline-en">Open</span><span class="inline-it">Apri</span></span>
     </button>
+    <a href="essays/logica-matematica.html" class="psy-box logic-box en">
+      <span class="psy-box-label">Introduction</span>
+      <span class="psy-box-title">Logic and Mathematics</span>
+      <span class="psy-box-open">Read</span>
+    </a>
+    <a href="essays/logica-matematica.html?lang=it" class="psy-box logic-box it">
+      <span class="psy-box-label">Introduzione</span>
+      <span class="psy-box-title">Logica e matematica</span>
+      <span class="psy-box-open">Leggi</span>
+    </a>
   </aside>
 </div>
 
