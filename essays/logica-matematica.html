@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logic and Mathematics / Logica e matematica</title>
+  <meta name="description" content="Logic is the condition of rational thought and mathematics its most precise form. How the mind came to be read as a logical structure, from Boole to Friston and from Freud to neuropsychoanalysis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-warm: #f0ece4;
+      --bg-darker: #e8e3da;
+      --ink: #2a2520;
+      --ink-mid: #4a4038;
+      --ink-light: #6b6159;
+      --ink-faint: #8a7f72;
+      --rule: #c5bdb3;
+      --accent: #b85c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .it { display: none; }
+    .en { display: block; }
+    .inline-it { display: none; }
+    .inline-en { display: inline; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      gap: 2rem;
+    }
+
+    .nav-brand {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle button {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--ink-faint);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .essay-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .essay-series {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .essay-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 3rem;
+    }
+
+    .essay-rule {
+      width: 36px;
+      height: 1.5px;
+      background: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .essay-body p {
+      font-size: 19px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+
+    .essay-body p:last-child { margin-bottom: 0; }
+    .essay-body em { font-style: italic; }
+    .essay-body strong { font-weight: 600; color: var(--ink); }
+
+    .essay-nav {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 3rem 4rem;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .essay-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .essay-nav a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.2rem; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .essay-container { padding: 3rem 1.5rem 4rem; }
+      .essay-nav { padding: 2rem 1.5rem; }
+      footer { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Mirko Bradley</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#essays"><span class="inline-en">Essays</span><span class="inline-it">Saggi</span></a></li>
+      <li><a href="../index.html#papers">Papers</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-it" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</nav>
+
+<div class="essay-container">
+
+  <div class="essay-series">
+    <span class="inline-en">Logic and Mathematics</span>
+    <span class="inline-it">Logica e matematica</span>
+  </div>
+
+  <h1 class="essay-title">
+    <span class="inline-en">Logic and Mathematics: What Is the Difference, and What Do They Have to Do with the Mind?</span>
+    <span class="inline-it">Logica e matematica: che differenza c’è e che cosa c’entrano con la mente?</span>
+  </h1>
+
+  <div class="essay-byline">Mirko Bradley — mirkobradley.com</div>
+  <div class="essay-rule"></div>
+
+  <div class="essay-body">
+
+    <p class="en">If it rains, the street is wet. The street is dry. Therefore it is not raining. Nobody needs to study to understand that this reasoning works. It would work even if we put anything else in place of the rain and the street. This is logic at work.</p>
+    <p class="it">Se piove, la strada è bagnata. La strada è asciutta. Dunque non piove. Nessuno ha bisogno di studiare per capire che questo ragionamento funziona. Funzionerebbe anche se al posto della pioggia e della strada mettessimo qualsiasi altra cosa. Qui lavora la logica.</p>
+
+    <p class="en">Logic does not tell us what there is in the world. It tells us what must hold for a discourse to make sense, for it to be possible to affirm, deny, deduce and contradict. For this reason it is the basis of all rational discourse. I regard it as a kind of condition of possibility of thought, a “quasi-transcendental”, because it precedes every content and we find it already at work whenever we reason.</p>
+    <p class="it">La logica non ci dice che cosa c’è nel mondo. Ci dice che cosa deve valere perché un discorso abbia senso, perché si possa affermare, negare, dedurre e contraddirsi. Per questo è la base di ogni discorso razionale. La considero una specie di condizione di possibilità del pensare, un “quasi trascendentale”, perché precede ogni contenuto e la troviamo già all’opera ogni volta che ragioniamo.</p>
+
+    <p class="en">Mathematics is this same structure when it becomes precise. Where logic says that a conclusion follows from certain premises, mathematics gives that following an exact and calculable form. From “if it rains, the street is wet” we arrive at an equation. What changes is the degree of precision, not the nature of what is being done.</p>
+    <p class="it">La matematica è questa stessa struttura quando diventa precisa. Dove la logica dice che da certe premesse segue una conclusione, la matematica dà a quel seguire una forma esatta e calcolabile. Dal “se piove, la strada è bagnata” arriviamo a un’equazione. Cambia il grado di precisione, non la natura di ciò che si sta facendo.</p>
+
+    <p class="en">And the mind? If human beings are part of nature, the brain cannot be an exception to this. It is not a black box that reason can only contemplate from afar, but a territory that obeys laws, and those laws can be written down. Theoretical neuroscience does this every day.</p>
+    <p class="it">E la mente? Se l’essere umano fa parte della natura, il cervello non può fare eccezione. Non è una scatola nera che la ragione può solo contemplare da lontano, ma un territorio che obbedisce a leggi, e quelle leggi si possono scrivere. Le neuroscienze teoriche lo fanno ogni giorno.</p>
+
+    <p class="en">What remains is the hardest step, the one from the brain to thoughts and feelings. A nerve cell is not a thought, and a fear cannot be seen under a microscope. Yet the step has a structure, and this structure too is logical. We still do not know why lived experience exists, but we can study with rigour how the two levels correspond.</p>
+    <p class="it">Resta il passaggio più difficile, quello dal cervello ai pensieri e ai sentimenti. Una cellula nervosa non è un pensiero, e una paura non si vede al microscopio. Eppure il passaggio ha una struttura, e anche questa struttura è logica. Non sappiamo ancora perché esista l’esperienza vissuta, ma possiamo studiare con rigore come i due livelli si corrispondono.</p>
+
+    <p class="en">There is also something more. Even where reason seems absent, in affect, in desire, in the unconscious, a logic is at work beneath our conscious narratives, a second reason that does not coincide with the one we use to argue, but that has a structure of its own.</p>
+    <p class="it">C’è poi qualcosa in più. Anche dove la ragione sembra assente, nell’affetto, nel desiderio, nell’inconscio, opera una logica sottostante alle narrazioni coscienti, una seconda ragione che non coincide con quella che usiamo per argomentare, ma che ha una struttura propria.</p>
+
+    <p class="en">Some people in history believed in this idea all the way.</p>
+    <p class="it">Qualcuno, nella storia, ha creduto a questa idea fino in fondo.</p>
+
+    <p class="en"><strong>George Boole</strong> came to it as a self-taught man, in a Victorian England that gave no quarter to those from a poor family. The son of a shoemaker, he taught in an elementary school and studied mathematics on his own, in the evenings, after work. In 1854 he published a book whose title is already a programme, <em>An Investigation of the Laws of Thought</em>. Boole maintained that human reasoning, the kind we use every day without thinking about it, follows the same rules as an algebra. And indeed he wrote them down. The algebra we now call Boolean is the way computers calculate. Every time you switch on a phone, you are using the laws of thought that Boole had extracted from the human mind and turned into symbols. The mind had a structure, and that structure was mathematical. Boole died at forty-nine, of pneumonia, after a walk in the rain. It is said that his wife, convinced that the illness should be treated with “sympathy” and not with medicine, poured buckets of water over him. It did not help. But his laws survived, and they are among us every time a machine calculates.</p>
+    <p class="it"><strong>George Boole</strong> ci arrivò da autodidatta, in un’Inghilterra vittoriana che non faceva sconti a chi veniva da una famiglia povera. Figlio di un calzolaio, insegnò in una scuola elementare e studiò matematica da solo, la sera, dopo il lavoro. Nel 1854 pubblicò un libro dal titolo che è già un programma, <em>An Investigation of the Laws of Thought</em>. Le leggi del pensiero. Boole sosteneva che il ragionamento umano, quello che usiamo ogni giorno senza pensarci, segue le stesse regole di un’algebra. E infatti le scrisse. L’algebra che oggi chiamiamo booleana è il modo in cui i computer calcolano. Ogni volta che accendete un telefono, state usando le leggi del pensiero che Boole aveva estratto dalla mente umana e trasformato in simboli. La mente aveva una struttura, e quella struttura era matematica. Boole morì a quarantanove anni, di polmonite, dopo una passeggiata sotto la pioggia. Si racconta che la moglie, convinta che la malattia andasse curata con la “simpatia” e non con la medicina, gli versò addosso secchi d’acqua. Non servì. Ma le sue leggi sopravvissero, e sono tra noi ogni volta che una macchina calcola.</p>
+
+    <p class="en"><strong>Gottfried Wilhelm Leibniz</strong> had dreamed of something even more ambitious, a century and a half earlier. He wanted a universal language, a <em>characteristica universalis</em>, and a calculus, a <em>calculus ratiocinator</em>, that would allow every dispute to be settled with pen in hand. “Gentlemen,” he is supposed to have said, “let us calculate.” His dream was that all human thought could be reduced to a few primitive thoughts and fixed rules. It was not a fantasy. Leibniz built mechanical calculators, invented the infinitesimal calculus independently of Newton, and spent his life looking for a bridge between logic and the way human beings really reason. The bridge, for him, already existed and only had to be found. His intuition was that the mind is not an unfathomable abyss, but a mechanism that can be described. Three centuries later, logic and computer science took up that idea.</p>
+    <p class="it"><strong>Gottfried Wilhelm Leibniz</strong> aveva sognato qualcosa di ancora più ambizioso, un secolo e mezzo prima. Voleva una lingua universale, una <em>characteristica universalis</em>, e un calcolo, un <em>calculus ratiocinator</em>, che permettesse di risolvere ogni disputa con la penna in mano. “Signori”, avrebbe detto, “calcoliamo”. Il suo sogno era che tutto il pensiero umano potesse ridursi a pochi pensieri primitivi e a regole fisse. Non era una fantasticheria. Leibniz costruì calcolatrici meccaniche, inventò il calcolo infinitesimale indipendentemente da Newton, e passò la vita a cercare un ponte tra la logica e il modo in cui gli esseri umani ragionano davvero. Il ponte, per lui, esisteva già e bisognava solo trovarlo. La sua intuizione era che la mente non è un abisso insondabile, ma un meccanismo che si può descrivere. Tre secoli dopo, la logica e l’informatica hanno ripreso quell’idea.</p>
+
+    <p class="en"><strong>Warren McCulloch and Walter Pitts</strong> took the next step in 1943, in a paper whose title is worth reading in full, <em>A Logical Calculus of the Ideas Immanent in Nervous Activity</em>. McCulloch was a neurophysiologist with a passion for poetry and philosophy, Pitts a child prodigy without a degree, who ran away from home at fifteen and was encouraged by Bertrand Russell. Together they showed that a network of neurons, with its connections and activation thresholds, can compute any logical function. The brain, they said, is a logical machine. Not in the sense that it thinks like a computer, but in the sense that its activity obeys a structure that can be described with the same precision with which a theorem is described. That paper influenced cybernetics, artificial intelligence and the neural networks that today recognise faces and translate languages. Everything was already written in the mind, and the mind was already written in logical form.</p>
+    <p class="it"><strong>Warren McCulloch e Walter Pitts</strong> fecero il passo successivo nel 1943, in un articolo dal titolo che vale la pena leggere per intero, <em>A Logical Calculus of the Ideas Immanent in Nervous Activity</em>. Un calcolo logico delle idee immanenti nell’attività nervosa. McCulloch era un neurofisiologo con la passione della poesia e della filosofia, Pitts un ragazzo prodigio senza laurea, fuggito di casa a quindici anni e incoraggiato da Bertrand Russell. Insieme dimostrarono che una rete di neuroni, con le sue connessioni e le sue soglie di attivazione, può calcolare qualsiasi funzione logica. Il cervello, dicevano, è una macchina logica. Non nel senso che pensa come un computer, ma nel senso che la sua attività obbedisce a una struttura che si può descrivere con la stessa precisione con cui si descrive un teorema. Quell’articolo ha influenzato la cibernetica, l’intelligenza artificiale e le reti neurali che oggi riconoscono i volti e traducono le lingue. Tutto era già scritto nella mente, e la mente era già scritta in forma logica.</p>
+
+    <p class="en"><strong>Alan Turing</strong> picked up that thread and took it to its extreme consequences. In 1936, at the age of twenty-four, he imagined an abstract machine capable of computing any computable function. It was a thought experiment, but it was also a description of the human mind. If thinking is a procedure that follows rules, then a machine that follows the same rules thinks. In 1950, with a paper that is still read today with unease, he proposed his imitation game. If a machine can converse with a human being without the human noticing the difference, then we can say that it thinks. Turing’s test does not ask what consciousness is. It asks only whether we can tell it apart from its behaviour. And the answer, for Turing, was that thought has a form, and that form can be replicated. Turing died at forty-one, persecuted for his homosexuality, but his machine is today the model of every computer and, for many neuroscientists, a useful model of the brain.</p>
+    <p class="it"><strong>Alan Turing</strong> raccolse quel filo e lo portò alle estreme conseguenze. Nel 1936, a ventiquattro anni, immaginò una macchina astratta capace di calcolare qualsiasi funzione calcolabile. Era un esperimento mentale, ma era anche una descrizione della mente umana. Se il pensiero è un procedimento che segue regole, allora una macchina che segue le stesse regole pensa. Nel 1950, con un articolo che ancora oggi si legge con inquietudine, propose il suo gioco dell’imitazione. Se una macchina riesce a conversare con un essere umano senza che questi si accorga della differenza, allora possiamo dire che pensa. Il test di Turing non chiede che cosa sia la coscienza. Chiede solo se possiamo distinguerla dal suo comportamento. E la risposta, per Turing, era che il pensiero ha una forma, e quella forma si può replicare. Turing morì a quarantun anni, perseguitato per la sua omosessualità, ma la sua macchina è oggi il modello di ogni computer e, per molti neuroscienziati, un modello utile del cervello.</p>
+
+    <p class="en"><strong>Jean Piaget</strong> came by another route, and confirmed the same idea. In the 1920s, working in Paris with Binet’s intelligence tests, he began to notice something that others regarded as an error to be corrected. Children gave wrong answers in recurring, predictable, almost systematic ways. It was no accident. It was a different logic, which followed rules of its own. Piaget spent his life studying how that logic develops, from the first months of life to adolescence, and found that the child builds the structures of thought following an order that has the form of a logical progression. Mental operations, he said, are internalised logical operations. The mind does not learn logic from the outside, because logic is the way the mind is built. He studied his three children with the attention of a naturalist, and drew a conclusion that is still central to developmental psychology today. To think is to carry out formal operations, and those operations can be described.</p>
+    <p class="it"><strong>Jean Piaget</strong> arrivò da un’altra strada, e confermò la stessa idea. Negli anni Venti, lavorando a Parigi con i test di intelligenza di Binet, cominciò a notare una cosa che gli altri consideravano un errore da correggere. I bambini sbagliavano le risposte in modi ricorrenti, prevedibili, quasi sistematici. Non era un caso. Era una logica diversa, che seguiva regole proprie. Piaget passò la vita a studiare come quella logica si sviluppa, dai primi mesi di vita all’adolescenza, e scoprì che il bambino costruisce le strutture del pensiero seguendo un ordine che ha la forma di una progressione logica. Le operazioni mentali, diceva, sono operazioni logiche interiorizzate. La mente non impara la logica dall’esterno, perché la logica è il modo in cui la mente si costruisce. Studiò i suoi tre figli con l’attenzione di un naturalista, e ne trasse una conclusione che ancora oggi è al centro della psicologia dello sviluppo. Pensare significa compiere operazioni formali, e quelle operazioni si possono descrivere.</p>
+
+    <p class="en"><strong>Jerry Fodor</strong> posed the question directly in 1975, in a book that marked the philosophy of mind, <em>The Language of Thought</em>. If thought follows rules, Fodor said, then there must exist a system of representations with a syntax and a semantics, that is, a language internal to the brain. Not the language we speak, but the format in which thoughts are written before they are said. Fodor held that the mind is a symbolic system, and that reasoning is a computation over those symbols. It was the idea of Boole and Leibniz, brought into cognitive psychology with the tools of contemporary logic. Fodor was an ironic and combative man, who loved heated arguments and detested intellectual fashions. He spent his life defending a simple and radical thesis, namely that to think is to compute, and that to compute is to manipulate representations. Today its strong version is disputed, but the basic idea has become common sense in the cognitive sciences. The mind has a combinatorial structure, and that structure can be described.</p>
+    <p class="it"><strong>Jerry Fodor</strong> pose la domanda in modo diretto nel 1975, in un libro che ha segnato la filosofia della mente, <em>The Language of Thought</em>. Se il pensiero segue regole, diceva Fodor, allora deve esistere un sistema di rappresentazioni con una sintassi e una semantica, cioè un linguaggio interno al cervello. Non il linguaggio che parliamo, ma il formato in cui i pensieri vengono scritti prima di essere detti. Fodor sosteneva che la mente è un sistema simbolico, e che il ragionamento è una computazione su quei simboli. Era l’idea di Boole e di Leibniz, portata dentro la psicologia cognitiva con gli strumenti della logica contemporanea. Fodor era un uomo ironico e polemico, amava le discussioni accese e detestava le mode intellettuali. Passò la vita a difendere una tesi semplice e radicale, cioè che pensare è calcolare, e che calcolare significa manipolare rappresentazioni. Oggi la sua versione forte è discussa, ma l’idea di fondo è diventata senso comune nelle scienze cognitive. La mente ha una struttura combinatoria, e quella struttura si può descrivere.</p>
+
+    <p class="en"><strong>David Marr</strong> took a step that changed the way neuroscience is done. In the 1970s, at Cambridge and then at MIT, working on vision, he realised that those who studied the brain were confusing three different questions. What does the system do? How does it do it? And with what physical mechanism? Marr separated them into three levels, the computational, the algorithmic and the implementational. At the first level one describes the problem the system solves, and one describes it in mathematical terms. At the second one describes the procedure that solves it. At the third one describes how neurons carry it out. The lesson was clear. Before asking how a brain works, one must ask what problem it is solving, and that question can be written in mathematical terms. Marr died at thirty-five, of leukaemia, but his three-level scheme is today the standard way of teaching how to study the mind. Logic and mathematics are not an ornament but the first level, the one that gives meaning to all the others.</p>
+    <p class="it"><strong>David Marr</strong> fece un passo che cambiò il modo di fare neuroscienze. Negli anni Settanta, a Cambridge e poi al MIT, lavorando sulla visione, si accorse che chi studiava il cervello confondeva tre domande diverse. Che cosa fa il sistema? Come lo fa? E con quale meccanismo fisico? Marr le separò in tre livelli, quello computazionale, quello algoritmico e quello implementativo. Al primo livello si descrive il problema che il sistema risolve, e lo si descrive in termini matematici. Al secondo si descrive il procedimento che lo risolve. Al terzo si descrive come i neuroni lo realizzano. La lezione era chiara. Prima di chiedersi come funziona un cervello, bisogna chiedersi quale problema sta risolvendo, e quella domanda si può scrivere in termini matematici. Marr morì a trentacinque anni, di leucemia, ma il suo schema a tre livelli è oggi il modo standard in cui si insegna a studiare la mente. La logica e la matematica non sono un ornamento ma il primo livello, quello che dà senso a tutti gli altri.</p>
+
+    <p class="en"><strong>John von Neumann</strong> had seen all this fifty years ahead of time. In 1945, in the report in which he described the computer that bears his name, he used the neurons of McCulloch and Pitts as a model, and saw an affinity of logic between the brain and the calculating machine. In the last months of his life, already ill, he prepared a series of lectures that he was unable to deliver and that were published posthumously as <em>The Computer and the Brain</em>. The brain, he said, works in a digital and analogue way at once, and its logic may be different from the one we use consciously, but for him it remained a logic to be discovered. Von Neumann was a pure mathematician, one of the greatest of the twentieth century, and he did not need to study neuroscience to understand that the mind must have a form. His last lesson was an act of faith in reason. If the brain exists, then it can be described.</p>
+    <p class="it"><strong>John von Neumann</strong> aveva visto tutto questo con cinquant’anni di anticipo. Nel 1945, nella relazione in cui descriveva il computer che porta il suo nome, usò come modello i neuroni di McCulloch e Pitts, e vedeva fra il cervello e la macchina calcolatrice un’affinità di logica. Negli ultimi mesi della sua vita, già malato, preparò una serie di conferenze che non riuscì a tenere e che furono pubblicate postume con il titolo <em>The Computer and the Brain</em>. Il cervello, diceva, funziona in modo digitale e analogico insieme, e la sua logica potrebbe essere diversa da quella che usiamo consapevolmente, ma restava per lui una logica da scoprire. Von Neumann era un matematico puro, uno dei più grandi del Novecento, e non aveva bisogno di studiare neuroscienze per capire che la mente doveva avere una forma. La sua ultima lezione fu un atto di fede nella ragione. Se il cervello esiste, allora si può descrivere.</p>
+
+    <p class="en"><strong>Karl Friston</strong> has picked up that thread and carried it to where this site is heading. Over the last twenty years he has developed the free energy principle, a theory that describes the brain as a machine that reduces prediction error. The brain, says Friston, does not passively receive the world, but predicts it and corrects its predictions when the error exceeds a threshold. Friston is a neuroscientist with a passion for theoretical physics, and his language is made of differential equations and Bayesian inference. His mathematics holds for any system that keeps itself alive. This is where my own reading begins. Prediction error, the volume knob and the distinction between rigidity and instability, which I discuss in the essays on psychic suffering, are a way of using that mathematics to understand where regulation breaks down. It is the bridge that neuropsychoanalysis is trying to build.</p>
+    <p class="it"><strong>Karl Friston</strong> ha raccolto quel filo e lo ha portato dove questo sito vuole arrivare. Negli ultimi vent’anni ha sviluppato il principio di energia libera, una teoria che descrive il cervello come una macchina che riduce l’errore di previsione. Il cervello, dice Friston, non riceve passivamente il mondo, ma lo prevede e corregge le proprie previsioni quando l’errore supera una soglia. Friston è un neuroscienziato con la passione della fisica teorica, e il suo linguaggio è fatto di equazioni differenziali e di inferenza bayesiana. La sua matematica vale per qualsiasi sistema che si mantenga in vita. Da qui parte la mia lettura. L’errore di previsione, la manopola del volume e la distinzione fra rigidità e instabilità, di cui parlo nei saggi sulla sofferenza psichica, sono un modo di usare quella matematica per capire dove la regolazione si inceppa. È il ponte che la neuropsicoanalisi sta cercando di costruire.</p>
+
+    <p class="en">It remains to speak of the unconscious, the territory that seemed furthest from logic. Here the story unfolds more slowly, in three stages.</p>
+    <p class="it">Resta da dire dell’inconscio, il territorio che sembrava più lontano dalla logica. Qui la storia si svolge più lentamente, in tre tappe.</p>
+
+    <p class="en"><strong>Sigmund Freud</strong> was the first to understand that the unconscious is not chaos. In the essay <em>The Unconscious</em>, from 1915, he wrote that in this system there is no negation, no doubt and no degrees of certainty, and already in <em>The Interpretation of Dreams</em> he had described how dreams condense and displace contents without respecting contradiction and time. It was a description of rules, but Freud did not call it logic.</p>
+    <p class="it"><strong>Sigmund Freud</strong> fu il primo a capire che l’inconscio non è un caos. Nel saggio <em>L’inconscio</em>, del 1915, scrisse che in questo sistema non esistono negazione, dubbio né gradi di certezza, e già nell’<em>Interpretazione dei sogni</em> aveva descritto come i sogni condensino e spostino i contenuti senza rispettare la contraddizione e il tempo. Era una descrizione di regole, ma Freud non la chiamava logica.</p>
+
+    <p class="en"><strong>Ignacio Matte Blanco</strong>, a Chilean psychoanalyst who lived for a long time in Rome, took the next step. In <em>The Unconscious as Infinite Sets</em>, of 1975, he maintained that the unconscious follows a precise logic, which he called symmetrical. In the logic we use when awake, “Anna is Paolo’s mother” is not equivalent to “Paolo is Anna’s mother”. In the unconscious the two sentences are equivalent, and the part is identified with the whole. Consciousness reasons through distinctions, the unconscious through identities, and human thought is an interweaving of the two, which Matte Blanco called bi-logic.</p>
+    <p class="it"><strong>Ignacio Matte Blanco</strong>, psicoanalista cileno vissuto a lungo a Roma, fece il passo successivo. In <em>The Unconscious as Infinite Sets</em>, del 1975, sostenne che l’inconscio segue una logica precisa, che chiamò simmetrica. Nella logica che usiamo da svegli “Anna è la madre di Paolo” non equivale a “Paolo è la madre di Anna”. Nell’inconscio le due frasi si equivalgono, e la parte si identifica con il tutto. La coscienza ragiona per distinzioni, l’inconscio per identità, e il pensiero umano è un intreccio delle due, che Matte Blanco chiamò bi-logica.</p>
+
+    <p class="en"><strong>Jacques Lacan</strong> chose another route, but towards the same point. For him “the unconscious is structured like a language”, that is, it has a grammar and rules, and in his later years he tried to write them down with symbols and with topology, culminating in the Borromean knots.</p>
+    <p class="it"><strong>Jacques Lacan</strong> scelse un’altra via, ma verso lo stesso punto. Per lui “l’inconscio è strutturato come un linguaggio”, cioè ha una grammatica e delle regole, e negli ultimi anni cercò di scriverle con simboli e con la topologia, fino ai nodi borromei.</p>
+
+    <p class="en">Three authors, three ways of saying the same thing. The unconscious has rules, and those rules can be studied. What was missing was a way of connecting them to the body. This is where neuropsychoanalysis comes in.</p>
+    <p class="it">Tre autori, tre modi di dire la stessa cosa. L’inconscio ha regole, e quelle regole si possono studiare. Quello che mancava era un modo per collegarle al corpo. È qui che entra la neuropsicoanalisi.</p>
+
+    <p class="en"><strong>Mark Solms</strong>, who has taken up the Freudian idea of affect as a felt bodily state, maintains that affect is the way in which a regulated state of the body presents itself to consciousness. And regulation has a mathematical form, as Friston shows. The circle closes, because a logic of the unconscious is no longer an oxymoron. It is a territory that can be explored with the tools of logic and mathematics.</p>
+    <p class="it"><strong>Mark Solms</strong>, che ha ripreso l’idea freudiana dell’affetto come stato corporeo sentito, sostiene che l’affetto è il modo in cui uno stato del corpo regolato si presenta alla coscienza. E la regolazione ha una forma matematica, come mostra Friston. Il cerchio si chiude, perché una logica dell’inconscio non è più un ossimoro. È un territorio che si può esplorare con gli strumenti della logica e della matematica.</p>
+
+    <p class="en">The essays on this site start from here, from the conviction that what appears most opaque in the mind has a structure that can be sought and found. Logic and mathematics are not external tools that we apply to the mind from above. They are the fabric of the whole psychic apparatus in its connections with the body, and for this reason the mind can recognise them in itself.</p>
+    <p class="it">I saggi di questo sito partono da qui, dalla convinzione che ciò che nella mente appare più opaco abbia una struttura che si può cercare e trovare. La logica e la matematica non sono strumenti esterni che applichiamo alla mente dall’alto. Sono il tessuto dell’intero apparato psichico nelle sue connessioni col corpo, e per questo la mente può riconoscerle in sé.</p>
+
+  </div>
+</div>
+
+<div class="essay-nav">
+  <a href="../index.html#essays">
+    <span class="inline-en">← Essays</span>
+    <span class="inline-it">← Saggi</span>
+  </a>
+  <span></span>
+</div>
+
+<footer>
+  <span>mirkobradley.com</span>
+  <span>© 2026 Mirko Bradley & The Blind Spot Collective</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  const btnEn = document.getElementById('btn-en');
+  const btnIt = document.getElementById('btn-it');
+  document.querySelectorAll('.en').forEach(el => {
+    el.style.display = lang === 'en' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.it').forEach(el => {
+    el.style.display = lang === 'it' ? 'block' : 'none';
+  });
+  document.querySelectorAll('.inline-en').forEach(el => {
+    el.style.display = lang === 'en' ? 'inline' : 'none';
+  });
+  document.querySelectorAll('.inline-it').forEach(el => {
+    el.style.display = lang === 'it' ? 'inline' : 'none';
+  });
+  if (lang === 'it') {
+    btnIt.classList.add('active');
+    btnEn.classList.remove('active');
+    document.documentElement.lang = 'it';
+  } else {
+    btnEn.classList.add('active');
+    btnIt.classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+const urlLang = new URLSearchParams(window.location.search).get('lang');
+if (urlLang === 'it') setLang('it');
+</script>
+</body>
+</html>
